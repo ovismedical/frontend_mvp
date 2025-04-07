@@ -1,0 +1,62 @@
+.menu-button {
+    position: flex;
+    top: 50px;
+    left: 50px;
+    color: black;
+    font-size: 50px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+    z-index: 1001;
+  }
+
+  .sidebar {
+    position: fixed;
+    top: 0; /* Initially hidden */
+    width: 250px;
+    height: 100vh;
+    background-color: white;
+    box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    z-index: 1000;
+  }
+
+  .sidebar.open {
+    left: 0; /* Slide into view */
+    transition: left 0.3s ease-in-out;
+  }
+
+  .sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+  }
+  
+  .sidebar-menu li {
+    margin-bottom: 15px;
+  }
+  
+  .sidebar-menu a {
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background 0.3s;
+  }
+  
+  .sidebar-menu a:hover {
+    background-color: #f0f0f0;
+  }
+
+  .sidebar-footer {
+    position: relative;
+    bottom: -375px;
+    left: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+  }

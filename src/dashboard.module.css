@@ -1,0 +1,105 @@
+/* Layout */
+.pageWrapper {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+  }
+  
+  .sidebar {
+    width: 80px;
+    background-color: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+  }
+  
+  .mainContent {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .pageHeader {
+    height: 60px;
+    background-color: #f8f8f8;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .logo {
+    height: 50px;
+    width: auto;
+    object-fit: contain;
+  }
+  
+  .contentGrid {
+    display: flex;
+    gap: 40px;
+    padding: 40px;
+    justify-content: space-around;
+  }
+  
+  .personalBox,
+  .loggerBox {
+    flex: 1;
+    border: 2px solid black;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: white;
+    max-width: 500px;
+    height: fit-content;
+  }
+  
+  .personalBox h2,
+  .loggerBox h2 {
+    margin-bottom: 10px;
+    font-size: 20px;
+  }
+  
+  .loggerStatus {
+    background-color: #e6ffe6;
+    border: 2px solid green;
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-weight: bold;
+    color: green;
+    display: inline-block;
+    margin-bottom: 10px;
+  }
+  
+  .loggerDate {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .loggerContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 20px;
+  }
+  
+  
+  .enterButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border: 2px solid black;
+    border-radius: 8px;
+    background-color: white;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .enterButton:hover {
+    background-color: #f0f0f0;
+  }
