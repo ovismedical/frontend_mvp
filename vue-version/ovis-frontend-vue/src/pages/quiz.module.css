@@ -1,0 +1,159 @@
+.pageWrapper {
+  display: flex;
+  height: 100vh;
+  background-color: #f9fafb;
+}
+
+.sidebar {
+  width: 220px;
+  background-color: #1e293b;
+  color: white;
+  flex-shrink: 0;
+}
+
+.fullPage {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.pageHeader {
+  height: 70px;
+  background-color: #f3f4f6;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.logo {
+  height: 40px;
+}
+
+.quizContainer {
+  flex: 1;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  background-color: #ffffff;
+}
+
+.questionNumber {
+  font-weight: 600;
+  color: #4b5563;
+}
+
+.progressBarWrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.progressBar {
+  flex: 1;
+  height: 10px;
+  background-color: #e5e7eb;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background-color: #3b82f6;
+  transition: width 0.3s ease;
+}
+
+.progressLabel {
+  min-width: 40px;
+  font-weight: bold;
+  color: #374151;
+}
+
+.questionBox {
+  font-size: 18px;
+  font-weight: 500;
+  color: #111827;
+  padding: 10px 0;
+}
+
+.choicesRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.choiceButton {
+  padding: 10px 16px;
+  background-color: #e5e7eb;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.choiceButton:hover {
+  background-color: #d1d5db;
+}
+
+.selected {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.otherInput {
+  padding: 10px;
+  width: 100%;
+  max-width: 400px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.navigationButtons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.navButton,
+.nextButton,
+.submitButton {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.navButton {
+  background-color: #9ca3af;
+  color: white;
+}
+
+.navButton:hover {
+  background-color: #6b7280;
+}
+
+.nextButton {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.nextButton:hover {
+  background-color: #2563eb;
+}
+
+.submitButton {
+  background-color: #10b981;
+  color: white;
+}
+
+.submitButton:hover {
+  background-color: #059669;
+}

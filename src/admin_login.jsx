@@ -23,7 +23,7 @@ function AdminLogin() {
     if (data.message === "Admin login successful") {
       setToken(data.token);
       localStorage.setItem("token", JSON.stringify(data.token));
-      navigate("/dashboard")
+      navigate("/admindashboard")
     }
 
   };
@@ -36,7 +36,7 @@ function AdminLogin() {
         <input
             className={styles.login_userinput}
             type="text"
-            placeholder="Username/Patient ID"
+            placeholder="Username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />

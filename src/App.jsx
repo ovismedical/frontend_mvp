@@ -11,6 +11,9 @@ import FAQ from "./faq";
 import DataPage from "./data";
 import Settings from "./settings";
 import ContactUs from "./contactus";
+import CreateAccount from "./patient_create_account";
+import AdminDashboard from "./admin_dashboard";
+import AdminPatientLookup from "./admin_patient_lookup";
 import "./App.css"
 
 function App() {
@@ -19,7 +22,10 @@ function App() {
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/patientlogin" element={<PatientLogin />} />
+        <Route path="/createaccount" element={<CreateAccount />} />
         <Route path="/adminlogin" element={<AdminLogin />} />
+        <Route path="/admindashboard" element={<AdminDashboard />} />
+        <Route path="/admin/patient/:username" element={<AdminPatientLookup />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/dailylogger" element={<Dailylogger />} />
         <Route path="/quiz" element={<QuizPage />} />

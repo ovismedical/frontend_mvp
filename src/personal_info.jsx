@@ -17,7 +17,7 @@ function PersonalInfo({hideHeader = false}) {
       try {
         const tokenString = localStorage.getItem("token");
         const token = JSON.parse(tokenString);
-        const response = await fetch("http://127.0.0.1:8000/personalinfo?id=" + token.name, {
+        const response = await fetch("http://127.0.0.1:8000/personalinfo?username=" + token.name, {
           method: "GET",
           headers: { "Content-Type": "application/json" }
         });
