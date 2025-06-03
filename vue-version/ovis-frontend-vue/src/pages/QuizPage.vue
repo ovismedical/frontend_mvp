@@ -96,7 +96,7 @@ const otherInputs = ref({})
 
 onMounted(async () => {
   try {
-    const response = await fetch('http://127.0.0.1:8000/questions')
+    const response = await fetch('http://0.0.0.0:8000/getquestions')
     const data = await response.json()
     questions.value = data.questions
     answers.value = Array(data.questions.length).fill([])

@@ -19,7 +19,10 @@
 
                 <div :class="styles.profileDropdown">
                 <img :src="userAvatar" :class="styles.avatar" />
-                <span>{{ userName }}</span>
+                <template v-if="patient">
+                  {{patient.username}}
+                </template>
+                <p v-else>Loading...</p>
                 <button @click="signOut">▼</button>
                 </div>
             </div>
@@ -131,7 +134,6 @@ const goToQuiz = () => {
   router.push('/quiz')
 }
 
-const userName = patient.username
 const userAvatar = 'https://via.placeholder.com/40' // replace with your own image
 
 const signOut = () => {
