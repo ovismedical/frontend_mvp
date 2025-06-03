@@ -106,11 +106,18 @@ const fetchPatient = async () => {
 
 const fetchStreak = async () => {
   try {
-    const token = JSON.parse(localStorage.getItem('token'))
-    const response = await fetch(`http://127.0.0.1:8000/getstreak?username=${token.name}`)
+    const storedToken = JSON.parse(localStorage.getItem('token')).access_token
+    const response = await fetch('http://0.0.0.0:8000/getstreak', {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Authorization': `Bearer ${storedToken}`
+      }
+    })
     const data = await response.json()
-    currentStreak.value = data
-  } catch (err) {
+    currentStreak.value = data.streak
+
+    } catch (err) {
     console.error('Failed to load streak', err)
   }
 }
