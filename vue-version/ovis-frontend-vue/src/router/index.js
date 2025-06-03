@@ -4,10 +4,12 @@ import MainPage from '../pages/MainPage.vue'
 import PatientLogin from '../pages/PatientLogin.vue'
 import DashboardPage from '../pages/Dashboard.vue'
 import QuizPage from '../pages/QuizPage.vue'
+import CreateAccount from '../pages/CreateAccount.vue'
 
 const routes = [
   { path: '/', component: MainPage },
   { path: '/patientlogin', component: PatientLogin },
+  { path: '/createaccount', component: CreateAccount },
   { path: '/dashboard', component: DashboardPage },
   { path: '/quiz', component: QuizPage },
 ]
