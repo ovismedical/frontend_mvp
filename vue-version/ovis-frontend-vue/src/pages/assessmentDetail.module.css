@@ -1,0 +1,346 @@
+.pageWrapper {
+  display: flex;
+  height: 100vh;
+  background-color: #f9fafb;
+}
+
+.sidebar {
+  width: 220px;
+  background-color: #1e293b;
+  color: white;
+  flex-shrink: 0;
+}
+
+.fullPage {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.pageHeader {
+  height: 70px;
+  background-color: #f3f4f6;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.backButton {
+  padding: 8px 12px;
+  background: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.backButton:hover {
+  background: #2563eb;
+}
+
+.pageTitle {
+  font-size: 24px;
+  font-weight: 600;
+  color: #111827;
+  margin: 0;
+}
+
+.logo {
+  height: 40px;
+}
+
+.dashboardContainer {
+  flex: 1;
+  padding: 20px;
+  background-color: #ffffff;
+  overflow-y: auto;
+}
+
+.tabNav {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 24px;
+  background-color: #f3f4f6;
+  padding: 4px;
+  border-radius: 8px;
+  width: fit-content;
+}
+
+.tab {
+  padding: 8px 16px;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  color: #6b7280;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.activeTab {
+  background: #ffffff;
+  color: #111827;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.summaryCard {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+}
+
+.assessmentHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.assessmentHeader h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.statusBadge {
+  background: #f3f4f6;
+  color: #6b7280;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.completedBadge {
+  background: #d1fae5;
+  color: #065f46;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  margin-left: auto;
+}
+
+.metricsRow {
+  display: flex;
+  gap: 32px;
+}
+
+.metric {
+  text-align: center;
+}
+
+.metricValue {
+  font-size: 32px;
+  font-weight: 700;
+  color: #3b82f6;
+  margin-bottom: 4px;
+}
+
+.metricLabel {
+  font-size: 14px;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.symptomsSection {
+  margin-bottom: 32px;
+}
+
+.sectionTitle {
+  font-size: 20px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  font-size: 14px;
+  font-weight: 400;
+  color: #6b7280;
+  margin-left: 8px;
+}
+
+.symptomsList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.symptomCard {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.symptomCard:hover {
+  border-color: #3b82f6;
+  box-shadow: 0 4px 6px rgba(59, 130, 246, 0.1);
+}
+
+.symptomIcon {
+  font-size: 32px;
+  width: 48px;
+  height: 48px;
+  background: #f0f9ff;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.symptomInfo {
+  flex: 1;
+}
+
+.symptomInfo h4 {
+  margin: 0 0 12px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.symptomMetrics {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.frequencyRow,
+.intensityRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.ratingDots {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #e5e7eb;
+  transition: background-color 0.2s;
+}
+
+.activeDot {
+  background: #3b82f6;
+}
+
+.ratingText {
+  margin-left: 8px;
+  font-weight: 600;
+  color: #3b82f6;
+}
+
+.arrowIcon {
+  font-size: 18px;
+  color: #9ca3af;
+}
+
+.conversationSection {
+  margin-bottom: 32px;
+}
+
+.conversationHistory {
+  background: #f9fafb;
+  border-radius: 12px;
+  padding: 16px;
+  max-height: 400px;
+  overflow-y: auto;
+  margin-top: 16px;
+}
+
+.message {
+  margin-bottom: 16px;
+  padding: 12px;
+  border-radius: 8px;
+}
+
+.userMessage {
+  background: #dbeafe;
+  margin-left: 20%;
+  text-align: right;
+}
+
+.assistantMessage {
+  background: white;
+  margin-right: 20%;
+  border: 1px solid #e5e7eb;
+}
+
+.messageContent {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #374151;
+  margin-bottom: 4px;
+}
+
+.messageTime {
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+.summarySection {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+}
+
+.summaryContent {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #374151;
+}
+
+.summaryContent h4 {
+  color: #111827;
+  font-weight: 600;
+  margin: 16px 0 8px 0;
+}
+
+.summaryContent ul {
+  padding-left: 20px;
+}
+
+.summaryContent li {
+  margin-bottom: 4px;
+}
+
+.loading,
+.error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  font-size: 16px;
+  color: #6b7280;
+}
+
+.error {
+  color: #dc2626;
+} 

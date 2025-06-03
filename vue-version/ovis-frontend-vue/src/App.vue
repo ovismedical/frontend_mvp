@@ -9,12 +9,22 @@
 </script>
 
 <style>
-/* Optional: Global styles */
-body {
+/* Global styles */
+html, body {
   margin: 0;
   padding: 0;
   height: 100%;
-  overflow: hidden;
   box-sizing: border-box;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  overflow-y: auto; /* Allow vertical scrolling */
+}
+
+#app {
+  height: 100%;
+  min-height: 100vh;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
 }
 </style>

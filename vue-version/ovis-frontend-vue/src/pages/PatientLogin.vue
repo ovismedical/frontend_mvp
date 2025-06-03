@@ -51,7 +51,7 @@ const router = useRouter()
 const handleLogin = async () => {
   loading.value = true
   try {
-    const response = await fetch('http://0.0.0.0:8000/token', {
+    const response = await fetch('http://localhost:8000/token', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: new URLSearchParams({

@@ -84,7 +84,7 @@ import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import logo from '../assets/logo.png'
 import styles from './quiz.module.css'
-import SideHeader from './SideBar.vue'
+import SideHeader from './Sidebar.vue'
 
 const router = useRouter()
 
@@ -96,11 +96,11 @@ const otherInputs = ref({})
 
 onMounted(async () => {
   try {
-    const response = await fetch('http://0.0.0.0:8000/getquestions')
+    const response = await fetch('http://localhost:8000/getquestions')
     const data = await response.json()
-    questions.value = data.questions
-    answers.value = Array(data.questions.length).fill([])
-    progress.value = (1 / data.questions.length) * 100
+    questions.value = data
+    answers.value = Array(data.length).fill([])
+    progress.value = (1 / data.length) * 100
   } catch (error) {
     console.error('Error fetching questions:', error)
   }
@@ -164,8 +164,27 @@ const handleSubmit = async () => {
     return
   }
 
-  const token = JSON.parse(localStorage.getItem('token'))
-  const userId = token?.name || 'anonymous'
+  let userId = 'anonymous'
+  
+  try {
+    // Get the username from the userinfo endpoint
+    const storedToken = JSON.parse(localStorage.getItem('token')).access_token
+    const userResponse = await fetch('http://localhost:8000/userinfo', {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Authorization': `Bearer ${storedToken}`
+      }
+    })
+    
+    if (userResponse.ok) {
+      const userData = await userResponse.json()
+      userId = userData.username
+    }
+  } catch (error) {
+    console.error('Error fetching user info:', error)
+    // Continue with 'anonymous' as fallback
+  }
 
   try {
     const response = await fetch('http://0.0.0.0:8000/submit', {
