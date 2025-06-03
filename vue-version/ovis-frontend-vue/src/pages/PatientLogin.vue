@@ -51,21 +51,22 @@ const router = useRouter()
 const handleLogin = async () => {
   loading.value = true
   try {
-    const response = await fetch('http://127.0.0.1:8000/patient-login', {
+    const response = await fetch('http://0.0.0.0:8000/token', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username: username.value, password: password.value }),
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({
+        username: username.value,
+        password: password.value,
+      }),
     })
 
     const data = await response.json()
-
-    if (data.message === 'Invalid credentials') {
+    
+    if (data.details === 'Invalid credentials') {
       message.value = 'Login failed. Please check your username or password.'
-    } else if (data.message === 'Patient login successful') {
-      localStorage.setItem('token', JSON.stringify(data.token))
+    } else{
+      localStorage.setItem('token', JSON.stringify(data))
       router.push('/dashboard')
-    } else {
-      message.value = 'An unexpected error occurred.'
     }
   } catch (error) {
     console.error('Login error:', error)

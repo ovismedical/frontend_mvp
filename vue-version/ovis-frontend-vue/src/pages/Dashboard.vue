@@ -80,12 +80,24 @@ const today = new Date().toLocaleDateString('en-US', {
 
 const fetchPatient = async () => {
   try {
-    const token = JSON.parse(localStorage.getItem('token'))
-    const response = await fetch(`http://127.0.0.1:8000/personalinfo?username=${token.name}`)
+    const storedToken = JSON.parse(localStorage.getItem('token')).access_token
+    const response = await fetch('http://0.0.0.0:8000/userinfo', {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Authorization': `Bearer ${storedToken}`
+      }
+    })
+
     const data = await response.json()
-    patient.value = data
-  } catch (err) {
-    console.error('Failed to load patient data', err)
+    patient.value = {
+      name: data.full_name,
+      dob: data.dob,
+      sex: data.sex,
+      username: data.username
+    }
+  }catch (error) {
+    console.error(error)
   }
 }
 
@@ -119,7 +131,7 @@ const goToQuiz = () => {
   router.push('/quiz')
 }
 
-const userName = 'John Doe'
+const userName = patient.username
 const userAvatar = 'https://via.placeholder.com/40' // replace with your own image
 
 const signOut = () => {
