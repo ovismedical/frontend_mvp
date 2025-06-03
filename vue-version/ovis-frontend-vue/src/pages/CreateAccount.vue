@@ -21,6 +21,13 @@
       <input
         :class="styles.login_userinput"
         type="text"
+        placeholder="Email"
+        v-model="email"
+      />
+
+      <input
+        :class="styles.login_userinput"
+        type="text"
         placeholder="Full Name"
         v-model="name"
       />
@@ -106,6 +113,7 @@ import styles from './login.module.css'
 
 const username = ref('')
 const password = ref('')
+const email = ref('')
 const name = ref('')
 const hospital = ref('')
 const doctor = ref('')
@@ -143,7 +151,7 @@ const handleCreate = async () => {
         username: username.value,
         password: password.value,
         full_name: name.value,
-        email: `${username.value}@example.com`, // Backend requires email, using username as fallback
+        email: email.value,
         sex: sex.value,
         dob: formattedDob,
         hospital: hospital.value,
@@ -172,4 +180,4 @@ const handleCreate = async () => {
 const goToLogin = () => {
   router.push('/patientlogin')
 }
-</script> 
+</script>

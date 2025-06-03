@@ -200,14 +200,18 @@ const fetchPatient = async () => {
 
 const fetchStreak = async () => {
   try {
-    if (!patient.value?.username) {
-      console.warn('Patient username not available yet for streak fetch')
-      return
-    }
-    const response = await fetch(`http://localhost:8000/getstreak?username=${patient.value.username}`)
+    const storedToken = JSON.parse(localStorage.getItem('token')).access_token
+    const response = await fetch('http://0.0.0.0:8000/getstreak', {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Authorization': `Bearer ${storedToken}`
+      }
+    })
     const data = await response.json()
-    currentStreak.value = data
-  } catch (err) {
+    currentStreak.value = data.streak
+
+    } catch (err) {
     console.error('Failed to load streak', err)
   }
 }

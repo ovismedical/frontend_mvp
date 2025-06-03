@@ -36,6 +36,13 @@
   text-align: center;
 }
 
+.dobRow {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
 .login_userinput,
 .login_passwordinput {
   width: 100%;
