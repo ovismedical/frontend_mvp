@@ -86,6 +86,8 @@ import logo from '../assets/logo.png'
 import styles from './quiz.module.css'
 import SideHeader from './Sidebar.vue'
 
+const apiUrl = import.meta.env.VITE_API_URL
+
 const router = useRouter()
 
 const questions = ref([])
@@ -170,7 +172,7 @@ const handleSubmit = async () => {
   try {
     // Get the username from the userinfo endpoint
     const storedToken = JSON.parse(localStorage.getItem('token')).access_token
-    const userResponse = await fetch('http://localhost:8000/userinfo', {
+    const userResponse = await fetch('${apiUrl}/userinfo', {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -188,7 +190,7 @@ const handleSubmit = async () => {
   }
 
   try {
-    const response = await fetch('http://0.0.0.0:8000/submit', {
+    const response = await fetch('${apiUrl}/submit', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ user_id: userId, answers: answers.value }),

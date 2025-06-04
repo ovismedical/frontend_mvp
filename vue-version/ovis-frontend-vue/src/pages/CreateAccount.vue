@@ -87,6 +87,8 @@ import { useRouter } from 'vue-router'
 import logo from '../assets/logo.png'
 import styles from './login.module.css'
 
+const apiUrl = import.meta.env.VITE_API_URL
+
 const username = ref('')
 const password = ref('')
 const email = ref('')
@@ -111,7 +113,7 @@ const handleCreate = async () => {
   const formattedDob = `${dob.value.month}/${dob.value.day}/${dob.value.year}`
 
   try {
-    const response = await fetch("http://0.0.0.0:8000/register", {
+    const response = await fetch("${apiUrl}/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

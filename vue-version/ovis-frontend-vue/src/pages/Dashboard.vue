@@ -139,6 +139,8 @@ import logo from '../assets/logo.png'
 import Sidebar from './Sidebar.vue'
 import styles from './dashboard.module.css'
 
+const apiUrl = import.meta.env.VITE_API_URL
+
 const router = useRouter()
 
 const patient = ref(null)
@@ -178,7 +180,7 @@ const chartData = ref([
 const fetchPatient = async () => {
   try {
     const storedToken = JSON.parse(localStorage.getItem('token')).access_token
-    const response = await fetch('http://localhost:8000/userinfo', {
+    const response = await fetch('${apiUrl}/userinfo', {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -201,7 +203,7 @@ const fetchPatient = async () => {
 const fetchStreak = async () => {
   try {
     const storedToken = JSON.parse(localStorage.getItem('token')).access_token
-    const response = await fetch('http://0.0.0.0:8000/getstreak', {
+    const response = await fetch('${apiUrl}/getstreak', {
       method: 'GET',
       headers: {
         'Accept': 'application/json',

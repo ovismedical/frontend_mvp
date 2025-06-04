@@ -22,6 +22,8 @@ import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import styles from './adminDashboard.module.css'
 
+const apiUrl = import.meta.env.VITE_API_URL
+
 const patients = ref([])
 const router = useRouter()
 
@@ -31,7 +33,7 @@ const fetchPatients = async () => {
 
   try {
     const storedToken = JSON.parse(localStorage.getItem('token')).access_token
-    const res = await fetch(`http://127.0.0.1:8000/admin/patients`, {
+    const res = await fetch(`${apiUrl}/admin/patients`, {
       method: 'GET',
       headers: {
         'Accept': 'application/json',

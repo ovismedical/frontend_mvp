@@ -37,6 +37,8 @@ import { useRouter } from 'vue-router'
 import logo from '../assets/logo.png'
 import styles from './login.module.css'
 
+const apiUrl = import.meta.env.VITE_API_URL
+
 const username = ref('')
 const password = ref('')
 const message = ref('')
@@ -47,7 +49,7 @@ const router = useRouter()
 const handleLogin = async () => {
   loading.value = true
   try {
-    const response = await fetch('http://0.0.0.0:8000/token', {
+    const response = await fetch('${apiUrl}/token', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: new URLSearchParams({

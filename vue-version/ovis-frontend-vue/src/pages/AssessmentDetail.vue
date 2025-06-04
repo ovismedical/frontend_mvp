@@ -167,6 +167,8 @@ import logo from '../assets/logo.png'
 import styles from './assessmentDetail.module.css'
 import SideHeader from './Sidebar.vue'
 
+const apiUrl = import.meta.env.VITE_API_URL
+
 const route = useRoute()
 const router = useRouter()
 
@@ -205,7 +207,7 @@ onMounted(async () => {
       return
     }
 
-    const response = await fetch(`http://localhost:8000/assessment/${assessmentId}`, {
+    const response = await fetch(`${apiUrl}/assessment/${assessmentId}`, {
       method: 'GET',
       headers: {
         'Accept': 'application/json',

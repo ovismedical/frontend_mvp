@@ -37,13 +37,15 @@ import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import styles from './adminDashboard.module.css'
 
+const apiUrl = import.meta.env.VITE_API_URL
+
 const route = useRoute()
 const username = route.params.username
 const answers = ref([])
 
 const fetchAnswers = async () => {
   try {
-    const res = await fetch(`http://0.0.0.0:8000/admin/answers?user_id=${username}`)
+    const res = await fetch(`${apiUrl}/admin/answers?user_id=${username}`)
     const data = await res.json()
     answers.value = data.answers
   } catch (err) {
