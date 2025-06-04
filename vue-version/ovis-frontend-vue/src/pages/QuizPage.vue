@@ -96,8 +96,9 @@ const otherInputs = ref({})
 
 onMounted(async () => {
   try {
-    const response = await fetch('http://localhost:8000/getquestions')
-    const data = await response.json()
+    const response = await fetch('http://0.0.0.0:8000/getquestions')
+    const temp = await response.json()
+    const data = temp.questions
     questions.value = data
     answers.value = Array(data.length).fill([])
     progress.value = (1 / data.length) * 100

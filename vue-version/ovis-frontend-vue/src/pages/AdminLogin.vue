@@ -2,7 +2,7 @@
   <div :class="styles.login_body">
     <div :class="styles.login_content">
       <img :src="logo" :class="styles.login_logo" alt="Logo" />
-      <h1>Patient Login</h1>
+      <h1>Admin Login</h1>
 
       <input
         :class="styles.login_userinput"
@@ -24,10 +24,6 @@
         :disabled="loading"
       >
         {{ loading ? 'Logging in...' : 'Enter' }}
-      </button>
-
-      <button :class="styles.login_createAccount" @click="goToCreateAccount">
-        Create Account
       </button>
 
       <p v-if="message" :class="styles.login_message">{{ message }}</p>
@@ -66,7 +62,7 @@ const handleLogin = async () => {
       message.value = 'Login failed. Please check your username or password.'
     } else{
       localStorage.setItem('token', JSON.stringify(data))
-      router.push('/dashboard')
+      router.push('/admindashboard')
     }
   } catch (error) {
     console.error('Login error:', error)
@@ -74,9 +70,5 @@ const handleLogin = async () => {
   } finally {
     loading.value = false
   }
-}
-
-const goToCreateAccount = () => {
-  router.push('/createaccount')
 }
 </script>
