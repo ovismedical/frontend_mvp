@@ -130,6 +130,8 @@ import { useRouter } from 'vue-router'
 import Sidebar from './Sidebar.vue'
 import styles from './Assessments.module.css'
 
+const apiUrl = import.meta.env.VITE_API_URL
+
 const router = useRouter()
 const loading = ref(true)
 const assessments = ref([])
@@ -215,7 +217,7 @@ const fetchAssessments = async () => {
     loading.value = true
     const token = JSON.parse(localStorage.getItem('token')).access_token
     
-    const response = await fetch('http://localhost:8000/unified_assessments', {
+    const response = await fetch('${apiUrl}/unified_assessments', {
       method: 'GET',
       headers: {
         'Accept': 'application/json',

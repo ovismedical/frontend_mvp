@@ -86,6 +86,8 @@ import logo from '../assets/logo.png'
 import styles from './quiz.module.css'
 import SideHeader from './Sidebar.vue'
 
+const apiUrl = import.meta.env.VITE_API_URL
+
 const router = useRouter()
 
 const questions = ref([])
@@ -96,14 +98,12 @@ const otherInputs = ref({})
 
 onMounted(async () => {
   try {
-    const response = await fetch('http://localhost:8000/getquestions')
-    const data = await response.json()
-    
-    // The backend returns {questions: [...]} so we need to extract the questions array
-    const questionsArray = data.questions || data
-    questions.value = questionsArray
-    answers.value = Array(questionsArray.length).fill([])
-    progress.value = (1 / questionsArray.length) * 100
+    const response = await fetch('http://0.0.0.0:8000/getquestions')
+    const temp = await response.json()
+    const data = temp.questions
+    questions.value = data
+    answers.value = Array(data.length).fill([])
+    progress.value = (1 / data.length) * 100
   } catch (error) {
     console.error('Error fetching questions:', error)
   }
@@ -172,7 +172,7 @@ const handleSubmit = async () => {
   try {
     // Get the username from the userinfo endpoint
     const storedToken = JSON.parse(localStorage.getItem('token')).access_token
-    const userResponse = await fetch('http://localhost:8000/userinfo', {
+    const userResponse = await fetch('${apiUrl}/userinfo', {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -190,7 +190,7 @@ const handleSubmit = async () => {
   }
 
   try {
-    const response = await fetch('http://localhost:8000/submit', {
+    const response = await fetch('${apiUrl}/submit', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ user_id: userId, answers: answers.value }),

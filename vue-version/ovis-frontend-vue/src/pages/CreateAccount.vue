@@ -18,13 +18,12 @@
         v-model="password"
       />
 
-      <input
+        <input
         :class="styles.login_userinput"
         type="text"
         placeholder="Email"
         v-model="email"
       />
-
       <input
         :class="styles.login_userinput"
         type="text"
@@ -32,22 +31,7 @@
         v-model="name"
       />
 
-      <input
-        :class="styles.login_userinput"
-        type="text"
-        placeholder="Hospital"
-        v-model="hospital"
-      />
-
-      <input
-        :class="styles.login_userinput"
-        type="text"
-        placeholder="Doctor"
-        v-model="doctor"
-      />
-
-      <!-- Date of Birth Dropdowns -->
-      <div :class="styles.dob_row">
+      <div :class="styles.dobRow">
         <select
           :class="styles.login_userinput"
           v-model="dob.month"
@@ -63,8 +47,8 @@
           v-model="dob.day"
         >
           <option value="">Day</option>
-          <option v-for="day in 31" :key="day" :value="String(day).padStart(2, '0')">
-            {{ day }}
+          <option v-for="n in 31" :key="n" :value="String(n).padStart(2, '0')">
+            {{ n }}
           </option>
         </select>
 
@@ -73,8 +57,8 @@
           v-model="dob.year"
         >
           <option value="">Year</option>
-          <option v-for="year in years" :key="year" :value="year">
-            {{ year }}
+          <option v-for="n in 100" :key="n" :value="new Date().getFullYear() - n">
+            {{ new Date().getFullYear() - n }}
           </option>
         </select>
       </div>
@@ -88,96 +72,70 @@
         <option value="other">Other</option>
       </select>
 
-      <button
-        :class="styles.login_submit"
-        @click="handleCreate"
-        :disabled="loading"
-      >
-        {{ loading ? 'Creating Account...' : 'Create Account' }}
+      <button :class="styles.login_submit" @click="handleCreate">
+        Create Account
       </button>
 
-      <button :class="styles.login_createAccount" @click="goToLogin">
-        Back to Login
-      </button>
-
-      <p v-if="message" style="color: red;">{{ message }}</p>
+      <p v-if="message" style="color: red">{{ message }}</p>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import logo from '../assets/logo.png'
 import styles from './login.module.css'
+
+const apiUrl = import.meta.env.VITE_API_URL
 
 const username = ref('')
 const password = ref('')
 const email = ref('')
 const name = ref('')
-const hospital = ref('')
-const doctor = ref('')
 const dob = ref({ month: '', day: '', year: '' })
 const sex = ref('male')
 const message = ref('')
-const loading = ref(false)
 
 const router = useRouter()
 
 const monthNames = [
-  'January', 'February', 'March', 'April', 'May', 'June',
-  'July', 'August', 'September', 'October', 'November', 'December'
+  "January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
 ]
-
-const years = computed(() => {
-  const currentYear = new Date().getFullYear()
-  return Array.from({ length: 100 }, (_, i) => currentYear - i)
-})
 
 const handleCreate = async () => {
   if (!dob.value.month || !dob.value.day || !dob.value.year) {
-    message.value = 'Please select a full date of birth.'
+    message.value = "Please select a full date of birth."
     return
   }
 
   const formattedDob = `${dob.value.month}/${dob.value.day}/${dob.value.year}`
 
-  loading.value = true
   try {
-    const response = await fetch('http://localhost:8000/register', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+    const response = await fetch("${apiUrl}/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         username: username.value,
         password: password.value,
+        email : email.value,
         full_name: name.value,
-        email: email.value,
         sex: sex.value,
         dob: formattedDob,
-        hospital: hospital.value,
-        doctor: doctor.value,
-      }),
+      })
     })
 
     const data = await response.json()
-    
+
     if (response.ok) {
-      message.value = 'Account created successfully! Redirecting to login...'
-      setTimeout(() => {
-        router.push('/patientlogin')
-      }, 2000)
+      router.push("/patientlogin")
     } else {
-      message.value = data.detail || 'Account creation failed'
+      message.value = data.detail || "Account creation failed"
     }
   } catch (error) {
-    console.error('Error:', error)
-    message.value = 'Network error or backend not running'
-  } finally {
-    loading.value = false
+    console.error("Error:", error)
+    message.value = "Network error or backend not running"
   }
-}
-
-const goToLogin = () => {
-  router.push('/patientlogin')
 }
 </script>
