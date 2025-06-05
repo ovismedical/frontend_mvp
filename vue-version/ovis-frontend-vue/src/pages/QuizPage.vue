@@ -98,9 +98,12 @@ onMounted(async () => {
   try {
     const response = await fetch('http://localhost:8000/getquestions')
     const data = await response.json()
-    questions.value = data
-    answers.value = Array(data.length).fill([])
-    progress.value = (1 / data.length) * 100
+    
+    // The backend returns {questions: [...]} so we need to extract the questions array
+    const questionsArray = data.questions || data
+    questions.value = questionsArray
+    answers.value = Array(questionsArray.length).fill([])
+    progress.value = (1 / questionsArray.length) * 100
   } catch (error) {
     console.error('Error fetching questions:', error)
   }

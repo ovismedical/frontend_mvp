@@ -1,0 +1,468 @@
+.pageWrapper {
+  display: flex;
+  height: 100vh;
+  background-color: #f9fafb;
+}
+
+.sidebar {
+  width: 220px;
+  background-color: #1e293b;
+  color: white;
+  flex-shrink: 0;
+}
+
+.fullPage {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.pageHeader {
+  height: 80px;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  border-bottom: 1px solid #e5e7eb;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.backButton {
+  padding: 8px 16px;
+  background: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.backButton:hover {
+  background: #2563eb;
+}
+
+.pageTitle {
+  font-size: 28px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0;
+}
+
+/* Month Navigation */
+.monthNavigation {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.navButton {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  background: white;
+  color: #374151;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.navButton:hover:not(:disabled) {
+  background: #f3f4f6;
+  border-color: #9ca3af;
+  transform: translateY(-1px);
+}
+
+.navButton:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.monthInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  min-width: 200px;
+}
+
+.monthLabel {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.dateRange {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #6b7280;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.analyticsContainer {
+  flex: 1;
+  padding: 24px;
+  background-color: #f9fafb;
+  overflow-y: auto;
+}
+
+/* View Selector */
+.viewSelector {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+  padding: 16px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+}
+
+.viewButton {
+  padding: 8px 16px;
+  border: 1px solid #d1d5db;
+  background: white;
+  color: #374151;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.viewButton:hover {
+  background: #f3f4f6;
+  border-color: #9ca3af;
+}
+
+.viewButton.active {
+  background: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
+}
+
+.symptomDropdown {
+  margin-left: auto;
+}
+
+.symptomSelect {
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: white;
+  color: #374151;
+  font-weight: 500;
+  cursor: pointer;
+  min-width: 200px;
+}
+
+.symptomSelect:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Summary Cards */
+.summaryCards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-bottom: 32px;
+}
+
+.summaryCard {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.summaryCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.cardIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 20px;
+}
+
+.cardContent h3 {
+  margin: 0 0 4px 0;
+  font-size: 24px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.cardContent p {
+  margin: 0;
+  font-size: 14px;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+/* Heatmap Section */
+.heatmapSection {
+  margin-bottom: 32px;
+}
+
+.heatmapCard {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+}
+
+.heatmapCard h3 {
+  margin: 0 0 24px 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #111827;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.calendarContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Month Calendar Grid */
+.monthGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.dayHeader {
+  padding: 8px;
+  text-align: center;
+  font-weight: 600;
+  color: #6b7280;
+  font-size: 14px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.emptyDay {
+  aspect-ratio: 1;
+  min-height: 60px;
+}
+
+.calendarDay {
+  aspect-ratio: 1;
+  min-height: 60px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #111827;
+  font-weight: 600;
+  transition: all 0.2s;
+  cursor: pointer;
+  border: 2px solid transparent;
+  position: relative;
+}
+
+.calendarDay:hover {
+  transform: scale(1.05);
+  border-color: #3b82f6;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+}
+
+.dayNumber {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+.dayValue {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+/* Heatmap Legend */
+.heatmapLegend {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-size: 14px;
+  color: #6b7280;
+  margin-top: 16px;
+}
+
+.colorScale {
+  display: flex;
+  gap: 2px;
+}
+
+.colorScale div {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  border: 1px solid #e5e7eb;
+}
+
+/* Loading and Error States */
+.loading,
+.error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  text-align: center;
+  color: #6b7280;
+}
+
+.loading i {
+  font-size: 32px;
+  margin-bottom: 16px;
+  color: #3b82f6;
+}
+
+.error i {
+  font-size: 48px;
+  margin-bottom: 16px;
+  color: #ef4444;
+}
+
+.error h3 {
+  margin: 0 0 8px 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.error p {
+  margin: 0 0 24px 0;
+  font-size: 16px;
+}
+
+.primaryBtn {
+  padding: 12px 24px;
+  background: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.2s;
+}
+
+.primaryBtn:hover {
+  background: #2563eb;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .summaryCards {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+  
+  .monthGrid {
+    max-width: 100%;
+  }
+  
+  .viewSelector {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  
+  .symptomDropdown {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .pageHeader {
+    flex-direction: column;
+    height: auto;
+    padding: 16px;
+    gap: 12px;
+  }
+  
+  .pageTitle {
+    font-size: 24px;
+  }
+  
+  .monthNavigation {
+    gap: 12px;
+  }
+  
+  .monthInfo {
+    min-width: 180px;
+  }
+  
+  .monthLabel {
+    font-size: 14px;
+  }
+  
+  .dateRange {
+    font-size: 12px;
+  }
+  
+  .navButton {
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+  }
+  
+  .analyticsContainer {
+    padding: 16px;
+  }
+  
+  .summaryCards {
+    grid-template-columns: 1fr;
+  }
+  
+  .calendarDay {
+    min-height: 50px;
+  }
+  
+  .dayNumber {
+    font-size: 12px;
+  }
+  
+  .dayValue {
+    font-size: 14px;
+  }
+} 

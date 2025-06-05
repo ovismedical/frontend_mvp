@@ -1,10 +1,12 @@
+/* Main body with lavender theme */
 .main_body {
-    background-color: #ffffff;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
     width: 100vw;
     height: 100vh;
     margin: 0;
     padding: 0;
     display: block;
+    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 .main_header {
@@ -13,13 +15,13 @@
   padding: 20px;
   background-color: white;
   border-bottom: 1px solid #e0e0e0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .main_logo {
   height: 50px;
   margin-left: 20px;
 }
-
 
 .main_MainPage {
   display: flex;
@@ -28,11 +30,10 @@
   height: calc(100vh - 80px); /* subtract header height */
 }
 
-
 .main_leftblank{
     width: 5%;
     height: 100%;
-    background-color: #ffffff;
+    background: transparent;
     z-index: 0;
     display: flex;
 }
@@ -40,24 +41,28 @@
 .main_content {
   width: 90%;
   max-width: 600px;
-  min-height: 400px;              /* NEW: gives it more vertical presence */
-  margin: 40px auto;              /* adds spacing above and below */
+  min-height: 400px;
+  margin: 40px auto;
   padding: 40px 20px;
-  background-color: #239cff;
+  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
   border-radius: 20px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);  /* optional but makes it pop */
+  box-shadow: 0 8px 24px rgba(139, 92, 246, 0.2);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  transition: all 0.3s ease;
 }
 
-
+.main_content:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(139, 92, 246, 0.3);
+}
 
 .main_rightblank{
     width: 5%;
     height: 100%;
-    background-color: #ffffff;
+    background: transparent;
     z-index: 0;
     display: flex;
 }
@@ -67,24 +72,26 @@
 }
 
 .main_button {
-  padding: 14px 20px;
-  width: 220px;
-  margin: 10px 0;
+  padding: 16px 24px;
+  width: 240px;
+  margin: 12px 0;
   border: none;
-  border-radius: 8px;
+  border-radius: 12px;
   background-color: #ffffff;
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   font-weight: 600;
   font-size: 16px;
-  color: #239cff;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  color: #7c3aed;
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
   transition: all 0.3s ease;
+  cursor: pointer;
 }
 
 .main_button:hover {
-  background-color: #e6f0ff;
+  background-color: #f8f4ff;
   transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255, 255, 255, 0.3);
 }
-
 
 .main_menuicon {
     width: 40px;
@@ -98,7 +105,7 @@
 }
 
 .main_refresh-icon {
-    color: red;
+    color: #8b5cf6;
     margin-left: 10px;
 }
 

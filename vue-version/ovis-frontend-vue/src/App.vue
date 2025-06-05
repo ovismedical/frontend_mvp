@@ -17,14 +17,17 @@ html, body {
   box-sizing: border-box;
   overflow-x: hidden; /* Prevent horizontal scrolling */
   overflow-y: auto; /* Allow vertical scrolling */
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 #app {
   height: 100%;
   min-height: 100vh;
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 *, *::before, *::after {
   box-sizing: inherit;
+  font-family: inherit;
 }
 </style>
