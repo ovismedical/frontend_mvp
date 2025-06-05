@@ -197,6 +197,7 @@ onMounted(async () => {
       return
     }
 
+    const apiUrl = import.meta.env.VITE_API_URL || 'https://ovis-backend-mvp.onrender.com'
     const response = await fetch(`${apiUrl}/assessment/${assessmentId}`, {
       method: 'GET',
       headers: {

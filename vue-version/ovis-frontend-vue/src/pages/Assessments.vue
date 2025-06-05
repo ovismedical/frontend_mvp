@@ -216,8 +216,9 @@ const fetchAssessments = async () => {
   try {
     loading.value = true
     const token = JSON.parse(localStorage.getItem('token')).access_token
+    const apiUrl = import.meta.env.VITE_API_URL || 'https://ovis-backend-mvp.onrender.com'
     
-    const response = await fetch('${apiUrl}/unified_assessments', {
+    const response = await fetch(`${apiUrl}/unified_assessments`, {
       method: 'GET',
       headers: {
         'Accept': 'application/json',

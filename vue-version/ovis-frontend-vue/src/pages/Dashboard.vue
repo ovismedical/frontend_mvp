@@ -180,7 +180,7 @@ const chartData = ref([
 const fetchPatient = async () => {
   try {
     const storedToken = JSON.parse(localStorage.getItem('token')).access_token
-    const response = await fetch('${apiUrl}/userinfo', {
+    const response = await fetch('http://localhost:8000/userinfo', {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -203,7 +203,7 @@ const fetchPatient = async () => {
 const fetchStreak = async () => {
   try {
     const storedToken = JSON.parse(localStorage.getItem('token')).access_token
-    const response = await fetch('${apiUrl}/getstreak', {
+    const response = await fetch('http://localhost:8000/getstreak', {
       method: 'GET',
       headers: {
         'Accept': 'application/json',

@@ -98,7 +98,8 @@ const otherInputs = ref({})
 
 onMounted(async () => {
   try {
-    const response = await fetch('http://0.0.0.0:8000/getquestions')
+    const apiUrl = import.meta.env.VITE_API_URL || 'https://ovis-backend-mvp.onrender.com'
+    const response = await fetch(`${apiUrl}/getquestions`)
     const temp = await response.json()
     const data = temp.questions
     questions.value = data
@@ -172,7 +173,8 @@ const handleSubmit = async () => {
   try {
     // Get the username from the userinfo endpoint
     const storedToken = JSON.parse(localStorage.getItem('token')).access_token
-    const userResponse = await fetch('${apiUrl}/userinfo', {
+    const apiUrl = import.meta.env.VITE_API_URL || 'https://ovis-backend-mvp.onrender.com'
+    const userResponse = await fetch(`${apiUrl}/userinfo`, {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -190,7 +192,7 @@ const handleSubmit = async () => {
   }
 
   try {
-    const response = await fetch('${apiUrl}/submit', {
+    const response = await fetch(`${apiUrl}/submit`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ user_id: userId, answers: answers.value }),
