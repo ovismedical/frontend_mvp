@@ -1,56 +1,124 @@
-/* Layout wrapper */
+/* Dashboard - Mobile First Design */
 .dashboard {
   display: flex;
-  min-height: 100vh;
-  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-  overflow: hidden;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-}
-
-.sidebar {
-  width: 240px;
-  background: white;
-  border-right: 1px solid #e2e8f0;
-  display: flex;
   flex-direction: column;
-  flex-shrink: 0;
-  height: auto;
   min-height: 100vh;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  background: var(--background-50);
+  font-family: var(--font-roboto);
 }
 
-/* Main content container */
+/* Desktop Layout */
+@media (min-width: 768px) {
+  .dashboard {
+    flex-direction: row;
+  }
+}
+
+/* Mobile Header */
+.mobileHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-4) var(--spacing-4);
+  background: white;
+  border-bottom: 1px solid var(--neutral-200);
+  box-shadow: var(--elevation-sm);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* Hide mobile header on desktop */
+@media (min-width: 768px) {
+  .mobileHeader {
+    display: none;
+  }
+}
+
+.menuBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: var(--lavender-50);
+  border: 1px solid var(--lavender-200);
+  border-radius: var(--radius-md);
+  color: var(--lavender-600);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.menuBtn:hover {
+  background: var(--lavender-100);
+  color: var(--lavender-700);
+}
+
+.mobileTitle {
+  font-family: var(--font-space-grotesk);
+  font-size: var(--font-size-18);
+  font-weight: 600;
+  color: var(--text-800);
+  margin: 0;
+}
+
+.mobileActions {
+  display: flex;
+  align-items: center;
+}
+
+/* Sidebar */
+.sidebar {
+  flex-shrink: 0;
+}
+
+/* Main Content */
 .mainContent {
   flex: 1;
   display: flex;
   flex-direction: column;
   overflow-y: auto;
+  min-height: 0;
 }
 
-/* Modern Header */
+/* Desktop Header */
 .topHeader {
-  display: flex;
+  display: none;
   justify-content: space-between;
   align-items: center;
-  padding: 24px 32px;
+  padding: var(--spacing-6) var(--spacing-8);
   background: white;
-  border-bottom: 1px solid #f1f5f9;
+  border-bottom: 1px solid var(--neutral-100);
+}
+
+/* Show desktop header on desktop */
+@media (min-width: 768px) {
+  .topHeader {
+    display: flex;
+  }
+}
+
+@media (min-width: 1024px) {
+  .topHeader {
+    padding: var(--spacing-8) var(--spacing-8);
+  }
 }
 
 .greetingSection h1.greeting {
-  font-size: 28px;
+  font-family: var(--font-space-grotesk);
+  font-size: var(--font-size-28);
   font-weight: 700;
-  color: #1a202c;
-  margin: 0 0 4px 0;
+  color: var(--text-800);
+  margin: 0 0 var(--spacing-1) 0;
 }
 
 .userName {
-  color: #8b5cf6;
+  color: var(--lavender-500);
 }
 
 .date {
-  font-size: 16px;
-  color: #64748b;
+  font-size: var(--font-size-16);
+  color: var(--text-600);
   margin: 0;
   font-weight: 500;
 }
@@ -58,357 +126,350 @@
 .headerActions {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: var(--spacing-4);
 }
 
-.iconWithBadge {
+.notificationBtn {
   position: relative;
-  font-size: 20px;
-  color: #64748b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: var(--neutral-50);
+  border: 1px solid var(--neutral-200);
+  border-radius: var(--radius-md);
+  color: var(--text-600);
   cursor: pointer;
-  padding: 8px;
-  border-radius: 12px;
   transition: all 0.2s ease;
 }
 
-.iconWithBadge:hover {
-  background: #f8fafc;
-  color: #8b5cf6;
+.notificationBtn:hover {
+  background: var(--lavender-50);
+  color: var(--lavender-600);
+  border-color: var(--lavender-200);
 }
 
-.badgeRed {
+.badge {
   position: absolute;
-  top: 2px;
-  right: 2px;
-  font-size: 11px;
+  top: -2px;
+  right: -2px;
+  font-size: var(--font-size-11);
   color: white;
-  background: #ef4444;
-  border-radius: 50%;
+  background: var(--error-500);
+  border-radius: var(--radius-full);
   width: 18px;
   height: 18px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 600;
+  font-family: var(--font-roboto);
 }
 
 /* Alert Message */
 .alertMessage {
-  margin: 24px 32px;
-  padding: 16px 20px;
-  background: #fef2f2;
-  border: 1px solid #fecaca;
-  border-radius: 16px;
+  margin: var(--spacing-4);
+  padding: var(--spacing-4) var(--spacing-5);
+  background: var(--warning-50);
+  border: 1px solid var(--warning-200);
+  border-radius: var(--radius-lg);
   display: flex;
-  align-items: center;
-  gap: 12px;
+  align-items: flex-start;
+  gap: var(--spacing-3);
   position: relative;
 }
 
 .alertIcon {
-  font-size: 20px;
+  flex-shrink: 0;
+  margin-top: var(--spacing-1);
 }
 
 .alertText {
   flex: 1;
-  color: #991b1b;
-  font-size: 14px;
+  color: var(--warning-800);
+  font-size: var(--font-size-15);
   line-height: 1.5;
 }
 
 .alertLink {
-  color: #dc2626;
+  color: var(--warning-700);
   cursor: pointer;
   text-decoration: underline;
+  font-weight: 500;
 }
 
 .alertClose {
   background: none;
   border: none;
-  font-size: 18px;
-  color: #991b1b;
+  color: var(--warning-600);
   cursor: pointer;
-  padding: 4px;
-  border-radius: 8px;
-  transition: background 0.2s ease;
+  padding: var(--spacing-1);
+  border-radius: var(--radius-md);
+  transition: all 0.2s ease;
+  flex-shrink: 0;
 }
 
 .alertClose:hover {
-  background: rgba(220, 38, 38, 0.1);
+  background: var(--warning-100);
+  color: var(--warning-700);
 }
 
-/* Grid layout for dashboard sections */
+/* Content Grid */
 .contentGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 24px;
-  padding: 0 32px 32px;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-4);
+  padding: var(--spacing-4);
   margin-top: 0;
 }
 
-/* Modern Card component */
+/* Card Component */
 .card {
   background: white;
-  padding: 24px;
-  border-radius: 20px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-  border: 1px solid #f1f5f9;
+  padding: var(--spacing-6);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--elevation-sm);
+  border: 1px solid var(--neutral-100);
   transition: all 0.2s ease;
 }
 
 .card:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transform: translateY(-1px);
-}
-
-.card h3 {
-  font-size: 18px;
-  font-weight: 600;
-  color: #1a202c;
-  margin: 0 0 16px 0;
-}
-
-/* Daily Check In Card */
-.dailyCheckCard {
-  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
-  color: white;
+  box-shadow: var(--elevation-md);
+  transform: translateY(-2px);
 }
 
 .cardHeader {
   display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 20px;
+  align-items: flex-start;
+  gap: var(--spacing-4);
+  margin-bottom: var(--spacing-5);
+}
+
+@media (min-width: 1024px) {
+  .cardHeader {
+    margin-bottom: var(--spacing-6);
+  }
 }
 
 .cardIcon {
-  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: var(--lavender-50);
+  border-radius: var(--radius-md);
+  color: var(--lavender-600);
+  flex-shrink: 0;
 }
 
-.logTodayBtn {
+.cardContent {
+  flex: 1;
+}
+
+.card h3 {
+  font-family: var(--font-space-grotesk);
+  font-size: var(--font-size-18);
+  font-weight: 600;
+  color: var(--text-800);
+  margin: 0 0 var(--spacing-2) 0;
+}
+
+.cardSubtitle {
+  font-size: var(--font-size-13);
+  color: var(--text-600);
+  margin: 0 0 var(--spacing-4) 0;
+  line-height: 1.5;
+}
+
+/* Button Styles */
+.primaryBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  background: var(--lavender-500);
+  color: white;
+  border: none;
+  padding: var(--spacing-3) var(--spacing-5);
+  border-radius: var(--radius-md);
+  font-family: var(--font-roboto);
+  font-size: var(--font-size-14);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 44px;
+}
+
+.primaryBtn:hover {
+  background: var(--lavender-600);
+  box-shadow: var(--elevation-md);
+}
+
+.secondaryBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  background: var(--blue-500);
+  color: white;
+  border: none;
+  padding: var(--spacing-3) var(--spacing-5);
+  border-radius: var(--radius-md);
+  font-family: var(--font-roboto);
+  font-size: var(--font-size-14);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 44px;
+}
+
+.secondaryBtn:hover {
+  background: var(--blue-600);
+  box-shadow: var(--elevation-md);
+}
+
+/* Daily Check Card */
+.dailyCheckCard {
+  background: linear-gradient(135deg, var(--lavender-500) 0%, var(--lavender-600) 100%);
+  color: white;
+  border: none;
+}
+
+.dailyCheckCard .cardIcon {
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+}
+
+.dailyCheckCard h3,
+.dailyCheckCard .cardSubtitle {
+  color: white;
+}
+
+.dailyCheckCard .primaryBtn {
   background: rgba(255, 255, 255, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.3);
   color: white;
-  padding: 8px 16px;
-  border-radius: 12px;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  margin-top: 8px;
 }
 
-.logTodayBtn:hover {
+.dailyCheckCard .primaryBtn:hover {
   background: rgba(255, 255, 255, 0.3);
-  transform: translateY(-1px);
+  border-color: rgba(255, 255, 255, 0.5);
 }
 
 .streakInfo {
   display: flex;
   align-items: center;
-  gap: 16px;
-  margin-bottom: 20px;
+  gap: var(--spacing-4);
+  margin: var(--spacing-5) 0;
+  padding: var(--spacing-4);
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-md);
+}
+
+@media (min-width: 1024px) {
+  .streakInfo {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--spacing-2);
+    padding: var(--spacing-5);
+  }
 }
 
 .streakNumber {
-  font-size: 48px;
+  font-family: var(--font-space-grotesk);
+  font-size: var(--font-size-32);
   font-weight: 700;
+  color: white;
   line-height: 1;
 }
 
+.streakText {
+  color: rgba(255, 255, 255, 0.9);
+}
+
 .streakText span {
-  font-size: 16px;
+  font-size: var(--font-size-16);
   font-weight: 600;
 }
 
 .streakText small {
-  font-size: 14px;
+  font-size: var(--font-size-13);
   opacity: 0.8;
 }
 
 .weekDays {
   display: flex;
-  gap: 8px;
+  gap: var(--spacing-2);
   justify-content: center;
 }
 
 .dayDot {
-  width: 32px;
-  height: 32px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 12px;
-  font-weight: 600;
+  background: rgba(255, 255, 255, 0.3);
   position: relative;
+  transition: all 0.2s ease;
 }
 
 .dayDot.completed {
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.9);
 }
 
 .dayDot.completed::after {
   content: '✓';
-  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 8px;
+  color: var(--lavender-600);
+  font-weight: bold;
 }
 
-/* Personal Information Card */
-.personalCard {
-}
-
-.infoRow {
-  display: flex;
-  justify-content: space-between;
-  padding: 12px 0;
-  border-bottom: 1px solid #f1f5f9;
-  font-size: 14px;
-}
-
-.infoRow:last-child {
-  border-bottom: none;
-}
-
-.infoRow span:first-child {
-  color: #64748b;
-  font-weight: 500;
-}
-
-.infoRow span:last-child {
-  color: #1a202c;
-  font-weight: 600;
-}
-
-.loading {
-  color: #64748b;
-  font-style: italic;
-  text-align: center;
-  padding: 20px;
-}
-
-/* Wellness Score Card */
-.wellnessCard {
-}
-
-.scoreHeader {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 4px;
-}
-
-.starIcon {
-  font-size: 20px;
-}
-
-.scoreNumber {
-  font-size: 24px;
-  font-weight: 700;
-  color: #8b5cf6;
-}
-
-.periodSelect {
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
-  padding: 4px 8px;
-  font-size: 12px;
-  color: #64748b;
-  margin-left: auto;
-}
-
-.chartContainer {
-  margin: 20px 0;
-}
-
-.chart {
-  display: flex;
-  align-items: end;
-  gap: 8px;
-  height: 120px;
-  margin-bottom: 8px;
-}
-
-.chartBar {
-  flex: 1;
-  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
-  border-radius: 4px 4px 0 0;
-  min-height: 20px;
-  transition: all 0.3s ease;
-}
-
-.chartBar:hover {
-  transform: scaleY(1.1);
-  background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
-}
-
-.chartLabels {
-  display: flex;
-  justify-content: space-between;
-  font-size: 12px;
-  color: #64748b;
-  font-weight: 500;
-}
-
-.scoreStats {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 14px;
-  margin-top: 16px;
-}
-
-.changeDown {
-  color: #ef4444;
-  font-weight: 600;
-}
-
-.insights {
-  color: #f59e0b;
-  font-weight: 500;
-}
-
-/* Florence Card Styles */
-.florenceCard {
-  background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
-  color: white;
-}
-
-.florenceBtn {
-  background: rgba(255, 255, 255, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  color: white;
-  padding: 8px 16px;
-  border-radius: 12px;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  margin-top: 8px;
-}
-
-.florenceBtn:hover {
-  background: rgba(255, 255, 255, 0.3);
-  transform: translateY(-1px);
+/* Florence Card */
+.florenceCard .cardIcon {
+  background: var(--blue-50);
+  color: var(--blue-600);
 }
 
 .florenceInfo {
   display: flex;
+  gap: var(--spacing-4);
   align-items: flex-start;
-  gap: 16px;
-  margin-top: 20px;
+}
+
+@media (min-width: 1024px) {
+  .florenceInfo {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--spacing-5);
+  }
+
+  .florenceText {
+    width: 100%;
+  }
+
+  .featureList {
+    align-items: center;
+    gap: var(--spacing-3);
+  }
+
+  .feature {
+    justify-content: center;
+  }
 }
 
 .florenceAvatar {
-  font-size: 32px;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
+  width: 48px;
+  height: 48px;
+  background: var(--blue-100);
+  border-radius: var(--radius-full);
   display: flex;
   align-items: center;
   justify-content: center;
+  color: var(--blue-600);
   flex-shrink: 0;
 }
 
@@ -417,20 +478,324 @@
 }
 
 .florenceText p {
-  margin: 0 0 8px 0;
-  font-size: 14px;
-  line-height: 1.4;
-}
-
-.florenceText small {
-  font-size: 12px;
-  opacity: 0.9;
+  margin: 0 0 var(--spacing-3) 0;
+  color: var(--text-700);
+  font-size: var(--font-size-14);
   line-height: 1.5;
 }
 
-.cardSubtitle {
-  margin: 4px 0 0 0;
-  font-size: 13px;
-  opacity: 0.8;
-  font-weight: 400;
+.featureList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.feature {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.feature .icon {
+  color: var(--success-500);
+}
+
+.feature small {
+  font-size: var(--font-size-12);
+  color: var(--text-600);
+}
+
+/* Personal Card */
+.personalCard .cardIcon {
+  background: var(--secondary-50);
+  color: var(--secondary-600);
+}
+
+.infoGrid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.infoRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-3);
+  background: var(--neutral-50);
+  border-radius: var(--radius-md);
+}
+
+.infoLabel {
+  font-weight: 500;
+  color: var(--text-600);
+  font-size: var(--font-size-14);
+}
+
+.infoValue {
+  font-weight: 600;
+  color: var(--text-800);
+  font-size: var(--font-size-14);
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2);
+  padding: var(--spacing-8);
+  color: var(--text-500);
+}
+
+/* Wellness Card */
+.wellnessCard .cardIcon {
+  background: var(--info-50);
+  color: var(--info-600);
+}
+
+.scoreHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: var(--spacing-3);
+}
+
+@media (min-width: 1024px) {
+  .scoreHeader {
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-5);
+  }
+
+  .scoreLabel {
+    margin-top: 0;
+    margin-left: var(--spacing-3);
+  }
+}
+
+.scoreNumber {
+  font-family: var(--font-space-grotesk);
+  font-size: var(--font-size-32);
+  font-weight: 700;
+  color: var(--text-800);
+  line-height: 1;
+}
+
+.scoreLabel {
+  font-size: var(--font-size-13);
+  color: var(--text-600);
+  margin-top: var(--spacing-1);
+}
+
+.periodSelect {
+  background: var(--neutral-50);
+  border: 1px solid var(--neutral-200);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-2) var(--spacing-3);
+  font-size: var(--font-size-13);
+  color: var(--text-700);
+  cursor: pointer;
+}
+
+.chartContainer {
+  margin: var(--spacing-5) 0;
+}
+
+.chart {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  height: 80px;
+  margin-bottom: var(--spacing-2);
+  gap: var(--spacing-1);
+}
+
+@media (min-width: 1024px) {
+  .chart {
+    height: 120px;
+    gap: var(--spacing-2);
+  }
+}
+
+.chartBar {
+  flex: 1;
+  background: linear-gradient(135deg, var(--lavender-400) 0%, var(--lavender-500) 100%);
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  min-height: 8px;
+  transition: all 0.2s ease;
+}
+
+.chartBar:hover {
+  background: linear-gradient(135deg, var(--lavender-500) 0%, var(--lavender-600) 100%);
+  transform: scaleY(1.05);
+}
+
+.chartLabels {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--font-size-11);
+  color: var(--text-500);
+  font-weight: 500;
+}
+
+.scoreStats {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+  padding: var(--spacing-4);
+  background: var(--neutral-50);
+  border-radius: var(--radius-md);
+}
+
+.statItem {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.changeDown {
+  font-size: var(--font-size-13);
+  color: var(--error-600);
+  font-weight: 500;
+}
+
+.insights {
+  font-size: var(--font-size-13);
+  color: var(--warning-600);
+  font-weight: 500;
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+  .mainContent {
+    flex: 1;
+    max-width: calc(100vw - 280px); /* Account for sidebar width */
+  }
+
+  .contentGrid {
+    grid-template-columns: repeat(2, 1fr);
+    padding: var(--spacing-6) var(--spacing-8);
+    gap: var(--spacing-6);
+    max-width: none;
+  }
+
+  .alertMessage {
+    margin: var(--spacing-6) var(--spacing-8) 0;
+  }
+
+  .infoGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-3);
+  }
+
+  .scoreStats {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* Ensure cards have good proportions on tablet */
+  .card {
+    min-height: 280px;
+  }
+
+  .dailyCheckCard,
+  .florenceCard {
+    min-height: 320px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .contentGrid {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    padding: var(--spacing-8);
+    gap: var(--spacing-8);
+  }
+
+  .alertMessage {
+    margin: var(--spacing-8) var(--spacing-8) 0;
+  }
+
+  /* Better card organization on desktop */
+  .wellnessCard {
+    grid-column: span 1;
+    min-height: 400px;
+  }
+
+  .card {
+    min-height: 300px;
+  }
+
+  .dailyCheckCard,
+  .florenceCard {
+    min-height: 350px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .contentGrid {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .dailyCheckCard {
+    grid-column: span 1;
+  }
+
+  .florenceCard {
+    grid-column: span 1;
+  }
+
+  .wellnessCard {
+    grid-column: span 1;
+    grid-row: span 2;
+    min-height: 500px;
+  }
+
+  .personalCard {
+    grid-column: span 1;
+  }
+}
+
+@media (min-width: 1600px) {
+  .contentGrid {
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 1600px;
+  }
+
+  .dailyCheckCard,
+  .florenceCard,
+  .personalCard {
+    grid-column: span 1;
+  }
+
+  .wellnessCard {
+    grid-column: span 1;
+    grid-row: span 1;
+    min-height: 400px;
+  }
+}
+
+/* Focus States for Accessibility */
+.menuBtn:focus-visible,
+.notificationBtn:focus-visible,
+.primaryBtn:focus-visible,
+.secondaryBtn:focus-visible,
+.alertClose:focus-visible {
+  outline: 2px solid var(--lavender-500);
+  outline-offset: 2px;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .chartBar,
+  .dayDot,
+  .primaryBtn,
+  .secondaryBtn {
+    transition: none;
+  }
 }

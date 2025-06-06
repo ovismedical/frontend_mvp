@@ -1,0 +1,573 @@
+/* Design System - Ovis Health */
+
+/* Color Tokens */
+:root {
+  /* Lavender */
+  --lavender-50: #faf8ff;
+  --lavender-100: #f0ebff;
+  --lavender-200: #e4d4ff;
+  --lavender-300: #d0b3ff;
+  --lavender-400: #b383ff;
+  --lavender-500: #9344ff;
+  --lavender-600: #8115ff;
+  --lavender-700: #6e08d4;
+  --lavender-800: #5a0ba9;
+  --lavender-900: #481688;
+
+  /* Lavender Light */
+  --lavender-light-50: #faf9ff;
+  --lavender-light-100: #f1efff;
+  --lavender-light-200: #e5e0ff;
+  --lavender-light-300: #d2c5ff;
+  --lavender-light-400: #b499ff;
+  --lavender-light-500: #9363ff;
+  --lavender-light-600: #7a2fff;
+  --lavender-light-700: #651cff;
+  --lavender-light-800: #5416d4;
+  --lavender-light-900: #4612a9;
+
+  /* Blue */
+  --blue-50: #f0f9ff;
+  --blue-100: #e0f2fe;
+  --blue-200: #bae6fd;
+  --blue-300: #7dd3fc;
+  --blue-400: #38bdf8;
+  --blue-500: #0ea5e9;
+  --blue-600: #0284c7;
+  --blue-700: #0369a1;
+  --blue-800: #075985;
+  --blue-900: #0c4a6e;
+
+  /* Blue Light */
+  --blue-light-50: #f0f9ff;
+  --blue-light-100: #e0f2fe;
+  --blue-light-200: #bae6fd;
+  --blue-light-300: #7dd3fc;
+  --blue-light-400: #38bdf8;
+  --blue-light-500: #0ea5e9;
+  --blue-light-600: #0284c7;
+  --blue-light-700: #0369a1;
+  --blue-light-800: #075985;
+  --blue-light-900: #0c4a6e;
+
+  /* Secondary (Orange/Amber) */
+  --secondary-50: #fffbeb;
+  --secondary-100: #fef3c7;
+  --secondary-200: #fde68a;
+  --secondary-300: #fcd34d;
+  --secondary-400: #fbbf24;
+  --secondary-500: #f59e0b;
+  --secondary-600: #d97706;
+  --secondary-700: #b45309;
+  --secondary-800: #92400e;
+  --secondary-900: #78350f;
+
+  /* Background */
+  --background-50: #f8fafc;
+  --background-100: #f1f5f9;
+  --background-200: #e2e8f0;
+  --background-300: #cbd5e1;
+  --background-400: #94a3b8;
+  --background-500: #64748b;
+  --background-600: #475569;
+  --background-700: #334155;
+  --background-800: #1e293b;
+  --background-900: #0f172a;
+
+  /* Text */
+  --text-50: #f8fafc;
+  --text-100: #f1f5f9;
+  --text-200: #e2e8f0;
+  --text-300: #cbd5e1;
+  --text-400: #94a3b8;
+  --text-500: #64748b;
+  --text-600: #475569;
+  --text-700: #334155;
+  --text-800: #1e293b;
+  --text-900: #0f172a;
+
+  /* Neutral */
+  --neutral-50: #fafafa;
+  --neutral-100: #f5f5f5;
+  --neutral-200: #e5e5e5;
+  --neutral-300: #d4d4d4;
+  --neutral-400: #a3a3a3;
+  --neutral-500: #737373;
+  --neutral-600: #525252;
+  --neutral-700: #404040;
+  --neutral-800: #262626;
+  --neutral-900: #171717;
+
+  /* Error */
+  --error-50: #fef2f2;
+  --error-100: #fee2e2;
+  --error-200: #fecaca;
+  --error-300: #fca5a5;
+  --error-400: #f87171;
+  --error-500: #ef4444;
+  --error-600: #dc2626;
+  --error-700: #b91c1c;
+  --error-800: #991b1b;
+  --error-900: #7f1d1d;
+
+  /* Success */
+  --success-50: #f0fdf4;
+  --success-100: #dcfce7;
+  --success-200: #bbf7d0;
+  --success-300: #86efac;
+  --success-400: #4ade80;
+  --success-500: #22c55e;
+  --success-600: #16a34a;
+  --success-700: #15803d;
+  --success-800: #166534;
+  --success-900: #14532d;
+
+  /* Warning */
+  --warning-50: #fffbeb;
+  --warning-100: #fef3c7;
+  --warning-200: #fde68a;
+  --warning-300: #fcd34d;
+  --warning-400: #fbbf24;
+  --warning-500: #f59e0b;
+  --warning-600: #d97706;
+  --warning-700: #b45309;
+  --warning-800: #92400e;
+  --warning-900: #78350f;
+
+  /* Info */
+  --info-50: #ecfeff;
+  --info-100: #cffafe;
+  --info-200: #a5f3fc;
+  --info-300: #67e8f9;
+  --info-400: #22d3ee;
+  --info-500: #06b6d4;
+  --info-600: #0891b2;
+  --info-700: #0e7490;
+  --info-800: #155e75;
+  --info-900: #164e63;
+
+  /* Spacing - 4px Grid System */
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 12px;
+  --spacing-4: 16px;
+  --spacing-5: 20px;
+  --spacing-6: 24px;
+  --spacing-7: 28px;
+  --spacing-8: 32px;
+  --spacing-9: 36px;
+  --spacing-10: 40px;
+  --spacing-12: 48px;
+  --spacing-14: 56px;
+  --spacing-16: 64px;
+  --spacing-20: 80px;
+  --spacing-24: 96px;
+  --spacing-28: 112px;
+  --spacing-32: 128px;
+
+  /* Border Radius */
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 18px;
+  --radius-full: 99px;
+
+  /* Elevation */
+  --elevation-none: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+  --elevation-sm: 0px 4px 8px 0px rgba(0, 0, 0, 0.1);
+  --elevation-md: 0px 8px 16px 0px rgba(0, 0, 0, 0.15);
+  --elevation-lg: 0px 12px 24px 0px rgba(0, 0, 0, 0.2);
+
+  /* Typography Sizes */
+  --font-size-10: 10px;
+  --font-size-11: 11px;
+  --font-size-12: 12px;
+  --font-size-13: 13px;
+  --font-size-15: 15px;
+  --font-size-16: 16px;
+  --font-size-17: 17px;
+  --font-size-18: 18px;
+  --font-size-19: 19px;
+  --font-size-20: 20px;
+  --font-size-21: 21px;
+  --font-size-22: 22px;
+  --font-size-24: 24px;
+  --font-size-26: 26px;
+  --font-size-28: 28px;
+  --font-size-30: 30px;
+  --font-size-32: 32px;
+  --font-size-34: 34px;
+  --font-size-38: 38px;
+
+  /* Font Families */
+  --font-space-grotesk: 'Space Grotesk', sans-serif;
+  --font-roboto: 'Roboto', sans-serif;
+
+  /* Semantic Color Mappings */
+  --color-lavender-50: var(--lavender-50);
+  --color-lavender-100: var(--lavender-100);
+  --color-lavender-200: var(--lavender-200);
+  --color-lavender-300: var(--lavender-300);
+  --color-lavender-400: var(--lavender-400);
+  --color-lavender-500: var(--lavender-500);
+  --color-lavender-600: var(--lavender-600);
+  --color-lavender-700: var(--lavender-700);
+  --color-lavender-800: var(--lavender-800);
+  --color-lavender-900: var(--lavender-900);
+
+  --color-blue-50: var(--blue-50);
+  --color-blue-100: var(--blue-100);
+  --color-blue-200: var(--blue-200);
+  --color-blue-300: var(--blue-300);
+  --color-blue-400: var(--blue-400);
+  --color-blue-500: var(--blue-500);
+  --color-blue-600: var(--blue-600);
+  --color-blue-700: var(--blue-700);
+  --color-blue-800: var(--blue-800);
+  --color-blue-900: var(--blue-900);
+
+  --color-error-50: var(--error-50);
+  --color-error-100: var(--error-100);
+  --color-error-200: var(--error-200);
+  --color-error-300: var(--error-300);
+  --color-error-400: var(--error-400);
+  --color-error-500: var(--error-500);
+  --color-error-600: var(--error-600);
+  --color-error-700: var(--error-700);
+  --color-error-800: var(--error-800);
+  --color-error-900: var(--error-900);
+
+  --color-success-50: var(--success-50);
+  --color-success-100: var(--success-100);
+  --color-success-200: var(--success-200);
+  --color-success-300: var(--success-300);
+  --color-success-400: var(--success-400);
+  --color-success-500: var(--success-500);
+  --color-success-600: var(--success-600);
+  --color-success-700: var(--success-700);
+  --color-success-800: var(--success-800);
+  --color-success-900: var(--success-900);
+
+  --color-warning-50: var(--warning-50);
+  --color-warning-100: var(--warning-100);
+  --color-warning-200: var(--warning-200);
+  --color-warning-300: var(--warning-300);
+  --color-warning-400: var(--warning-400);
+  --color-warning-500: var(--warning-500);
+  --color-warning-600: var(--warning-600);
+  --color-warning-700: var(--warning-700);
+  --color-warning-800: var(--warning-800);
+  --color-warning-900: var(--warning-900);
+
+  --color-neutral-50: var(--neutral-50);
+  --color-neutral-100: var(--neutral-100);
+  --color-neutral-200: var(--neutral-200);
+  --color-neutral-300: var(--neutral-300);
+  --color-neutral-400: var(--neutral-400);
+  --color-neutral-500: var(--neutral-500);
+  --color-neutral-600: var(--neutral-600);
+  --color-neutral-700: var(--neutral-700);
+  --color-neutral-800: var(--neutral-800);
+  --color-neutral-900: var(--neutral-900);
+
+  /* Semantic Application Colors */
+  --color-background: var(--background-50);
+  --color-surface: white;
+  --color-text-primary: var(--text-900);
+  --color-text-secondary: var(--text-600);
+  --color-text-tertiary: var(--text-500);
+
+  /* Typography Semantic Variables */
+  --font-family-heading: var(--font-space-grotesk);
+  --font-family-body: var(--font-roboto);
+
+  --font-size-display-sm: var(--font-size-34);
+  --font-size-heading-01: var(--font-size-28);
+  --font-size-heading-02: var(--font-size-22);
+  --font-size-heading-03: var(--font-size-20);
+  --font-size-heading-04: var(--font-size-17);
+  --font-size-body-lg: var(--font-size-16);
+  --font-size-body-base: var(--font-size-15);
+  --font-size-body-sm: var(--font-size-13);
+  --font-size-body-xs: var(--font-size-12);
+
+  --font-weight-display-sm: 400;
+  --font-weight-heading-01: 400;
+  --font-weight-heading-02: 400;
+  --font-weight-heading-03: 400;
+  --font-weight-heading-04: 500;
+
+  --line-height-display-sm: 1.65;
+  --line-height-heading-01: 1.57;
+  --line-height-heading-02: 1.64;
+  --line-height-heading-03: 1.5;
+  --line-height-heading-04: 1.53;
+
+  /* Border Radius Semantic Variables */
+  --border-radius-sm: var(--radius-sm);
+  --border-radius-md: var(--radius-md);
+  --border-radius-lg: var(--radius-lg);
+  --border-radius-circular: var(--radius-full);
+
+  /* Elevation Semantic Variables */
+  --elevation-none: var(--elevation-none);
+  --elevation-sm: var(--elevation-sm);
+  --elevation-md: var(--elevation-md);
+  --elevation-lg: var(--elevation-lg);
+}
+
+/* Typography Classes */
+.typography-display {
+  font-family: var(--font-space-grotesk);
+  font-size: var(--font-size-34);
+  font-weight: 400;
+  line-height: 1.65;
+  letter-spacing: -0.005em;
+}
+
+.typography-heading-01 {
+  font-family: var(--font-space-grotesk);
+  font-size: var(--font-size-28);
+  font-weight: 400;
+  line-height: 1.57;
+  letter-spacing: -0.0025em;
+}
+
+.typography-heading-02 {
+  font-family: var(--font-space-grotesk);
+  font-size: var(--font-size-22);
+  font-weight: 400;
+  line-height: 1.64;
+  letter-spacing: 0;
+}
+
+.typography-heading-03 {
+  font-family: var(--font-space-grotesk);
+  font-size: var(--font-size-20);
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0;
+}
+
+.typography-heading-04 {
+  font-family: var(--font-space-grotesk);
+  font-size: var(--font-size-17);
+  font-weight: 500;
+  line-height: 1.53;
+  letter-spacing: 0;
+}
+
+.typography-body {
+  font-family: var(--font-roboto);
+  font-size: var(--font-size-15);
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: 0;
+}
+
+.typography-caption {
+  font-family: var(--font-roboto);
+  font-size: var(--font-size-13);
+  font-weight: 400;
+  line-height: 1.23;
+  letter-spacing: 0.005em;
+}
+
+.typography-overline {
+  font-family: var(--font-roboto);
+  font-size: var(--font-size-12);
+  font-weight: 400;
+  line-height: 1.17;
+  letter-spacing: 0.008em;
+  text-transform: uppercase;
+}
+
+/* Utility Classes for Mobile-First Design */
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--spacing-4);
+  padding-right: var(--spacing-4);
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding-left: var(--spacing-6);
+    padding-right: var(--spacing-6);
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding-left: var(--spacing-8);
+    padding-right: var(--spacing-8);
+  }
+}
+
+/* Mobile-First Grid System */
+.grid {
+  display: grid;
+  gap: var(--spacing-4);
+}
+
+.grid-cols-1 { grid-template-columns: repeat(1, 1fr); }
+.grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+
+@media (min-width: 768px) {
+  .grid {
+    gap: var(--spacing-6);
+  }
+  .md\:grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+  .md\:grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (min-width: 1024px) {
+  .lg\:grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .lg\:grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* Card Component */
+.card {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-6);
+  box-shadow: var(--elevation-sm);
+  border: 1px solid var(--neutral-200);
+  transition: all 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: var(--elevation-md);
+  transform: translateY(-2px);
+}
+
+/* Button Components */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2);
+  padding: var(--spacing-3) var(--spacing-6);
+  border-radius: var(--radius-md);
+  font-family: var(--font-roboto);
+  font-size: var(--font-size-15);
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: var(--lavender-500);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: var(--lavender-600);
+  box-shadow: var(--elevation-md);
+}
+
+.btn-secondary {
+  background: var(--blue-500);
+  color: white;
+}
+
+.btn-secondary:hover {
+  background: var(--blue-600);
+  box-shadow: var(--elevation-md);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--lavender-500);
+  border: 2px solid var(--lavender-500);
+}
+
+.btn-outline:hover {
+  background: var(--lavender-500);
+  color: white;
+}
+
+/* Icon Utilities */
+.icon {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}
+
+.icon-sm { font-size: 16px; }
+.icon-md { font-size: 24px; }
+.icon-lg { font-size: 32px; }
+
+/* Layout Utilities */
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.gap-1 { gap: var(--spacing-1); }
+.gap-2 { gap: var(--spacing-2); }
+.gap-3 { gap: var(--spacing-3); }
+.gap-4 { gap: var(--spacing-4); }
+.gap-6 { gap: var(--spacing-6); }
+
+/* Spacing Utilities */
+.p-1 { padding: var(--spacing-1); }
+.p-2 { padding: var(--spacing-2); }
+.p-3 { padding: var(--spacing-3); }
+.p-4 { padding: var(--spacing-4); }
+.p-6 { padding: var(--spacing-6); }
+.p-8 { padding: var(--spacing-8); }
+
+.m-1 { margin: var(--spacing-1); }
+.m-2 { margin: var(--spacing-2); }
+.m-3 { margin: var(--spacing-3); }
+.m-4 { margin: var(--spacing-4); }
+.m-6 { margin: var(--spacing-6); }
+.m-8 { margin: var(--spacing-8); }
+
+/* Mobile-Specific Utilities */
+.mobile-only {
+  display: block;
+}
+
+.desktop-only {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .mobile-only {
+    display: none;
+  }
+  
+  .desktop-only {
+    display: block;
+  }
+}
+
+/* Color Utilities */
+.text-lavender-500 { color: var(--lavender-500); }
+.text-blue-500 { color: var(--blue-500); }
+.text-neutral-600 { color: var(--neutral-600); }
+.text-neutral-800 { color: var(--neutral-800); }
+.text-error-500 { color: var(--error-500); }
+.text-success-500 { color: var(--success-500); }
+.text-warning-500 { color: var(--warning-500); }
+
+.bg-lavender-50 { background-color: var(--lavender-50); }
+.bg-lavender-500 { background-color: var(--lavender-500); }
+.bg-blue-50 { background-color: var(--blue-50); }
+.bg-blue-500 { background-color: var(--blue-500); }
+.bg-neutral-50 { background-color: var(--neutral-50); }
+.bg-white { background-color: white; } 

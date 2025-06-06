@@ -7,7 +7,9 @@
     <div :class="styles.chatContainer">
       <header :class="styles.chatHeader">
         <div :class="styles.nurseInfo">
-          <div :class="styles.nurseAvatar">🤖</div>
+          <div :class="styles.nurseAvatar">
+            <span class="icon icon-lg">health_and_safety</span>
+          </div>
           <div>
             <h2>Florence - AI Nurse</h2>
             <p :class="styles.status">{{ sessionStatus }}</p>
@@ -20,6 +22,7 @@
             :class="styles.finishButton"
             :disabled="isProcessing"
           >
+            <span class="icon icon-sm">check_circle</span>
             Finish Assessment
           </button>
         </div>
@@ -30,21 +33,36 @@
           <h3>Welcome to your check-in with Florence!</h3>
           <p>Florence is your AI nurse who will have a friendly conversation with you about how you're feeling today.</p>
           <div :class="styles.startOptions">
-            <label>
-              Language:
-              <select v-model="language" :class="styles.select">
-                <option value="en">English</option>
-                <option value="zh">Cantonese</option>
-              </select>
-            </label>
-            <label>
-              Input method:
-              <select v-model="inputMode" :class="styles.select">
-                <option value="keyboard">Keyboard</option>
-                <option value="speech">Speech</option>
-              </select>
-            </label>
+            <div :class="styles.optionGroup">
+              <label>
+                Language:
+                <select v-model="language" :class="styles.select" @change="onLanguageChange">
+                  <option value="en">English</option>
+                  <option value="zh" disabled>Cantonese (Coming Soon)</option>
+                </select>
+              </label>
+              <p :class="styles.developmentNote">
+                <span class="icon icon-sm">info</span>
+                Cantonese support is currently in development
+              </p>
+            </div>
+            
+            <div :class="styles.optionGroup">
+              <label>
+                Input method:
+                <select v-model="inputMode" :class="styles.select" @change="onInputModeChange">
+                  <option value="keyboard">Keyboard</option>
+                  <option value="speech" disabled>Speech (Coming Soon)</option>
+                </select>
+              </label>
+              <p :class="styles.developmentNote">
+                <span class="icon icon-sm">info</span>
+                Speech input is currently in development
+              </p>
+            </div>
+            
             <button @click="startSession" :class="styles.startButton" :disabled="isProcessing">
+              <span class="icon icon-sm">play_arrow</span>
               Start Chat with Florence
             </button>
           </div>
@@ -83,6 +101,7 @@
             :class="styles.sendButton"
             :disabled="!userMessage.trim() || isProcessing"
           >
+            <span class="icon icon-sm">send</span>
             Send
           </button>
         </div>
@@ -129,8 +148,25 @@ const formatTime = (timestamp) => {
   })
 }
 
+// Prevent selection of disabled options
+const onLanguageChange = () => {
+  if (language.value === 'zh') {
+    language.value = 'en'
+  }
+}
+
+const onInputModeChange = () => {
+  if (inputMode.value === 'speech') {
+    inputMode.value = 'keyboard'
+  }
+}
+
 // Start a new Florence session
 const startSession = async () => {
+  // Ensure we're not using disabled options
+  if (language.value === 'zh') language.value = 'en'
+  if (inputMode.value === 'speech') inputMode.value = 'keyboard'
+  
   isProcessing.value = true
   sessionStatus.value = 'Starting session...'
   
