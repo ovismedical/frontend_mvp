@@ -1,7 +1,18 @@
 <template>
   <div :class="styles.pageWrapper">
+    <!-- Mobile Header with Menu Button -->
+    <header :class="styles.mobileHeader">
+      <button :class="styles.menuBtn" @click="toggleSidebar">
+        <span class="icon icon-md">menu</span>
+      </button>
+      <h1 :class="styles.mobileTitle">Assessment Detail</h1>
+      <button @click="goBack" :class="styles.backBtn">
+        <span class="icon icon-md">arrow_back</span>
+      </button>
+    </header>
+
     <aside :class="styles.sidebar">
-      <SideHeader />
+      <SideHeader ref="sidebarRef" />
     </aside>
 
     <div :class="styles.fullPage">
@@ -174,9 +185,19 @@ const router = useRouter()
 const assessment = ref(null)
 const loading = ref(true)
 const selectedSymptom = ref(null)
+const sidebarRef = ref(null)
 
 const goBack = () => {
   router.push('/assessments')
+  if (sidebarRef.value) {
+    sidebarRef.value.close()
+  }
+}
+
+const toggleSidebar = () => {
+  if (sidebarRef.value) {
+    sidebarRef.value.toggle()
+  }
 }
 
 const closeModal = () => {

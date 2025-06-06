@@ -249,7 +249,10 @@ const goToMonthlyView = () => {
 
 const viewAssessment = (assessment) => {
   // Navigate to assessment detail view
-  console.log('Viewing assessment:', assessment)
+  router.push(`/assessment/${assessment.id}`)
+  if (sidebarRef.value) {
+    sidebarRef.value.close()
+  }
 }
 
 const fetchAssessments = async () => {

@@ -1,14 +1,56 @@
+/* Mobile Header */
+.mobileHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-3, 12px) var(--spacing-4, 16px);
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.menuBtn,
+.backBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  color: #6b7280;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.menuBtn:hover,
+.backBtn:hover {
+  background: #f3f4f6;
+}
+
+.mobileTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: #111827;
+  margin: 0;
+  flex: 1;
+  text-align: center;
+  margin-right: 44px; /* Balance the back button */
+}
+
 .pageWrapper {
   display: flex;
+  flex-direction: column;
   height: 100vh;
   background-color: #f9fafb;
 }
 
 .sidebar {
-  width: 220px;
-  background-color: #1e293b;
-  color: white;
-  flex-shrink: 0;
+  /* Let the Sidebar component handle its own styling */
 }
 
 .fullPage {
@@ -16,6 +58,24 @@
   display: flex;
   flex-direction: column;
   overflow-y: auto;
+}
+
+/* Hide mobile header on desktop */
+@media (min-width: 768px) {
+  .mobileHeader {
+    display: none;
+  }
+  
+  .pageWrapper {
+    flex-direction: row;
+  }
+  
+  .sidebar {
+    width: 220px;
+    background-color: #1e293b;
+    color: white;
+    flex-shrink: 0;
+  }
 }
 
 .pageHeader {
