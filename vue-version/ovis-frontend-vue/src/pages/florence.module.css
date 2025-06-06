@@ -1,5 +1,48 @@
 /* Florence Chat - Mobile First Design System */
 
+/* Mobile Header */
+.mobileHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-3) var(--spacing-4);
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-lavender-100);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.menuBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  color: var(--color-lavender-600);
+  cursor: pointer;
+  padding: var(--spacing-2);
+  border-radius: var(--radius-md);
+  transition: all 0.2s ease;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.menuBtn:hover {
+  background: var(--color-lavender-50);
+}
+
+.mobileTitle {
+  font-family: var(--font-space-grotesk);
+  font-size: var(--font-size-18);
+  font-weight: 600;
+  color: var(--color-lavender-700);
+  margin: 0;
+  flex: 1;
+  text-align: center;
+  margin-right: 44px; /* Balance the menu button */
+}
+
 /* Main page layout */
 .pageWrapper {
   display: flex;
@@ -24,6 +67,8 @@
   box-shadow: var(--elevation-md);
   overflow: hidden;
   min-height: 0;
+  /* Handle mobile viewport changes */
+  height: calc(100vh - 120px);
 }
 
 /* Chat header */
@@ -327,6 +372,10 @@
   transition: all 0.2s ease;
   min-height: 44px;
   background: white;
+  /* Prevent zoom on focus for iOS Safari */
+  font-size: 16px;
+  -webkit-appearance: none;
+  -webkit-border-radius: var(--radius-full);
 }
 
 .messageInput:focus {
@@ -375,6 +424,10 @@
   .chatContainer {
     margin: var(--spacing-2);
     border-radius: var(--radius-md);
+    /* Use dynamic viewport height for mobile */
+    height: calc(100dvh - 120px);
+    /* Fallback for older browsers */
+    height: calc(100vh - 120px);
   }
 
   .chatHeader {
@@ -405,10 +458,28 @@
 
   .chatInput {
     padding: var(--spacing-3);
+    position: sticky;
+    bottom: 0;
+    background: var(--neutral-50);
+    /* Ensure input stays above mobile keyboard */
+    z-index: 10;
+    border-top: 1px solid var(--neutral-200);
   }
 
   .inputContainer {
     gap: var(--spacing-2);
+    /* Ensure proper touch targets on mobile */
+    align-items: stretch;
+  }
+  
+  .messageInput {
+    /* Mobile-specific input styling */
+    font-size: 16px !important; /* Prevent zoom on iOS */
+    -webkit-appearance: none;
+    border-radius: var(--radius-full);
+    /* Ensure proper keyboard behavior */
+    -webkit-user-select: text;
+    user-select: text;
   }
 
   .startButton {
@@ -424,6 +495,10 @@
 
 /* Tablet Responsive Design */
 @media (min-width: 768px) {
+  .mobileHeader {
+    display: none;
+  }
+
   .pageWrapper {
     flex-direction: row;
   }

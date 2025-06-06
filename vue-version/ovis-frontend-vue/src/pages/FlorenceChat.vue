@@ -1,7 +1,15 @@
 <template>
   <div :class="styles.pageWrapper">
+    <!-- Mobile Header with Menu Button -->
+    <header :class="styles.mobileHeader">
+      <button :class="styles.menuBtn" @click="toggleSidebar">
+        <span class="icon icon-md">menu</span>
+      </button>
+      <h1 :class="styles.mobileTitle">Florence Chat</h1>
+    </header>
+
     <aside :class="styles.sidebar">
-      <SideHeader />
+      <SideHeader ref="sidebarRef" />
     </aside>
 
     <div :class="styles.chatContainer">
@@ -94,7 +102,14 @@
             placeholder="Type your message to Florence..."
             :class="styles.messageInput"
             @keyup.enter="sendMessage"
+            @focus="onInputFocus"
+            @blur="onInputBlur"
             :disabled="isProcessing"
+            ref="messageInputRef"
+            autocomplete="off"
+            autocorrect="off"
+            autocapitalize="sentences"
+            inputmode="text"
           />
           <button 
             @click="sendMessage" 
@@ -119,6 +134,8 @@ import styles from './florence.module.css'
 const apiUrl = import.meta.env.VITE_API_URL
 
 const router = useRouter()
+const sidebarRef = ref(null)
+const messageInputRef = ref(null)
 
 // Reactive state
 const sessionId = ref(null)
@@ -267,6 +284,12 @@ const sendMessage = async () => {
     scrollToBottom()
   } finally {
     isProcessing.value = false
+    // Re-focus input on mobile after sending message
+    nextTick(() => {
+      if (messageInputRef.value && window.innerWidth <= 767) {
+        messageInputRef.value.focus()
+      }
+    })
   }
 }
 
@@ -302,9 +325,70 @@ const finishSession = async () => {
   }
 }
 
+const toggleSidebar = () => {
+  if (sidebarRef.value) {
+    sidebarRef.value.toggle()
+  }
+}
+
+// Mobile input focus handlers
+const onInputFocus = () => {
+  // Ensure the input is visible when keyboard appears on mobile
+  setTimeout(() => {
+    if (messageInputRef.value) {
+      messageInputRef.value.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+    }
+  }, 300)
+}
+
+const onInputBlur = () => {
+  // Handle any cleanup needed when input loses focus
+}
+
+// Handle mobile keyboard behavior
+const handleMobileKeyboard = () => {
+  if (!messageInputRef.value) return
+  
+  const input = messageInputRef.value
+  
+  // Handle input focus for mobile
+  const onFocus = () => {
+    setTimeout(() => {
+      if (messagesContainer.value) {
+        messagesContainer.value.scrollTop = messagesContainer.value.scrollHeight
+      }
+    }, 300) // Delay to allow keyboard to appear
+  }
+  
+  // Handle input blur
+  const onBlur = () => {
+    setTimeout(() => {
+      if (messagesContainer.value) {
+        messagesContainer.value.scrollTop = messagesContainer.value.scrollHeight
+      }
+    }, 100)
+  }
+  
+  input.addEventListener('focus', onFocus)
+  input.addEventListener('blur', onBlur)
+  
+  // Cleanup
+  return () => {
+    input.removeEventListener('focus', onFocus)
+    input.removeEventListener('blur', onBlur)
+  }
+}
+
 // Load session status on mount (in case of page refresh)
 onMounted(async () => {
   // For now, we'll always start fresh
   // Later we can add session recovery logic
+  
+  // Setup mobile keyboard handling
+  nextTick(() => {
+    if (window.innerWidth <= 767) {
+      handleMobileKeyboard()
+    }
+  })
 })
 </script> 
