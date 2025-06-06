@@ -70,31 +70,9 @@
   color: var(--color-text-primary);
 }
 
-/* Sidebar */
+/* Sidebar - Let the Sidebar component handle its own styling */
 .sidebar {
-  position: fixed;
-  top: 0;
-  left: -280px;
-  width: 280px;
-  height: 100vh;
-  background: var(--color-surface);
-  transition: left 0.3s ease;
-  z-index: 200;
-  border-right: 1px solid var(--color-border);
-}
-
-.sidebarOpen {
-  left: 0;
-}
-
-.sidebarOverlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 150;
+  /* Minimal container styling */
 }
 
 /* Main Content */
@@ -812,18 +790,7 @@
     display: block;
   }
   
-  /* Desktop sidebar */
-  .sidebar {
-    position: static;
-    left: 0;
-    width: 280px;
-    height: auto;
-    min-height: 100vh;
-  }
-  
-  .sidebarOverlay {
-    display: none;
-  }
+  /* Desktop sidebar - Let Sidebar component handle styling */
   
   .pageWrapper {
     flex-direction: row;

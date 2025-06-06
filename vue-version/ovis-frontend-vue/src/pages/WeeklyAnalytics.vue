@@ -20,16 +20,9 @@
     </header>
 
     <!-- Sidebar -->
-    <aside :class="[styles.sidebar, isSidebarOpen && styles.sidebarOpen]">
-      <Sidebar />
+    <aside :class="styles.sidebar">
+      <Sidebar ref="sidebarRef" />
     </aside>
-
-    <!-- Sidebar Overlay -->
-    <div 
-      v-if="isSidebarOpen" 
-      :class="styles.sidebarOverlay" 
-      @click="closeSidebar"
-    ></div>
 
     <!-- Main Content -->
     <main :class="styles.mainContent">
@@ -366,7 +359,7 @@ const router = useRouter()
 const loading = ref(true)
 const weeklyData = ref(null)
 const currentWeekOffset = ref(0)
-const isSidebarOpen = ref(false)
+const sidebarRef = ref(null)
 
 const currentWeekRange = computed(() => {
   if (weeklyData.value?.weekRange) {
@@ -468,11 +461,15 @@ const severityTrendData = computed(() => {
 })
 
 const toggleSidebar = () => {
-  isSidebarOpen.value = !isSidebarOpen.value
+  if (sidebarRef.value) {
+    sidebarRef.value.toggle()
+  }
 }
 
 const closeSidebar = () => {
-  isSidebarOpen.value = false
+  if (sidebarRef.value) {
+    sidebarRef.value.close()
+  }
 }
 
 const navigateWeek = (direction) => {

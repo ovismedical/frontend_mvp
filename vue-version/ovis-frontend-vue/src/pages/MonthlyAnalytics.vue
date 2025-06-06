@@ -12,16 +12,9 @@
     </header>
 
     <!-- Sidebar -->
-    <aside :class="[styles.sidebar, { [styles.sidebarOpen]: sidebarOpen }]">
-      <Sidebar />
+    <aside :class="styles.sidebar">
+      <Sidebar ref="sidebarRef" />
     </aside>
-
-    <!-- Sidebar Overlay -->
-    <div 
-      v-if="sidebarOpen" 
-      :class="styles.sidebarOverlay"
-      @click="closeSidebar"
-    ></div>
 
     <!-- Main Content -->
     <main :class="styles.mainContent">
@@ -347,7 +340,7 @@ const router = useRouter()
 const loading = ref(true)
 const monthlyData = ref(null)
 const currentMonthOffset = ref(0)
-const sidebarOpen = ref(false)
+const sidebarRef = ref(null)
 const selectedDay = ref(null)
 
 // Navigation functions
@@ -365,11 +358,15 @@ const goToFlorence = () => {
 }
 
 const toggleSidebar = () => {
-  sidebarOpen.value = !sidebarOpen.value
+  if (sidebarRef.value) {
+    sidebarRef.value.toggle()
+  }
 }
 
 const closeSidebar = () => {
-  sidebarOpen.value = false
+  if (sidebarRef.value) {
+    sidebarRef.value.close()
+  }
 }
 
 const selectDay = (day) => {

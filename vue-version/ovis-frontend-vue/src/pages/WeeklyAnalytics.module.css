@@ -56,31 +56,9 @@
   margin: 0;
 }
 
-/* Sidebar */
+/* Sidebar - Let the Sidebar component handle its own styling */
 .sidebar {
-  position: fixed;
-  top: 0;
-  left: -280px;
-  width: 280px;
-  height: 100vh;
-  background-color: var(--color-surface);
-  border-right: 1px solid var(--color-lavender-100);
-  z-index: 30;
-  transition: transform 0.3s ease;
-}
-
-.sidebarOpen {
-  transform: translateX(280px);
-}
-
-.sidebarOverlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.4);
-  z-index: 25;
+  /* Minimal container styling */
 }
 
 /* Main Content */
