@@ -3,7 +3,7 @@
     <!-- Mobile Header -->
     <div :class="styles.mobileHeader">
       <button :class="styles.closeBtn" @click="closeSidebar">
-        <span class="icon icon-md">close</span>
+        <span class="material-icons">close</span>
       </button>
       <h3 :class="styles.mobileTitle">Menu</h3>
     </div>
@@ -23,7 +23,7 @@
         :class="[styles.navLink, $route.path === item.path ? styles.active : '']"
         @click="closeSidebar"
       >
-        <span :class="['icon', 'icon-md', styles.navIcon]">{{ item.icon }}</span>
+        <span :class="['material-icons', styles.navIcon]">{{ item.icon }}</span>
         <span>{{ item.label }}</span>
       </RouterLink>
     </nav>
@@ -31,7 +31,7 @@
     <!-- Footer with Sign Out -->
     <div :class="styles.sidebarFooter">
       <button :class="styles.signOutBtn" @click="signOut">
-        <span class="icon icon-md">logout</span>
+        <span class="material-icons">logout</span>
         <span>Sign Out</span>
       </button>
     </div>
@@ -55,9 +55,9 @@ const isOpen = ref(false)
 
 const navItems = [
   { path: '/dashboard', label: 'Dashboard', icon: 'dashboard' },
-  { path: '/quiz', label: 'Daily Check-in', icon: 'assignment' },
+  { path: '/quiz', label: 'Daily Check-in', icon: 'assignment_turned_in' },
   { path: '/florence', label: 'Chat with Florence', icon: 'smart_toy' },
-  { path: '/assessments', label: 'My Assessments', icon: 'history' },
+  { path: '/assessments', label: 'My Assessments', icon: 'assessment' },
   { path: '/faq', label: 'Help Center', icon: 'help' },
   { path: '/settings', label: 'Settings', icon: 'settings' }
 ]

@@ -13,16 +13,9 @@
     </header>
 
     <!-- Sidebar -->
-    <aside :class="[styles.sidebar, isSidebarOpen && styles.sidebarOpen]">
-      <Sidebar />
+    <aside :class="styles.sidebar">
+      <Sidebar ref="sidebarRef" />
     </aside>
-
-    <!-- Sidebar Overlay -->
-    <div 
-      v-if="isSidebarOpen" 
-      :class="styles.sidebarOverlay" 
-      @click="closeSidebar"
-    ></div>
 
     <!-- Main Content -->
     <main :class="styles.mainContent">
@@ -168,7 +161,7 @@ const router = useRouter()
 const loading = ref(true)
 const assessments = ref([])
 const activeFilter = ref('all')
-const isSidebarOpen = ref(false)
+const sidebarRef = ref(null)
 
 const totalAssessments = computed(() => assessments.value.length)
 const dailyCheckins = computed(() => assessments.value.filter(a => a.type === 'daily_checkin').length)
@@ -182,16 +175,16 @@ const filteredAssessments = computed(() => {
 })
 
 const toggleSidebar = () => {
-  isSidebarOpen.value = !isSidebarOpen.value
-}
-
-const closeSidebar = () => {
-  isSidebarOpen.value = false
+  if (sidebarRef.value) {
+    sidebarRef.value.toggle()
+  }
 }
 
 const setFilter = (filter) => {
   activeFilter.value = filter
-  closeSidebar()
+  if (sidebarRef.value) {
+    sidebarRef.value.close()
+  }
 }
 
 const getIconColor = (assessment) => {
@@ -228,22 +221,30 @@ const formatDate = (dateString) => {
 
 const goToCheckin = () => {
   router.push('/quiz')
-  closeSidebar()
+  if (sidebarRef.value) {
+    sidebarRef.value.close()
+  }
 }
 
 const goToFlorence = () => {
   router.push('/florence')
-  closeSidebar()
+  if (sidebarRef.value) {
+    sidebarRef.value.close()
+  }
 }
 
 const goToWeeklyView = () => {
   router.push('/weekly-analytics')
-  closeSidebar()
+  if (sidebarRef.value) {
+    sidebarRef.value.close()
+  }
 }
 
 const goToMonthlyView = () => {
   router.push('/monthly-analytics')
-  closeSidebar()
+  if (sidebarRef.value) {
+    sidebarRef.value.close()
+  }
 }
 
 const viewAssessment = (assessment) => {
