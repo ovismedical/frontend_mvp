@@ -52,50 +52,32 @@
 
       <!-- Main Content Grid -->
       <section :class="styles.contentGrid">
-        <!-- Daily Check In Card -->
-        <div :class="[styles.card, styles.dailyCheckCard]">
+        <!-- Florence Check In Card - Hero Feature -->
+        <div :class="[styles.card, styles.florenceCard, styles.heroCard]">
           <div :class="styles.cardHeader">
-            <div :class="styles.cardIcon">
-              <span class="icon icon-lg">assignment</span>
-            </div>
-            <div :class="styles.cardContent">
-              <h3>Daily Check In</h3>
-              <p :class="styles.cardSubtitle">Quick structured questionnaire</p>
-              <button :class="styles.primaryBtn" @click="goToQuiz">
-                <span class="icon icon-sm">play_arrow</span>
-                Start Quiz
-              </button>
-            </div>
-          </div>
-          <div :class="styles.streakInfo">
-            <div :class="styles.streakNumber">{{ currentStreak < 10 ? '0' + currentStreak : currentStreak }}</div>
-            <div :class="styles.streakText">
-              <span>days</span><br>
-              <small>You've started strong.</small>
-            </div>
-          </div>
-          <div :class="styles.weekDays">
-            <div 
-              v-for="(day, index) in weekDays" 
-              :key="index" 
-              :class="[styles.dayDot, day.completed && styles.completed]"
-              :title="`Day ${index + 1}`"
-            ></div>
-          </div>
-        </div>
-
-        <!-- Florence Check In Card -->
-        <div :class="[styles.card, styles.florenceCard]">
-          <div :class="styles.cardHeader">
-            <div :class="styles.cardIcon">
+            <div :class="[styles.cardIcon, styles.heroIcon]">
               <span class="icon icon-lg">smart_toy</span>
             </div>
             <div :class="styles.cardContent">
               <h3>Check-in with Florence</h3>
-              <p :class="styles.cardSubtitle">Chat with AI nurse about your health</p>
-              <button :class="styles.secondaryBtn" @click="goToFlorence">
+              <p :class="styles.cardSubtitle">Your AI nurse is ready to chat about your health</p>
+              <div :class="styles.heroFeatures">
+                <div :class="styles.heroFeature">
+                  <span class="icon icon-sm">psychology</span>
+                  <small>Smart health assessment</small>
+                </div>
+                <div :class="styles.heroFeature">
+                  <span class="icon icon-sm">mic</span>
+                  <small>Voice & text support</small>
+                </div>
+                <div :class="styles.heroFeature">
+                  <span class="icon icon-sm">schedule</span>
+                  <small>Available 24/7</small>
+                </div>
+              </div>
+              <button :class="[styles.primaryBtn, styles.heroBtn]" @click="goToFlorence">
                 <span class="icon icon-sm">chat</span>
-                Chat with Florence
+                Start Conversation
               </button>
             </div>
           </div>
@@ -112,14 +94,50 @@
                 </div>
                 <div :class="styles.feature">
                   <span class="icon icon-sm">check_circle</span>
-                  <small>Voice or text support</small>
+                  <small>Personalized care</small>
                 </div>
                 <div :class="styles.feature">
                   <span class="icon icon-sm">check_circle</span>
-                  <small>Personalized assessment</small>
+                  <small>Immediate support</small>
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+
+        <!-- Daily Check In Card -->
+        <div :class="[styles.card, styles.dailyCheckCard, styles.maintenanceCard]">
+          <div :class="styles.cardHeader">
+            <div :class="[styles.cardIcon, styles.disabledIcon]">
+              <span class="icon icon-lg">assignment</span>
+            </div>
+            <div :class="styles.cardContent">
+              <h3>Daily Check In</h3>
+              <p :class="styles.cardSubtitle">Quick structured questionnaire</p>
+              <div :class="styles.maintenanceBadge">
+                <span class="icon icon-sm">construction</span>
+                Under Maintenance
+              </div>
+              <button :class="[styles.primaryBtn, styles.disabledBtn]" disabled>
+                <span class="icon icon-sm">play_arrow</span>
+                Start Quiz
+              </button>
+            </div>
+          </div>
+          <div :class="[styles.streakInfo, styles.disabledContent]">
+            <div :class="styles.streakNumber">{{ currentStreak < 10 ? '0' + currentStreak : currentStreak }}</div>
+            <div :class="styles.streakText">
+              <span>days</span><br>
+              <small>You've started strong.</small>
+            </div>
+          </div>
+          <div :class="styles.weekDays">
+            <div 
+              v-for="(day, index) in weekDays" 
+              :key="index" 
+              :class="[styles.dayDot, day.completed && styles.completed, styles.disabledDot]"
+              :title="`Day ${index + 1}`"
+            ></div>
           </div>
         </div>
 
@@ -264,13 +282,18 @@ const toggleSidebar = () => {
 const fetchPatient = async () => {
   try {
     const storedToken = JSON.parse(localStorage.getItem('token')).access_token
-    const response = await fetch('http://localhost:8000/userinfo', {
+    const baseUrl = apiUrl || 'https://ovis-backend-mvp.onrender.com'
+    const response = await fetch(`${baseUrl}/userinfo`, {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
         'Authorization': `Bearer ${storedToken}`
       }
     })
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`)
+    }
 
     const data = await response.json()
     patient.value = {
@@ -280,7 +303,14 @@ const fetchPatient = async () => {
       username: data.username
     }
   } catch (error) {
-    console.error(error)
+    console.error('Failed to fetch patient data:', error)
+    // Set patient to empty object to stop loading state
+    patient.value = {
+      name: 'Unable to load',
+      dob: 'Unable to load',
+      sex: 'Unable to load',
+      username: 'Unable to load'
+    }
   }
 }
 

@@ -391,4 +391,37 @@ onMounted(async () => {
     }
   })
 })
+
+// Proposed wellness score calculation
+const calculateWellnessScore = (weeklyData) => {
+  if (!weeklyData || !weeklyData.dailyData) return 75; // Default
+
+  const assessmentDays = weeklyData.dailyData.filter(day => day.hasData);
+  
+  if (assessmentDays.length === 0) return 75; // No data
+  
+  // Factors for wellness score:
+  const consistencyWeight = 0.3; // 30% - How often they track
+  const severityWeight = 0.5;    // 50% - Average symptom severity  
+  const alertWeight = 0.2;       // 20% - Number of alerts
+
+  // 1. Consistency Score (0-100)
+  const consistencyScore = (assessmentDays.length / 7) * 100;
+  
+  // 2. Severity Score (0-100) - inverse of severity
+  const avgSeverity = assessmentDays.reduce((sum, day) => sum + day.avgSeverity, 0) / assessmentDays.length;
+  const severityScore = Math.max(0, 100 - (avgSeverity * 20)); // 5 max severity = 0 score
+  
+  // 3. Alert Score (0-100) - fewer alerts = higher score
+  const alertScore = Math.max(0, 100 - (weeklyData.totalAlerts * 10));
+  
+  // Weighted average
+  const wellnessScore = Math.round(
+    (consistencyScore * consistencyWeight) +
+    (severityScore * severityWeight) +
+    (alertScore * alertWeight)
+  );
+  
+  return Math.max(20, Math.min(100, wellnessScore)); // Clamp between 20-100
+};
 </script> 

@@ -19,12 +19,23 @@
       <RouterLink
         v-for="item in navItems"
         :key="item.path"
-        :to="item.path"
-        :class="[styles.navLink, $route.path === item.path ? styles.active : '']"
-        @click="closeSidebar"
+        :to="item.disabled ? '#' : item.path"
+        :class="[
+          styles.navLink, 
+          $route.path === item.path ? styles.active : '',
+          item.disabled ? styles.disabled : '',
+          item.featured ? styles.featured : ''
+        ]"
+        @click="item.disabled ? null : closeSidebar"
       >
         <span :class="['material-icons', styles.navIcon]">{{ item.icon }}</span>
         <span>{{ item.label }}</span>
+        <span v-if="item.featured" :class="styles.featuredIndicator">
+          ★
+        </span>
+        <span v-if="item.maintenance" :class="styles.maintenanceIndicator">
+          ⚠️
+        </span>
       </RouterLink>
     </nav>
     
@@ -55,8 +66,8 @@ const isOpen = ref(false)
 
 const navItems = [
   { path: '/dashboard', label: 'Dashboard', icon: 'dashboard' },
-  { path: '/quiz', label: 'Daily Check-in', icon: 'assignment_turned_in' },
-  { path: '/florence', label: 'Chat with Florence', icon: 'smart_toy' },
+  { path: '/florence', label: 'Chat with Florence', icon: 'smart_toy', featured: true },
+  { path: '/quiz', label: 'Daily Check-in', icon: 'assignment_turned_in', disabled: true, maintenance: true },
   { path: '/assessments', label: 'My Assessments', icon: 'assessment' },
   { path: '/faq', label: 'Help Center', icon: 'help' },
   { path: '/settings', label: 'Settings', icon: 'settings' }

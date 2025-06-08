@@ -790,6 +790,126 @@
 }
 
 /* Reduced Motion */
+/* Maintenance Styles */
+.maintenanceCard {
+  opacity: 0.6;
+  filter: grayscale(0.5);
+  pointer-events: none;
+}
+
+.disabledIcon {
+  opacity: 0.5;
+  color: var(--text-400) !important;
+  background: var(--neutral-100) !important;
+}
+
+.disabledBtn {
+  opacity: 0.5;
+  cursor: not-allowed !important;
+  background: var(--neutral-300) !important;
+  color: var(--text-400) !important;
+}
+
+.disabledBtn:hover {
+  background: var(--neutral-300) !important;
+  color: var(--text-400) !important;
+  transform: none !important;
+}
+
+.disabledContent {
+  opacity: 0.5;
+}
+
+.disabledDot {
+  opacity: 0.4;
+}
+
+.maintenanceBadge {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-1);
+  padding: var(--spacing-1) var(--spacing-2);
+  background: var(--warning-100);
+  border: 1px solid var(--warning-300);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-12);
+  font-weight: 600;
+  color: var(--warning-700);
+  margin-bottom: var(--spacing-3);
+  width: fit-content;
+}
+
+.maintenanceBadge .icon {
+  font-size: 14px;
+}
+
+/* Hero Feature Styles for Florence */
+.heroCard {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  border: 2px solid var(--lavender-300);
+  box-shadow: 0 8px 25px rgba(139, 92, 246, 0.15);
+  transform: scale(1.02);
+  position: relative;
+  overflow: hidden;
+}
+
+.heroCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--lavender-500) 0%, var(--lavender-600) 100%);
+}
+
+.heroIcon {
+  background: linear-gradient(135deg, var(--lavender-500) 0%, var(--lavender-600) 100%) !important;
+  color: white !important;
+  box-shadow: var(--elevation-md);
+  transform: scale(1.1);
+}
+
+.heroBtn {
+  background: linear-gradient(135deg, var(--lavender-500) 0%, var(--lavender-600) 100%) !important;
+  color: white !important;
+  font-weight: 600;
+  font-size: var(--font-size-16);
+  padding: var(--spacing-4) var(--spacing-6);
+  box-shadow: var(--elevation-md);
+}
+
+.heroBtn:hover {
+  background: linear-gradient(135deg, var(--lavender-600) 0%, var(--lavender-700) 100%) !important;
+  transform: translateY(-2px);
+  box-shadow: var(--elevation-lg);
+}
+
+.heroFeatures {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-2);
+  margin: var(--spacing-3) 0;
+}
+
+.heroFeature {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-1);
+  padding: var(--spacing-1) var(--spacing-2);
+  background: var(--lavender-50);
+  border: 1px solid var(--lavender-200);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-12);
+  font-weight: 500;
+  color: var(--lavender-700);
+}
+
+.heroFeature .icon {
+  font-size: 14px;
+  color: var(--lavender-600);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .card,
   .chartBar,
