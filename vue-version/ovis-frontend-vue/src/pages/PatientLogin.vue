@@ -2,19 +2,19 @@
   <div :class="styles.login_body">
     <div :class="styles.login_content">
       <img :src="logo" :class="styles.login_logo" alt="Logo" />
-      <h1>Patient Login</h1>
+      <h1>{{ $t('login.patientLogin') }}</h1>
 
       <input
         :class="styles.login_userinput"
         type="text"
-        placeholder="Username/Patient ID"
+        :placeholder="$t('login.usernamePlaceholder')"
         v-model="username"
       />
 
       <input
         :class="styles.login_passwordinput"
         type="password"
-        placeholder="Password"
+        :placeholder="$t('login.passwordPlaceholder')"
         v-model="password"
       />
 
@@ -23,11 +23,11 @@
         @click="handleLogin"
         :disabled="loading"
       >
-        {{ loading ? 'Logging in...' : 'Enter' }}
+        {{ loading ? $t('login.loggingIn') : $t('login.enter') }}
       </button>
 
       <button :class="styles.login_createAccount" @click="goToCreateAccount">
-        Create Account
+        {{ $t('login.createAccount') }}
       </button>
 
       <p v-if="message" :class="styles.login_message">{{ message }}</p>

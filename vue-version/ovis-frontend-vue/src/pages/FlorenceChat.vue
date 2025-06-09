@@ -5,7 +5,7 @@
       <button :class="styles.menuBtn" @click="toggleSidebar">
         <span class="icon icon-md">menu</span>
       </button>
-      <h1 :class="styles.mobileTitle">Florence Chat</h1>
+      <h1 :class="styles.mobileTitle">{{ $t('florence.title') }}</h1>
     </header>
 
     <aside :class="styles.sidebar">
@@ -19,8 +19,8 @@
             <span class="icon icon-lg">health_and_safety</span>
           </div>
           <div>
-            <h2>Florence - AI Nurse</h2>
-            <p :class="styles.status">{{ sessionStatus }}</p>
+            <h2>{{ $t('florence.aiNurse') }}</h2>
+            <p :class="styles.status">{{ $t(sessionStatusKey) }}</p>
           </div>
         </div>
         <div :class="styles.headerActions">
@@ -31,47 +31,47 @@
             :disabled="isProcessing"
           >
             <span class="icon icon-sm">check_circle</span>
-            Finish Assessment
+            {{ $t('florence.finishAssessment') }}
           </button>
         </div>
       </header>
 
       <div :class="styles.chatMessages" ref="messagesContainer">
         <div v-if="!sessionId" :class="styles.welcomeMessage">
-          <h3>Welcome to your check-in with Florence!</h3>
-          <p>Florence is your AI nurse who will have a friendly conversation with you about how you're feeling today.</p>
+          <h3>{{ $t('florence.welcomeTitle') }}</h3>
+          <p>{{ $t('florence.welcomeSubtitle') }}</p>
           <div :class="styles.startOptions">
             <div :class="styles.optionGroup">
               <label>
-                Language:
+                {{ $t('florence.language') }}:
                 <select v-model="language" :class="styles.select" @change="onLanguageChange">
-                  <option value="en">English</option>
-                  <option value="zh" disabled>Cantonese (Coming Soon)</option>
+                  <option value="en">{{ $t('florence.english') }}</option>
+                  <option value="zh" disabled>{{ $t('florence.cantonese') }}</option>
                 </select>
               </label>
               <p :class="styles.developmentNote">
                 <span class="icon icon-sm">info</span>
-                Cantonese support is currently in development
+                {{ $t('florence.developmentNote') }}
               </p>
             </div>
             
             <div :class="styles.optionGroup">
               <label>
-                Input method:
+                {{ $t('florence.inputMethod') }}:
                 <select v-model="inputMode" :class="styles.select" @change="onInputModeChange">
-                  <option value="keyboard">Keyboard</option>
-                  <option value="speech" disabled>Speech (Coming Soon)</option>
+                  <option value="keyboard">{{ $t('florence.keyboard') }}</option>
+                  <option value="speech" disabled>{{ $t('florence.speech') }}</option>
                 </select>
               </label>
               <p :class="styles.developmentNote">
                 <span class="icon icon-sm">info</span>
-                Speech input is currently in development
+                {{ $t('florence.speechDevelopmentNote') }}
               </p>
             </div>
             
             <button @click="startSession" :class="styles.startButton" :disabled="isProcessing">
               <span class="icon icon-sm">play_arrow</span>
-              Start Chat with Florence
+              {{ $t('florence.startChatButton') }}
             </button>
           </div>
         </div>
@@ -89,7 +89,7 @@
 
         <div v-if="isProcessing" :class="[styles.message, styles.assistantMessage]">
           <div :class="styles.messageContent">
-            <div :class="styles.typing">Florence is typing...</div>
+            <div :class="styles.typing">{{ $t('florence.florenceTyping') }}</div>
           </div>
         </div>
       </div>
@@ -99,7 +99,7 @@
           <input
             v-model="userMessage"
             type="text"
-            placeholder="Type your message to Florence..."
+            :placeholder="$t('florence.messagePlaceholder')"
             :class="styles.messageInput"
             @keyup.enter="sendMessage"
             @focus="onInputFocus"
@@ -117,7 +117,7 @@
             :disabled="!userMessage.trim() || isProcessing"
           >
             <span class="icon icon-sm">send</span>
-            Send
+            {{ $t('florence.sendButton') }}
           </button>
         </div>
       </div>
@@ -140,6 +140,7 @@ const messageInputRef = ref(null)
 // Reactive state
 const sessionId = ref(null)
 const sessionStatus = ref('Ready to start')
+const sessionStatusKey = ref('florence.readyToStart')
 const language = ref('en')
 const inputMode = ref('keyboard')
 const conversation = ref([])
@@ -186,6 +187,7 @@ const startSession = async () => {
   
   isProcessing.value = true
   sessionStatus.value = 'Starting session...'
+  sessionStatusKey.value = 'florence.startingSession'
   
   try {
     const storedToken = JSON.parse(localStorage.getItem('token')).access_token
@@ -209,11 +211,12 @@ const startSession = async () => {
     const data = await response.json()
     sessionId.value = data.session_id
     sessionStatus.value = 'Connected'
+    sessionStatusKey.value = 'florence.connected'
     
     // Add welcome message from Florence
     conversation.value.push({
       role: 'assistant',
-      content: `Hello! I'm Florence, your AI nurse. ${data.message} How are you feeling today?`,
+      content: data.message || "Hello! I'm Florence, your AI nurse. How are you feeling today?",
       timestamp: new Date().toISOString()
     })
     
@@ -221,6 +224,7 @@ const startSession = async () => {
   } catch (error) {
     console.error('Error starting session:', error)
     sessionStatus.value = 'Error starting session'
+    sessionStatusKey.value = 'florence.errorStarting'
     alert('Failed to start session with Florence. Please try again.')
   } finally {
     isProcessing.value = false
@@ -299,6 +303,7 @@ const finishSession = async () => {
   
   isProcessing.value = true
   sessionStatus.value = 'Finishing session...'
+  sessionStatusKey.value = 'florence.finishingSession'
   
   try {
     const storedToken = JSON.parse(localStorage.getItem('token')).access_token
@@ -322,6 +327,7 @@ const finishSession = async () => {
   } finally {
     isProcessing.value = false
     sessionStatus.value = 'Connected'
+    sessionStatusKey.value = 'florence.connected'
   }
 }
 

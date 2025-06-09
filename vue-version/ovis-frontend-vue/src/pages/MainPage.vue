@@ -9,13 +9,13 @@
 
       <div :class="styles.main_content">
         <RouterLink to="/patientlogin">
-          <button :class="styles.main_button">Patient Login</button>
+          <button :class="styles.main_button">{{ $t('landing.patientLogin') }}</button>
         </RouterLink>
         <RouterLink to="/adminlogin">
-          <button :class="styles.main_button">Admin Login</button>
+          <button :class="styles.main_button">{{ $t('landing.adminLogin') }}</button>
         </RouterLink>
         <RouterLink to="/faq">
-          <button :class="styles.main_button">FAQ</button>
+          <button :class="styles.main_button">{{ $t('landing.faq') }}</button>
         </RouterLink>
       </div>
 

@@ -5,13 +5,13 @@
       <button :class="styles.closeBtn" @click="closeSidebar">
         <span class="material-icons">close</span>
       </button>
-      <h3 :class="styles.mobileTitle">Menu</h3>
+      <h3 :class="styles.mobileTitle">{{ $t('sidebar.menu') }}</h3>
     </div>
 
     <!-- Logo Area -->
     <div :class="styles.logoArea">
       <img :src="logo" :class="styles.logo" alt="Ovis Logo" />
-      <h2 :class="styles.brandName">Ovis</h2>
+      <h2 :class="styles.brandName">{{ $t('sidebar.brandName') }}</h2>
     </div>
     
     <!-- Navigation -->
@@ -27,9 +27,9 @@
           item.featured ? styles.featured : ''
         ]"
         @click="item.disabled ? null : closeSidebar"
-      >
+              >
         <span :class="['material-icons', styles.navIcon]">{{ item.icon }}</span>
-        <span>{{ item.label }}</span>
+        <span>{{ $t(item.labelKey) }}</span>
         <span v-if="item.featured" :class="styles.featuredIndicator">
           ★
         </span>
@@ -43,7 +43,7 @@
     <div :class="styles.sidebarFooter">
       <button :class="styles.signOutBtn" @click="signOut">
         <span class="material-icons">logout</span>
-        <span>Sign Out</span>
+        <span>{{ $t('sidebar.signOut') }}</span>
       </button>
     </div>
   </aside>
@@ -65,12 +65,12 @@ const router = useRouter()
 const isOpen = ref(false)
 
 const navItems = [
-  { path: '/dashboard', label: 'Dashboard', icon: 'dashboard' },
-  { path: '/florence', label: 'Chat with Florence', icon: 'smart_toy', featured: true },
-  { path: '/quiz', label: 'Daily Check-in', icon: 'assignment_turned_in', disabled: true, maintenance: true },
-  { path: '/assessments', label: 'My Assessments', icon: 'assessment' },
-  { path: '/faq', label: 'Help Center', icon: 'help' },
-  { path: '/settings', label: 'Settings', icon: 'settings' }
+  { path: '/dashboard', labelKey: 'sidebar.dashboard', icon: 'dashboard' },
+  { path: '/florence', labelKey: 'sidebar.florence', icon: 'smart_toy', featured: true },
+  { path: '/quiz', labelKey: 'sidebar.dailyCheckin', icon: 'assignment_turned_in', disabled: true, maintenance: true },
+  { path: '/assessments', labelKey: 'sidebar.assessments', icon: 'assessment' },
+  { path: '/faq', labelKey: 'sidebar.helpCenter', icon: 'help' },
+  { path: '/settings', labelKey: 'sidebar.settings', icon: 'settings' }
 ]
 
 const signOut = () => {

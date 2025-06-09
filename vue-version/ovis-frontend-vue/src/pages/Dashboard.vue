@@ -5,13 +5,17 @@
       <button :class="styles.menuBtn" @click="toggleSidebar">
         <span class="icon icon-md">menu</span>
       </button>
-      <h1 :class="styles.mobileTitle">Dashboard</h1>
-      <div :class="styles.mobileActions">
-        <button :class="styles.notificationBtn">
-          <span class="icon icon-md">notifications</span>
-          <span :class="styles.badge">5</span>
-        </button>
-      </div>
+      <h1 :class="styles.mobileTitle">{{ $t('dashboard.title') }}</h1>
+              <div :class="styles.mobileActions">
+          <select v-model="currentLanguage" @change="changeLanguage" style="padding: 0.5rem; margin-right: 0.5rem; border-radius: 0.375rem; border: 1px solid #e2e8f0;">
+            <option value="en">English</option>
+            <option value="zh-HK">繁體中文</option>
+          </select>
+          <button :class="styles.notificationBtn">
+            <span class="icon icon-md">notifications</span>
+            <span :class="styles.badge">5</span>
+          </button>
+        </div>
     </header>
 
     <aside :class="styles.sidebar">
@@ -23,12 +27,16 @@
         <header :class="styles.topHeader">
         <div :class="styles.greetingSection">
           <h1 :class="styles.greeting">
-            Good {{ getTimeOfDay() }} <span :class="styles.userName">{{ patient?.name || 'User' }}</span>
+            {{ $t('dashboard.greeting', { timeOfDay: $t(`timeOfDay.${getTimeOfDay().toLowerCase()}`) }) }} <span :class="styles.userName">{{ patient?.name || 'User' }}</span>
           </h1>
           <p :class="styles.date">{{ today }}</p>
         </div>
         
         <div :class="styles.headerActions">
+          <select v-model="currentLanguage" @change="changeLanguage" style="padding: 0.5rem; margin-right: 0.5rem; border-radius: 0.375rem; border: 1px solid #e2e8f0;">
+            <option value="en">English</option>
+            <option value="zh-HK">繁體中文</option>
+          </select>
           <button :class="styles.notificationBtn">
             <span class="icon icon-md">notifications</span>
             <span :class="styles.badge">5</span>
@@ -42,8 +50,8 @@
           <span class="icon icon-md text-warning-500">warning</span>
         </div>
         <div :class="styles.alertText">
-          <strong>Message from Dr. Lee</strong><br>
-          Your recent report flagged an issue — <span :class="styles.alertLink">check adjusted medication.</span>
+          <strong>{{ $t('dashboard.alertDoctorMessage') }}</strong><br>
+          {{ $t('dashboard.alertText') }}
         </div>
         <button :class="styles.alertClose" @click="showAlert = false">
           <span class="icon icon-md">close</span>
@@ -59,25 +67,25 @@
               <span class="icon icon-lg">smart_toy</span>
             </div>
             <div :class="styles.cardContent">
-              <h3>Check-in with Florence</h3>
-              <p :class="styles.cardSubtitle">Your AI nurse is ready to chat about your health</p>
+              <h3>{{ $t('dashboard.florenceTitle') }}</h3>
+              <p :class="styles.cardSubtitle">{{ $t('dashboard.florenceSubtitle') }}</p>
               <div :class="styles.heroFeatures">
                 <div :class="styles.heroFeature">
                   <span class="icon icon-sm">psychology</span>
-                  <small>Smart health assessment</small>
+                  <small>{{ $t('dashboard.smartHealthAssessment') }}</small>
                 </div>
                 <div :class="styles.heroFeature">
                   <span class="icon icon-sm">mic</span>
-                  <small>Voice & text support</small>
+                  <small>{{ $t('dashboard.voiceTextSupport') }}</small>
                 </div>
                 <div :class="styles.heroFeature">
                   <span class="icon icon-sm">schedule</span>
-                  <small>Available 24/7</small>
+                  <small>{{ $t('dashboard.available247') }}</small>
                 </div>
               </div>
               <button :class="[styles.primaryBtn, styles.heroBtn]" @click="goToFlorence">
                 <span class="icon icon-sm">chat</span>
-                Start Conversation
+                {{ $t('dashboard.startConversation') }}
               </button>
             </div>
           </div>
@@ -86,19 +94,19 @@
               <span class="icon icon-lg">health_and_safety</span>
             </div>
             <div :class="styles.florenceText">
-              <p>Hi! I'm Florence, your AI nurse. Let's have a friendly chat about how you're feeling today.</p>
+              <p>{{ $t('dashboard.florenceGreeting') }}</p>
               <div :class="styles.featureList">
                 <div :class="styles.feature">
                   <span class="icon icon-sm">check_circle</span>
-                  <small>Natural conversation</small>
+                  <small>{{ $t('dashboard.naturalConversation') }}</small>
                 </div>
                 <div :class="styles.feature">
                   <span class="icon icon-sm">check_circle</span>
-                  <small>Personalized care</small>
+                  <small>{{ $t('dashboard.personalizedCare') }}</small>
                 </div>
                 <div :class="styles.feature">
                   <span class="icon icon-sm">check_circle</span>
-                  <small>Immediate support</small>
+                  <small>{{ $t('dashboard.immediateSupport') }}</small>
                 </div>
               </div>
             </div>
@@ -112,23 +120,23 @@
               <span class="icon icon-lg">assignment</span>
             </div>
             <div :class="styles.cardContent">
-              <h3>Daily Check In</h3>
-              <p :class="styles.cardSubtitle">Quick structured questionnaire</p>
+              <h3>{{ $t('dashboard.dailyCheckIn') }}</h3>
+              <p :class="styles.cardSubtitle">{{ $t('dashboard.dailyCheckSubtitle') }}</p>
               <div :class="styles.maintenanceBadge">
                 <span class="icon icon-sm">construction</span>
-                Under Maintenance
+                {{ $t('dashboard.underMaintenance') }}
               </div>
               <button :class="[styles.primaryBtn, styles.disabledBtn]" disabled>
                 <span class="icon icon-sm">play_arrow</span>
-                Start Quiz
+                {{ $t('dashboard.startQuiz') }}
               </button>
             </div>
           </div>
           <div :class="[styles.streakInfo, styles.disabledContent]">
             <div :class="styles.streakNumber">{{ currentStreak < 10 ? '0' + currentStreak : currentStreak }}</div>
             <div :class="styles.streakText">
-              <span>days</span><br>
-              <small>You've started strong.</small>
+              <span>{{ $t('dashboard.streakDays') }}</span><br>
+              <small>{{ $t('dashboard.streakMessage') }}</small>
             </div>
           </div>
           <div :class="styles.weekDays">
@@ -148,28 +156,28 @@
               <span class="icon icon-lg">person</span>
             </div>
             <div :class="styles.cardContent">
-              <h3>Personal Information</h3>
+              <h3>{{ $t('dashboard.personalInfo') }}</h3>
             </div>
           </div>
           <template v-if="patient">
             <div :class="styles.infoGrid">
               <div :class="styles.infoRow">
-                <span :class="styles.infoLabel">Name:</span>
+                <span :class="styles.infoLabel">{{ $t('common.name') }}:</span>
                 <span :class="styles.infoValue">{{ patient.name }}</span>
               </div>
               <div :class="styles.infoRow">
-                <span :class="styles.infoLabel">Date of Birth:</span>
+                <span :class="styles.infoLabel">{{ $t('common.dateOfBirth') }}:</span>
                 <span :class="styles.infoValue">{{ patient.dob }}</span>
               </div>
               <div :class="styles.infoRow">
-                <span :class="styles.infoLabel">Sex:</span>
+                <span :class="styles.infoLabel">{{ $t('common.sex') }}:</span>
                 <span :class="styles.infoValue">{{ patient.sex }}</span>
               </div>
             </div>
           </template>
           <div v-else :class="styles.loading">
             <span class="icon icon-md">hourglass_empty</span>
-            <span>Loading...</span>
+            <span>{{ $t('common.loading') }}</span>
           </div>
         </div>
 
@@ -182,11 +190,11 @@
             <div :class="styles.cardContent">
               <div :class="styles.scoreHeader">
                 <span :class="styles.scoreNumber">82.5</span>
-                <span :class="styles.scoreLabel">Wellness Score</span>
+                <span :class="styles.scoreLabel">{{ $t('dashboard.wellnessScore') }}</span>
               </div>
               <select :class="styles.periodSelect">
-                <option>Weekly</option>
-                <option>Monthly</option>
+                <option>{{ $t('common.weekly') }}</option>
+                <option>{{ $t('common.monthly') }}</option>
               </select>
             </div>
           </div>
@@ -201,17 +209,17 @@
               ></div>
             </div>
             <div :class="styles.chartLabels">
-              <span v-for="label in ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']" :key="label">{{ label }}</span>
+              <span v-for="day in dayLabels" :key="day">{{ $t(`days.${day}`) }}</span>
             </div>
           </div>
           <div :class="styles.scoreStats">
             <div :class="styles.statItem">
               <span class="icon icon-sm text-error-500">trending_down</span>
-              <span :class="styles.changeDown">-12% vs last week</span>
+              <span :class="styles.changeDown">-12% {{ $t('dashboard.changeDown') }}</span>
             </div>
             <div :class="styles.statItem">
               <span class="icon icon-sm text-warning-500">lightbulb</span>
-              <span :class="styles.insights">8 insights</span>
+              <span :class="styles.insights">8 {{ $t('dashboard.insights') }}</span>
             </div>
           </div>
         </div>
@@ -226,6 +234,9 @@ import { useRouter } from 'vue-router'
 import logo from '../assets/logo.png'
 import Sidebar from './Sidebar.vue'
 import styles from './dashboard.module.css'
+
+// Simple language switching without useI18n composable
+const currentLanguage = ref(localStorage.getItem('language') || 'en')
 
 const apiUrl = import.meta.env.VITE_API_URL
 
@@ -273,6 +284,14 @@ const chartData = ref([
   { height: 70 }
 ])
 
+const dayLabels = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
+
+const changeLanguage = () => {
+  localStorage.setItem('language', currentLanguage.value)
+  // Force page reload to apply language change
+  window.location.reload()
+}
+
 const toggleSidebar = () => {
   if (sidebarRef.value) {
     sidebarRef.value.toggle()
@@ -307,7 +326,7 @@ const fetchPatient = async () => {
     // Set patient to empty object to stop loading state
     patient.value = {
       name: 'Unable to load',
-      dob: 'Unable to load',
+      dob: 'Unable to load', 
       sex: 'Unable to load',
       username: 'Unable to load'
     }

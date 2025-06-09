@@ -2,32 +2,32 @@
   <div :class="styles.login_body">
     <div :class="styles.login_content">
       <img :src="logo" :class="styles.login_logo" alt="Logo" />
-      <h1>Create Patient Account</h1>
+      <h1>{{ $t('createAccount.title') }}</h1>
 
       <input
         :class="styles.login_userinput"
         type="text"
-        placeholder="Username / Patient ID"
+        :placeholder="$t('createAccount.usernamePlaceholder')"
         v-model="username"
       />
 
       <input
         :class="styles.login_passwordinput"
         type="password"
-        placeholder="Password"
+        :placeholder="$t('createAccount.passwordPlaceholder')"
         v-model="password"
       />
 
         <input
         :class="styles.login_userinput"
         type="text"
-        placeholder="Email"
+        :placeholder="$t('createAccount.emailPlaceholder')"
         v-model="email"
       />
       <input
         :class="styles.login_userinput"
         type="text"
-        placeholder="Full Name"
+        :placeholder="$t('createAccount.fullNamePlaceholder')"
         v-model="name"
       />
 
@@ -36,9 +36,9 @@
           :class="styles.login_userinput"
           v-model="dob.month"
         >
-          <option value="">Month</option>
+          <option value="">{{ $t('createAccount.month') }}</option>
           <option v-for="(monthName, i) in monthNames" :key="monthName" :value="String(i + 1).padStart(2, '0')">
-            {{ monthName }}
+            {{ $t(`createAccount.months.${monthName.toLowerCase()}`) }}
           </option>
         </select>
 
@@ -46,7 +46,7 @@
           :class="styles.login_userinput"
           v-model="dob.day"
         >
-          <option value="">Day</option>
+          <option value="">{{ $t('createAccount.day') }}</option>
           <option v-for="n in 31" :key="n" :value="String(n).padStart(2, '0')">
             {{ n }}
           </option>
@@ -56,7 +56,7 @@
           :class="styles.login_userinput"
           v-model="dob.year"
         >
-          <option value="">Year</option>
+          <option value="">{{ $t('createAccount.year') }}</option>
           <option v-for="n in 100" :key="n" :value="new Date().getFullYear() - n">
             {{ new Date().getFullYear() - n }}
           </option>
@@ -67,9 +67,9 @@
         :class="styles.login_userinput"
         v-model="sex"
       >
-        <option value="male">Male</option>
-        <option value="female">Female</option>
-        <option value="other">Other</option>
+        <option value="male">{{ $t('createAccount.male') }}</option>
+        <option value="female">{{ $t('createAccount.female') }}</option>
+        <option value="other">{{ $t('createAccount.other') }}</option>
       </select>
 
       <button 
@@ -77,7 +77,7 @@
         @click="handleCreate"
         :disabled="loading"
       >
-        {{ loading ? 'Creating Account...' : 'Create Account' }}
+        {{ loading ? $t('createAccount.creatingAccount') : $t('createAccount.createAccountButton') }}
       </button>
 
       <p v-if="message" :style="{ color: messageColor }">{{ message }}</p>
