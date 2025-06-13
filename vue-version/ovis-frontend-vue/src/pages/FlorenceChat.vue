@@ -46,7 +46,7 @@
                 {{ $t('florence.language') }}:
                 <select v-model="language" :class="styles.select" @change="onLanguageChange">
                   <option value="en">{{ $t('florence.english') }}</option>
-                  <option value="zh">{{ $t('florence.cantonese') }}</option>
+                  <option value="zh-HK">{{ $t('florence.cantonese') }}</option>
                 </select>
               </label>
             </div>
@@ -300,6 +300,7 @@ const finishSession = async () => {
   
   try {
     const storedToken = JSON.parse(localStorage.getItem('token')).access_token
+    const apiUrl = import.meta.env.VITE_API_URL || 'https://ovis-backend-mvp.onrender.com'
     const response = await fetch(`${apiUrl}/florence/finish_session/${sessionId.value}`, {
       method: 'POST',
       headers: {
@@ -308,7 +309,17 @@ const finishSession = async () => {
     })
 
     if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`)
+      const errorData = await response.json().catch(() => ({}))
+      const errorMessage = errorData.detail || 'Failed to save assessment'
+      
+      if (response.status === 404 || response.status === 410) {
+        // Session not found or expired
+        alert('Your session has expired. Please start a new conversation with Florence.')
+        router.push('/dashboard')
+        return
+      }
+      
+      throw new Error(errorMessage)
     }
 
     const data = await response.json()
@@ -316,7 +327,7 @@ const finishSession = async () => {
     router.push('/dashboard')
   } catch (error) {
     console.error('Error finishing session:', error)
-    alert('Failed to save assessment. Please try again.')
+    alert(error.message || 'Failed to save assessment. Please try again.')
   } finally {
     isProcessing.value = false
     sessionStatus.value = 'Connected'
