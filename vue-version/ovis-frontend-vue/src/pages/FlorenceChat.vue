@@ -46,13 +46,9 @@
                 {{ $t('florence.language') }}:
                 <select v-model="language" :class="styles.select" @change="onLanguageChange">
                   <option value="en">{{ $t('florence.english') }}</option>
-                  <option value="zh" disabled>{{ $t('florence.cantonese') }}</option>
+                  <option value="zh">{{ $t('florence.cantonese') }}</option>
                 </select>
               </label>
-              <p :class="styles.developmentNote">
-                <span class="icon icon-sm">info</span>
-                {{ $t('florence.developmentNote') }}
-              </p>
             </div>
             
             <div :class="styles.optionGroup">
@@ -168,9 +164,7 @@ const formatTime = (timestamp) => {
 
 // Prevent selection of disabled options
 const onLanguageChange = () => {
-  if (language.value === 'zh') {
-    language.value = 'en'
-  }
+  // Language can now be freely changed between English and Cantonese
 }
 
 const onInputModeChange = () => {
@@ -182,7 +176,6 @@ const onInputModeChange = () => {
 // Start a new Florence session
 const startSession = async () => {
   // Ensure we're not using disabled options
-  if (language.value === 'zh') language.value = 'en'
   if (inputMode.value === 'speech') inputMode.value = 'keyboard'
   
   isProcessing.value = true

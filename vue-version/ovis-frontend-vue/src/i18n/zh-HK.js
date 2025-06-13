@@ -74,7 +74,7 @@ export default {
     welcomeSubtitle: 'Florence係你嘅AI護士，佢會同你友善咁傾下你今日點樣。',
     language: '語言',
     english: 'English',
-    cantonese: '廣東話（即將推出）',
+    cantonese: '廣東話',
     inputMethod: '輸入方法',
     keyboard: '鍵盤',
     speech: '語音（即將推出）',

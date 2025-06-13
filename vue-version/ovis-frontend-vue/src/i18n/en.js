@@ -74,7 +74,7 @@ export default {
     welcomeSubtitle: 'Florence is your AI nurse who will have a friendly conversation with you about how you\'re feeling today.',
     language: 'Language',
     english: 'English',
-    cantonese: 'Cantonese (Coming Soon)',
+    cantonese: 'Cantonese',
     inputMethod: 'Input method',
     keyboard: 'Keyboard',
     speech: 'Speech (Coming Soon)',
