@@ -118,6 +118,15 @@
         </div>
       </div>
     </div>
+    
+    <!-- Loading Overlay for Assessment Completion -->
+    <div v-if="isFinishingAssessment" :class="styles.loadingOverlay">
+      <div :class="styles.loadingContent">
+        <div :class="styles.spinner"></div>
+        <h3 :class="styles.loadingTitle">{{ currentLoadingMessage }}</h3>
+        <p :class="styles.loadingSubtitle">Please wait while we process your assessment...</p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -143,6 +152,8 @@ const conversation = ref([])
 const userMessage = ref('')
 const isProcessing = ref(false)
 const messagesContainer = ref(null)
+const isFinishingAssessment = ref(false)
+const currentLoadingMessage = ref('')
 
 // Auto-scroll to bottom when new messages arrive
 const scrollToBottom = () => {
@@ -297,6 +308,26 @@ const finishSession = async () => {
   isProcessing.value = true
   sessionStatus.value = 'Finishing session...'
   sessionStatusKey.value = 'florence.finishingSession'
+  isFinishingAssessment.value = true
+  
+  // Progressive loading messages
+  const loadingMessages = [
+    'Organizing your chat...',
+    'Analyzing conversation...',
+    'Generating report...',
+    'Saving assessment...'
+  ]
+  
+  let messageIndex = 0
+  currentLoadingMessage.value = loadingMessages[messageIndex]
+  
+  // Update loading message every 1.5 seconds
+  const messageInterval = setInterval(() => {
+    messageIndex++
+    if (messageIndex < loadingMessages.length) {
+      currentLoadingMessage.value = loadingMessages[messageIndex]
+    }
+  }, 1500)
   
   try {
     const storedToken = JSON.parse(localStorage.getItem('token')).access_token
@@ -314,6 +345,8 @@ const finishSession = async () => {
       
       if (response.status === 404 || response.status === 410) {
         // Session not found or expired
+        clearInterval(messageInterval)
+        isFinishingAssessment.value = false
         alert('Your session has expired. Please start a new conversation with Florence.')
         router.push('/dashboard')
         return
@@ -323,9 +356,20 @@ const finishSession = async () => {
     }
 
     const data = await response.json()
+    
+    // Clear the message interval and show final message
+    clearInterval(messageInterval)
+    currentLoadingMessage.value = 'Assessment completed!'
+    
+    // Brief pause to show completion message
+    await new Promise(resolve => setTimeout(resolve, 1000))
+    
+    isFinishingAssessment.value = false
     alert('Assessment completed and saved! Thank you for checking in with Florence.')
     router.push('/dashboard')
   } catch (error) {
+    clearInterval(messageInterval)
+    isFinishingAssessment.value = false
     console.error('Error finishing session:', error)
     alert(error.message || 'Failed to save assessment. Please try again.')
   } finally {
