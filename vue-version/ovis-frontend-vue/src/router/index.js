@@ -21,22 +21,35 @@ const routes = [
   { path: '/patientlogin', component: PatientLogin },
   { path: '/adminlogin', component: AdminLogin },
   { path: '/createaccount', component: CreateAccount },
-  { path: '/dashboard', component: DashboardPage },
+  { path: '/dashboard', component: DashboardPage , meta: { requiresAuth: true }},
   { path: '/admindashboard', component: AdminDashboard },
   {path: '/admin/patient/:username', component: AdminPatientLookup, props: true},
-  { path: '/quiz', component: QuizPage },
-  { path: '/florence', component: FlorenceChat },
-  { path: '/assessments', component: Assessments },
-  { path: '/assessment/:id', component: AssessmentDetail },
-  { path: '/weekly-analytics', component: WeeklyAnalytics },
-  { path: '/monthly-analytics', component: MonthlyAnalytics },
-  { path: '/faq', component: HelpCenter },
-  { path: '/settings', component: Settings },
+  { path: '/quiz', component: QuizPage , meta: { requiresAuth: true }},
+  { path: '/florence', component: FlorenceChat , meta: { requiresAuth: true }},
+  { path: '/assessments', component: Assessments , meta: { requiresAuth: true }},
+  { path: '/assessment/:id', component: AssessmentDetail , meta: { requiresAuth: true }},
+  { path: '/weekly-analytics', component: WeeklyAnalytics , meta: { requiresAuth: true }},
+  { path: '/monthly-analytics', component: MonthlyAnalytics , meta: { requiresAuth: true }},
+  { path: '/faq', component: HelpCenter , meta: { requiresAuth: true }},
+  { path: '/settings', component: Settings , meta: { requiresAuth: true }},
 ]
 
 const router = createRouter({
   history: createWebHistory(),
   routes
 })
+
+router.beforeEach(async (to, from, next) => {
+  if (to.meta.requiresAuth) {
+    const isValid = await validateToken();
+    if (isValid) {
+      next();
+    } else {
+      next('/login');
+    }
+  } else {
+    next();
+  }
+});
 
 export default router

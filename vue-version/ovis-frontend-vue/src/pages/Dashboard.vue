@@ -180,7 +180,8 @@ const chartData = ref([
 const fetchPatient = async () => {
   try {
     const storedToken = JSON.parse(localStorage.getItem('token')).access_token
-    const response = await fetch('http://localhost:8000/userinfo', {
+    const apiUrl = import.meta.env.VITE_API_URL || 'https://ovis-backend-mvp.onrender.com'
+    const response = await fetch('${apiUrl}userinfo', {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -203,7 +204,8 @@ const fetchPatient = async () => {
 const fetchStreak = async () => {
   try {
     const storedToken = JSON.parse(localStorage.getItem('token')).access_token
-    const response = await fetch('http://localhost:8000/getstreak', {
+    const apiUrl = import.meta.env.VITE_API_URL || 'https://ovis-backend-mvp.onrender.com'
+    const response = await fetch('${apiUrl}/getstreak', {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
