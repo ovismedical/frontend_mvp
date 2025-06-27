@@ -11,6 +11,8 @@ import QuizPage from '../pages/QuizPage.vue'
 import FlorenceChat from '../pages/FlorenceChat.vue'
 import Assessments from '../pages/Assessments.vue'
 import AssessmentDetail from '../pages/AssessmentDetail.vue'
+import WeeklyAnalytics from '../pages/WeeklyAnalytics.vue'
+import MonthlyAnalytics from '../pages/MonthlyAnalytics.vue'
 import HelpCenter from '../pages/HelpCenter.vue'
 import Settings from '../pages/Settings.vue'
 
@@ -26,6 +28,8 @@ const routes = [
   { path: '/florence', component: FlorenceChat },
   { path: '/assessments', component: Assessments },
   { path: '/assessment/:id', component: AssessmentDetail },
+  { path: '/weekly-analytics', component: WeeklyAnalytics },
+  { path: '/monthly-analytics', component: MonthlyAnalytics },
   { path: '/faq', component: HelpCenter },
   { path: '/settings', component: Settings },
 ]

@@ -53,7 +53,8 @@ const router = useRouter()
 const handleLogin = async () => {
   loading.value = true
   try {
-    const response = await fetch('http://0.0.0.0:8000/token', {
+    const apiUrl = import.meta.env.VITE_API_URL || 'https://ovis-backend-mvp.onrender.com'
+    const response = await fetch(`${apiUrl}/token`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: new URLSearchParams({

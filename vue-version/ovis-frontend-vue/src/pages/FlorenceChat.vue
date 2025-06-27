@@ -136,7 +136,8 @@ const startSession = async () => {
   
   try {
     const storedToken = JSON.parse(localStorage.getItem('token')).access_token
-    const response = await fetch('http://0.0.0.0:8000/florence/start_session', {
+    const apiUrl = import.meta.env.VITE_API_URL || 'https://ovis-backend-mvp.onrender.com'
+    const response = await fetch(`${apiUrl}/florence/start_session`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -192,7 +193,8 @@ const sendMessage = async () => {
   
   try {
     const storedToken = JSON.parse(localStorage.getItem('token')).access_token
-    const response = await fetch('http://0.0.0.0:8000/florence/send_message', {
+    const apiUrl = import.meta.env.VITE_API_URL || 'https://ovis-backend-mvp.onrender.com'
+    const response = await fetch(`${apiUrl}/florence/send_message`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

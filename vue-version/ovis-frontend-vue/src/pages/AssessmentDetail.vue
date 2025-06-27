@@ -14,28 +14,6 @@
       </header>
 
       <div :class="styles.dashboardContainer" v-if="assessment">
-        <!-- Tab Navigation -->
-        <div :class="styles.tabNav">
-          <button 
-            :class="[styles.tab, activeTab === 'today' && styles.activeTab]"
-            @click="activeTab = 'today'"
-          >
-            Today
-          </button>
-          <button 
-            :class="[styles.tab, activeTab === 'week' && styles.activeTab]"
-            @click="activeTab = 'week'"
-          >
-            This Week
-          </button>
-          <button 
-            :class="[styles.tab, activeTab === 'month' && styles.activeTab]"
-            @click="activeTab = 'month'"
-          >
-            This Month
-          </button>
-        </div>
-
         <!-- Assessment Summary Card -->
         <div :class="styles.summaryCard">
           <div :class="styles.assessmentHeader">
@@ -106,47 +84,6 @@
             </div>
           </div>
         </div>
-
-        <!-- Conversation History -->
-        <div :class="styles.conversationSection" v-if="assessment.conversation_history">
-          <h3 :class="styles.sectionTitle">Conversation with Florence</h3>
-          <div :class="styles.conversationHistory">
-            <div 
-              v-for="(message, index) in assessment.conversation_history.filter(m => m.role !== 'system')" 
-              :key="index"
-              :class="[styles.message, message.role === 'user' ? styles.userMessage : styles.assistantMessage]"
-            >
-              <div :class="styles.messageContent">
-                {{ message.content }}
-              </div>
-              <div :class="styles.messageTime" v-if="message.timestamp">
-                {{ formatTime(message.timestamp) }}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Assessment Summary -->
-        <div :class="styles.summarySection" v-if="assessment.assessment_result">
-          <h3 :class="styles.sectionTitle">Assessment Summary</h3>
-          <div :class="styles.summaryContent">
-            <p>{{ assessment.assessment_result.assessment_summary || 'Assessment completed successfully through conversation with Florence AI.' }}</p>
-            
-            <div v-if="assessment.assessment_result.key_concerns && assessment.assessment_result.key_concerns.length > 0">
-              <h4>Key Concerns:</h4>
-              <ul>
-                <li v-for="concern in assessment.assessment_result.key_concerns" :key="concern">
-                  {{ concern }}
-                </li>
-              </ul>
-            </div>
-
-            <div v-if="assessment.assessment_result.recommended_follow_up">
-              <h4>Recommended Follow-up:</h4>
-              <p>{{ assessment.assessment_result.recommended_follow_up }}</p>
-            </div>
-          </div>
-        </div>
       </div>
 
       <div v-else-if="loading" :class="styles.loading">
@@ -155,6 +92,68 @@
 
       <div v-else :class="styles.error">
         Assessment not found or failed to load.
+      </div>
+
+      <!-- Symptom Detail Modal -->
+      <div v-if="selectedSymptom && assessment && assessment.symptoms_data[selectedSymptom]" :class="styles.modalOverlay" @click="closeModal">
+        <div :class="styles.modalContent" @click.stop>
+          <div :class="styles.modalHeader">
+            <h3>{{ assessment.symptoms_data[selectedSymptom].name }} Details</h3>
+            <button :class="styles.closeButton" @click="closeModal">×</button>
+          </div>
+          
+          <div :class="styles.modalBody">
+            <div :class="styles.symptomDetailIcon">
+              {{ assessment.symptoms_data[selectedSymptom].icon }}
+            </div>
+            
+            <div :class="styles.ratingSection">
+              <div :class="styles.ratingItem">
+                <h4>Frequency Rating</h4>
+                <div :class="styles.ratingDisplay">
+                  <div :class="styles.ratingDots">
+                    <span 
+                      v-for="i in 5" 
+                      :key="`modal-freq-${i}`"
+                      :class="[styles.modalDot, i <= assessment.symptoms_data[selectedSymptom].frequency && styles.activeDot]"
+                    ></span>
+                  </div>
+                  <span :class="styles.ratingValue">{{ assessment.symptoms_data[selectedSymptom].frequency }}/5</span>
+                </div>
+                <p :class="styles.ratingDescription">How often this symptom occurs</p>
+              </div>
+              
+              <div :class="styles.ratingItem">
+                <h4>Intensity Rating</h4>
+                <div :class="styles.ratingDisplay">
+                  <div :class="styles.ratingDots">
+                    <span 
+                      v-for="i in 5" 
+                      :key="`modal-int-${i}`"
+                      :class="[styles.modalDot, i <= assessment.symptoms_data[selectedSymptom].intensity && styles.activeDot]"
+                    ></span>
+                  </div>
+                  <span :class="styles.ratingValue">{{ assessment.symptoms_data[selectedSymptom].intensity }}/5</span>
+                </div>
+                <p :class="styles.ratingDescription">How severe this symptom feels</p>
+              </div>
+            </div>
+            
+            <div v-if="assessment.symptoms_data[selectedSymptom].key_indicators && assessment.symptoms_data[selectedSymptom].key_indicators.length > 0" :class="styles.indicatorsSection">
+              <h4>Key Indicators</h4>
+              <ul :class="styles.indicatorsList">
+                <li v-for="indicator in assessment.symptoms_data[selectedSymptom].key_indicators" :key="indicator">
+                  "{{ indicator }}"
+                </li>
+              </ul>
+            </div>
+            
+            <div v-if="assessment.symptoms_data[selectedSymptom].additional_notes" :class="styles.notesSection">
+              <h4>Additional Notes</h4>
+              <p :class="styles.notesText">{{ assessment.symptoms_data[selectedSymptom].additional_notes }}</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -174,23 +173,14 @@ const router = useRouter()
 
 const assessment = ref(null)
 const loading = ref(true)
-const activeTab = ref('today')
 const selectedSymptom = ref(null)
 
 const goBack = () => {
   router.push('/assessments')
 }
 
-const formatTime = (timestamp) => {
-  if (!timestamp) return ''
-  try {
-    return new Date(timestamp).toLocaleTimeString('en-US', {
-      hour: '2-digit',
-      minute: '2-digit'
-    })
-  } catch {
-    return ''
-  }
+const closeModal = () => {
+  selectedSymptom.value = null
 }
 
 onMounted(async () => {
@@ -207,7 +197,8 @@ onMounted(async () => {
       return
     }
 
-    const response = await fetch(`http://0.0.0.0:8000/assessment/${assessmentId}`, {
+    const apiUrl = import.meta.env.VITE_API_URL || 'https://ovis-backend-mvp.onrender.com'
+    const response = await fetch(`${apiUrl}/assessment/${assessmentId}`, {
       method: 'GET',
       headers: {
         'Accept': 'application/json',

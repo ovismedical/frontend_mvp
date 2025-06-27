@@ -72,11 +72,15 @@
         <option value="other">Other</option>
       </select>
 
-      <button :class="styles.login_submit" @click="handleCreate">
-        Create Account
+      <button 
+        :class="styles.login_submit" 
+        @click="handleCreate"
+        :disabled="loading"
+      >
+        {{ loading ? 'Creating Account...' : 'Create Account' }}
       </button>
 
-      <p v-if="message" style="color: red">{{ message }}</p>
+      <p v-if="message" :style="{ color: messageColor }">{{ message }}</p>
     </div>
   </div>
 </template>
@@ -87,8 +91,6 @@ import { useRouter } from 'vue-router'
 import logo from '../assets/logo.png'
 import styles from './login.module.css'
 
-const apiUrl = import.meta.env.VITE_API_URL
-
 const username = ref('')
 const password = ref('')
 const email = ref('')
@@ -96,6 +98,8 @@ const name = ref('')
 const dob = ref({ month: '', day: '', year: '' })
 const sex = ref('male')
 const message = ref('')
+const loading = ref(false)
+const messageColor = ref('red')
 
 const router = useRouter()
 
@@ -107,13 +111,17 @@ const monthNames = [
 const handleCreate = async () => {
   if (!dob.value.month || !dob.value.day || !dob.value.year) {
     message.value = "Please select a full date of birth."
+    messageColor.value = 'red'
     return
   }
 
+  loading.value = true
+  message.value = ''
   const formattedDob = `${dob.value.month}/${dob.value.day}/${dob.value.year}`
 
   try {
-    const response = await fetch("http://0.0.0.0:8000/register", {
+    const apiUrl = import.meta.env.VITE_API_URL || 'https://ovis-backend-mvp.onrender.com'
+    const response = await fetch(`${apiUrl}/register`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -129,13 +137,23 @@ const handleCreate = async () => {
     const data = await response.json()
 
     if (response.ok) {
-      router.push("/patientlogin")
+      message.value = "Account created successfully! Redirecting to login..."
+      messageColor.value = 'green'
+      
+      // Redirect after a short delay
+      setTimeout(() => {
+        router.push("/patientlogin")
+      }, 1500)
     } else {
       message.value = data.detail || "Account creation failed"
+      messageColor.value = 'red'
     }
   } catch (error) {
     console.error("Error:", error)
     message.value = "Network error or backend not running"
+    messageColor.value = 'red'
+  } finally {
+    loading.value = false
   }
 }
 </script>

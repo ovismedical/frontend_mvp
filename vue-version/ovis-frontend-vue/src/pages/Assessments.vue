@@ -50,6 +50,20 @@
           <i class="fas fa-robot"></i>
           Florence Conversations
         </button>
+        <button 
+          :class="[styles.filterTab, activeFilter === 'weekly' && styles.activeTab]"
+          @click="goToWeeklyView()"
+        >
+          <i class="fas fa-chart-line"></i>
+          Weekly Analytics
+        </button>
+        <button 
+          :class="[styles.filterTab, activeFilter === 'monthly' && styles.activeTab]"
+          @click="goToMonthlyView()"
+        >
+          <i class="fas fa-calendar-alt"></i>
+          Monthly Analytics
+        </button>
       </div>
 
       <!-- Assessment List -->
@@ -83,7 +97,7 @@
             @click="viewAssessment(assessment)"
           >
             <div :class="styles.cardHeader">
-              <div :class="styles.cardIcon" :style="{ background: assessment.color }">
+              <div :class="styles.cardIcon" :style="{ background: getIconColor(assessment) }">
                 <i :class="['fas', assessment.icon]"></i>
               </div>
               <div :class="styles.cardInfo">
@@ -96,21 +110,7 @@
             </div>
             <div :class="styles.cardContent">
               <p :class="styles.cardSummary">{{ assessment.summary }}</p>
-              <div :class="styles.cardStats" v-if="assessment.type === 'florence_conversation'">
-                <span :class="styles.statPill">
-                  <i class="fas fa-comments"></i>
-                  {{ assessment.data.user_messages }} messages
-                </span>
-                <span :class="styles.statPill" v-if="assessment.data.symptoms_assessed.length > 0">
-                  <i class="fas fa-stethoscope"></i>
-                  {{ assessment.data.symptoms_assessed.length }} symptoms
-                </span>
-                <span :class="styles.statPill" v-if="assessment.data.ai_powered">
-                  <i class="fas fa-brain"></i>
-                  AI Powered
-                </span>
-              </div>
-              <div :class="styles.cardStats" v-else>
+              <div :class="styles.cardStats" v-if="assessment.type === 'daily_checkin'">
                 <span :class="styles.statPill">
                   <i class="fas fa-check-circle"></i>
                   {{ assessment.data.questions_answered }} questions
@@ -152,6 +152,23 @@ const setFilter = (filter) => {
   activeFilter.value = filter
 }
 
+const getIconColor = (assessment) => {
+  // For Florence conversations, use oncologist notification level for color
+  if (assessment.type === 'florence_conversation' && assessment.oncologist_notification_level) {
+    switch (assessment.oncologist_notification_level) {
+      case 'red':
+        return '#ef4444' // Red for urgent
+      case 'amber':
+        return '#f59e0b' // Amber/orange for caution
+      case 'none':
+      default:
+        return '#22c55e' // Green for normal/no alerts
+    }
+  }
+  // For daily check-ins, use original color
+  return assessment.color
+}
+
 const formatDate = (dateString) => {
   try {
     const date = new Date(dateString)
@@ -175,6 +192,14 @@ const goToFlorence = () => {
   router.push('/florence')
 }
 
+const goToWeeklyView = () => {
+  router.push('/weekly-analytics')
+}
+
+const goToMonthlyView = () => {
+  router.push('/monthly-analytics')
+}
+
 const viewAssessment = (assessment) => {
   if (assessment.type === 'florence_conversation') {
     // Navigate to detailed Florence assessment view
@@ -191,8 +216,9 @@ const fetchAssessments = async () => {
   try {
     loading.value = true
     const token = JSON.parse(localStorage.getItem('token')).access_token
+    const apiUrl = import.meta.env.VITE_API_URL || 'https://ovis-backend-mvp.onrender.com'
     
-    const response = await fetch('http://0.0.0.0:8000/unified_assessments', {
+    const response = await fetch(`${apiUrl}/unified_assessments`, {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
