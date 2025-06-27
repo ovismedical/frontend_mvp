@@ -192,7 +192,7 @@ const fetchAssessments = async () => {
     loading.value = true
     const token = JSON.parse(localStorage.getItem('token')).access_token
     
-    const response = await fetch('${apiUrl}/unified_assessments', {
+    const response = await fetch('http://0.0.0.0:8000/unified_assessments', {
       method: 'GET',
       headers: {
         'Accept': 'application/json',

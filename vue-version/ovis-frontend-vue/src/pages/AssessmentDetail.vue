@@ -207,7 +207,7 @@ onMounted(async () => {
       return
     }
 
-    const response = await fetch(`${apiUrl}/assessment/${assessmentId}`, {
+    const response = await fetch(`http://0.0.0.0:8000/assessment/${assessmentId}`, {
       method: 'GET',
       headers: {
         'Accept': 'application/json',

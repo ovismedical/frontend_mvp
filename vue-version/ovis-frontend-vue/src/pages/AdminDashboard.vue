@@ -33,7 +33,7 @@ const fetchPatients = async () => {
 
   try {
     const storedToken = JSON.parse(localStorage.getItem('token')).access_token
-    const res = await fetch(`${apiUrl}/admin/patients`, {
+    const res = await fetch(`http://0.0.0.0:8000/admin/patients`, {
       method: 'GET',
       headers: {
         'Accept': 'application/json',

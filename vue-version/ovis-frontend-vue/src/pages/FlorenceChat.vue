@@ -136,7 +136,7 @@ const startSession = async () => {
   
   try {
     const storedToken = JSON.parse(localStorage.getItem('token')).access_token
-    const response = await fetch('${apiUrl}/florence/start_session', {
+    const response = await fetch('http://0.0.0.0:8000/florence/start_session', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -192,7 +192,7 @@ const sendMessage = async () => {
   
   try {
     const storedToken = JSON.parse(localStorage.getItem('token')).access_token
-    const response = await fetch('${apiUrl}/florence/send_message', {
+    const response = await fetch('http://0.0.0.0:8000/florence/send_message', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -241,7 +241,7 @@ const finishSession = async () => {
   
   try {
     const storedToken = JSON.parse(localStorage.getItem('token')).access_token
-    const response = await fetch(`${apiUrl}/florence/finish_session/${sessionId.value}`, {
+    const response = await fetch(`http://0.0.0.0:8000/florence/finish_session/${sessionId.value}`, {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${storedToken}`

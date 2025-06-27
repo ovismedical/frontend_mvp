@@ -113,7 +113,7 @@ const handleCreate = async () => {
   const formattedDob = `${dob.value.month}/${dob.value.day}/${dob.value.year}`
 
   try {
-    const response = await fetch("${apiUrl}/register", {
+    const response = await fetch("http://0.0.0.0:8000/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
