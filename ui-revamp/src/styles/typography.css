@@ -1,0 +1,247 @@
+@import url('variables.css');
+
+/* ===== DEFAULT SCALE ===== */
+[data-scale="default"] .display {
+  font-size: 34px;
+  font-weight: normal;
+  line-height: 50px;
+  letter-spacing: -0.05%;
+  font-family: var(--font-heading);
+}
+
+[data-scale="default"] .h1 {
+  font-size: 28px;
+  font-weight: normal;
+  line-height: 44px;
+  letter-spacing: -0.25%;
+  font-family: var(--font-heading);
+}
+
+[data-scale="default"] .h2 {
+  font-size: 22px;
+  font-weight: normal;
+  line-height: 36px;
+  letter-spacing: 0%;
+  font-family: var(--font-heading);
+}
+
+[data-scale="default"] .h3 {
+  font-size: 20px;
+  font-weight: normal;
+  line-height: 36px;
+  letter-spacing: 0%;
+  font-family: var(--font-heading);
+}
+
+[data-scale="default"] .h4 {
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 26px;
+  letter-spacing: 0%;
+  font-family: var(--font-heading);
+}
+
+[data-scale="default"] .body {
+  font-size: 15px;
+  font-weight: normal;
+  line-height: 24px;
+  letter-spacing: 0%;
+  font-family: var(--font-body);
+}
+
+[data-scale="default"] .body-semibold {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0%;
+  font-family: var(--font-body);
+}
+
+[data-scale="default"] .caption {
+  font-size: 13px;
+  font-weight: normal;
+  line-height: 16px;
+  letter-spacing: 0.5%;
+  font-family: var(--font-body);
+}
+
+[data-scale="default"] .caption-semibold {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 16px;
+  letter-spacing: 0.5%;
+  font-family: var(--font-body);
+}
+
+[data-scale="default"] .overline {
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 46px;
+  letter-spacing: 0.8%;
+  font-family: var(--font-body);
+  text-transform: uppercase;
+}
+
+/* ===== SMALL SCALE ===== */
+[data-scale="small"] .display {
+  font-size: 30px;
+  font-weight: normal;
+  line-height: 50px;
+  letter-spacing: -0.05%;
+  font-family: var(--font-heading);
+}
+
+[data-scale="small"] .h1 {
+  font-size: 24px;
+  font-weight: normal;
+  line-height: 44px;
+  letter-spacing: -0.25%;
+  font-family: var(--font-heading);
+}
+
+[data-scale="small"] .h2 {
+  font-size: 18px;
+  font-weight: normal;
+  line-height: 36px;
+  letter-spacing: 0%;
+  font-family: var(--font-heading);
+}
+
+[data-scale="small"] .h3 {
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 36px;
+  letter-spacing: 0%;
+  font-family: var(--font-heading);
+}
+
+[data-scale="small"] .h4 {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 26px;
+  letter-spacing: 0%;
+  font-family: var(--font-heading);
+}
+
+[data-scale="small"] .body {
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 24px;
+  letter-spacing: 0%;
+  font-family: var(--font-body);
+}
+
+[data-scale="small"] .body-semibold {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0%;
+  font-family: var(--font-body);
+}
+
+[data-scale="small"] .caption {
+  font-size: 11px;
+  font-weight: normal;
+  line-height: 16px;
+  letter-spacing: 0.5%;
+  font-family: var(--font-body);
+}
+
+[data-scale="small"] .caption-semibold {
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 16px;
+  letter-spacing: 0.5%;
+  font-family: var(--font-body);
+}
+
+[data-scale="small"] .overline {
+  font-size: 10px;
+  font-weight: normal;
+  line-height: 46px;
+  letter-spacing: 0.8%;
+  font-family: var(--font-body);
+  text-transform: uppercase;
+}
+
+/* ===== LARGE SCALE ===== */
+[data-scale="large"] .display {
+  font-size: 38px;
+  font-weight: normal;
+  line-height: 50px;
+  letter-spacing: -0.05%;
+  font-family: var(--font-heading);
+}
+
+[data-scale="large"] .h1 {
+  font-size: 32px;
+  font-weight: normal;
+  line-height: 44px;
+  letter-spacing: -0.25%;
+  font-family: var(--font-heading);
+}
+
+[data-scale="large"] .h2 {
+  font-size: 26px;
+  font-weight: normal;
+  line-height: 36px;
+  letter-spacing: 0%;
+  font-family: var(--font-heading);
+}
+
+[data-scale="large"] .h3 {
+  font-size: 24px;
+  font-weight: normal;
+  line-height: 36px;
+  letter-spacing: 0%;
+  font-family: var(--font-heading);
+}
+
+[data-scale="large"] .h4 {
+  font-size: 21px;
+  font-weight: 500;
+  line-height: 26px;
+  letter-spacing: 0%;
+  font-family: var(--font-heading);
+}
+
+[data-scale="large"] .body {
+  font-size: 19px;
+  font-weight: normal;
+  line-height: 24px;
+  letter-spacing: 0%;
+  font-family: var(--font-body);
+}
+
+[data-scale="large"] .body-semibold {
+  font-size: 19px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0%;
+  font-family: var(--font-body);
+}
+
+[data-scale="large"] .caption {
+  font-size: 17px;
+  font-weight: normal;
+  line-height: 16px;
+  letter-spacing: 0.5%;
+  font-family: var(--font-body);
+}
+
+[data-scale="large"] .caption-semibold {
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 16px;
+  letter-spacing: 0.5%;
+  font-family: var(--font-body);
+}
+
+[data-scale="large"] .overline {
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 46px;
+  letter-spacing: 0.8%;
+  font-family: var(--font-body);
+  text-transform: uppercase;
+}

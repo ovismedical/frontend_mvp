@@ -1,0 +1,40 @@
+@import "../typography.css";
+@import "../variables.css";
+
+.welcome-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.welcome-image {
+  width: 343px;
+  height: auto;
+  margin-bottom: 24px;
+}
+
+.welcome-title {
+  color: var(--text-500);
+  margin-bottom: 15px;
+}
+
+.welcome-subtitle {
+  color: var(--text-400);
+  margin-bottom: 30px;
+  max-width: 350px;
+}
+
+.welcome-button {
+  margin-bottom: 25px;
+  height: 48px;
+}
+
+.welcome-footer {
+  color: var(--text-400);
+}
+
+.login-link {
+  text-decoration: underline;
+  color: var(--blue-700);
+}

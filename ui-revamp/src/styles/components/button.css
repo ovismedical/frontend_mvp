@@ -1,0 +1,54 @@
+@import "../typography.css";
+@import "../variables.css";
+
+.custom-button {
+  display: inline-block;
+  width: 100%;
+  border: none;
+  border-radius: 14px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border 0.2s ease;
+  box-sizing: border-box;
+}
+
+.custom-button.filled {
+  background-color: var(--blue-700);
+  color: var(--blue-light-50);
+}
+
+.custom-button.filled:hover {
+  background-color: var(--blue-800);
+}
+
+.custom-button.outline {
+  background-color: transparent;
+  color: var(--blue-700);
+  border: 2px solid var(--blue-700);
+}
+
+.custom-button.outline:hover {
+  background-color: var(--blue-100);
+  color: var(--blue-700);
+}
+
+.button-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.button-icon {
+  display: inline-flex;
+}
+
+.button-text {
+  display: inline;
+}
+
+.button-icon .material-symbols-rounded {
+  font-size: 24px;
+  line-height: 1;
+  display: inline-block;
+}

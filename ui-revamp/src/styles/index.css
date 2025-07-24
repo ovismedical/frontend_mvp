@@ -1,0 +1,14 @@
+@import './variables.css';
+@import './typography.css';
+@import './pages/welcome_screen.css';
+
+body {
+  background-color: var(--background-500);
+  margin: 0;
+  padding: 60px 16px 34px 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 94px);
+  box-sizing: border-box;
+}
