@@ -2,21 +2,25 @@ import React from "react";
 import Button from "../../components/ui/button.jsx";
 import welcomeImg from "../../assets/images/welcome_screen.png";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const WelcomeScreen = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
+
+  ////* changeLanguage testing *////
+  
+  // const { i18n } = useTranslation();
+
+  // const changeLanguage = (lng) => {
+  //   i18n.changeLanguage(lng);
+  // };
 
   return (
     <div className="welcome-container" data-scale="large">
       <img src={welcomeImg} alt="Welcome" className="welcome-image" />
-
-      <h1 className="welcome-title display">Welcome to Ovis!</h1>
-
-      <p className="welcome-subtitle body">
-        We bring all of your care information together on one app, with the
-        power of AI
-      </p>
-
+      <h1 className="welcome-title display">{t("welcome_title")}</h1>
+      <p className="welcome-subtitle body">{t("welcome_subtitle")}</p>
       <Button
         variant="filled"
         iconName="arrow_forward"
@@ -25,15 +29,29 @@ const WelcomeScreen = () => {
         onClick={() => navigate("/onboarding01")}
         className="welcome-button body"
       >
-        Get Started
+        {t("get_started")}
       </Button>
-
       <p className="welcome-footer caption">
-        Already have an account{" "}
+        {t("alreadyHaveAnAccount")}
         <a href="/login" className="login-link caption">
-          Log in
+          {t("login")}
         </a>
       </p>
+
+      {/* <div className="language-switch">
+        <p
+          className="welcome-footer caption"
+          onClick={() => changeLanguage("en")}
+        >
+          eng
+        </p>
+        <p
+          className="welcome-footer caption"
+          onClick={() => changeLanguage("zh")}
+        >
+          中
+        </p>
+      </div> */}
     </div>
   );
 };

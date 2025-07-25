@@ -1,0 +1,20 @@
+{
+    "get_started": "開始使用",
+    "login": "登入",
+    "alreadyHaveAnAccount": "已經有帳戶了 ",
+    "skip": "跳過",
+    "next": "下一步",
+    "welcome_title": "歡迎使用 Ovis！",
+    "welcome_subtitle": "我們將您的健康資訊整合到一個應用程式中，配合 AI 的強大功能",
+    "welcome_button": "開始使用",
+    "onboarding01_title": "個人化健康，由你掌控",
+    "onboarding01_subtitle": "有信心地展開您的健康旅程，簡單易用，一切盡在掌握。",
+    "onboarding02_title": "AI 驅動症狀記錄器",
+    "onboarding02_subtitle": "根據我們的 AI 模型，快速準確提供安心見解。",
+    "onboarding03_title": "探索健康成就",
+    "onboarding03_subtitle": "慶祝每一個里程碑，每天都保持動力！",
+    "onboarding04_title": "值得信賴的健康夥伴",
+    "onboarding04_subtitle": "我們的 AI 模型支援，讓數百萬人過上更健康、更快樂的生活。",
+    "onboarding_footer": "有疑問？請瀏覽我們的 ",
+    "help_center_link": "幫助中心！"
+}

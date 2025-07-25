@@ -2,9 +2,11 @@ import React from "react";
 import Button from "../../components/ui/button.jsx";
 import onboarding04Img from "../../assets/images/onboarding04.png";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const Onboarding04 = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   return (
     <div className="onboarding-container" data-scale="large">
@@ -25,11 +27,8 @@ const Onboarding04 = () => {
       </div>
 
       <div className="onboarding-middle-section">
-        <h1 className="onboarding-title display">Trusted Wellness Companion</h1>
-        <p className="onboarding-subtitle body">
-          Empowering millions to live healthier lives and happier lives, backed
-          with our LLMs.
-        </p>
+        <h1 className="onboarding-title display">{t("onboarding04_title")}</h1>
+        <p className="onboarding-subtitle body">{t("onboarding04_subtitle")}</p>
 
         <img
           src={onboarding04Img}
@@ -40,21 +39,21 @@ const Onboarding04 = () => {
 
       <div className="onboarding-bottom-section">
         <div className="onboarding-button-row">
-          <Button variant="outline">Skip</Button>
+          <Button variant="outline">{t("skip")}</Button>
           <Button
             variant="filled"
             iconName="arrow_forward"
             iconPosition="right"
             iconFill={1}
           >
-            Next
+            {t("next")}
           </Button>
         </div>
 
         <p className="onboarding-footer caption">
-          Got a question? Visit our{" "}
+          {t("onboarding_footer")}
           <a href="#" className="helpCenter-link caption">
-            Help Center!
+            {t("help_center_link")}
           </a>
         </p>
       </div>

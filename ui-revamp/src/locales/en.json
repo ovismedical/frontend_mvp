@@ -1,0 +1,20 @@
+{
+  "get_started": "Get Started",
+  "login": "Log in",
+  "alreadyHaveAnAccount": "Already have an account ",
+  "skip": "Skip",
+  "next": "Next",
+  "welcome_title": "Welcome to Ovis!",
+  "welcome_subtitle": "We bring all of your care information together on one app, with the power of AI",
+  "welcome_button": "Get Started",
+  "onboarding01_title": "Personalized Health That You Can Control",
+  "onboarding01_subtitle": "Begin your wellness journey with confidence, easy to manage and always in your hands.",
+  "onboarding02_title": "AI-Powered Symptom Logger",
+  "onboarding02_subtitle": "Quick, accurate insights for peace of mind based from our AI LLMs.",
+  "onboarding03_title": "Explore Health Achievements",
+  "onboarding03_subtitle": "Celebrate milestones and stay motivated, every single day!",
+  "onboarding04_title": "Trusted Wellness Companion",
+  "onboarding04_subtitle": "Empowering millions to live healthier lives and happier lives, backed with our LLMs.",
+  "onboarding_footer": "Got a question? Visit our ",
+  "help_center_link": "Help Center!"
+}
