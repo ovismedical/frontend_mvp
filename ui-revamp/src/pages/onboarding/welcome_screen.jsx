@@ -1,8 +1,11 @@
 import React from "react";
 import Button from "../../components/ui/button.jsx";
 import welcomeImg from "../../assets/images/welcome_screen.png";
+import { useNavigate } from "react-router-dom";
 
 const WelcomeScreen = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="welcome-container" data-scale="large">
       <img src={welcomeImg} alt="Welcome" className="welcome-image" />
@@ -19,7 +22,7 @@ const WelcomeScreen = () => {
         iconName="arrow_forward"
         iconPosition="right"
         iconFill={1}
-        onClick={() => console.log("Get Started")}
+        onClick={() => navigate("/onboarding01")}
         className="welcome-button body"
       >
         Get Started

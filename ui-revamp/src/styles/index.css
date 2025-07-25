@@ -1,6 +1,7 @@
 @import './variables.css';
 @import './typography.css';
 @import './pages/welcome_screen.css';
+@import './pages/onboarding.css';
 
 body {
   background-color: var(--background-500);
