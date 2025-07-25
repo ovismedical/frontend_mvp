@@ -9,32 +9,54 @@
 }
 
 .welcome-image {
-  width: 343px;
+  width: 70%;
   height: auto;
-  margin-bottom: 24px;
+  margin-bottom: 5%;
 }
 
 .welcome-title {
   color: var(--text-500);
-  margin-bottom: 15px;
+  max-width: 80%;
 }
 
 .welcome-subtitle {
   color: var(--text-400);
-  margin-bottom: 30px;
-  max-width: 350px;
+  margin-bottom: 5%;
 }
 
 .welcome-button {
-  margin-bottom: 25px;
+  max-width: 80%;
+  margin-bottom: 5%;
   height: 48px;
 }
 
 .welcome-footer {
   color: var(--text-400);
+  max-width: 80%;
 }
 
 .login-link {
   text-decoration: underline;
   color: var(--blue-700);
+  max-width: 80%;
+}
+
+.language-switch {
+  display: flex;
+  justify-content: space-around; /* Adjusts spacing between items */
+  align-items: center; /* Vertically centers the items */
+  gap: 30px;
+}
+
+@media (min-width: 600px) {
+  .welcome-image {
+    width: 50%;
+  }
+}
+
+/* Adjust layout for desktops */
+@media (min-width: 1024px) {
+  .welcome-image {
+    width: 50%;
+  }
 }

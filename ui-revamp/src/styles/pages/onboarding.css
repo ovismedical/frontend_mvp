@@ -2,8 +2,6 @@
 @import "../variables.css";
 
 .onboarding-container {
-  height: 742px;
-  width: 400px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,7 +12,7 @@
   display: flex;
   justify-content: center;
   gap: 8px;
-  margin-bottom: 40px;
+  margin-bottom: 5%;
 }
 
 .step {
@@ -29,7 +27,8 @@
 }
 
 .onboarding-middle-section {
-  gap: 16px;
+  align-items: center;
+  width: 80%;
 }
 
 .onboarding-title {
@@ -38,16 +37,15 @@
 
 .onboarding-subtitle {
   color: var(--text-400);
-  max-width: 400px;
 }
 
 .onboarding-image {
   max-width: 100%;
-
-  margin-bottom: 90px;
+  margin-bottom: 15%;
 }
 
 .onboarding-bottom-section {
+  width: 80%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -57,16 +55,30 @@
   display: flex;
   gap: 25px;
   justify-content: center;
-  width: 343px;
+  width: 100%;
   height: 48px;
-  margin-bottom: 20px;
+  margin-bottom: 5%;
 }
 
 .onboarding-footer {
+  width: 80%;
   color: var(--text-400);
 }
 
 .helpCenter-link {
   text-decoration: underline;
   color: var(--blue-700);
+}
+
+@media (min-width: 600px) {
+  .onboarding-image {
+    width: 50%;
+  }
+}
+
+/* Adjust layout for desktops */
+@media (min-width: 1024px) {
+  .onboarding-image {
+    width: 50%;
+  }
 }
