@@ -1,27 +1,38 @@
-import React, { useState } from "react";
+import React from "react";
 import InputField from "../ui/inputfield.jsx";
 import "../../styles/pages/login.css";
 
-const LoginForm = () => {
-  const [showPassword, setShowPassword] = useState(false);
-
+const LoginForm = ({
+  username,
+  password,
+  setUsername,
+  setPassword,
+  showPassword,
+  toggleShowPassword,
+}) => {
   return (
     <div className="login-form">
       <InputField
         placeholder="Username"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
         leftIcon={<span className="material-symbols-rounded">person</span>}
       />
 
       <InputField
         placeholder="Password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
         leftIcon={<span className="material-symbols-rounded">fingerprint</span>}
         rightIcon={
-          <span className="material-symbols-rounded">
+          <span
+            className="material-symbols-rounded"
+            onClick={toggleShowPassword}
+          >
             {showPassword ? "visibility_off" : "visibility"}
           </span>
         }
-        isPassword
-        onRightIconClick={() => setShowPassword(!showPassword)}
+        type={showPassword ? "text" : "password"}
       />
     </div>
   );

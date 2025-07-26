@@ -1,10 +1,11 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import "../../styles/components/inputfield.css";
 
 const InputField = ({
   type = "text",
   placeholder = "",
+  value,
+  onChange,
   leftIcon,
   rightIcon,
   onRightIconClick,
@@ -21,6 +22,8 @@ const InputField = ({
         type={inputType}
         placeholder={placeholder}
         className="input-element caption"
+        value={value}
+        onChange={onChange}
       />
       {rightIcon && (
         <div

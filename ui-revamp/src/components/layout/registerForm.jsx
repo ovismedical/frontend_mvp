@@ -1,26 +1,44 @@
-import React, { useState } from "react";
+import React from "react";
 import InputField from "../ui/inputfield.jsx";
 import "../../styles/pages/register.css";
 
-const RegisterForm = () => {
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirm, setShowConfirm] = useState(false);
-
+const RegisterForm = ({
+  email,
+  username,
+  password,
+  confirmPassword,
+  accessCode,
+  onEmailChange,
+  onUsernameChange,
+  onPasswordChange,
+  onConfirmPasswordChange,
+  onAccessCodeChange,
+  showPassword,
+  showConfirm,
+  toggleShowPassword,
+  toggleShowConfirm,
+}) => {
   return (
     <div className="register-form">
       <InputField
         placeholder="Email Address"
         leftIcon={<span className="material-symbols-rounded">mail</span>}
+        value={email}
+        onChange={onEmailChange}
       />
 
       <InputField
         placeholder="Access Code"
         leftIcon={<span className="material-symbols-rounded">vpn_key</span>}
+        value={accessCode}
+        onChange={onAccessCodeChange}
       />
 
       <InputField
         placeholder="Username"
         leftIcon={<span className="material-symbols-rounded">person</span>}
+        value={username}
+        onChange={onUsernameChange}
       />
 
       <InputField
@@ -32,7 +50,10 @@ const RegisterForm = () => {
           </span>
         }
         isPassword
-        onRightIconClick={() => setShowPassword(!showPassword)}
+        type={showPassword ? "text" : "password"}
+        value={password}
+        onChange={onPasswordChange}
+        onRightIconClick={toggleShowPassword}
       />
 
       <InputField
@@ -44,7 +65,10 @@ const RegisterForm = () => {
           </span>
         }
         isPassword
-        onRightIconClick={() => setShowConfirm(!showConfirm)}
+        type={showConfirm ? "text" : "password"}
+        value={confirmPassword}
+        onChange={onConfirmPasswordChange}
+        onRightIconClick={toggleShowConfirm}
       />
     </div>
   );
