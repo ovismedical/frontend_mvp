@@ -158,7 +158,8 @@
   --spacing-160: 160px;
 
   /* 🔲 Border Radius */
-  --radius-s: 10px;
+  --radius-xs: 10px;
+  --radius-s: 12px;
   --radius-m: 14px;
   --radius-l: 18px;
   --radius-xl: 99px;

@@ -39,12 +39,15 @@ const Onboarding04 = () => {
 
       <div className="onboarding-bottom-section">
         <div className="onboarding-button-row">
-          <Button variant="outline">{t("skip")}</Button>
+          <Button variant="outline" onClick={() => navigate("/register")}>
+            {t("skip")}
+          </Button>
           <Button
             variant="filled"
             iconName="arrow_forward"
             iconPosition="right"
             iconFill={1}
+            onClick={() => navigate("/register")}
           >
             {t("next")}
           </Button>

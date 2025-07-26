@@ -18,7 +18,7 @@
 .step {
   width: 48px;
   height: 6px;
-  border-radius: 3px;
+  border-radius: var(--radius-xl);
   background-color: var(--background-600);
 }
 
@@ -76,7 +76,6 @@
   }
 }
 
-/* Adjust layout for desktops */
 @media (min-width: 1024px) {
   .onboarding-image {
     width: 50%;

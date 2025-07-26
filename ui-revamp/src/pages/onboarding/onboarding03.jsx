@@ -36,7 +36,9 @@ const Onboarding03 = () => {
 
       <div className="onboarding-bottom-section">
         <div className="onboarding-button-row">
-          <Button variant="outline">{t("skip")}</Button>
+          <Button variant="outline" onClick={() => navigate("/register")}>
+            {t("skip")}
+          </Button>
           <Button
             variant="filled"
             iconName="arrow_forward"

@@ -43,8 +43,8 @@
 
 .language-switch {
   display: flex;
-  justify-content: space-around; /* Adjusts spacing between items */
-  align-items: center; /* Vertically centers the items */
+  justify-content: space-around;
+  align-items: center;
   gap: 30px;
 }
 
@@ -54,9 +54,8 @@
   }
 }
 
-/* Adjust layout for desktops */
 @media (min-width: 1024px) {
   .welcome-image {
-    width: 50%;
+    width: 30%;
   }
 }

@@ -5,7 +5,7 @@
   display: inline-block;
   width: 100%;
   border: none;
-  border-radius: 14px;
+  border-radius: var(--radius-m);
   text-align: center;
   cursor: pointer;
   transition: background-color 0.2s ease, border 0.2s ease;

@@ -1,0 +1,39 @@
+@import "../typography.css";
+@import "../variables.css";
+
+.input-field {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--neutral-700);
+  border-radius: var(--radius-s);
+  padding: 12px 10px 12px 20px;
+  background-color: transparent;
+  width: 100%;
+  box-sizing: border-box;
+  gap: 20px;
+}
+
+.input-element {
+  flex: 1;
+  border: none;
+  background: transparent;
+  outline: none;
+  color: var(--blue-900);
+}
+
+.input-element::placeholder {
+  color: var(--text-300);
+}
+
+.icon-left,
+.icon-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-300);
+}
+
+.icon-right {
+  padding-right: 10px;
+  cursor: pointer;
+}

@@ -1,7 +1,11 @@
-@import './variables.css';
-@import './typography.css';
-@import './pages/welcome_screen.css';
-@import './pages/onboarding.css';
+@import "./variables.css";
+@import "./typography.css";
+@import "./pages/welcome_screen.css";
+@import "./pages/onboarding.css";
+@import "./pages/register.css";
+@import "./pages/login.css";
+@import "./pages/forgotpassword.css";
+@import "./pages/password_link.css";
 
 body {
   background-color: var(--background-500);

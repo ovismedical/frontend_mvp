@@ -1,0 +1,52 @@
+@import "../typography.css";
+@import "../variables.css";
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.login-image {
+  height: 60px;
+  margin-bottom: 5%;
+}
+
+.login-title {
+  color: var(--text-500);
+  margin-bottom: -1%;
+}
+
+.login-subtitle {
+  color: var(--text-400);
+  margin-bottom: 10%;
+}
+
+.login-button {
+  margin-top: 5%;
+  height: 48px;
+  margin-bottom: 3%;
+}
+
+.login-forgot-password {
+  width: 100%;
+  padding-right: 10px;
+  text-align: end;
+  margin-bottom: 5%;
+  text-decoration: underline;
+  color: var(--blue-700);
+}
+
+.login-footer {
+  color: var(--text-400);
+  max-width: 80%;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  margin-bottom: 5%;
+}

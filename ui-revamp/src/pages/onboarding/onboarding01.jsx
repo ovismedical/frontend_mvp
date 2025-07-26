@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 
 const Onboarding01 = () => {
   const navigate = useNavigate();
-    const { t } = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <div className="onboarding-container" data-scale="large">
@@ -30,7 +30,9 @@ const Onboarding01 = () => {
 
       <div className="onboarding-bottom-section">
         <div className="onboarding-button-row">
-          <Button variant="outline">{t("skip")}</Button>
+          <Button variant="outline" onClick={() => navigate("/register")}>
+            {t("skip")}
+          </Button>
           <Button
             variant="filled"
             iconName="arrow_forward"
