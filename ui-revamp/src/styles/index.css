@@ -7,15 +7,22 @@
 @import "./pages/forgotpassword.css";
 @import "./pages/password_link.css";
 @import "./pages/assessment.css";
-
+@import "./pages/home.css";
 
 body {
   background-color: var(--background-500);
   margin: 0;
   padding: 60px 16px 34px 16px;
+  min-height: calc(100vh - 94px);
+  box-sizing: border-box;
+}
+
+body.no-body-padding {
+  padding: 0 !important;
+}
+
+body.body-centered {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: calc(100vh - 94px);
-  box-sizing: border-box;
 }

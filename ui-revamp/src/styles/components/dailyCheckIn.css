@@ -1,0 +1,112 @@
+@import "../typography.css";
+@import "../variables.css";
+
+.daily-checkin-title {
+  color: var(--text-500);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.log-button {
+  background-color: var(--blue-50);
+  color: var(--blue-700);
+  border: none;
+  border-radius: var(--radius-xs);
+  padding: 3px 10px;
+  cursor: pointer;
+}
+
+.streaks {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.streak {
+  padding: 7px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.days-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.days-amount {
+  color: var(--text-500);
+}
+
+.days-label {
+  color: var(--text-300);
+}
+.material-symbols-rounded.iconfire {
+  font-variation-settings: "FILL" 1;
+  color: var(--secondary-500);
+}
+
+.material-symbols-rounded.icontrophy {
+  font-variation-settings: "FILL" 1;
+  color: var(--blue-600);
+}
+
+.streak-progress-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.progress-row {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 8px;;
+  gap: 12px;
+}
+
+.weekly-progress {
+  flex-grow: 1;
+  margin-left: 2%;
+}
+
+.weekly-progress-title {
+  color: var(--text-500);
+}
+
+.day-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.day-icon {
+  font-size: 25px;
+}
+
+.day-icon.checked {
+  font-variation-settings: "FILL" 1;
+  color: var(--blue-600);
+}
+
+.day-icon.today {
+  font-variation-settings: "FILL" 1;
+  color: var(--blue-400);
+}
+
+.day-icon.missed {
+  color: var(--blue-200);
+}
+
+.day-icon.upcoming {
+  color: var(--text-100);
+}
+
+.day-label {
+  color: var(--text-300);
+}

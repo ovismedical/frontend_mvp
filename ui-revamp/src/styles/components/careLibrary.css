@@ -1,0 +1,37 @@
+@import "../typography.css";
+@import "../variables.css";
+
+.care-library-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.care-library-header a {
+  color: var(--blue-700);
+  text-decoration: none;
+}
+
+.care-library-header-title {
+  color: var(--text-500);
+}
+
+.article-scroll-container {
+  padding-left: 5px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+.article-scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+.article-scroll-container > * {
+  flex: 0 0 230px;
+  scroll-snap-align: start;
+}

@@ -1,0 +1,7 @@
+.homepage-content-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15%;
+  padding: 0px 16px 0px 16px;
+  margin-bottom: 50px;
+}
