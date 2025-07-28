@@ -3,9 +3,13 @@ import {
   Routes,
   Route,
   useLocation,
+  Navigate,
 } from "react-router-dom";
 import { useEffect } from "react";
+import { useAuth } from "./context/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
+
+// Screens
 import WelcomeScreen from "./pages/onboarding/welcome_screen.jsx";
 import Onboarding01 from "./pages/onboarding/onboarding01.jsx";
 import Onboarding02 from "./pages/onboarding/onboarding02.jsx";
@@ -28,17 +32,32 @@ import Home from "./pages/home.jsx";
 
 function App() {
   const location = useLocation();
+  const { isAuthenticated, isAuthLoading } = useAuth();
 
   useEffect(() => {
     const isHome = location.pathname === "/home";
-
     document.body.classList.toggle("no-body-padding", isHome);
     document.body.classList.toggle("body-centered", !isHome);
   }, [location.pathname]);
 
+  if (isAuthLoading) return null; // or show loading spinner
+
+  const isFirstVisit = !localStorage.getItem("hasVisited");
+
+  const renderRootRedirect = () => {
+    if (isAuthenticated) {
+      return <Navigate to="/home" replace />;
+    } else if (isFirstVisit) {
+      localStorage.setItem("hasVisited", "true");
+      return <WelcomeScreen />;
+    } else {
+      return <Navigate to="/login" replace />;
+    }
+  };
+
   return (
     <Routes>
-      <Route path="/" element={<WelcomeScreen />} />
+      <Route path="/" element={renderRootRedirect()} />
       <Route path="/onboarding01" element={<Onboarding01 />} />
       <Route path="/onboarding02" element={<Onboarding02 />} />
       <Route path="/onboarding03" element={<Onboarding03 />} />
