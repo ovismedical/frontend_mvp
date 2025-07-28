@@ -1,0 +1,28 @@
+@import "../typography.css";
+@import "../variables.css";
+
+.tab-container {
+  display: flex;
+  border-radius: var(--radius-l);
+  background-color: var(--text-50); /* Light grey background */
+  padding: 5px;
+}
+
+.tab-item {
+  width: 100%;
+  flex: 1;
+  padding: 15px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  border-radius: var(--radius-m);
+}
+
+.tab-item:hover {
+  background-color: var(--text-100);
+}
+
+.tab-item.active {
+  background-color: var(--blue-light-50); /* White background for active tab */
+  color: var(--text-500);
+}

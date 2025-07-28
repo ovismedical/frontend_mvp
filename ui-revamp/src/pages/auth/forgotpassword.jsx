@@ -33,6 +33,7 @@ const ForgotPassword = () => {
       <p className="forgotPassword-subtitle body">
         {t("forgotPassword_subtitle")}
       </p>
+      
 
       <InputField
         placeholder="Email Address"

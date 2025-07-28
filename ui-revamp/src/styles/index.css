@@ -6,6 +6,8 @@
 @import "./pages/login.css";
 @import "./pages/forgotpassword.css";
 @import "./pages/password_link.css";
+@import "./pages/assessment.css";
+
 
 body {
   background-color: var(--background-500);

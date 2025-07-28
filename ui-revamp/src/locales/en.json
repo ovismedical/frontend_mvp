@@ -34,5 +34,45 @@
   "passwordLink_title": "Password Reset",
   "passwordLink_subtitle": "Please check your email, we’ve sent you an email containing password recovery link.",
   "passwordLink_button": "Open my email",
-  "passwordLink_footer": "Didn’t receive the email?"
+  "passwordLink_footer": "Didn’t receive the email?",
+  "continue": "Continue",
+  "assessment01_title": "What is your full name?",
+  "assessment01_subtitle": "Please enter your full legal name as it appears on official documents (e.g., passport or HKID).",
+  "assessment02_title": "What is your birthdate?",
+  "assessment03_title": "What is your gender?",
+  "assessment03_subtitle": "Choose the option you are most comfortable with.",
+  "assessment03_button2": "Prefer not to say",
+  "assessment04_title": "What is your height?",
+  "assessment04_subtitle": "Choose the format you prefer.",
+  "assessment05_title": "What is your weight?",
+  "assessment05_subtitle": "Choose the format you prefer.",
+  "assessment06_title": "What is your official blood type?",
+  "assessment06_buttton2": "Not sure",
+  "assessment07_title": "How would you rate your fitness level?",
+  "fitness_levels": [
+    {
+      "title": "Couch Potato",
+      "subtitle": "I do not exercise."
+    },
+    {
+      "title": "Light Mover",
+      "subtitle": "I exercise 1 - 2 times weekly."
+    },
+    {
+      "title": "Regular Exerciser",
+      "subtitle": "I exercise 2 - 3 times weekly."
+    },
+    {
+      "title": "Athletic",
+      "subtitle": "I exercise 3 - 4 times weekly."
+    },
+    {
+      "title": "Fitness Fanatic",
+      "subtitle": "I exercise 5 or more times weekly."
+    }
+  ],
+  "assessment08_title": "What kind of exercise do you prefer?",
+  "assessment08_subtitle": "You can pick more than one.",
+  "assessment09_title": "How often do you do health checkups?",
+  "assessment09_button2": "I don’t attend checkups"
 }

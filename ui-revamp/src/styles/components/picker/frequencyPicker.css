@@ -1,0 +1,7 @@
+div.react-mobile-picker div {
+  pointer-events: auto;
+}
+
+.react-mobile-picker div[style*="height: 1px"][style*="background"] {
+  display: none !important;
+}

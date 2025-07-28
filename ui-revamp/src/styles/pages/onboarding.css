@@ -61,7 +61,6 @@
 }
 
 .onboarding-footer {
-  width: 80%;
   color: var(--text-400);
 }
 
@@ -72,7 +71,7 @@
 
 @media (min-width: 600px) {
   .onboarding-image {
-    width: 50%;
+    width: 70%;
   }
 }
 

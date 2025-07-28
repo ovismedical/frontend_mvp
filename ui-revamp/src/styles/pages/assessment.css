@@ -1,0 +1,202 @@
+@import "../typography.css";
+@import "../variables.css";
+
+.assessment-container {
+  display: flex;
+  flex-direction: column;
+  height: 90vh;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.assessment-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.assessment-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.chevronB_icon {
+  font-size: 32px;
+  color: var(--text-600);
+  cursor: pointer;
+}
+
+.progress-bar-container {
+  display: flex;
+  flex: 1;
+  margin: 0 16px;
+  align-items: center;
+}
+
+.skip-button {
+  background: none;
+  border: none;
+  color: var(--text-400);
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.skip-button {
+  background: none;
+  border: none;
+  color: var(--text-500);
+  cursor: pointer;
+}
+
+.assessment-title {
+  color: var(--text-500);
+  margin-bottom: -1%;
+}
+
+.assessment-subtitle {
+  color: var(--text-400);
+  margin-bottom: 10%;
+  margin-top: 5%;
+}
+
+.assessment-button {
+  margin-top: 10%;
+  height: 48px;
+}
+
+.assessment-button2 {
+  margin-top: 5%;
+  height: 48px;
+}
+
+.selection-options-group {
+  width: 80%;
+}
+
+.assessment-tabs {
+  width: 90%;
+}
+
+.blood-type-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5%;
+}
+
+.blood-type-group {
+  font-family: Archivo;
+  font-size: 130px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 180px;
+  margin-right: 10px;
+  color: var(--text-500);
+}
+
+.blood-type-sign {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--error-100);
+  border-radius: var(--radius-xl);
+  width: 70px;
+  height: 70px;
+}
+
+.material-symbols-rounded.blood-type-sign-chosen {
+  font-size: 60px;
+  line-height: 1;
+}
+
+.bg-red {
+  background-color: var(--error-100);
+}
+.bg-green {
+  background-color: var(--success-100);
+}
+
+.blood-type-sign-chosen {
+  font-size: 60px;
+  line-height: 1;
+}
+
+.text-red {
+  color: var(--error-700);
+}
+
+.text-green {
+  color: var(--success-700);
+}
+
+.sign-options {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 5%;
+}
+
+.sign-option {
+  padding: 10px 50px;
+  border-radius: var(--radius-s);
+  border: 1px solid var(--neutral-500);
+}
+
+.material-symbols-rounded.sign-option {
+  color: var(--text-300);
+}
+
+.sign-option.sign-selected {
+  border: 1px solid var(--blue-700);
+  background: var(--blue-light-100);
+}
+
+.material-symbols-rounded.sign-option.sign-selected {
+  color: var(--blue-700);
+}
+
+.fitnessSlider-container {
+  width: 80%;
+}
+
+.error-message {
+  color: var(--error-700);
+  margin-top: 2%;
+}
+
+.date-picker-container {
+  width: 90%;
+  margin-top: 5%;
+}
+
+.age-display {
+  color: var(--text-300);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 5%;
+}
+
+.material-symbols-rounded.cake-icon {
+  font-variation-settings: "FILL" 1, "wght" 600, "GRAD" 0, "opsz" 24;
+  font-size: 24px;
+  vertical-align: middle;
+  color: var(--secondary-500);
+}
+
+.height-picker {
+  width: 100%;
+  margin-top: 5%;
+}
+
+.frequency-picker-container {
+  width: 100%;
+  margin-top: 5%;
+}
