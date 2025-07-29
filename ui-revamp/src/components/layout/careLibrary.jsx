@@ -36,7 +36,7 @@ const articleData = [
 
 const CareLibrary = () => {
   return (
-    <div className="care-library-container" data-scale="large">
+    <div className="care-library-container">
       <div className="care-library-header">
         <h2 className="care-library-header-title h4">Your Care Library</h2>
         <a href="#" className="view-all caption">

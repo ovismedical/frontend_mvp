@@ -11,7 +11,7 @@ const ArticleCard = ({
   readTime,
 }) => {
   return (
-    <div className="article-card" data-scale="large">
+    <div className="article-card">
       <div className="article-card-header">
         <h2 className="article-card-title h4">{title}</h2>
         <div className="article-card-subtitle">
@@ -41,7 +41,6 @@ const ArticleCard = ({
           <span className="like-count caption">{likes}</span>
         </div>
       </div>
-
     </div>
   );
 };

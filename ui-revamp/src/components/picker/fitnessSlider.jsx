@@ -21,7 +21,7 @@ const FitnessLevelSlider = ({ onChange }) => {
   const { title, desc } = fitnessLevels[level - 1];
 
   return (
-    <div className="fitness-slider-container" data-scale="large">
+    <div className="fitness-slider-container">
       <p className="level-indicator h4">Level {level}</p>
       <div className="slider-wrapper">
         <input

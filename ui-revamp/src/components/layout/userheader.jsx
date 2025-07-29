@@ -18,7 +18,7 @@ const UserHeader = () => {
   };
 
   return (
-    <div className="user-header" data-scale="large">
+    <div className="user-header">
       <div className="user-header__text h4">
         <div className="greeting">
           Good Morning, <span className="username">{user?.name || "User"}</span>

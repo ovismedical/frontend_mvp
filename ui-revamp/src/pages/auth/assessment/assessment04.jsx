@@ -40,7 +40,7 @@ const Assessment04 = () => {
   const isHeightSelected = !!heightValue?.height;
 
   return (
-    <div className="assessment-container" data-scale="large">
+    <div className="assessment-container">
       <div className="assessment-header">
         <span
           className="material-symbols-rounded chevronB_icon"
@@ -73,9 +73,7 @@ const Assessment04 = () => {
         />
 
         {showError && (
-          <p className="error-message caption">
-            Please select your height.
-          </p>
+          <p className="error-message caption">Please select your height.</p>
         )}
 
         <Button

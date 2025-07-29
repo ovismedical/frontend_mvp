@@ -10,7 +10,7 @@ const ForgotPassword = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="forgotPassword-container" data-scale="large">
+    <div className="forgotPassword-container">
       <div className="backIcon-container">
         <span
           className="material-symbols-rounded chevronB_icon"

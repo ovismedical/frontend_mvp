@@ -71,7 +71,7 @@ const WellnessScoreCard = () => {
   };
 
   return (
-    <div className="wellness-card" data-scale="large">
+    <div className="wellness-card">
       <div className="wellness-header">
         <div className="score-container">
           <div className="score">

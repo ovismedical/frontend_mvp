@@ -9,7 +9,7 @@ const Onboarding02 = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="onboarding-container" data-scale="large">
+    <div className="onboarding-container">
       <div className="onboarding-progress-bar">
         <div
           className="step active"

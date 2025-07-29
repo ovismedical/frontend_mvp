@@ -55,7 +55,7 @@ const Login = () => {
   };
 
   return (
-    <div className="login-container" data-scale="large">
+    <div className="login-container">
       <img src={blueLogo} alt="Logo" className="login-image" />
 
       <h1 className="login-title display">{t("login_title")}</h1>

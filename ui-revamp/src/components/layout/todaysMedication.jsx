@@ -108,7 +108,7 @@ const MedicationCard = () => {
   };
 
   return (
-    <div className="medication-container" data-scale="large">
+    <div className="medication-container">
       <div className="medication-header">
         <h2 className="medication-header-title h4">Today's Medication</h2>
         <a href="#" className="view-all caption">

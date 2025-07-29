@@ -10,7 +10,7 @@ const Assessment07 = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="assessment-container" data-scale="large">
+    <div className="assessment-container">
       <div className="assessment-header">
         <span
           className="material-symbols-rounded chevronB_icon"
@@ -30,7 +30,6 @@ const Assessment07 = () => {
 
       <div className="assessment-content">
         <h1 className="assessment-title display">{t("assessment07_title")}</h1>
-
 
         <div className="fitnessSlider-container">
           <FitnessLevelSlider

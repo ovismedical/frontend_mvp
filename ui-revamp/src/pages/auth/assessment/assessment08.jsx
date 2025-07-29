@@ -47,7 +47,7 @@ const Assessment08 = () => {
   ];
 
   return (
-    <div className="assessment-container" data-scale="large">
+    <div className="assessment-container">
       <div className="assessment-header">
         <span
           className="material-symbols-rounded chevronB_icon"

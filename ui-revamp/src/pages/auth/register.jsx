@@ -79,7 +79,7 @@ const Register = () => {
   };
 
   return (
-    <div className="register-container" data-scale="large">
+    <div className="register-container">
       <img src={blueLogo} alt="Logo" className="register-image" />
 
       <h1 className="register-title display">{t("register_title")}</h1>

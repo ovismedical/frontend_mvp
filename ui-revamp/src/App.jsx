@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import { useAuth } from "./context/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 
+
 // Screens
 import WelcomeScreen from "./pages/onboarding/welcome_screen.jsx";
 import Onboarding01 from "./pages/onboarding/onboarding01.jsx";

@@ -9,7 +9,7 @@ const WelcomeScreen = () => {
   const { t } = useTranslation();
 
   ////* changeLanguage testing *////
-  
+
   // const { i18n } = useTranslation();
 
   // const changeLanguage = (lng) => {
@@ -17,7 +17,7 @@ const WelcomeScreen = () => {
   // };
 
   return (
-    <div className="welcome-container" data-scale="large">
+    <div className="welcome-container">
       <img src={welcomeImg} alt="Welcome" className="welcome-image" />
       <h1 className="welcome-title display">{t("welcome_title")}</h1>
       <p className="welcome-subtitle body">{t("welcome_subtitle")}</p>

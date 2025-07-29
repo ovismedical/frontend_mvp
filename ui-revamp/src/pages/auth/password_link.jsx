@@ -9,7 +9,7 @@ const PasswordLink = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="passwordLink-container" data-scale="large">
+    <div className="passwordLink-container">
       <div className="backIcon-container">
         <span
           className="material-symbols-rounded chevronB_icon"

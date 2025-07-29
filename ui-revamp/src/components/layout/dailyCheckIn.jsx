@@ -18,7 +18,7 @@ const DailyCheckIn = ({ currentDays = 2, longestDays = 12 }) => {
   const todayIndex = 4; // For testing purposes, set to Tuesday
 
   return (
-    <div className="daily-checkin" data-scale="large">
+    <div className="daily-checkin">
       <div className="header">
         <h3 className="daily-checkin-title h4">Daily Check-In</h3>
         <button className="log-button caption">Log Today</button>

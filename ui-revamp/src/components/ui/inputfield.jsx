@@ -16,7 +16,7 @@ const InputField = ({
   const inputType = isPassword ? (visible ? "text" : "password") : type;
 
   return (
-    <div className="input-field" data-scale="large">
+    <div className="input-field">
       <div className="icon-left">{leftIcon}</div>
       <input
         type={inputType}
