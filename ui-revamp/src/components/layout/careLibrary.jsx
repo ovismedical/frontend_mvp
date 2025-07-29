@@ -32,6 +32,56 @@ const articleData = [
     category: "Health",
     readTime: "3 min read",
   },
+  {
+    title: "Gentle Workouts to Boost Energy",
+    imageUrl:
+      "https://i.pinimg.com/736x/5b/d1/55/5bd155cb02cd30ae940cb17737ae0e78.jpg",
+    text: "Light exercise routines to help you stay active and reduce fatigue.",
+    icon: "fitness_center",
+    likes: "90K",
+    category: "Exercise",
+    readTime: "6 min read",
+  },
+  {
+    title: "Navigating Hair Loss with Confidence",
+    imageUrl:
+      "https://regenerationmedicalspa.com/wp-content/uploads/2024/02/4-2-1024x576.jpg",
+    text: "Practical tips and emotional support for dealing with hair loss during treatment.",
+    icon: "face_retouching_natural",
+    likes: "170K",
+    category: "Support",
+    readTime: "4 min read",
+  },
+  {
+    title: "Creating a Sleep Routine that Works",
+    imageUrl:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwZ_wcbWSrCVg4Dt13jUUM027aL_5zFOLPTQ&s",
+    text: "Improve your sleep quality with these science-backed bedtime habits.",
+    icon: "bedtime",
+    likes: "110K",
+    category: "Wellness",
+    readTime: "5 min read",
+  },
+  {
+    title: "Snack Ideas for Nausea Relief",
+    imageUrl:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShok_9Uw7EBkbrbuuXmGqJU6q-FEvPCIeRNQ&s",
+    text: "Try these easy, stomach-friendly snacks to help calm nausea.",
+    icon: "restaurant",
+    likes: "87K",
+    category: "Nutrition",
+    readTime: "3 min read",
+  },
+  {
+    title: "Coping with Emotional Ups and Downs",
+    imageUrl:
+      "https://bellabeat.com/wp-content/uploads/2024/01/women-mood-swings-causes.jpg",
+    text: "Tips to manage mood swings and emotional fatigue during treatment.",
+    icon: "psychology",
+    likes: "130K",
+    category: "Mental Health",
+    readTime: "4 min read",
+  },
 ];
 
 const CareLibrary = () => {

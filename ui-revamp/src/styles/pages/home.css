@@ -1,7 +1,41 @@
 .homepage-content-container {
   display: flex;
   flex-direction: column;
-  gap: 15%;
-  padding: 0px 16px 0px 16px;
+  gap: 24px;
+  padding: 0 16px;
   margin-bottom: 50px;
+}
+
+.home-page-notifications {
+  padding: 0 16px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+@media screen and (min-width: 1000px) {
+  .homepage-content-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas:
+      "dailyCheckIn wellnessCard"
+      "medication medication"
+      "careLibrary careLibrary";
+    gap: 24px;
+  }
+
+  .homepage-content-container > :nth-child(1) {
+    grid-area: dailyCheckIn;
+  }
+
+  .homepage-content-container > :nth-child(2) {
+    grid-area: medication;
+  }
+
+  .homepage-content-container > :nth-child(3) {
+    grid-area: wellnessCard;
+  }
+
+  .homepage-content-container > :nth-child(4) {
+    grid-area: careLibrary;
+  }
 }

@@ -1,0 +1,11 @@
+.notifications-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 2%;
+  position: relative;
+}
+
+.stacked-count {
+  color: var(--blue-600);
+  padding-left: 8px;
+}

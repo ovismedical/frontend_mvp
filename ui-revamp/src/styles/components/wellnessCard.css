@@ -2,7 +2,6 @@
 @import "../variables.css";
 
 .wellness-card {
-  margin-top: 3%;
   width: 100;
   padding: 20px;
   background-color: var(--blue-light-100);
