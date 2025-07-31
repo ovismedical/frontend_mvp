@@ -104,6 +104,7 @@ export default {
   createAccount: {
     title: 'Create Patient Account',
     usernamePlaceholder: 'Username / Patient ID',
+    accessCodePlaceholder: 'Access Code (4 digits)',
     passwordPlaceholder: 'Password',
     emailPlaceholder: 'Email',
     fullNamePlaceholder: 'Full Name',

@@ -104,6 +104,7 @@ export default {
   createAccount: {
     title: '創建病人帳戶',
     usernamePlaceholder: '用戶名 / 病人ID',
+    accessCodePlaceholder: '訪問代碼 (4位數字)',
     passwordPlaceholder: '密碼',
     emailPlaceholder: '電郵',
     fullNamePlaceholder: '全名',

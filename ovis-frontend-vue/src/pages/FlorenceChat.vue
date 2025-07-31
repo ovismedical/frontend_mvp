@@ -164,6 +164,46 @@ const scrollToBottom = () => {
   })
 }
 
+// Helper function to parse Florence API errors
+const parseFlorenceErrors = (errorData, status) => {
+  // Handle specific HTTP status codes
+  if (status === 404) {
+    return 'Your session was not found. Please start a new conversation with Florence.'
+  }
+  if (status === 403) {
+    return 'You are not authorized to access this session.'
+  }
+  if (status === 410) {
+    return 'Your session has expired. Please start a new conversation with Florence.'
+  }
+  
+  // Handle error details
+  const detail = errorData?.detail
+  if (!detail) {
+    return 'Something went wrong. Please try again.'
+  }
+  
+  // Make technical errors more user-friendly
+  if (detail.includes('Failed to start Florence session')) {
+    return 'Unable to start conversation with Florence. Please try again.'
+  }
+  if (detail.includes('Failed to send message')) {
+    return 'Unable to send your message. Please try again.'
+  }
+  if (detail.includes('Failed to save assessment')) {
+    return 'Unable to save your assessment. Please try again.'
+  }
+  if (detail.includes('Session has expired')) {
+    return 'Your session has expired. Please start a new conversation with Florence.'
+  }
+  if (detail.includes('Session not found')) {
+    return 'Your session was not found. Please start a new conversation with Florence.'
+  }
+  
+  // For other errors, provide generic message
+  return 'Something went wrong. Please try again.'
+}
+
 // Format timestamp for display
 const formatTime = (timestamp) => {
   if (!timestamp) return ''
@@ -341,13 +381,13 @@ const finishSession = async () => {
 
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}))
-      const errorMessage = errorData.detail || 'Failed to save assessment'
+      const errorMessage = parseFlorenceErrors(errorData, response.status)
       
       if (response.status === 404 || response.status === 410) {
         // Session not found or expired
         clearInterval(messageInterval)
         isFinishingAssessment.value = false
-        alert('Your session has expired. Please start a new conversation with Florence.')
+        alert(errorMessage)
         router.push('/dashboard')
         return
       }

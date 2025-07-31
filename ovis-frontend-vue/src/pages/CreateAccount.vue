@@ -12,6 +12,14 @@
       />
 
       <input
+        :class="styles.login_userinput"
+        type="text"
+        :placeholder="$t('createAccount.accessCodePlaceholder')"
+        v-model="accessCode"
+        maxlength="4"
+      />
+
+      <input
         :class="styles.login_passwordinput"
         type="password"
         :placeholder="$t('createAccount.passwordPlaceholder')"
@@ -95,6 +103,7 @@ const username = ref('')
 const password = ref('')
 const email = ref('')
 const name = ref('')
+const accessCode = ref('')
 const dob = ref({ month: '', day: '', year: '' })
 const sex = ref('male')
 const message = ref('')
@@ -107,6 +116,45 @@ const monthNames = [
   "January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"
 ]
+
+// Helper function to parse validation errors
+const parseValidationErrors = (errorDetail) => {
+  if (!Array.isArray(errorDetail)) {
+    return errorDetail || "Account creation failed"
+  }
+
+  const fieldNames = {
+    username: "Username",
+    access_code: "Access code", 
+    password: "Password",
+    email: "Email",
+    full_name: "Full name"
+  }
+
+  const errors = errorDetail.map(error => {
+    const fieldName = fieldNames[error.loc?.[1]] || error.loc?.[1] || "Field"
+    
+    switch (error.type) {
+      case "string_too_short":
+        const minLength = error.ctx?.min_length || 4
+        return `${fieldName} must be at least ${minLength} characters long`
+      case "string_too_long":
+        const maxLength = error.ctx?.max_length
+        return `${fieldName} must be no more than ${maxLength} characters long`
+      case "missing":
+        return `${fieldName} is required`
+      case "value_error":
+        if (error.msg?.includes("email")) {
+          return "Please enter a valid email address"
+        }
+        return `${fieldName} is invalid`
+      default:
+        return error.msg || `${fieldName} is invalid`
+    }
+  })
+
+  return errors.join(". ")
+}
 
 const handleCreate = async () => {
   if (!dob.value.month || !dob.value.day || !dob.value.year) {
@@ -126,6 +174,7 @@ const handleCreate = async () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         username: username.value,
+        access_code: accessCode.value,
         password: password.value,
         email : email.value,
         full_name: name.value,
@@ -145,7 +194,7 @@ const handleCreate = async () => {
         router.push("/patientlogin")
       }, 1500)
     } else {
-      message.value = data.detail || "Account creation failed"
+      message.value = parseValidationErrors(data.detail)
       messageColor.value = 'red'
     }
   } catch (error) {
