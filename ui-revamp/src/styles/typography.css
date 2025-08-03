@@ -1,4 +1,4 @@
-@import url('variables.css');
+@import url("variables.css");
 
 /* ===== DEFAULT SCALE ===== */
 [data-scale="default"] .display {
@@ -80,6 +80,16 @@
   letter-spacing: 0.8%;
   font-family: var(--font-body);
   text-transform: uppercase;
+}
+
+[data-scale="default"] .overline-timestamp {
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 2;
+  letter-spacing: 0.8%;
+  font-family: var(--font-body);
+  text-transform: uppercase;
+  margin-left: 1%;
 }
 
 /* ===== SMALL SCALE ===== */
@@ -164,6 +174,16 @@
   text-transform: uppercase;
 }
 
+[data-scale="small"] .overline-timestamp {
+  font-size: 10px;
+  font-weight: normal;
+  line-height: 2;
+  letter-spacing: 0.8%;
+  font-family: var(--font-body);
+  text-transform: uppercase;
+  margin-left: 1%;
+}
+
 /* ===== LARGE SCALE ===== */
 [data-scale="large"] .display {
   font-size: 38px;
@@ -244,4 +264,14 @@
   letter-spacing: 0.8%;
   font-family: var(--font-body);
   text-transform: uppercase;
+}
+
+[data-scale="large"] .overline-timestamp {
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 2;
+  letter-spacing: 0.8%;
+  font-family: var(--font-body);
+  text-transform: uppercase;
+  margin-left: 1%;
 }

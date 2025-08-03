@@ -119,7 +119,7 @@ const WellnessScoreCard = () => {
           return (
             <div key={index} className="bar-container">
               <div
-                className="bar"
+                className="chart_bar"
                 style={{
                   height: `${item.height}px`,
                   backgroundColor: `var(${shadeVar})`,

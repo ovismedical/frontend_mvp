@@ -1,0 +1,183 @@
+.voicechatbot-container {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+.voicechatbot-header {
+  padding: 16px;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  background: var(--background-500);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 10;
+}
+
+.chevron_backward {
+  font-size: 26px;
+  color: var(--text-600);
+  cursor: pointer;
+}
+
+.more_vert {
+  font-size: 26px;
+  color: var(--text-600);
+  cursor: pointer;
+}
+
+.voicechatbot-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+.voicechatbot-content {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+  margin-bottom: 10%;
+}
+
+.voicechatbot-bot-message,
+.voicechatbot-user-message {
+  color: var(--text-200);
+  text-align: center;
+  width: 90%;
+  box-sizing: border-box;
+}
+
+.voicechatbot-user-message {
+  color: var(--text-700);
+}
+
+.ongoing-text {
+  color: var(--blue-700);
+}
+
+.audio-wave-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+canvas {
+  border-radius: 4px;
+}
+
+/* Footer */
+.voice-recording-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--background-200);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-inline: 10%;
+  padding-top: 12px;
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
+  box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+.mic-float {
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.mic-circle {
+  background: var(--blue-50);
+  border-radius: 50%;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.mic-icon {
+  font-size: 50px;
+  color: var(--blue-700);
+  font-variation-settings: "FILL" 1;
+}
+
+.recording-timer {
+  color: var(--text-500);
+  position: absolute;
+  padding-bottom: 12px;
+  left: 50%;
+  transform: translateX(-45%);
+}
+
+.action-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.action-button .material-symbols-rounded {
+  font-size: 30px;
+  padding: 12px;
+  border-radius: 50%;
+}
+
+.action-button.exit .material-symbols-rounded {
+  background: var(--error-100);
+  color: var(--error-700);
+}
+
+.action-button.save .material-symbols-rounded {
+  background: var(--success-100);
+  color: var(--success-700);
+}
+
+.save-label {
+  color: var(--text-400);
+}
+
+.exit-label {
+  color: var(--text-400);
+}
+
+@media (max-width: 480px) {
+  .voicechatbot-container {
+    font-size: 0.95rem;
+  }
+  .mic-circle {
+    padding: 18px;
+  }
+
+  .mic-icon {
+    font-size: 40px;
+  }
+
+  .recording-timer {
+  }
+}
+
+@media (min-width: 481px) {
+  .voicechatbot-body {
+    justify-content: center;
+  }
+
+  .voicechatbot-content {
+    gap: 90px;
+  }
+}

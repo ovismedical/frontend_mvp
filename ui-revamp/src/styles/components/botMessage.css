@@ -1,0 +1,54 @@
+.bot-row {
+  display: flex;
+  align-items: flex-start;
+  animation: fadeInUp 0.3s ease;
+}
+
+.bot-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.bot-message {
+  max-width: 75%;
+  background: var(--blue-light-400);
+  color: var(--text-600);
+  padding: 12px;
+  border-radius: var(--radius-s);
+  transition: transform 0.2s ease;
+}
+
+.bot-message:hover {
+  transform: scale(1.02);
+}
+
+.bot-avatar {
+  margin-right: 8px;
+}
+
+.bot-avatar img {
+  width: 40px;
+  height: 40px;
+  object-fit: fill;
+}
+
+.bot-message-text {
+  word-wrap: break-word;
+}
+
+.bot-message-time {
+  color: var(--text-300);
+  text-align: left;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
