@@ -11,6 +11,7 @@
 @import "./pages/chatbot.css";
 @import "./pages/chatbot_voice.css";
 @import "./pages/otp.css";
+@import "./pages/dashboard.css";
 
 body {
   background-color: var(--background-500);
@@ -22,6 +23,7 @@ body {
 
 body.no-body-padding {
   padding: 0 !important;
+  overflow: hidden;
 }
 
 body.body-centered {

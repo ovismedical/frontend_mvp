@@ -33,6 +33,7 @@ import Assessment09 from "./pages/auth/assessment/assessment09.jsx";
 import Home from "./pages/home.jsx";
 import Chatbot from "./pages/chatbot.jsx";
 import VoiceInputChatbot from "./pages/chatbot_voice.jsx";
+import Dashboard from "./pages/dashboards/dashboard.jsx";
 
 function App() {
   const location = useLocation();
@@ -42,8 +43,15 @@ function App() {
     const isHome = location.pathname === "/home";
     const isChatbot = location.pathname === "/chatbot";
     const isChatbotVoice = location.pathname === "/chatbot_voice";
-    document.body.classList.toggle("no-body-padding", isHome || isChatbot || isChatbotVoice);
-    document.body.classList.toggle("body-centered", !isHome && !isChatbot && !isChatbotVoice);
+    const isDashboard = location.pathname === "/dashboard";
+    document.body.classList.toggle(
+      "no-body-padding",
+      isHome || isChatbot || isChatbotVoice || isDashboard
+    );
+    document.body.classList.toggle(
+      "body-centered",
+      !isHome && !isChatbot && !isChatbotVoice && !isDashboard
+    );
   }, [location.pathname]);
 
   if (isAuthLoading) return null; // or show loading spinner
@@ -85,17 +93,16 @@ function App() {
         <Route path="/assessment09" element={<Assessment09 />} />
         <Route path="/chatbot" element={<Chatbot />} />
         <Route path="/chatbot_voice" element={<VoiceInputChatbot />} />
-    
 
         <Route
           element={
-            // <ProtectedRoute>
+            <ProtectedRoute>
               <BottomNavLayout />
-            // </ProtectedRoute>
+            </ProtectedRoute>
           }
         >
           <Route path="/home" element={<Home />} />
-          <Route path="/dashboard" element={<div>Dashboard</div>} />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/achievements" element={<div>Achievements</div>} />
           <Route path="/settings" element={<div>Settings</div>} />
         </Route>

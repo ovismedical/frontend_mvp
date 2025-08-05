@@ -1,0 +1,401 @@
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  overflow: hidden;
+  position: relative;
+}
+
+.dashboard-header {
+  padding: 16px;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  background: var(--background-500);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 10;
+}
+
+.chevron_backward {
+  font-size: 26px;
+  color: var(--text-600);
+  cursor: pointer;
+}
+
+.file_save {
+  font-size: 26px;
+  color: var(--text-600);
+  cursor: pointer;
+}
+
+.dashboard-content {
+  /* Remove height: fit-content and let flexbox handle it */
+  flex-grow: 1;
+  overflow-y: auto;
+  margin-top: 1%;
+  padding: 16px;
+  padding-bottom: 32px; /* Add extra bottom padding */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.dashboard-content::-webkit-scrollbar {
+  display: none;
+}
+
+/* Weekly Dashboard */
+.weekly-dashboard-content {
+  width: 90%;
+  min-height: 100%;
+  padding: 16px;
+  margin: 3% auto;
+  padding-bottom: 32px; /* Extra bottom padding */
+}
+
+.current-streak-container {
+  background-color: var(--blue-light-100);
+  outline: 1px solid var(--blue-700);
+  border-radius: var(--radius-m);
+  padding: 10px 15px;
+}
+
+.current-streak-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.current-streak-title {
+  color: var(--text-600);
+  margin: 0px;
+}
+
+.current-streak-value {
+  display: flex;
+  align-items: center;
+  padding: 2px 10px;
+  background-color: var(--secondary-50);
+  border: 1px solid var(--secondary-600);
+  border-radius: var(--radius-xl);
+}
+
+.streak-icon {
+  font-variation-settings: "FILL" 1;
+  color: var(--secondary-600);
+  font-size: 24px;
+  margin-right: 6px;
+}
+
+.streak-label {
+  color: var(--secondary-600);
+}
+
+.weekly-progress-row {
+  margin: 0 auto;
+}
+
+.current-streak-caption {
+  margin-top: 2%;
+  color: var(--text-300);
+}
+
+.weekly-summary-container {
+  margin-top: 5%;
+}
+
+.weekly-summary-title {
+  color: var(--text-500);
+}
+
+.weekly-summary-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10%;
+}
+
+.wellness-score-card,
+.engagement-level-card {
+  background-color: var(--background-100);
+  border-radius: var(--radius-m);
+  padding: 16px 24px;
+  outline: 1px solid var(--neutral-500);
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.wellness-score-value,
+.engagement-level-value {
+  color: var(--text-400);
+}
+
+.wellness-score-value.upward,
+.engagement-level-value.upward {
+  color: var(--success-600);
+}
+
+.wellness-score-value.downward,
+.engagement-level-value.downward {
+  color: var(--error-600);
+}
+
+.wellness-score-title,
+.engagement-level-title {
+  color: var(--text-400);
+}
+
+.wellness-score-caption-container,
+.engagement-level-caption-container {
+  display: flex;
+  align-items: center;
+}
+
+.caption-icon {
+  font-size: 20px;
+  margin-right: 4px;
+}
+
+.caption-icon.upward {
+  color: var(--success-600);
+}
+
+.caption-icon.downward {
+  color: var(--error-600);
+}
+
+.wellness-score-caption,
+.engagement-level-caption {
+  color: var(--text-300);
+}
+
+.mood-trend-container {
+  background-color: var(--background-100);
+  border-radius: var(--radius-m);
+  padding: 16px 24px;
+  outline: 1px solid var(--neutral-500);
+  margin-top: 3%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mood-trend-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.mood-trend-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-600);
+}
+
+.mood-trend-status {
+  display: flex;
+  align-items: center;
+  color: var(--error-600);
+}
+
+.mood-trend-status.Improving {
+  color: var(--success-600);
+}
+
+.mood-trend-arrow {
+  margin-left: 4px;
+  font-size: 20px;
+  vertical-align: middle;
+}
+
+.mood-trend-arrow.upward {
+  color: var(--success-600);
+}
+
+.mood-trend-arrow.downward {
+  color: var(--error-600);
+}
+
+.mood-trend-bar-chart {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  height: 100px;
+}
+
+.mood-trend-bar-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  width: 10%;
+  height: 100%;
+}
+
+.mood-trend-bar {
+  width: 50%;
+  border-radius: var(--radius-xs);
+  transition: height 0.3s ease;
+}
+
+.mood-trend-bar.shade-0 {
+  background-color: var(--blue-300);
+}
+.mood-trend-bar.shade-1 {
+  background-color: var(--blue-400);
+}
+.mood-trend-bar.shade-2 {
+  background-color: var(--blue-500);
+}
+.mood-trend-bar.shade-3 {
+  background-color: var(--blue-600);
+}
+.mood-trend-bar.shade-4 {
+  background-color: var(--blue-700);
+}
+.mood-trend-bar.shade-5 {
+  background-color: var(--blue-800);
+}
+
+.mood-trend-day-label {
+  margin-top: 4px;
+  color: var(--text-200);
+}
+
+.weekly-summary-days {
+  margin-top: 5%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 16px;
+}
+
+.weekly-summary-bestDay,
+.weekly-summary-challengingDay {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+  border-radius: var(--radius-m);
+  border: 1.5px solid;
+}
+
+.weekly-summary-day-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.weekly-summary-bestDay {
+  border-color: var(--success-600);
+}
+
+.weekly-summary-bestDay-dayIcon {
+  background-color: var(--success-50);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-xl);
+}
+
+.family_star {
+  font-variation-settings: "FILL" 1;
+  color: var(--success-600);
+  font-size: 24px;
+}
+
+.weekly-summary-bestDay-title {
+  margin: 0;
+  color: var(--text-500);
+}
+
+.weekly-summary-bestDay-date {
+  margin: 0;
+  color: var(--text-300);
+}
+
+.weekly-summary-bestDay-summary {
+  color: var(--success-600);
+}
+
+.weekly-summary-challengingDay {
+  border-color: var(--error-600);
+}
+
+.weekly-summary-challengingDay-dayIcon {
+  background-color: var(--error-50);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-xl);
+}
+
+.swords {
+  font-variation-settings: "FILL" 1;
+  color: var(--error-600);
+  font-size: 24px;
+}
+
+.weekly-summary-challengingDay-title {
+  margin: 0;
+  color: var(--text-500);
+}
+
+.weekly-summary-challengingDay-date {
+  margin: 0;
+  color: var(--text-300);
+}
+
+.weekly-summary-challengingDay-summary {
+  color: var(--error-600);
+}
+
+.weekly-smart-insight {
+  margin-top: 5%;
+}
+
+.weekly-insights-title {
+  color: var(--text-500);
+}
+
+/* Monthly Dashboard */
+.monthly-dashboard-content {
+  width: 90%;
+  min-height: 100%;
+  margin: 3% auto;
+  padding-bottom: 32px;
+}
+
+.monthly-smart-insight {
+  margin-top: 5%;
+}
+
+.monthly-insights-title {
+  color: var(--text-500);
+}
+
+.monthly-notable-events {
+  margin-top: 5%;
+}
+
+.monthly-notable-events-title {
+  color: var(--text-500);
+}
+
+.monthly-symptom-trend {
+  margin-top: 5%;
+}
+
+.monthly-symptom-trend-title {
+  color: var(--text-500);
+}
