@@ -19,6 +19,7 @@ import Onboarding04 from "./pages/onboarding/onboarding04.jsx";
 import Register from "./pages/auth/register.jsx";
 import Login from "./pages/auth/login.jsx";
 import ForgotPassword from "./pages/auth/forgotpassword.jsx";
+import OTP from "./pages/auth/otp.jsx";
 import PasswordLink from "./pages/auth/password_link.jsx";
 import Assessment01 from "./pages/auth/assessment/assessment01.jsx";
 import Assessment02 from "./pages/auth/assessment/assessment02.jsx";
@@ -41,14 +42,8 @@ function App() {
     const isHome = location.pathname === "/home";
     const isChatbot = location.pathname === "/chatbot";
     const isChatbotVoice = location.pathname === "/chatbot_voice";
-    document.body.classList.toggle(
-      "no-body-padding",
-      isHome || isChatbot || isChatbotVoice
-    );
-    document.body.classList.toggle(
-      "body-centered",
-      !isHome && !isChatbot && !isChatbotVoice
-    );
+    document.body.classList.toggle("no-body-padding", isHome || isChatbot || isChatbotVoice);
+    document.body.classList.toggle("body-centered", !isHome && !isChatbot && !isChatbotVoice);
   }, [location.pathname]);
 
   if (isAuthLoading) return null; // or show loading spinner
@@ -77,6 +72,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/forgotPassword" element={<ForgotPassword />} />
+        <Route path="/otp" element={<OTP />} />
         <Route path="/passwordLink" element={<PasswordLink />} />
         <Route path="/assessment01" element={<Assessment01 />} />
         <Route path="/assessment02" element={<Assessment02 />} />
@@ -89,12 +85,13 @@ function App() {
         <Route path="/assessment09" element={<Assessment09 />} />
         <Route path="/chatbot" element={<Chatbot />} />
         <Route path="/chatbot_voice" element={<VoiceInputChatbot />} />
+    
 
         <Route
           element={
-            <ProtectedRoute>
+            // <ProtectedRoute>
               <BottomNavLayout />
-            </ProtectedRoute>
+            // </ProtectedRoute>
           }
         >
           <Route path="/home" element={<Home />} />

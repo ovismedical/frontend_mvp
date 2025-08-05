@@ -10,6 +10,7 @@
 @import "./pages/home.css";
 @import "./pages/chatbot.css";
 @import "./pages/chatbot_voice.css";
+@import "./pages/otp.css";
 
 body {
   background-color: var(--background-500);

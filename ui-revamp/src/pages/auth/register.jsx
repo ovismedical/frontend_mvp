@@ -65,7 +65,7 @@ const Register = () => {
         setAccessCode("");
 
         setTimeout(() => {
-          navigate("/assessment01");
+          navigate("/otp", { state: { email_address: email } });
         }, 1500);
       } else {
         setMessage(data.detail || "Account creation failed.");

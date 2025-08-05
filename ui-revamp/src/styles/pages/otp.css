@@ -1,0 +1,74 @@
+@import "../typography.css";
+@import "../variables.css";
+
+.otp-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+
+.backIcon-container {
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  margin-bottom: 20%;
+}
+
+.chevronB_icon {
+  color: var(--text-600);
+  cursor: pointer;
+}
+
+.material-symbols-rounded.chevronB_icon {
+  font-size: 40px;
+}
+
+.otp-image {
+  height: 250px;
+  margin-bottom: 5%;
+}
+
+.otp-title {
+  color: var(--text-500);
+  margin-bottom: -1%;
+}
+
+.otp-subtitle {
+  color: var(--text-400);
+  margin-bottom: 10%;
+}
+
+.otp-button {
+  margin-top: 10%;
+  height: 48px;
+  margin-bottom: 20%;
+}
+
+.otp-footer {
+  color: var(--text-400);
+}
+
+.resend-link {
+  text-decoration: underline;
+  color: var(--blue-700);
+}
+
+.countdown-time {
+  color: var(--blue-700);
+}
+
+.otp-input-container {
+  margin-bottom: 10%;
+  width: 100%;
+}
+
+.otp-error {
+  color: var(--error-600);
+}
+
+.otp-success {
+  color: var(--success-600);
+}
+
