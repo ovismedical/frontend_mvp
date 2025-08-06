@@ -40,17 +40,14 @@ const Register = () => {
 
     try {
       const apiUrl = import.meta.env.VITE_API_URL;
-      const response = await fetch(`${apiUrl}/register`, {
+      const response = await fetch(`${apiUrl}/otp/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           username,
+          access_code: accessCode,
           password,
           email,
-          full_name,
-          dob,
-          sex,
-          // ignoring accessCode for backend for now
         }),
       });
 
@@ -58,7 +55,9 @@ const Register = () => {
 
       if (response.ok) {
         setMessage("Account created successfully! Redirecting...");
+        localStorage.setItem("email",email);
         setEmail("");
+        localStorage.setItem("username",username)
         setUsername("");
         setPassword("");
         setConfirmPassword("");

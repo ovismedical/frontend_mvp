@@ -19,15 +19,45 @@ const OTP = () => {
   const [timeLeft, setTimeLeft] = useState(30);
   const [canResend, setCanResend] = useState(false);
 
-  const handleCompleteCode = (code) => {
+  const handleCompleteCode = async (code) => {
     setEnteredCode(code);
+    setError("");
+    
+    try {
+      const response = await fetch(
+        'https://ovis-backend-mvp.onrender.com/otp/verify',
+        {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            user_id: localStorage.getItem("username"),
+            email: email_address || localStorage.getItem("email"),
+            otp_code: code,
+            purpose: "registration",
+          }),
+        }
+      );
 
-    if (code === "1111") {
-      setSuccess(true);
-      setError("");
-      setTimeout(() => navigate("/assessment01"), 800);
-    } else {
-      setError("Incorrect code. Please try again.");
+      if (response.ok) {
+        const data = await response.json();
+        localStorage.removeItem("username");
+        localStorage.removeItem("email");
+        setSuccess(true);
+        setTimeout(() => {
+          navigate('/login');
+        }, 1500);
+      } else {
+        const errorData = await response.json();
+        setError(errorData.detail || "Invalid OTP code. Please try again.");
+        setResetOtp(true);
+        setTimeout(() => setResetOtp(false), 50);
+      }
+    } catch (error) {
+      console.error('OTP verification error:', error);
+      setError("Network error. Please check your connection and try again.");
       setResetOtp(true);
       setTimeout(() => setResetOtp(false), 50);
     }
@@ -43,12 +73,38 @@ const OTP = () => {
     return () => clearTimeout(timer);
   }, [timeLeft]);
 
-  const handleResend = () => {
-    setTimeLeft(30);
-    setCanResend(false);
-    setError("");
-    setResetOtp(true);
-    setTimeout(() => setResetOtp(false), 50);
+  const handleResend = async () => {
+    try {
+      const response = await fetch(
+        'https://ovis-backend-mvp.onrender.com/otp/resend',
+        {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            user_id: localStorage.getItem("username"),
+            email: email_address || localStorage.getItem("email"),
+            purpose: "registration",
+          }),
+        }
+      );
+
+      if (response.ok) {
+        setTimeLeft(30);
+        setCanResend(false);
+        setError("");
+        setResetOtp(true);
+        setTimeout(() => setResetOtp(false), 50);
+      } else {
+        const errorData = await response.json();
+        setError(errorData.detail || "Failed to resend OTP. Please try again.");
+      }
+    } catch (error) {
+      console.error('Resend OTP error:', error);
+      setError("Network error. Please try again.");
+    }
   };
 
   return (

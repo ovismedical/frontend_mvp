@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import "../../styles/components/otpInput.css";
 
 const OTPInput = ({ onComplete, resetTrigger }) => {
-  const [otp, setOtp] = useState(["", "", "", ""]);
+  const [otp, setOtp] = useState(["", "", "", "", "", ""]);
   const inputs = useRef([]);
 
   const handleChange = (value, index) => {
@@ -12,7 +12,7 @@ const OTPInput = ({ onComplete, resetTrigger }) => {
     newOtp[index] = value;
     setOtp(newOtp);
 
-    if (value && index < 3) {
+    if (value && index < 5) {
       inputs.current[index + 1].focus();
     }
 
@@ -29,7 +29,7 @@ const OTPInput = ({ onComplete, resetTrigger }) => {
 
   useEffect(() => {
     if (resetTrigger) {
-      setOtp(["", "", "", ""]);
+      setOtp(["", "", "", "", "", ""]);
       inputs.current[0].focus();
     }
   }, [resetTrigger]);
