@@ -257,8 +257,8 @@ export default function VoiceInputChatbot() {
             <h3 className="h3">Leave Check-In?</h3>
             <p className="body">
               You haven’t saved your check-in yet. If you exit now, your
-              progress will be lost. Don’t worry, you can always come back
-              later to start a new check-in.
+              progress will be lost. Don’t worry, you can always come back later
+              to start a new check-in.
             </p>
             <div className="modal-actions">
               <button

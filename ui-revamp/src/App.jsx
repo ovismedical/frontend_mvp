@@ -19,6 +19,7 @@ import Onboarding04 from "./pages/onboarding/onboarding04.jsx";
 import Register from "./pages/auth/register.jsx";
 import Login from "./pages/auth/login.jsx";
 import ForgotPassword from "./pages/auth/forgotpassword.jsx";
+import OTP from "./pages/auth/otp.jsx";
 import PasswordLink from "./pages/auth/password_link.jsx";
 import Assessment01 from "./pages/auth/assessment/assessment01.jsx";
 import Assessment02 from "./pages/auth/assessment/assessment02.jsx";
@@ -32,6 +33,7 @@ import Assessment09 from "./pages/auth/assessment/assessment09.jsx";
 import Home from "./pages/home.jsx";
 import Chatbot from "./pages/chatbot.jsx";
 import VoiceInputChatbot from "./pages/chatbot_voice.jsx";
+import Dashboard from "./pages/dashboards/dashboard.jsx";
 
 function App() {
   const location = useLocation();
@@ -41,13 +43,14 @@ function App() {
     const isHome = location.pathname === "/home";
     const isChatbot = location.pathname === "/chatbot";
     const isChatbotVoice = location.pathname === "/chatbot_voice";
+    const isDashboard = location.pathname === "/dashboard";
     document.body.classList.toggle(
       "no-body-padding",
-      isHome || isChatbot || isChatbotVoice
+      isHome || isChatbot || isChatbotVoice || isDashboard
     );
     document.body.classList.toggle(
       "body-centered",
-      !isHome && !isChatbot && !isChatbotVoice
+      !isHome && !isChatbot && !isChatbotVoice && !isDashboard
     );
   }, [location.pathname]);
 
@@ -77,6 +80,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/forgotPassword" element={<ForgotPassword />} />
+        <Route path="/otp" element={<OTP />} />
         <Route path="/passwordLink" element={<PasswordLink />} />
         <Route path="/assessment01" element={<Assessment01 />} />
         <Route path="/assessment02" element={<Assessment02 />} />
@@ -98,7 +102,7 @@ function App() {
           }
         >
           <Route path="/home" element={<Home />} />
-          <Route path="/dashboard" element={<div>Dashboard</div>} />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/achievements" element={<div>Achievements</div>} />
           <Route path="/settings" element={<div>Settings</div>} />
         </Route>

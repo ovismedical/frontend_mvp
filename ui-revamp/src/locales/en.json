@@ -74,5 +74,12 @@
   "assessment08_title": "What kind of exercise do you prefer?",
   "assessment08_subtitle": "You can pick more than one.",
   "assessment09_title": "How often do you do health checkups?",
-  "assessment09_button2": "I don’t attend checkups"
+  "assessment09_button2": "I don’t attend checkups",
+  "otp_title": "Verification Code",
+  "otp_subtitle01": "We’ve sent a 4-digit code to your email at ",
+  "otp_subtitle02": "Please enter it below to verify your email address.",
+  "otp_button": "Verify OTP",
+  "otp_footer": "Didn't receive the code? ",
+  "otp_resend": "Resend",
+  "otp_countdown": "Resend code in "
 }
