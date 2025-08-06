@@ -55,7 +55,9 @@ const Register = () => {
 
       if (response.ok) {
         setMessage("Account created successfully! Redirecting...");
+        localStorage.setItem("email",email);
         setEmail("");
+        localStorage.setItem("username",username)
         setUsername("");
         setPassword("");
         setConfirmPassword("");
