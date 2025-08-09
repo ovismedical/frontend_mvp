@@ -124,7 +124,7 @@
       <div :class="styles.loadingContent">
         <div :class="styles.spinner"></div>
         <h3 :class="styles.loadingTitle">{{ currentLoadingMessage }}</h3>
-        <p :class="styles.loadingSubtitle">Please wait while we process your assessment...</p>
+        <p :class="styles.loadingSubtitle">{{ $t('florence.loadingSubtitle') }}</p>
       </div>
     </div>
   </div>
@@ -133,12 +133,14 @@
 <script setup>
 import { ref, onMounted, nextTick } from 'vue'
 import { useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 import SideHeader from './Sidebar.vue'
 import styles from './florence.module.css'
 
 const apiUrl = import.meta.env.VITE_API_URL
 
 const router = useRouter()
+const { t } = useI18n()
 const sidebarRef = ref(null)
 const messageInputRef = ref(null)
 
@@ -350,12 +352,13 @@ const finishSession = async () => {
   sessionStatusKey.value = 'florence.finishingSession'
   isFinishingAssessment.value = true
   
-  // Progressive loading messages
+  // Progressive loading messages for 3-agent system
   const loadingMessages = [
-    'Organizing your chat...',
-    'Analyzing conversation...',
-    'Generating report...',
-    'Saving assessment...'
+    t('florence.loadingMessages.organizingChat'),
+    t('florence.loadingMessages.runningAssessment'),
+    t('florence.loadingMessages.performingTriage'),
+    t('florence.loadingMessages.generatingInsights'),
+    t('florence.loadingMessages.savingAssessment')
   ]
   
   let messageIndex = 0
@@ -405,7 +408,14 @@ const finishSession = async () => {
     await new Promise(resolve => setTimeout(resolve, 1000))
     
     isFinishingAssessment.value = false
-    alert('Assessment completed and saved! Thank you for checking in with Florence.')
+    
+    // Display 3-agent results (Assessment + Triage + Alert Level)
+    if (data.triage && data.alert_level) {
+      showTriageResults(data)
+    } else {
+      alert('Assessment completed and saved! Thank you for checking in with Florence.')
+    }
+    
     router.push('/dashboard')
   } catch (error) {
     clearInterval(messageInterval)
@@ -417,6 +427,50 @@ const finishSession = async () => {
     sessionStatus.value = 'Connected'
     sessionStatusKey.value = 'florence.connected'
   }
+}
+
+// Show 3-agent triage results in a modal/alert
+const showTriageResults = (data) => {
+  const alertLevel = data.alert_level || 'UNKNOWN'
+  const alertDescription = data.alert_description || ''
+  const triageData = data.triage?.triage_assessment || {}
+  const potentialDiagnoses = triageData.potential_diagnoses || []
+  const recommendedTimeline = triageData.recommended_timeline || 'Not specified'
+  
+  // Create alert level styling
+  const alertColors = {
+    'GREEN': '🟢',
+    'YELLOW': '🟡', 
+    'ORANGE': '🟠',
+    'RED': '🔴'
+  }
+  
+  const alertIcon = alertColors[alertLevel] || '⚪'
+  
+  // Build diagnosis list
+  let diagnosisText = ''
+  if (potentialDiagnoses.length > 0) {
+    diagnosisText = '\n\nPotential Areas of Concern:\n'
+    potentialDiagnoses.forEach((diagnosis, index) => {
+      diagnosisText += `${index + 1}. ${diagnosis.condition} (${diagnosis.likelihood} likelihood)\n`
+    })
+  }
+  
+  // Show comprehensive results
+  const message = `${alertIcon} Triage Assessment Complete
+
+Alert Level: ${alertLevel}
+${alertDescription}
+
+Recommended Timeline: ${recommendedTimeline}${diagnosisText}
+
+Your complete assessment has been saved and will be available in your health records.
+
+${alertLevel === 'ORANGE' || alertLevel === 'RED' ? 
+  '\n⚠️ Please consider following up with your healthcare team.' : 
+  '\n✅ Continue monitoring your symptoms and check in regularly.'}`
+
+  alert(message)
 }
 
 const toggleSidebar = () => {

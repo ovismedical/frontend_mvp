@@ -88,7 +88,15 @@ export default {
     errorMessage: 'Sorry, I had trouble understanding that. Could you please try again?',
     sessionCompleted: 'Assessment completed and saved! Thank you for checking in with Florence.',
     sessionSaveError: 'Failed to save assessment. Please try again.',
-    sessionStartError: 'Failed to start session with Florence. Please try again.'
+    sessionStartError: 'Failed to start session with Florence. Please try again.',
+    loadingSubtitle: 'Please wait while we process your assessment...',
+    loadingMessages: {
+      organizingChat: 'Organizing your chat...',
+      runningAssessment: 'Running symptom assessment...',
+      performingTriage: 'Performing clinical triage...',
+      generatingInsights: 'Generating medical insights...',
+      savingAssessment: 'Saving complete assessment...'
+    }
   },
   login: {
     patientLogin: 'Patient Login',

@@ -95,6 +95,76 @@
             </div>
           </div>
         </div>
+
+        <!-- Clinical Triage Section (3-Agent System) -->
+        <div v-if="assessment.alert_level && assessment.alert_level !== 'UNKNOWN'" :class="styles.triageSection">
+          <h3 :class="styles.sectionTitle">
+            Clinical Triage Assessment
+            <span :class="styles.subtitle">AI-powered medical insights</span>
+          </h3>
+
+          <!-- Alert Level Card -->
+          <div :class="[styles.alertCard, getAlertClass(assessment.alert_level)]">
+            <div :class="styles.alertHeader">
+              <div :class="styles.alertIcon">{{ getAlertIcon(assessment.alert_level) }}</div>
+              <div :class="styles.alertInfo">
+                <h4 :class="styles.alertLevel">{{ assessment.alert_level }} Alert</h4>
+                <p :class="styles.alertDescription">{{ getAlertDescription(assessment.alert_level) }}</p>
+              </div>
+            </div>
+            
+            <div v-if="assessment.data.recommended_timeline" :class="styles.timelineInfo">
+              <strong>Recommended Timeline:</strong> {{ assessment.data.recommended_timeline }}
+            </div>
+          </div>
+
+          <!-- Potential Diagnoses -->
+          <div v-if="assessment.data.diagnosis_predictions && assessment.data.diagnosis_predictions.length > 0" :class="styles.diagnosesCard">
+            <h4 :class="styles.cardTitle">Clinical Diagnosis Predictions</h4>
+            <div :class="styles.diagnosesList">
+              <div 
+                v-for="(diagnosis, index) in assessment.data.diagnosis_predictions" 
+                :key="index"
+                :class="styles.diagnosisItem"
+              >
+                <div :class="styles.diagnosisContent">
+                  <span :class="styles.diagnosisCondition">{{ diagnosis.suspected_diagnosis }}</span>
+                  <div :class="styles.diagnosisBadges">
+                    <span :class="[styles.probabilityBadge, getProbabilityClass(diagnosis.probability)]">
+                      {{ diagnosis.probability }} probability
+                    </span>
+                    <span :class="[styles.urgencyBadge, getUrgencyClass(diagnosis.urgency)]">
+                      Urgency {{ diagnosis.urgency }}/5
+                    </span>
+                  </div>
+                </div>
+                <div v-if="diagnosis.reasoning" :class="styles.diagnosisRationale">
+                  {{ diagnosis.reasoning }}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Clinical Reasoning -->
+          <div v-if="assessment.data.clinical_reasoning" :class="styles.reasoningCard">
+            <h4 :class="styles.cardTitle">Clinical Reasoning Process</h4>
+            <p :class="styles.reasoningText">{{ assessment.data.clinical_reasoning }}</p>
+          </div>
+
+          <!-- Confidence Level -->
+          <div v-if="assessment.data.confidence_level" :class="styles.confidenceCard">
+            <h4 :class="styles.cardTitle">Assessment Confidence</h4>
+            <div :class="[styles.confidenceBadge, getConfidenceClass(assessment.data.confidence_level)]">
+              {{ assessment.data.confidence_level.toUpperCase() }} CONFIDENCE
+            </div>
+          </div>
+
+          <!-- Clinical Notes -->
+          <div v-if="assessment.data.clinical_notes" :class="styles.notesCard">
+            <h4 :class="styles.cardTitle">Clinical Notes</h4>
+            <p :class="styles.notesText">{{ assessment.data.clinical_notes }}</p>
+          </div>
+        </div>
       </div>
 
       <div v-else-if="loading" :class="styles.loading">
@@ -204,6 +274,49 @@ const closeModal = () => {
   selectedSymptom.value = null
 }
 
+// Triage helper methods for 3-agent system
+const getAlertIcon = (level) => {
+  const icons = {
+    'GREEN': '🟢',
+    'YELLOW': '🟡',
+    'ORANGE': '🟠', 
+    'RED': '🔴'
+  }
+  return icons[level] || '⚪'
+}
+
+const getAlertClass = (level) => {
+  return `alert${level.toLowerCase().charAt(0).toUpperCase() + level.toLowerCase().slice(1)}`
+}
+
+const getAlertDescription = (level) => {
+  const descriptions = {
+    'GREEN': 'Routine symptoms - continue regular monitoring',
+    'YELLOW': 'Moderate symptoms requiring monitoring',
+    'ORANGE': 'Concerning symptoms - same-day medical review recommended',
+    'RED': 'Severe symptoms - urgent medical attention required'
+  }
+  return descriptions[level] || 'Assessment completed'
+}
+
+const getLikelihoodClass = (likelihood) => {
+  return `likelihood${likelihood.charAt(0).toUpperCase() + likelihood.slice(1)}`
+}
+
+const getProbabilityClass = (probability) => {
+  return `probability${probability.charAt(0).toUpperCase() + probability.slice(1)}`
+}
+
+const getUrgencyClass = (urgency) => {
+  if (urgency >= 4) return 'urgencyHigh'
+  if (urgency >= 3) return 'urgencyMedium'
+  return 'urgencyLow'
+}
+
+const getConfidenceClass = (confidence) => {
+  return `confidence${confidence.charAt(0).toUpperCase() + confidence.slice(1)}`
+}
+
 onMounted(async () => {
   const assessmentId = route.params.id
   if (!assessmentId) {
@@ -219,7 +332,7 @@ onMounted(async () => {
     }
 
     const apiUrl = import.meta.env.VITE_API_URL || 'https://ovis-backend-mvp.onrender.com'
-    const response = await fetch(`${apiUrl}/assessment/${assessmentId}`, {
+    const response = await fetch(`${apiUrl}/analytics/assessment/${assessmentId}`, {
       method: 'GET',
       headers: {
         'Accept': 'application/json',

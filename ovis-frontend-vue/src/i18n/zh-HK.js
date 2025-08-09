@@ -88,7 +88,15 @@ export default {
     errorMessage: '唔好意思，我理解唔到。可唔可以再試多次？',
     sessionCompleted: '評估完成並已儲存！多謝你同Florence嘅對話。',
     sessionSaveError: '儲存評估失敗，請再試多次。',
-    sessionStartError: '同Florence開始對話失敗，請再試多次。'
+    sessionStartError: '同Florence開始對話失敗，請再試多次。',
+    loadingSubtitle: '請稍等，我哋正在處理你嘅評估...',
+    loadingMessages: {
+      organizingChat: '整理你嘅對話...',
+      runningAssessment: '進行症狀評估...',
+      performingTriage: '執行臨床分流...',
+      generatingInsights: '生成醫療見解...',
+      savingAssessment: '儲存完整評估...'
+    }
   },
   login: {
     patientLogin: '病人登入',

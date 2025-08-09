@@ -132,6 +132,11 @@
               <div :class="styles.cardBadge" :style="{ backgroundColor: getIconColor(assessment) }">
                 {{ assessment.type === 'daily_checkin' ? 'Check-in' : 'AI Chat' }}
               </div>
+              <!-- 3-Agent Triage Alert Level Badge -->
+              <div v-if="assessment.alert_level && assessment.alert_level !== 'UNKNOWN'" 
+                   :class="[styles.alertBadge, getAlertBadgeClass(assessment.alert_level)]">
+                {{ getAlertIcon(assessment.alert_level) }} {{ assessment.alert_level }}
+              </div>
             </div>
             <div :class="styles.cardContent">
               <p :class="styles.cardSummary">{{ assessment.summary }}</p>
@@ -139,6 +144,20 @@
                 <div :class="styles.statPill">
                   <span class="material-icons">check_circle</span>
                   {{ assessment.data.questions_answered }} questions
+                </div>
+              </div>
+              <div :class="styles.cardStats" v-else-if="assessment.type.includes('florence_conversation')">
+                <div :class="styles.statPill">
+                  <span class="material-icons">chat</span>
+                  {{ assessment.data.user_messages }} messages
+                </div>
+                <div v-if="assessment.data.diagnosis_predictions && assessment.data.diagnosis_predictions.length > 0" :class="styles.statPill">
+                  <span class="material-icons">psychology</span>
+                  {{ assessment.data.diagnosis_predictions.length }} diagnoses
+                </div>
+                <div v-if="assessment.data.confidence_level" :class="styles.statPill">
+                  <span class="material-icons">trending_up</span>
+                  {{ assessment.data.confidence_level }} confidence
                 </div>
               </div>
             </div>
@@ -204,6 +223,21 @@ const getIconColor = (assessment) => {
   return 'var(--color-lavender-500)'
 }
 
+// 3-Agent System Alert Helper Functions
+const getAlertIcon = (level) => {
+  const icons = {
+    'GREEN': '🟢',
+    'YELLOW': '🟡',
+    'ORANGE': '🟠',
+    'RED': '🔴'
+  }
+  return icons[level] || '⚪'
+}
+
+const getAlertBadgeClass = (level) => {
+  return `alertBadge${level.toLowerCase().charAt(0).toUpperCase() + level.toLowerCase().slice(1)}`
+}
+
 const formatDate = (dateString) => {
   try {
     const date = new Date(dateString)
@@ -261,7 +295,7 @@ const fetchAssessments = async () => {
     const token = JSON.parse(localStorage.getItem('token')).access_token
     const apiUrl = import.meta.env.VITE_API_URL || 'https://ovis-backend-mvp.onrender.com'
     
-    const response = await fetch(`${apiUrl}/unified_assessments`, {
+    const response = await fetch(`${apiUrl}/analytics/unified_assessments`, {
       method: 'GET',
       headers: {
         'Accept': 'application/json',

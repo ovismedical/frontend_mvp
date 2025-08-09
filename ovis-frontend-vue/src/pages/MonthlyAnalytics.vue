@@ -697,7 +697,7 @@ const fetchMonthlyData = async () => {
     const token = JSON.parse(localStorage.getItem('token')).access_token
     const apiUrl = import.meta.env.VITE_API_URL || 'https://ovis-backend-mvp.onrender.com'
     
-    const url = `${apiUrl}/monthly_analytics?month_offset=${currentMonthOffset.value}`
+    const url = `${apiUrl}/analytics/monthly?month_offset=${currentMonthOffset.value}`
     const response = await fetch(url, {
       method: 'GET',
       headers: {

@@ -504,4 +504,310 @@
   font-size: 14px;
   color: #713f12;
   line-height: 1.5;
+}
+
+/* Triage Section Styles (3-Agent System) */
+.triageSection {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+}
+
+.alertCard {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  border-left: 4px solid #6b7280;
+}
+
+.alertCard.alertGreen {
+  border-left-color: #10b981;
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+}
+
+.alertCard.alertYellow {
+  border-left-color: #f59e0b;
+  background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+}
+
+.alertCard.alertOrange {
+  border-left-color: #f97316;
+  background: linear-gradient(135deg, #fff7ed 0%, #fed7aa 100%);
+}
+
+.alertCard.alertRed {
+  border-left-color: #ef4444;
+  background: linear-gradient(135deg, #fef2f2 0%, #fecaca 100%);
+}
+
+.alertHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.alertIcon {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.alertInfo {
+  flex: 1;
+}
+
+.alertLevel {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.alertDescription {
+  margin: 0.5rem 0 0 0;
+  color: #6b7280;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.timelineInfo {
+  padding: 1rem;
+  background: rgba(255,255,255,0.7);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: #374151;
+}
+
+.diagnosesCard, .notesCard {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  border: 1px solid #e5e7eb;
+}
+
+.cardTitle {
+  margin: 0 0 1rem 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1f2937;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.cardTitle::before {
+  content: '🩺';
+  font-size: 1.2rem;
+}
+
+.diagnosesList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.diagnosisItem {
+  padding: 1rem;
+  background: #f9fafb;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+.diagnosisContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.diagnosisCondition {
+  font-weight: 600;
+  color: #1f2937;
+  font-size: 0.95rem;
+}
+
+.likelihoodBadge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.likelihoodHigh {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.likelihoodModerate {
+  background: #fef3c7;
+  color: #d97706;
+}
+
+.likelihoodLow {
+  background: #e0f2fe;
+  color: #0369a1;
+}
+
+.diagnosisRationale {
+  font-size: 0.85rem;
+  color: #6b7280;
+  line-height: 1.4;
+  font-style: italic;
+}
+
+.notesCard .cardTitle::before {
+  content: '📝';
+}
+
+/* Responsive updates for triage section */
+@media (max-width: 768px) {
+  .triageSection {
+    margin-top: 1.5rem;
+    padding: 1rem;
+  }
+  
+  .alertCard, .diagnosesCard, .notesCard {
+    padding: 1rem;
+  }
+  
+  .diagnosisContent {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .alertHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+} 
+
+/* Enhanced Diagnosis Prediction Styles */
+.diagnosisBadges {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.probabilityBadge, .urgencyBadge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.probabilityHigh {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.probabilityMedium {
+  background: #fef3c7;
+  color: #d97706;
+}
+
+.probabilityLow {
+  background: #e0f2fe;
+  color: #0369a1;
+}
+
+.urgencyHigh {
+  background: #fecaca;
+  color: #dc2626;
+  border: 1px solid #f87171;
+}
+
+.urgencyMedium {
+  background: #fed7aa;
+  color: #ea580c;
+  border: 1px solid #fb923c;
+}
+
+.urgencyLow {
+  background: #dcfce7;
+  color: #16a34a;
+  border: 1px solid #4ade80;
+}
+
+.reasoningCard {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid #cbd5e1;
+}
+
+.reasoningText {
+  margin: 0;
+  line-height: 1.6;
+  color: #374151;
+  font-size: 0.95rem;
+  white-space: pre-wrap;
+}
+
+.confidenceCard {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  border: 1px solid #e5e7eb;
+  text-align: center;
+}
+
+.confidenceBadge {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: 24px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.025em;
+}
+
+.confidenceHigh {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+}
+
+.confidenceMedium {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: white;
+}
+
+.confidenceLow {
+  background: linear-gradient(135deg, #6b7280, #4b5563);
+  color: white;
+}
+
+.reasoningCard .cardTitle::before {
+  content: '🧠';
+}
+
+.confidenceCard .cardTitle::before {
+  content: '📊';
+}
+
+/* Enhanced diagnosis content layout */
+.diagnosisContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.diagnosisCondition {
+  font-weight: 600;
+  color: #1f2937;
+  font-size: 1rem;
+  line-height: 1.2;
 } 

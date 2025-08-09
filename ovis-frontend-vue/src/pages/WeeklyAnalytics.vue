@@ -551,7 +551,7 @@ const fetchWeeklyData = async () => {
     const token = JSON.parse(localStorage.getItem('token')).access_token
     const apiUrl = import.meta.env.VITE_API_URL || 'https://ovis-backend-mvp.onrender.com'
     
-    const url = `${apiUrl}/weekly_analytics?week_offset=${currentWeekOffset.value}`
+    const url = `${apiUrl}/analytics/weekly?week_offset=${currentWeekOffset.value}`
     const response = await fetch(url, {
       method: 'GET',
       headers: {
