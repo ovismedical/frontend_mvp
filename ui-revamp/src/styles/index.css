@@ -13,6 +13,7 @@
 @import "./pages/otp.css";
 @import "./pages/dashboard.css";
 @import "./pages/medication.css";
+@import "./pages/medication_details.css";
 
 body {
   background-color: var(--background-500);

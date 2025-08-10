@@ -4,7 +4,6 @@ import medicationsData from "../../data/medications.json";
 
 const MedicationList = ({ activeTab, searchTerm = "" }) => {
   const filteredMedications = medicationsData.medications.filter((med) => {
-
     let statusMatch = false;
     if (activeTab === "Active") {
       statusMatch = med.active === true;
@@ -54,7 +53,10 @@ const MedicationList = ({ activeTab, searchTerm = "" }) => {
       }}
     >
       {filteredMedications.length === 0 && searchTerm ? (
-        <div className="body" style={{ textAlign: "center", padding: "20px", color: "#2A5CAF" }}>
+        <div
+          className="body"
+          style={{ textAlign: "center", padding: "20px", color: "#2A5CAF" }}
+        >
           No medications found matching "{searchTerm}"
         </div>
       ) : (
@@ -69,6 +71,7 @@ const MedicationList = ({ activeTab, searchTerm = "" }) => {
               medication.remaining_quantity
             )}
             status={getStatus(medication.expiry_date, medication.active)}
+            medicationData={medication}
           />
         ))
       )}

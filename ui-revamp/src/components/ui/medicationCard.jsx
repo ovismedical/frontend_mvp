@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "../../styles/components/medicationCard.css";
 
 const MedicationCard = ({
@@ -7,7 +8,18 @@ const MedicationCard = ({
   description = "Description",
   progress = 0,
   status = "default",
+  medicationData = null,
 }) => {
+  const navigate = useNavigate();
+
+  const handleCardClick = () => {
+    if (medicationData && status !== "archived") {
+      navigate("/medication_details", {
+        state: { medication: medicationData },
+      });
+    }
+  };
+
   const getStatusConfig = () => {
     switch (status) {
       case "nearExpiry":
@@ -55,7 +67,11 @@ const MedicationCard = ({
   const statusConfig = getStatusConfig();
 
   return (
-    <div className="med-card">
+    <div
+      className="med-card"
+      onClick={handleCardClick}
+      style={{ cursor: statusConfig.showChevron ? "pointer" : "default" }}
+    >
       <div className="med-card-content">
         <div className="med-card-img-wrap">
           <img src={image} alt="Medication" className="med-card-img" />
