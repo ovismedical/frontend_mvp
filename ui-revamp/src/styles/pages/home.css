@@ -1,15 +1,35 @@
+.home-page-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
 .homepage-content-container {
   display: flex;
   flex-direction: column;
   gap: 24px;
   padding: 0 16px;
   margin-bottom: 50px;
+
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+
+.homepage-content-container::-webkit-scrollbar {
+  display: none;
 }
 
 .home-page-notifications {
   padding: 0 16px;
   margin-bottom: 10px;
   margin-top: 10px;
+  flex-shrink: 0;
 }
 
 @media screen and (min-width: 1000px) {
@@ -21,6 +41,17 @@
       "medication medication"
       "careLibrary careLibrary";
     gap: 24px;
+
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .homepage-content-container::-webkit-scrollbar {
+    display: none;
   }
 
   .homepage-content-container > :nth-child(1) {
