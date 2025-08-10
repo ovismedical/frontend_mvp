@@ -34,6 +34,7 @@ import Home from "./pages/home.jsx";
 import Chatbot from "./pages/chatbot.jsx";
 import VoiceInputChatbot from "./pages/chatbot_voice.jsx";
 import Dashboard from "./pages/dashboards/dashboard.jsx";
+import MedicationList from "./pages/medication/medication.jsx";
 
 function App() {
   const location = useLocation();
@@ -44,13 +45,18 @@ function App() {
     const isChatbot = location.pathname === "/chatbot";
     const isChatbotVoice = location.pathname === "/chatbot_voice";
     const isDashboard = location.pathname === "/dashboard";
+    const isMedicationList = location.pathname === "/medication";
     document.body.classList.toggle(
       "no-body-padding",
-      isHome || isChatbot || isChatbotVoice || isDashboard
+      isHome || isChatbot || isChatbotVoice || isDashboard || isMedicationList
     );
     document.body.classList.toggle(
       "body-centered",
-      !isHome && !isChatbot && !isChatbotVoice && !isDashboard
+      !isHome &&
+        !isChatbot &&
+        !isChatbotVoice &&
+        !isDashboard &&
+        !isMedicationList
     );
   }, [location.pathname]);
 
@@ -93,6 +99,7 @@ function App() {
         <Route path="/assessment09" element={<Assessment09 />} />
         <Route path="/chatbot" element={<Chatbot />} />
         <Route path="/chatbot_voice" element={<VoiceInputChatbot />} />
+        <Route path="/medication" element={<MedicationList />} />
 
         <Route
           element={

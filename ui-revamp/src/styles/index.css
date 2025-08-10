@@ -12,6 +12,7 @@
 @import "./pages/chatbot_voice.css";
 @import "./pages/otp.css";
 @import "./pages/dashboard.css";
+@import "./pages/medication.css";
 
 body {
   background-color: var(--background-500);

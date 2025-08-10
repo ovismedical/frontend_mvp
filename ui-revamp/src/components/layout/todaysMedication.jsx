@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../../styles/components/todaysMedication.css";
+import { useNavigate } from "react-router-dom";
 
 const initialMedications = [
   {
@@ -68,6 +69,7 @@ const initialMedications = [
 ];
 
 const MedicationCard = () => {
+  const navigate = useNavigate();
   const [medications, setMedications] = useState(initialMedications);
   const now = new Date();
 
@@ -107,11 +109,15 @@ const MedicationCard = () => {
     );
   };
 
+  const handleViewAll = (e) => {
+    navigate("/medication");
+  };
+
   return (
     <div className="medication-container">
       <div className="medication-header">
         <h2 className="medication-header-title h4">Today's Medication</h2>
-        <a href="#" className="view-all caption">
+        <a href="#" className="view-all caption" onClick={handleViewAll}>
           View All
         </a>
       </div>

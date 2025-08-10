@@ -1,0 +1,94 @@
+{
+  "medications": [
+    {
+      "img_path": "images/medications/tamoxifen.png",
+      "med_name": "Tamoxifen",
+      "med_type": "Tablets",
+      "dosage_strength": "20 mg",
+      "total_quantity": "50 pcs",
+      "remaining_quantity": "28 pcs",
+      "expiry_date": "24 December, 2025",
+      "refill_date": "16 December, 2024",
+      "active": true,
+      "dosage_instructions": "Take 1 tablet daily, after breakfast",
+      "purpose": "Hormone receptor-positive breast cancer",
+      "side_effects": {
+        "common": ["Hot flashes", "Nausea", "Vaginal discharge"],
+        "less_common": ["Mood changes", "Headaches", "Dizziness"],
+        "serious": [
+          "Blood clots",
+          "Stroke",
+          "Increased risk of endometrial cancer"
+        ]
+      }
+    },
+    {
+      "img_path": "/images/medications/letrozole.png",
+      "med_name": "Letrozole (Femara)",
+      "med_type": "Tablets",
+      "dosage_strength": "2.5 mg",
+      "total_quantity": "30 pcs",
+      "remaining_quantity": "15 pcs",
+      "expiry_date": "15 March, 2026",
+      "refill_date": "N/A",
+      "active": true,
+      "dosage_instructions": "Take 1 tablet daily, with or without food",
+      "purpose": "Hormone receptor-positive breast cancer (postmenopausal)",
+      "side_effects": {
+        "common": ["Joint pain", "Hot flashes", "Fatigue"],
+        "serious": ["Bone loss", "High cholesterol", "Heart issues"]
+      }
+    },
+    {
+      "img_path": "images/medications/lazido.png",
+      "med_name": "Lazido",
+      "med_type": "Sachets",
+      "dosage_strength": "5g/sachet",
+      "total_quantity": "20 sachets",
+      "remaining_quantity": "8 sachets",
+      "expiry_date": "5 September, 2025",
+      "refill_date": "20 November, 2024",
+      "active": true,
+      "dosage_instructions": "Mix 1 sachet in water, take twice daily",
+      "purpose": "Electrolyte imbalance (diarrhea/vomiting)",
+      "side_effects": {
+        "common": ["Nausea", "Mild stomach cramps"],
+        "serious": ["Allergic reaction", "High sodium levels"]
+      }
+    },
+    {
+      "img_path": "images/medications/ondatron.png",
+      "med_name": "Ondatron",
+      "med_type": "Tablets",
+      "dosage_strength": "4 mg",
+      "total_quantity": "10 pcs",
+      "remaining_quantity": "3 pcs",
+      "expiry_date": "15 August, 2023",
+      "refill_date": "10 January, 2024",
+      "active": true,
+      "dosage_instructions": "Take 1 tablet every 8 hours as needed for nausea",
+      "purpose": "Chemotherapy-induced nausea/vomiting",
+      "side_effects": {
+        "common": ["Headache", "Constipation"],
+        "serious": ["Irregular heartbeat", "Severe allergic reaction"]
+      }
+    },
+    {
+      "img_path": "images/medications/paracetamol.png",
+      "med_name": "Paracetamol",
+      "med_type": "Tablets",
+      "dosage_strength": "500 mg",
+      "total_quantity": "20pcs",
+      "remaining_quantity": "12pcs",
+      "expiry_date": "30 December, 2025",
+      "refill_date": "15 November, 2025",
+      "active": false,
+      "dosage_instructions": "Take 1-2 tablets every 4-6 hours as needed. Do not exceed 8 tablets in 24 hours.",
+      "purpose": "Pain relief and fever reduction",
+      "side_effects": {
+        "common": ["Nausea", "Rash"],
+        "serious": ["Liver damage", "Allergic reaction"]
+      }
+    }
+  ]
+}
