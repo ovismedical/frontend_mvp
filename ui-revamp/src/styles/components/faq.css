@@ -1,0 +1,26 @@
+.container {
+  border: 1.5px solid var(--neutral-200);
+  border-radius: var(--radius-l);
+  padding: 15px;
+  cursor: pointer;
+}
+
+.questionContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.question {
+  color: var(--text-500);
+}
+
+.icon {
+  color: var(--blue-700);
+  margin-left: 12px;
+}
+
+.answer {
+  color: var(--text-300);
+  margin: 8px 0 5px 0;
+}

@@ -1,0 +1,33 @@
+.version-card {
+  border: 1.5px solid var(--neutral-200);
+  border-radius: var(--radius-m);
+  padding: 16px;
+}
+
+.version-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.version-badge {
+  background-color: var(--blue-700);
+  color: var(--blue-50);
+  padding: 4px 10px;
+  border-radius: var(--radius-xl);
+}
+
+.version-date {
+  color: var(--text-200);
+}
+
+.version-title {
+  margin: 0;
+  color: var(--text-500);
+}
+
+.version-description {
+  margin-top: 6px;
+  color: var(--text-300);
+}

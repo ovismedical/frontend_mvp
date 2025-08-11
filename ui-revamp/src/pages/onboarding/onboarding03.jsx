@@ -52,7 +52,13 @@ const Onboarding03 = () => {
 
         <p className="onboarding-footer caption">
           {t("onboarding_footer")}
-          <a href="#" className="helpCenter-link caption">
+          <a
+            className="helpCenter-link caption"
+            onClick={(e) => {
+              e.preventDefault();
+              navigate("/help_center");
+            }}
+          >
             {t("help_center_link")}
           </a>
         </p>

@@ -110,6 +110,7 @@ const MedicationCard = () => {
   };
 
   const handleViewAll = (e) => {
+    e.preventDefault();
     navigate("/medication");
   };
 
