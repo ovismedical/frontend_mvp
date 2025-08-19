@@ -15,11 +15,16 @@
 .settings-content {
   margin: 30px auto 0 auto;
   width: 90%;
+  flex: 1;
+  overflow-y: auto;
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
 }
 
-.settings-content {
-  margin: 30px auto 0 auto;
-  width: 90%;
+.settings-content::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
 }
 
 .account-settings-list {
@@ -45,6 +50,7 @@
   flex-direction: column;
   gap: 12px;
   margin-top: 12px;
+  margin-bottom: 70px;
 }
 
 .settings-item {
@@ -148,6 +154,7 @@
   background-color: var(--neutral-200);
   border-radius: 24px;
   transition: 0.3s;
+  min-width: 44px;
 }
 
 .toggle-slider:before {

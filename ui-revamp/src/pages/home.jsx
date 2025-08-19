@@ -4,14 +4,12 @@ import DailyCheckIn from "../components/layout/dailyCheckIn.jsx";
 import TodaysMedication from "../components/layout/todaysMedication.jsx";
 import WellnessScoreCard from "../components/layout/wellnessCard.jsx";
 import CareLibrary from "../components/layout/careLibrary.jsx";
-import ScaleToggle from "../components/ui/scaleToggle.jsx";
 import HomeNotifications from "../components/layout/homeNotifications.jsx";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 const Home = () => {
   const navigate = useNavigate();
-  const { t } = useTranslation();
 
   return (
     <div className="home-page-container">
@@ -25,8 +23,6 @@ const Home = () => {
         <WellnessScoreCard />
         <CareLibrary />
       </div>
-
-      <ScaleToggle />
     </div>
   );
 };

@@ -10,7 +10,7 @@
   flex-direction: column;
   gap: 24px;
   padding: 0 16px;
-  margin-bottom: 50px;
+  /* margin-bottom: 180px; */
 
   flex: 1;
   overflow-y: auto;

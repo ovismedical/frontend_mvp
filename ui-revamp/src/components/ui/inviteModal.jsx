@@ -4,14 +4,39 @@ import Button from "../ui/button";
 import "../../styles/components/inviteModal.css";
 
 const InviteModal = ({ isOpen, onClose, userName, inviteLink }) => {
-  if (!isOpen) return null; // Don't render if not open
+  if (!isOpen) return null; 
 
   const [copied, setCopied] = React.useState(false);
 
-  const handleCopy = () => {
-    navigator.clipboard.writeText(inviteLink);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+  const handleCopy = async () => {
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(inviteLink);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      } else {
+        const textArea = document.createElement("textarea");
+        textArea.value = inviteLink;
+        textArea.style.position = "fixed";
+        textArea.style.left = "-999999px";
+        textArea.style.top = "-999999px";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+
+        const successful = document.execCommand("copy");
+        document.body.removeChild(textArea);
+
+        if (successful) {
+          setCopied(true);
+          setTimeout(() => setCopied(false), 2000);
+        } else {
+          console.log("Copy failed");
+        }
+      }
+    } catch (err) {
+      console.error("Failed to copy: ", err);
+    }
   };
 
   return (

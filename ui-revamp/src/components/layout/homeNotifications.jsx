@@ -33,7 +33,7 @@ const HomeNotifications = () => {
 
   return (
     <div className="home-notifications-container">
-      {notifications.slice(0, 2).map((note) => (
+      {notifications.slice(0, 1).map((note) => (
         <NotificationCard
           key={note.id}
           title={note.title}
@@ -43,9 +43,9 @@ const HomeNotifications = () => {
           onClose={() => handleClose(note.id)}
         />
       ))}
-      {notifications.length > 2 && (
+      {notifications.length > 1 && (
         <div className="stacked-count body">
-          + {notifications.length - 2} more
+          + {notifications.length - 1} more
         </div>
       )}
     </div>

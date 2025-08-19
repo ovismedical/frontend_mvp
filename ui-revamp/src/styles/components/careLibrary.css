@@ -1,6 +1,10 @@
 @import "../typography.css";
 @import "../variables.css";
 
+.care-library-container {
+  margin-bottom: 10%;
+}
+
 .care-library-header {
   display: flex;
   justify-content: space-between;
@@ -44,4 +48,10 @@
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   line-height: 1.2;
+}
+
+@media (max-width: 600px) {
+  .care-library-container {
+    margin-bottom: 50%;
+  }
 }

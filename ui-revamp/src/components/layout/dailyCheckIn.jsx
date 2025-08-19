@@ -1,14 +1,23 @@
 import React from "react";
 import "../../styles/components/dailyCheckIn.css";
 import WeeklyProgressRow from "../ui/weekly_ProgressRow";
+import { useNavigate } from "react-router-dom";
 
 const DailyCheckIn = ({ currentDays = 2, longestDays = 12 }) => {
-  
+  const navigate = useNavigate();
+
+  const handleLogToday = (e) => {
+    e.preventDefault();
+    navigate("/chatbot");
+  };
+
   return (
     <div className="daily-checkin">
       <div className="header">
         <h3 className="daily-checkin-title h4">Daily Check-In</h3>
-        <button className="log-button caption">Log Today</button>
+        <button className="log-button caption" onClick={handleLogToday}>
+          Log Today
+        </button>
       </div>
 
       <div className="streak-progress-row">

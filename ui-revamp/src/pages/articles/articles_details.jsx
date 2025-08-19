@@ -16,6 +16,8 @@ export default function ArticleDetails() {
   const [activeTab, setActiveTab] = useState("Article");
   const [article, setArticle] = useState(null);
   const [commentText, setCommentText] = useState("");
+  // Add touch tracking state
+  const [touchStart, setTouchStart] = useState(null);
 
   const tabs = [{ name: "Article" }, { name: "Comments" }, { name: "Similar" }];
 
@@ -63,6 +65,36 @@ export default function ArticleDetails() {
       setIsScrolled(true);
       setTimeout(() => setAllowScroll(true), 300);
     }
+  };
+
+  // Add touch event handlers
+  const handleTouchStart = (e) => {
+    setTouchStart(e.touches[0].clientY);
+  };
+
+  const handleTouchMove = (e) => {
+    if (!touchStart) return;
+
+    const scrollHeight = articleTextRef.current?.scrollHeight || 0;
+    const clientHeight = articleTextRef.current?.clientHeight || 0;
+
+    if (scrollHeight <= clientHeight) {
+      return;
+    }
+
+    const currentTouch = e.touches[0].clientY;
+    const diff = touchStart - currentTouch;
+
+    // If scrolling down and scroll is not allowed yet
+    if (!allowScroll && diff > 20) {
+      e.preventDefault();
+      setIsScrolled(true);
+      setTimeout(() => setAllowScroll(true), 300);
+    }
+  };
+
+  const handleTouchEnd = () => {
+    setTouchStart(null);
   };
 
   const handleScroll = () => {
@@ -179,7 +211,7 @@ export default function ArticleDetails() {
         <img src={article.imageUrl} alt={article.title} />
         <span
           className="material-symbols-rounded article-back-btn"
-          onClick={() => navigate('/articles')}
+          onClick={() => navigate("/articles")}
         >
           chevron_backward
         </span>
@@ -201,6 +233,9 @@ export default function ArticleDetails() {
       <div
         className={`article-content ${isScrolled ? "scrolled" : ""}`}
         onWheel={handleWheel}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
       >
         <div className="article-content-tabs">
           <Tabs

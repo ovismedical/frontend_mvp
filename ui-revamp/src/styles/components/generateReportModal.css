@@ -15,7 +15,7 @@
 .generate-report-modal {
   background: var(--background-500);
   border-radius: var(--radius-l);
-  width: 70%;
+  width: 80%;
   min-height: 400px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
   padding: 16px;

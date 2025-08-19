@@ -43,15 +43,28 @@
 .badge-details-congrats {
   text-align: center;
   color: var(--text-300);
+  margin: 0;
 }
 
 .badge-details-unlocked {
   text-align: center;
   color: var(--text-500);
+  
+}
+
+.badge-details-info {
+  display: flex;
+  flex-direction: column;
 }
 
 .badge-details-image {
   text-align: center;
+}
+
+.badge-details-image img {
+  max-width: 200px;
+  max-height: 200px;
+  height: auto;
 }
 
 .badge-details-name {
@@ -62,7 +75,7 @@
 .badge-details-description {
   text-align: center;
   color: var(--text-300);
-  max-width: 70%;
+  max-width: 90%; /* More flexible on smaller screens */
   margin: 0 auto;
 }
 
@@ -72,7 +85,7 @@
   align-items: center;
   justify-content: center;
   width: fit-content;
-  margin: 25% auto 0 auto;
+  margin: 20px auto 0 auto; /* Reduced top margin */
   padding: 8px 16px;
   border-radius: var(--radius-m);
 }
@@ -90,6 +103,35 @@
 }
 
 .badge-details-buttonwrap {
-  width: 80%;
-  margin: 0 auto;
+  width: 100%;
+  max-width: 300px; /* Prevent button from getting too wide */
+  margin: 20px auto 0 auto;
+}
+
+/* Responsive breakpoints */
+@media (max-width: 480px) {
+  .badge-details-content {
+    width: 90%;
+    padding: 16px 12px;
+    gap: 12px;
+  }
+
+  .badge-details-image img {
+    width: 50vw;
+    max-width: 150px;
+  }
+
+  .badge-details-date {
+    margin: 16px auto 0 auto;
+    padding: 6px 12px;
+  }
+}
+
+@media (min-width: 768px) {
+
+  .badge-details-image img {
+    width: 220px;
+    max-width: none;
+  }
+
 }

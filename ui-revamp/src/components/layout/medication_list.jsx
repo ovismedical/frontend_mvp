@@ -1,6 +1,7 @@
 import React from "react";
 import MedicationCard from "../../components/ui/medicationCard";
 import medicationsData from "../../data/medications.json";
+import "../../styles/components/medication_list.css";
 
 const MedicationList = ({ activeTab, searchTerm = "" }) => {
   const filteredMedications = medicationsData.medications.filter((med) => {
@@ -43,20 +44,9 @@ const MedicationList = ({ activeTab, searchTerm = "" }) => {
   };
 
   return (
-    <div
-      className="med-list"
-      style={{
-        margin: "20px",
-        display: "flex",
-        flexDirection: "column",
-        gap: "15px",
-      }}
-    >
+    <div className="med-list">
       {filteredMedications.length === 0 && searchTerm ? (
-        <div
-          className="body"
-          style={{ textAlign: "center", padding: "20px", color: "#2A5CAF" }}
-        >
+        <div className="body med-list-no-results">
           No medications found matching "{searchTerm}"
         </div>
       ) : (

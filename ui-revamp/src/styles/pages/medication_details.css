@@ -27,6 +27,14 @@
   padding-inline: 5%;
   padding-top: 2%;
   flex: 1;
+  overflow-y: auto;
+  /* Hide scrollbar for webkit browsers */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.med-details-content::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
 }
 
 .med-details-body {
@@ -130,6 +138,9 @@
   color: var(--text-500);
 }
 
+.side-effects {
+  margin-bottom: 120px;
+}
 .side-effect-group {
   background-color: var(--background-50);
   padding: 10px;
