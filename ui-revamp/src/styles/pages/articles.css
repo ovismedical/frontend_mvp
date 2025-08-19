@@ -1,0 +1,94 @@
+/* Layout and Container */
+.article-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Header */
+.article-header {
+  padding: 16px;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  background: var(--background-500);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 10;
+}
+
+.chevron_backward {
+  font-size: 26px;
+  color: var(--text-600);
+  cursor: pointer;
+}
+
+.search {
+  font-size: 26px;
+  color: var(--text-600);
+  cursor: pointer;
+}
+
+/* Tabs */
+.tabs-scrollable-container {
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  padding: 0 16px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  flex-shrink: 0;
+}
+
+.tabs-scrollable-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* Article List */
+.article-list-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+  padding: 15px;
+  margin-inline: 20px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-behavior: smooth;
+  justify-items: center;
+}
+
+.article-list-container::-webkit-scrollbar {
+  display: none; /* WebKit */
+}
+
+.no-articles-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  text-align: center;
+  color: var(--text-400);
+}
+
+/* Media Queries */
+@media (min-width: 768px) {
+  .article-list-container {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 50px;
+  }
+
+  .tabs-scrollable-container {
+    margin: 0 auto;
+  }
+}
+
+@media (min-width: 1024px) {
+  .article-list-container {
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 50px;
+  }
+}

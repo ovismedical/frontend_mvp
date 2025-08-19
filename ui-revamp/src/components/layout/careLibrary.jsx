@@ -1,5 +1,6 @@
 import React from "react";
 import ArticleCard from "../ui/articleCard";
+import { useNavigate } from "react-router-dom";
 import "../../styles/components/careLibrary.css";
 
 const articleData = [
@@ -85,11 +86,18 @@ const articleData = [
 ];
 
 const CareLibrary = () => {
+  const navigate = useNavigate();
+
+  const handleViewAll = (e) => {
+    e.preventDefault();
+    navigate("/articles");
+  };
+
   return (
     <div className="care-library-container">
       <div className="care-library-header">
         <h2 className="care-library-header-title h4">Your Care Library</h2>
-        <a href="#" className="view-all caption">
+        <a href="#" className="view-all caption" onClick={handleViewAll}>
           View All
         </a>
       </div>

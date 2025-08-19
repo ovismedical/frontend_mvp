@@ -55,7 +55,7 @@ const Medication = () => {
         </div>
       )}
 
-      <Tabs tabs={tabs} onTabChange={handleTabChange} />
+      <Tabs tabs={tabs} onTabChange={handleTabChange} activeTab={activeTab} />
       <MedicationList activeTab={activeTab} searchTerm={searchTerm} />
     </div>
   );

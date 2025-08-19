@@ -1,0 +1,27 @@
+[
+  {
+    "userId": 1,
+    "fullName": "Alice Johnson",
+    "profileImg": "https://writestylesonline.com/wp-content/uploads/2018/11/Three-Statistics-That-Will-Make-You-Rethink-Your-Professional-Profile-Picture-1024x1024.jpg"
+  },
+  {
+    "userId": 2,
+    "fullName": "Bob Smith",
+    "profileImg": ""
+  },
+  {
+    "userId": 3,
+    "fullName": "Charlie Brown",
+    "profileImg": "https://plus.unsplash.com/premium_photo-1689568126014-06fea9d5d341?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D"
+  },
+  {
+    "userId": 4,
+    "fullName": "Diana Prince",
+    "profileImg": ""
+  },
+  {
+    "userId": 5,
+    "fullName": "Ethan Miller",
+    "profileImg": "https://bigtakeover.com/images/23867.jpg"
+  }
+]

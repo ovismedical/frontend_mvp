@@ -15,6 +15,8 @@
 @import "./pages/medication.css";
 @import "./pages/medication_details.css";
 @import "./pages/help_center.css";
+@import "./pages/articles.css";
+@import "./pages/articles_details.css";
 
 body {
   background-color: var(--background-500);

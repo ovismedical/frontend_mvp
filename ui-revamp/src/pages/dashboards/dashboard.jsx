@@ -28,7 +28,7 @@ const Dashboard = () => {
         <span className="material-symbols-rounded file_save">file_save</span>
       </div>
 
-      <Tabs tabs={tabs} onTabChange={handleTabChange} />
+      <Tabs tabs={tabs} onTabChange={handleTabChange} activeTab={activeTab} />
 
       <div className="dashboard-content">
         {activeTab === "Today" && <DailyDashboard />}

@@ -37,6 +37,8 @@ import Dashboard from "./pages/dashboards/dashboard.jsx";
 import MedicationList from "./pages/medication/medication.jsx";
 import MedicationDetails from "./pages/medication/medication_details.jsx";
 import HelpCenter from "./pages/help_center.jsx";
+import Article from "./pages/articles/articles.jsx";
+import ArticleDetails from "./pages/articles/articles_details.jsx";
 
 function App() {
   const location = useLocation();
@@ -50,6 +52,8 @@ function App() {
     const isMedicationList = location.pathname === "/medication";
     const isMedicationDetails = location.pathname === "/medication_details";
     const isHelpCenter = location.pathname === "/help_center";
+    const isArticle = location.pathname === "/articles";
+    const isArticleDetails = location.pathname === "/articles_details";
 
     document.body.classList.toggle(
       "no-body-padding",
@@ -59,7 +63,9 @@ function App() {
         isDashboard ||
         isMedicationList ||
         isMedicationDetails ||
-        isHelpCenter
+        isHelpCenter ||
+        isArticle ||
+        isArticleDetails
     );
     document.body.classList.toggle(
       "body-centered",
@@ -69,7 +75,9 @@ function App() {
         !isDashboard &&
         !isMedicationList &&
         !isMedicationDetails &&
-        !isHelpCenter
+        !isHelpCenter &&
+        !isArticle &&
+        !isArticleDetails
     );
   }, [location.pathname]);
 
@@ -115,6 +123,8 @@ function App() {
         <Route path="/medication" element={<MedicationList />} />
         <Route path="/medication_details" element={<MedicationDetails />} />
         <Route path="/help_center" element={<HelpCenter />} />
+        <Route path="/articles" element={<Article />} />
+        <Route path="/articles_details" element={<ArticleDetails />} />
 
         <Route
           element={

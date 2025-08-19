@@ -1,19 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import "../../styles/components/tabs.css";
 
-const Tabs = ({ tabs, onTabChange }) => {
-  const [activeTab, setActiveTab] = useState(tabs[0]?.name);
-
+const Tabs = ({ tabs, onTabChange, activeTab, scrollable = false }) => {
   const handleTabClick = (tabName) => {
     if (tabName !== activeTab) {
-      setActiveTab(tabName);
       onTabChange(tabName);
     }
   };
 
   return (
     <div className="tabs-container">
-      <div className="tabs">
+      <div className={`tabs ${scrollable ? "tabs-scrollable" : ""}`}>
         {tabs.map((tab) => (
           <button
             key={tab.name}

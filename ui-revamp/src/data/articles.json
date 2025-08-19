@@ -1,0 +1,572 @@
+{
+  "Nutrition": {
+    "icon": "restaurant",
+    "articles": [
+      {
+        "id": 1,
+        "title": "5 Easy Meals for Treatment Days",
+        "imageUrl": "https://images.immediate.co.uk/production/volatile/sites/30/2023/03/Quick-healthy-recipes-2cd552a.jpg?quality=90&webp=true&resize=800,726",
+        "description": "Simple, nourishing recipes designed to ease nausea and fatigue during treatment days.",
+        "content": [
+          {
+            "type": "p",
+            "text": "On treatment days, your energy may be low, your appetite might be unpredictable, and certain smells or textures could feel overwhelming. That’s why it’s important to choose meals that are gentle, quick to prepare, and easy on digestion, while still giving your body the nourishment it needs."
+          },
+          {
+            "type": "p",
+            "text": "Below are five simple meals that can help you feel nourished without adding extra stress. Each one is designed to be light, comforting, and rich in nutrients that support your recovery."
+          },
+          {
+            "type": "h3",
+            "text": "1. Creamy Oatmeal with Banana and Honey"
+          },
+          {
+            "type": "p",
+            "text": "Oats are a great source of soluble fiber, which can help regulate digestion and keep you feeling satisfied. The banana adds potassium, which may help with muscle function and fluid balance, while honey offers natural energy without being too heavy."
+          },
+          {
+            "type": "p",
+            "text": "Tip: Cook oats with milk or a fortified milk alternative for extra calcium and protein. Slice the banana just before serving to keep it fresh, and drizzle with a small spoonful of honey for a touch of sweetness."
+          },
+          {
+            "type": "img",
+            "src": "https://media.30seconds.com/tip/lg/Oatmeal-Recipes-This-Banana-Oatmeal-With-Brown-Sugar-Honey-12846-07ad4b22ac-1615391811.jpg",
+            "alt": "A warm bowl of oatmeal topped with fresh banana slices and a drizzle of honey."
+          },
+          {
+            "type": "h3",
+            "text": "2. Soft Scrambled Eggs with Spinach"
+          },
+          {
+            "type": "p",
+            "text": "Eggs are a gentle source of high-quality protein, and they cook in just a few minutes. Adding spinach boosts your intake of iron, folate, and vitamin C, all of which can be helpful during recovery."
+          },
+          {
+            "type": "p",
+            "text": "Tip: Use a low heat setting and stir slowly to create creamy, soft eggs that are easier to swallow. Wilt the spinach in the pan just before the eggs are done to keep its bright green color."
+          },
+          {
+            "type": "img",
+            "src": "https://i2.wp.com/www.downshiftology.com/wp-content/uploads/2023/06/How-to-Make-Greek-Scrambled-Eggs-6-600x400.jpg",
+            "alt": "Fluffy scrambled eggs mixed with tender spinach on a soft white plate."
+          },
+          {
+            "type": "h3",
+            "text": "3. Chicken and Rice Soup"
+          },
+          {
+            "type": "p",
+            "text": "A mild, clear broth helps keep you hydrated, while chicken provides lean protein and rice offers a gentle source of carbohydrates. Soft-cooked vegetables like carrots or zucchini add extra vitamins without being too fibrous."
+          },
+          {
+            "type": "p",
+            "text": "Tip: Keep pre-cooked shredded chicken and frozen vegetables on hand to make this in under 15 minutes. Season lightly with salt and a splash of lemon juice for brightness."
+          },
+          {
+            "type": "img",
+            "src": "https://www.katysfoodfinds.com/wp-content/uploads/2021/02/chicken-rice-and-vegetable-soup-ft.jpg",
+            "alt": "A comforting bowl of chicken and rice soup with soft vegetables."
+          },
+          {
+            "type": "h3",
+            "text": "4. Avocado Toast on Soft Bread"
+          },
+          {
+            "type": "p",
+            "text": "Avocados are rich in healthy fats that help sustain energy. Mashing them creates a creamy texture that’s easier to eat, and pairing with soft bread avoids rough edges that might irritate your mouth."
+          },
+          {
+            "type": "p",
+            "text": "Tip: For extra flavor, mix the avocado with a small pinch of salt and a squeeze of lemon juice. If you’re feeling adventurous, top with a soft-boiled egg or a sprinkle of mild cheese."
+          },
+          {
+            "type": "img",
+            "src": "https://spcdn.shortpixel.ai/spio/ret_img,q_cdnize/simplyfreshfoodie.com/wp-content/uploads/2024/04/BasicAvocadoToast-12396.jpg",
+            "alt": "Soft bread topped with mashed avocado, lightly seasoned with lemon and salt."
+          },
+          {
+            "type": "h3",
+            "text": "5. Yogurt with Berries"
+          },
+          {
+            "type": "p",
+            "text": "Yogurt is a cool, soothing source of protein and probiotics, which can help support gut health. Adding soft berries like blueberries or raspberries provides antioxidants without overwhelming your stomach."
+          },
+          {
+            "type": "p",
+            "text": "Tip: Choose plain or lightly sweetened yogurt to avoid excess sugar, and let it sit out for a few minutes if you’re sensitive to very cold foods. You can also blend the yogurt and berries into a smooth, drinkable form."
+          },
+          {
+            "type": "img",
+            "src": "https://www.favfamilyrecipes.com/wp-content/uploads/2023/07/Three-cups-of-Breakfast-Parfaits.jpg",
+            "alt": "A small bowl of yogurt topped with fresh blueberries and raspberries."
+          },
+          {
+            "type": "p",
+            "text": "Remember, on treatment days it’s not about eating perfectly — it’s about finding small, manageable ways to give your body the fuel it needs. Even a few bites can make a difference, and every little bit of nourishment counts."
+          }
+        ],
+        "likes": 200000,
+        "readTimeMinutes": 5,
+        "comments": [
+          {
+            "userId": 1,
+            "timestamp": "2025-08-15T10:30:45Z",
+            "text": "The oatmeal recipe saved me during my treatment week. So simple and gentle on the stomach!"
+          },
+          {
+            "userId": 3,
+            "timestamp": "2025-08-15T14:22:18Z",
+            "text": "I've been making the chicken and rice soup regularly. My family loves it too!"
+          },
+          {
+            "userId": 5,
+            "timestamp": "2025-08-16T08:15:30Z",
+            "text": "Thank you for these recipes. The avocado toast has become my go-to breakfast."
+          },
+          {
+            "userId": 2,
+            "timestamp": "2025-08-16T11:45:12Z",
+            "text": "These are perfect for when cooking feels overwhelming. Really appreciate the detailed tips!"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "title": "Snack Ideas for Nausea Relief",
+        "imageUrl": "https://flavorfulife.com/wp-content/uploads/2025/06/Snack-Plate-social-media-cover.png",
+        "description": "Try these easy, stomach-friendly snacks to help calm nausea.",
+        "content": [
+          {
+            "type": "p",
+            "text": "When nausea strikes, heavy or greasy snacks can make things worse. These light, soothing snacks can help settle your stomach while still giving you some energy."
+          },
+          {
+            "type": "h3",
+            "text": "1. Saltine Crackers"
+          },
+          {
+            "type": "p",
+            "text": "Plain crackers are bland and easy to digest, making them a classic nausea-friendly snack. They can help absorb stomach acid and settle queasiness."
+          },
+          {
+            "type": "img",
+            "src": "https://www.asouthernsoul.com/wp-content/uploads/2025/04/fire-crackers-8-728x1092.jpg",
+            "alt": "A small plate of plain saltine crackers."
+          },
+          {
+            "type": "h3",
+            "text": "2. Banana Slices"
+          },
+          {
+            "type": "p",
+            "text": "Bananas are gentle on the stomach, provide potassium, and help replenish electrolytes if you’ve been feeling unwell."
+          },
+          {
+            "type": "img",
+            "src": "https://thumbs.dreamstime.com/b/banana-pieces-plate-whole-bananas-white-background-top-view-copy-space-food-ingredient-ready-to-cook-359172889.jpg",
+            "alt": "Freshly sliced bananas on a white plate."
+          },
+          {
+            "type": "h3",
+            "text": "3. Ginger Tea"
+          },
+          {
+            "type": "p",
+            "text": "Ginger has natural anti-nausea properties. Sipping warm ginger tea can be soothing and help ease queasiness."
+          },
+          {
+            "type": "img",
+            "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-OxyHMgQGX8zoynJjr3iSOYfM6EGIVSmMzQ&s",
+            "alt": "A steaming cup of ginger tea with lemon."
+          },
+          {
+            "type": "p",
+            "text": "Keep snacks small, simple, and easy to reach for. Sometimes just a bite or two is enough to make you feel better."
+          }
+        ],
+        "likes": 87000,
+        "readTimeMinutes": 3,
+        "comments": [
+          {
+            "userId": 4,
+            "timestamp": "2025-08-14T16:20:33Z",
+            "text": "Ginger tea has been a lifesaver for me. I keep it on hand always now."
+          },
+          {
+            "userId": 1,
+            "timestamp": "2025-08-15T09:18:45Z",
+            "text": "Simple but effective advice. The saltine crackers really do help!"
+          },
+          {
+            "userId": 5,
+            "timestamp": "2025-08-16T07:30:22Z",
+            "text": "I never thought bananas could help with nausea. Great tip!"
+          }
+        ]
+      }
+    ]
+  },
+  "Wellness": {
+    "icon": "self_improvement",
+    "articles": [
+      {
+        "id": 3,
+        "title": "Managing Stress with Mindfulness",
+        "imageUrl": "https://www.hindustantimes.com/ht-img/img/2025/07/16/1600x900/mindfulness_1752670397429_1752670397533.jpg",
+        "description": "Learn how mindfulness practices can support mental health and treatment recovery.",
+        "content": [
+          {
+            "type": "p",
+            "text": "Mindfulness is the practice of paying attention to the present moment with curiosity and without judgment. For people undergoing treatment, it can be a powerful tool for easing anxiety, reducing stress, and improving overall well-being."
+          },
+          {
+            "type": "p",
+            "text": "Start with short, daily mindfulness sessions. Even two to five minutes of focused breathing can help your nervous system calm down and shift you away from constant worry."
+          },
+          {
+            "type": "img",
+            "src": "https://assets.oviahealth.com/wp-content/uploads/2021/04/article_219.jpg",
+            "alt": "Person sitting cross-legged with eyes closed, practicing deep breathing."
+          },
+          {
+            "type": "p",
+            "text": "A simple breathing exercise: Inhale deeply for a count of four, hold for four, exhale for six. This helps lower heart rate and bring the body into a state of relaxation."
+          },
+          {
+            "type": "p",
+            "text": "Body scans are another gentle practice — mentally move your attention from head to toe, noticing sensations without trying to change them. This can help you reconnect with your body during treatment."
+          },
+          {
+            "type": "p",
+            "text": "You can also bring mindfulness into everyday activities: eating slowly and savoring flavors, walking with awareness of each step, or pausing for a few deep breaths before responding to a stressful situation."
+          },
+          {
+            "type": "p",
+            "text": "Remember, mindfulness is not about forcing yourself to be calm — it’s about showing up for yourself in the moment, no matter what that moment holds."
+          }
+        ],
+        "likes": 150000,
+        "readTimeMinutes": 4,
+        "comments": [
+          {
+            "userId": 2,
+            "timestamp": "2025-08-13T13:45:28Z",
+            "text": "The breathing exercise has become part of my daily routine. It really helps with anxiety."
+          },
+          {
+            "userId": 3,
+            "timestamp": "2025-08-14T19:12:55Z",
+            "text": "Body scans were new to me, but they've helped me reconnect with my body during treatment."
+          },
+          {
+            "userId": 4,
+            "timestamp": "2025-08-15T12:08:17Z",
+            "text": "Mindful eating has changed how I experience meals. Thank you for this guidance."
+          },
+          {
+            "userId": 1,
+            "timestamp": "2025-08-16T10:25:41Z",
+            "text": "Even 2 minutes of mindfulness makes a difference. This article gave me permission to start small."
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "title": "Creating a Sleep Routine that Works",
+        "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwZ_wcbWSrCVg4Dt13jUUM027aL_5zFOLPTQ&s",
+        "description": "Improve your sleep quality with these science-backed bedtime habits.",
+        "content": [
+          {
+            "type": "p",
+            "text": "Quality sleep is essential for healing, mood regulation, and energy levels — especially during treatment. Establishing a consistent bedtime routine helps signal your body when it’s time to rest."
+          },
+          {
+            "type": "p",
+            "text": "Aim to go to bed and wake up at the same time every day. Consistency strengthens your circadian rhythm, making it easier to fall asleep naturally."
+          },
+          {
+            "type": "img",
+            "src": "https://images.stockcake.com/public/4/2/d/42d2b457-c2cf-4c21-b78e-4175a3761a4d_large/cozy-bedroom-decor-stockcake.jpg",
+            "alt": "Bedroom with soft lighting and cozy bedding."
+          },
+          {
+            "type": "p",
+            "text": "Create a wind-down ritual about an hour before bed — dim the lights, switch to calm music, or read something light. Avoid screens if possible, as blue light can disrupt melatonin production."
+          },
+          {
+            "type": "p",
+            "text": "Keep your bedroom cool, quiet, and dark. Soft blankets and comfortable pillows can also improve sleep quality."
+          },
+          {
+            "type": "p",
+            "text": "If worries keep you awake, try a short journaling session before bed. Writing down thoughts can help clear mental clutter so you can rest easier."
+          },
+          {
+            "type": "img",
+            "src": "https://img.freepik.com/premium-photo/person-writes-journal-while-holding-cup-tea-sitting-by-window_1022970-28330.jpg",
+            "alt": "Person writing in a notebook at night beside a cup of tea."
+          },
+          {
+            "type": "p",
+            "text": "Sleep is a pillar of recovery — give yourself permission to make it a priority."
+          }
+        ],
+        "likes": 110000,
+        "readTimeMinutes": 5,
+        "comments": [
+          {
+            "userId": 5,
+            "timestamp": "2025-08-14T21:30:15Z",
+            "text": "The journaling tip before bed has cleared so much mental clutter. Sleeping much better now!"
+          },
+          {
+            "userId": 2,
+            "timestamp": "2025-08-15T22:45:33Z",
+            "text": "I didn't realize how much screen time was affecting my sleep. Making changes tonight!"
+          },
+          {
+            "userId": 1,
+            "timestamp": "2025-08-16T06:20:48Z",
+            "text": "Consistency has been key for me. My body now naturally gets tired at the same time each night."
+          }
+        ]
+      }
+    ]
+  },
+  "Health": {
+    "icon": "water_drop",
+    "articles": [
+      {
+        "id": 5,
+        "title": "Hydration Tips During Chemotherapy",
+        "imageUrl": "https://www.bldgactive.com/wp-content/uploads/2023/12/3-11.jpg",
+        "description": "Discover simple ways to stay hydrated and why it's essential during chemo.",
+        "content": [
+          {
+            "type": "p",
+            "text": "Chemotherapy can sometimes cause dehydration due to side effects like nausea, vomiting, or diarrhea. Staying hydrated helps maintain energy, supports kidney function, and can make side effects easier to manage."
+          },
+          {
+            "type": "p",
+            "text": "Aim for small, frequent sips of water throughout the day rather than large amounts all at once. This can feel gentler on your stomach."
+          },
+          {
+            "type": "p",
+            "text": "If plain water feels unappealing, try adding slices of lemon, cucumber, or fresh herbs for flavor. Herbal teas and clear broths can also count toward your fluid intake."
+          },
+          {
+            "type": "p",
+            "text": "Use a reusable water bottle to track your intake. Some people find it motivating to mark time goals on the bottle (e.g., 'Finish to here by 2 PM')."
+          },
+          {
+            "type": "img",
+            "src": "https://img4.dhresource.com/webp/m/f3/albu/jc/m/30/51687e19-099e-460a-95cb-97ccbd3b7440.jpg",
+            "alt": "Person holding a reusable water bottle with time markers."
+          },
+          {
+            "type": "p",
+            "text": "Avoid excessive caffeine, as it can have a mild diuretic effect. If you experience persistent dehydration symptoms — dizziness, dark urine, or dry mouth — let your care team know."
+          },
+          {
+            "type": "p",
+            "text": "Hydration is more than a health tip during treatment — it’s part of your recovery toolkit."
+          }
+        ],
+        "likes": 120000,
+        "readTimeMinutes": 3,
+        "comments": [
+          {
+            "userId": 3,
+            "timestamp": "2025-08-13T11:15:22Z",
+            "text": "The water bottle with time markers is genius! Helps me track my intake throughout the day."
+          },
+          {
+            "userId": 4,
+            "timestamp": "2025-08-15T15:40:17Z",
+            "text": "Adding cucumber to water made it so much more appealing. Such a simple but effective tip."
+          },
+          {
+            "userId": 1,
+            "timestamp": "2025-08-16T09:30:55Z",
+            "text": "Herbal teas have been a game changer for me. Counts as hydration and is soothing too."
+          },
+          {
+            "userId": 5,
+            "timestamp": "2025-08-16T13:20:38Z",
+            "text": "I was struggling with plain water during chemo. The lemon slice suggestion really helped!"
+          }
+        ]
+      }
+    ]
+  },
+  "Exercise": {
+    "icon": "fitness_center",
+    "articles": [
+      {
+        "id": 6,
+        "title": "Gentle Workouts to Boost Energy",
+        "imageUrl": "https://i.pinimg.com/736x/5b/d1/55/5bd155cb02cd30ae940cb17737ae0e78.jpg",
+        "description": "Light exercise routines to help you stay active and reduce fatigue.",
+        "content": [
+          {
+            "type": "p",
+            "text": "Gentle exercise can improve circulation, enhance mood, and help maintain muscle strength during treatment."
+          },
+          {
+            "type": "p",
+            "text": "Aim for 10–20 minutes of low-impact movement daily, such as walking, light yoga, or stretching."
+          },
+          {
+            "type": "img",
+            "src": "https://media.post.rvohealth.io/wp-content/uploads/2019/08/stretching-yoga-rest-day-home-732x549-thumbnail-732x549.jpg",
+            "alt": "Person doing light yoga stretches"
+          },
+          {
+            "type": "p",
+            "text": "Always listen to your body—stop if you feel dizzy, overly tired, or short of breath."
+          },
+          {
+            "type": "p",
+            "text": "If possible, consult your healthcare provider or a physiotherapist for exercises tailored to your condition."
+          }
+        ],
+        "likes": 90000,
+        "readTimeMinutes": 6,
+        "comments": [
+          {
+            "userId": 1,
+            "timestamp": "2025-08-16T12:34:56Z",
+            "text": "Great article! Really enjoyed this."
+          },
+          {
+            "userId": 3,
+            "timestamp": "2025-08-16T13:10:22Z",
+            "text": "I think this could use more detail on the topic."
+          },
+          {
+            "userId": 2,
+            "timestamp": "2025-08-16T14:05:09Z",
+            "text": "Thanks for sharing this, very helpful!"
+          }
+        ]
+      }
+    ]
+  },
+  "Support": {
+    "icon": "face_retouching_natural",
+    "articles": [
+      {
+        "id": 7,
+        "title": "Navigating Hair Loss with Confidence",
+        "imageUrl": "https://regenerationmedicalspa.com/wp-content/uploads/2024/02/4-2-1024x576.jpg",
+        "description": "Practical tips and emotional support for dealing with hair loss during treatment.",
+        "content": [
+          {
+            "type": "p",
+            "text": "Hair loss during treatment can be emotionally challenging, but preparing ahead can make the transition easier."
+          },
+          {
+            "type": "p",
+            "text": "Consider cutting your hair shorter before treatment begins, making the change less abrupt."
+          },
+          {
+            "type": "img",
+            "src": "https://media.istockphoto.com/id/897271658/photo/beautiful-woman-with-cancer-smiles.jpg?s=612x612&w=0&k=20&c=I6dv9RdSAUW_zLXDTwu0LF3CjzKGFZTfQCHzvz4747Y=",
+            "alt": "Person smiling while wearing a scarf"
+          },
+          {
+            "type": "p",
+            "text": "Explore head coverings such as scarves, hats, or wigs—choose fabrics that are soft and breathable."
+          },
+          {
+            "type": "p",
+            "text": "Remember, hair loss is temporary for most people, and your self-worth is not defined by your appearance."
+          }
+        ],
+        "likes": 170000,
+        "readTimeMinutes": 4,
+        "comments": [
+          {
+            "userId": 2,
+            "timestamp": "2025-08-12T14:20:45Z",
+            "text": "Cutting my hair short beforehand really did make the transition easier. Wish I'd read this sooner!"
+          },
+          {
+            "userId": 4,
+            "timestamp": "2025-08-14T16:35:12Z",
+            "text": "The scarf styling tips gave me so much confidence. Feeling beautiful again!"
+          },
+          {
+            "userId": 5,
+            "timestamp": "2025-08-15T11:48:33Z",
+            "text": "Thank you for the reminder that this is temporary. Sometimes we need to hear that."
+          },
+          {
+            "userId": 1,
+            "timestamp": "2025-08-16T08:22:19Z",
+            "text": "The emotional support in this article means everything. Not just practical tips but real understanding."
+          }
+        ]
+      }
+    ]
+  },
+  "Mental Health": {
+    "icon": "psychology",
+    "articles": [
+      {
+        "id": 8,
+        "title": "Coping with Emotional Ups and Downs",
+        "imageUrl": "https://bellabeat.com/wp-content/uploads/2024/01/women-mood-swings-causes.jpg",
+        "description": "Tips to manage mood swings and emotional fatigue during treatment.",
+        "content": [
+          {
+            "type": "p",
+            "text": "Emotional ups and downs are common during treatment, influenced by physical side effects, stress, and uncertainty."
+          },
+          {
+            "type": "p",
+            "text": "Acknowledge your feelings without judgment. It’s okay to have difficult days."
+          },
+          {
+            "type": "img",
+            "src": "https://images.pexels.com/photos/6948157/pexels-photo-6948157.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+            "alt": "Close-up of hands holding a warm mug"
+          },
+          {
+            "type": "p",
+            "text": "Stay connected with supportive friends, family, or counselors who can listen without offering unwanted advice."
+          },
+          {
+            "type": "p",
+            "text": "Incorporate small mood-lifting activities, like listening to calming music, journaling, or light physical movement."
+          }
+        ],
+        "likes": 130000,
+        "readTimeMinutes": 4,
+        "comments": [
+          {
+            "userId": 3,
+            "timestamp": "2025-08-13T17:25:41Z",
+            "text": "Permission to have difficult days - this is what I needed to hear. Thank you."
+          },
+          {
+            "userId": 1,
+            "timestamp": "2025-08-14T20:15:28Z",
+            "text": "Journaling has become my emotional outlet. Such a simple but powerful tool."
+          },
+          {
+            "userId": 5,
+            "timestamp": "2025-08-15T09:42:17Z",
+            "text": "The importance of staying connected really resonated with me. Community matters so much."
+          },
+          {
+            "userId": 4,
+            "timestamp": "2025-08-16T12:30:55Z",
+            "text": "Even just listening to calming music for 10 minutes helps reset my mood. Great suggestions!"
+          }
+        ]
+      }
+    ]
+  }
+}
