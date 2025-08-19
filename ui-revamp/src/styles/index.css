@@ -17,6 +17,9 @@
 @import "./pages/help_center.css";
 @import "./pages/articles.css";
 @import "./pages/articles_details.css";
+@import "./pages/achievements.css";
+@import "./pages/achievements_library.css";
+@import "./pages/badge_details.css";
 
 body {
   background-color: var(--background-500);

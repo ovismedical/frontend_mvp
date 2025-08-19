@@ -1,0 +1,95 @@
+.badge-details-container {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  overflow: hidden;
+  position: relative;
+}
+
+.badge-details-header {
+  padding: 16px;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  background: var(--background-500);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 10;
+}
+
+.chevron_backward {
+  font-size: 26px;
+  color: var(--text-600);
+  cursor: pointer;
+}
+
+.file_save {
+  font-size: 26px;
+  color: var(--text-600);
+  cursor: pointer;
+}
+
+.badge-details-content {
+  margin: 0 auto;
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+  min-height: 0;
+}
+
+.badge-details-congrats {
+  text-align: center;
+  color: var(--text-300);
+}
+
+.badge-details-unlocked {
+  text-align: center;
+  color: var(--text-500);
+}
+
+.badge-details-image {
+  text-align: center;
+}
+
+.badge-details-name {
+  text-align: center;
+  color: var(--text-500);
+}
+
+.badge-details-description {
+  text-align: center;
+  color: var(--text-300);
+  max-width: 70%;
+  margin: 0 auto;
+}
+
+.badge-details-date {
+  background-color: var(--success-50);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  margin: 25% auto 0 auto;
+  padding: 8px 16px;
+  border-radius: var(--radius-m);
+}
+
+.event {
+  font-feature-settings: "FILL" 1;
+  color: var(--success-700);
+  margin-right: 8px;
+  font-size: 22px;
+}
+
+.badge-details-date-text {
+  color: var(--success-700);
+  margin: 0;
+}
+
+.badge-details-buttonwrap {
+  width: 80%;
+  margin: 0 auto;
+}

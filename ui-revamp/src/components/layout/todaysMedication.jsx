@@ -131,7 +131,7 @@ const MedicationCard = () => {
                 med.status === "taken"
                   ? "green"
                   : med.status === "skipped"
-                  ? "secondary"
+                  ? "med-secondary"
                   : "gray"
               }`}
             >

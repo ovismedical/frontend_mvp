@@ -39,6 +39,9 @@ import MedicationDetails from "./pages/medication/medication_details.jsx";
 import HelpCenter from "./pages/help_center.jsx";
 import Article from "./pages/articles/articles.jsx";
 import ArticleDetails from "./pages/articles/articles_details.jsx";
+import Achievements from "./pages/achievements/achievements.jsx";
+import AchievementsLibrary from "./pages/achievements/achievements_library.jsx";
+import BadgeDetails from "./pages/achievements/badge_details.jsx";
 
 function App() {
   const location = useLocation();
@@ -54,6 +57,9 @@ function App() {
     const isHelpCenter = location.pathname === "/help_center";
     const isArticle = location.pathname === "/articles";
     const isArticleDetails = location.pathname === "/articles_details";
+    const isAchievements = location.pathname === "/achievements";
+    const isAchievementsLibrary = location.pathname === "/achievements_library";
+    const isBadgeDetails = location.pathname.startsWith("/badge_details/");
 
     document.body.classList.toggle(
       "no-body-padding",
@@ -65,7 +71,10 @@ function App() {
         isMedicationDetails ||
         isHelpCenter ||
         isArticle ||
-        isArticleDetails
+        isArticleDetails ||
+        isAchievements ||
+        isAchievementsLibrary ||
+        isBadgeDetails
     );
     document.body.classList.toggle(
       "body-centered",
@@ -77,7 +86,10 @@ function App() {
         !isMedicationDetails &&
         !isHelpCenter &&
         !isArticle &&
-        !isArticleDetails
+        !isArticleDetails &&
+        !isAchievements &&
+        !isAchievementsLibrary &&
+        !isBadgeDetails
     );
   }, [location.pathname]);
 
@@ -125,6 +137,8 @@ function App() {
         <Route path="/help_center" element={<HelpCenter />} />
         <Route path="/articles" element={<Article />} />
         <Route path="/articles_details" element={<ArticleDetails />} />
+        <Route path="/achievements_library" element={<AchievementsLibrary />} />
+        <Route path="/badge_details/:variant" element={<BadgeDetails />} />
 
         <Route
           element={
@@ -135,7 +149,7 @@ function App() {
         >
           <Route path="/home" element={<Home />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/achievements" element={<div>Achievements</div>} />
+          <Route path="/achievements" element={<Achievements />} />
           <Route path="/settings" element={<div>Settings</div>} />
         </Route>
       </Routes>

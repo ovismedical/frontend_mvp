@@ -1,0 +1,352 @@
+.achievements-container {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  overflow: hidden;
+  position: relative;
+}
+
+.achievements-header {
+  padding: 16px;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  background: var(--background-500);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 10;
+}
+
+.chevron_backward {
+  font-size: 26px;
+  color: var(--text-600);
+  cursor: pointer;
+}
+
+.file_save {
+  font-size: 26px;
+  color: var(--text-600);
+  cursor: pointer;
+}
+
+/* Achievements Summary */
+.achievements-summary {
+  margin: 0 auto;
+  width: 80%;
+}
+
+.achievements-rank-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.achievements-rank-icon img {
+  width: 80px;
+  height: 80px;
+}
+
+.achievements-rank-title {
+  margin: 12px 0 4px;
+  text-align: center;
+  color: #3d2cd4;
+}
+
+.achievements-rank-motto {
+  margin: 0;
+  text-align: center;
+  color: var(--text-400);
+}
+
+/* Progress Bar Styles */
+.achievements-rank-progress {
+  margin: 10px 0;
+}
+
+.achievements-progress-bar {
+  width: 100%;
+  height: 10px;
+  background-color: var(--neutral-100);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.achievements-progress-fill {
+  height: 100%;
+  background: var(--blue-700);
+  border-radius: var(--radius-xl);
+  transition: width 0.3s ease;
+}
+
+.achievements-progress-text {
+  color: var(--text-300);
+}
+
+.achievements-content {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  /* Hide scrollbar for webkit browsers (Chrome, Safari, Edge) */
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.achievements-content:last-child {
+  margin-bottom: 100px;
+}
+
+/* Hide scrollbar for webkit browsers */
+.achievements-content::-webkit-scrollbar {
+  display: none;
+}
+
+.achievements-section-title {
+  color: var(--text-500);
+}
+
+.achievements-see-all {
+  color: var(--blue-700);
+  cursor: pointer;
+}
+
+/* Recent Achievements */
+.achievements-recent-achievements {
+  width: 80%;
+  margin: 25px auto 0 auto;
+}
+
+/* Cards Container with Gap */
+.achievements-cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.achievements-recent-achievements-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+  border-radius: var(--radius-m);
+  border: 1.5px solid;
+}
+
+.achievements-recent-achievements-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.achievements-recent-achievements-card.blue {
+  border-color: var(--blue-600);
+}
+
+.achievements-recent-achievements-icon.blue {
+  background-color: var(--blue-50);
+}
+
+.achievements-recent-achievements-icon.blue .recent-achievements-icon {
+  color: var(--blue-600);
+}
+
+.achievements-recent-achievements-date.blue {
+  color: var(--blue-600);
+}
+
+.achievements-recent-achievements-card.secondary {
+  border-color: var(--secondary-600);
+}
+
+.achievements-recent-achievements-icon.secondary {
+  background-color: var(--secondary-50);
+}
+
+.achievements-recent-achievements-icon.secondary .recent-achievements-icon {
+  color: var(--secondary-600);
+}
+
+.achievements-recent-achievements-date.secondary {
+  color: var(--secondary-600);
+}
+
+.achievements-recent-achievements-card.lavender {
+  border-color: var(--lavender-600);
+}
+
+.achievements-recent-achievements-icon.lavender {
+  background-color: var(--lavender-50);
+}
+
+.achievements-recent-achievements-icon.lavender .recent-achievements-icon {
+  color: var(--lavender-600);
+}
+
+.achievements-recent-achievements-date.lavender {
+  color: var(--lavender-600);
+}
+
+.achievements-recent-achievements-icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-xl);
+}
+
+.recent-achievements-icon {
+  font-variation-settings: "FILL" 1;
+  font-size: 24px;
+}
+
+.achievements-recent-achievements-title {
+  margin: 0;
+  color: var(--text-500);
+}
+
+.achievements-recent-achievements-summary {
+  margin: 0;
+  color: var(--text-300);
+}
+
+/* Badge Collection */
+.achievements-badge-collection {
+  width: 80%;
+  margin: 25px auto 0 auto;
+}
+
+.achievements-badge-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.badge-collection-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+  gap: 50px;
+  max-width: 100%;
+}
+
+.badge-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.badge-image {
+  width: 60px;
+  height: 60px;
+  border-radius: var(--radius-m);
+  object-fit: cover;
+}
+
+/* Milestones */
+.achievements-milestones {
+  width: 80%;
+  margin: 25px auto 10px auto;
+}
+
+.achievements-milestones-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.milestones-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+/* Milestone specific styles */
+.achievements-milestone-image {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.milestone-icon-image {
+  width: 55px;
+  height: 55px;
+  object-fit: contain;
+}
+
+.achievements-milestones-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 10px;
+  border-radius: var(--radius-m);
+  background-color: var(--background-100);
+  box-shadow: var(--shadow-sm);
+}
+
+.achievements-milestones-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.achievements-milestones-title {
+  margin: 0;
+  color: var(--text-500);
+}
+
+.achievements-milestones-summary {
+  margin: 0;
+  color: var(--text-300);
+}
+
+.achievements-milestones-progress {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.circular-progress {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 70px;
+  height: 70px;
+}
+
+.progress-ring-circle-bg {
+  opacity: 0.3;
+}
+
+.progress-ring-circle {
+  transition: stroke-dashoffset 0.3s ease;
+  stroke-linecap: round;
+  /* Add the rotation here and set transform-origin */
+  transform: rotate(-90deg);
+  transform-origin: center;
+}
+
+.progress-text {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-400);
+}
+
+/* Add responsive styles for larger screens */
+@media (min-width: 768px) {
+  .circular-progress {
+    width: 120px;
+    height: 120px;
+  }
+}

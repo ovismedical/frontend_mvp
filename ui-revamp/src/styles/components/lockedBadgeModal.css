@@ -1,0 +1,60 @@
+.locked-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.locked-modal-content {
+  background: white;
+  border-radius: var(--radius-m);
+  padding: 32px;
+  max-width: 50%;
+  text-align: center;
+  position: relative;
+}
+
+.locked-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.locked-modal-icon {
+  background-color: var(--blue-50);
+  border-radius: 50%;
+  padding: 16px;
+  display: inline-block;
+  margin-bottom: 16px;
+}
+
+.lock-icon {
+  font-variation-settings: "FILL" 1;
+  color: var(--blue-700);
+  font-size: 32px;
+}
+
+.locked-modal-title {
+  color: var(--text-500);
+}
+
+.locked-modal-text {
+  color: var(--text-400);
+  margin-bottom: 25px;
+}
+
+.locked-modal-button {
+  border: none;
+  padding: 12px 24px;
+  cursor: pointer;
+}

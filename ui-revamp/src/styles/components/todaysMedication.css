@@ -60,7 +60,7 @@
   outline: 1px solid var(--neutral-300);
 }
 
-.secondary {
+.med-secondary {
   background-color: var(--secondary-50);
   color: var(--secondary-600);
   outline: 1px solid var(--secondary-600);

@@ -1,0 +1,100 @@
+.achievements-library-container {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  overflow: hidden;
+  position: relative;
+}
+
+.achievements-library-header {
+  padding: 16px;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  background: var(--background-500);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 10;
+}
+
+.chevron_backward {
+  font-size: 26px;
+  color: var(--text-600);
+  cursor: pointer;
+}
+
+.file_save {
+  font-size: 26px;
+  color: var(--text-600);
+  cursor: pointer;
+}
+
+.achievements-library-content {
+  width: 95%;
+  margin: 0 auto;
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: 20px;
+}
+
+.achievements-library-title {
+  margin: 0;
+  color: var(--text-500);
+  margin-bottom: 8px;
+}
+
+.achievements-library-subtitle {
+  margin: 0;
+  color: var(--text-300);
+  margin-bottom: 24px;
+}
+
+.achievements-library-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.achievement-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.badge-image-container {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  margin-bottom: 8px;
+}
+
+.badge-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.achievements-library-footer {
+  margin: 0;
+  color: var(--text-300);
+  text-align: center;
+  margin-top: 16px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .achievements-library-grid {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 12px;
+  }
+
+  .badge-image-container {
+    width: 70px;
+    height: 70px;
+  }
+}
