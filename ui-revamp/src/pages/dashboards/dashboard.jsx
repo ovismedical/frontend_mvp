@@ -4,9 +4,12 @@ import Tabs from "../../components/ui/tabs";
 import DailyDashboard from "./daily";
 import WeeklyDashboard from "./weekly";
 import MonthlyDashboard from "./monthly";
+import GenerateReportModal from "../../components/ui/generateReportModal";
 
 const Dashboard = () => {
   const navigate = useNavigate();
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [activeTab, setActiveTab] = useState("Today");
 
@@ -25,7 +28,12 @@ const Dashboard = () => {
         ></span>
 
         <div className="dashboard-header h4">Health Dashboard</div>
-        <span className="material-symbols-rounded file_save">file_save</span>
+        <span
+          className="material-symbols-rounded file_save"
+          onClick={() => setIsModalOpen(true)}
+        >
+          file_save
+        </span>
       </div>
 
       <Tabs tabs={tabs} onTabChange={handleTabChange} activeTab={activeTab} />
@@ -35,6 +43,10 @@ const Dashboard = () => {
         {activeTab === "This Week" && <WeeklyDashboard />}
         {activeTab === "Monthly" && <MonthlyDashboard />}
       </div>
+
+      {isModalOpen && (
+        <GenerateReportModal onClose={() => setIsModalOpen(false)} />
+      )}
     </div>
   );
 };
