@@ -1,0 +1,125 @@
+.user-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1.5px solid var(--blue-700);
+  border-radius: var(--radius-l);
+  padding: 12px 15px;
+  background-color: var(--blue-light-100);
+  max-width: 800px;
+}
+
+/* Left Section */
+.user-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.user-image {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-m);
+  object-fit: cover;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-name {
+  margin: 0;
+  color: var(--blue-700);
+}
+
+.user-condition {
+  margin: 0;
+  color: var(--text-500);
+}
+
+.user-status {
+  display: flex;
+  margin: 0;
+  align-items: center;
+}
+
+.user-status .status-icon {
+  font-size: 15px;
+  padding: 3px;
+  border-radius: var(--radius-xs);
+}
+
+.status-text {
+  margin-left: 6px;
+}
+
+/* Status color variants */
+.status-active {
+  color: var(--success-700);
+}
+
+.status-active .status-icon {
+  background-color: var(--success-700);
+  color: var(--success-50);
+}
+
+.status-remission {
+  color: var(--secondary-600);
+}
+
+.status-remission .status-icon {
+  background-color: var(--secondary-600);
+  color: var(--secondary-50);
+}
+
+.status-post {
+  color: var(--lavender-600);
+}
+
+.status-post .status-icon {
+  background-color: var(--lavender-600);
+  color: var(--lavender-50);
+}
+
+.status-monitoring {
+  color: var(--secondary-600);
+}
+
+.status-monitoring .status-icon {
+  background-color: var(--secondary-600);
+  color: var(--secondary-50);
+}
+
+.status-consultation {
+  color: var(--info-600);
+}
+
+.status-consultation .status-icon {
+  background-color: var(--info-600);
+  color: var(--info-50);
+}
+
+.status-recovery {
+  color: var(--lavender-600);
+}
+
+.status-recovery .status-icon {
+  background-color: var(--lavender-600);
+  color: var(--lavender-50);
+}
+
+/* Right Section */
+.user-right {
+  display: flex;
+  gap: 10px;
+}
+
+.user-right .material-symbols-rounded {
+  font-size: 20px;
+  color: var(--blue-light-50);
+  background-color: var(--blue-700);
+  padding: 3px;
+  border-radius: var(--radius-xl);
+  cursor: pointer;
+}

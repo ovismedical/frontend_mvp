@@ -42,6 +42,11 @@ import ArticleDetails from "./pages/articles/articles_details.jsx";
 import Achievements from "./pages/achievements/achievements.jsx";
 import AchievementsLibrary from "./pages/achievements/achievements_library.jsx";
 import BadgeDetails from "./pages/achievements/badge_details.jsx";
+import Settings from "./pages/settings/settings.jsx";
+import HealthCareProvider from "./pages/settings/healthcare_provider.jsx";
+import PasswordSecurity from "./pages/settings/password.jsx";
+import DisplayLanguage from "./pages/settings/display_language.jsx";
+import ProfileManagement from "./pages/settings/profile_management.jsx";
 
 function App() {
   const location = useLocation();
@@ -60,6 +65,11 @@ function App() {
     const isAchievements = location.pathname === "/achievements";
     const isAchievementsLibrary = location.pathname === "/achievements_library";
     const isBadgeDetails = location.pathname.startsWith("/badge_details/");
+    const isSettings = location.pathname === "/settings";
+    const isHealthCareProvider = location.pathname === "/healthcare_provider";
+    const isPasswordSecurity = location.pathname === "/password_security";
+    const isDisplayLanguage = location.pathname === "/display_language";
+    const isProfileManagement = location.pathname === "/profile_management";
 
     document.body.classList.toggle(
       "no-body-padding",
@@ -74,7 +84,12 @@ function App() {
         isArticleDetails ||
         isAchievements ||
         isAchievementsLibrary ||
-        isBadgeDetails
+        isBadgeDetails ||
+        isSettings ||
+        isHealthCareProvider ||
+        isPasswordSecurity ||
+        isDisplayLanguage ||
+        isProfileManagement
     );
     document.body.classList.toggle(
       "body-centered",
@@ -89,7 +104,12 @@ function App() {
         !isArticleDetails &&
         !isAchievements &&
         !isAchievementsLibrary &&
-        !isBadgeDetails
+        !isBadgeDetails &&
+        !isSettings &&
+        !isHealthCareProvider &&
+        !isPasswordSecurity &&
+        !isDisplayLanguage &&
+        !isProfileManagement
     );
   }, [location.pathname]);
 
@@ -112,6 +132,7 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={renderRootRedirect()} />
+        <Route path="/welcome_screen" element={<WelcomeScreen />} />
         <Route path="/onboarding01" element={<Onboarding01 />} />
         <Route path="/onboarding02" element={<Onboarding02 />} />
         <Route path="/onboarding03" element={<Onboarding03 />} />
@@ -139,6 +160,10 @@ function App() {
         <Route path="/articles_details" element={<ArticleDetails />} />
         <Route path="/achievements_library" element={<AchievementsLibrary />} />
         <Route path="/badge_details/:variant" element={<BadgeDetails />} />
+        <Route path="/healthcare_provider" element={<HealthCareProvider />} />
+        <Route path="/password_security" element={<PasswordSecurity />} />
+        <Route path="/display_language" element={<DisplayLanguage />} />
+        <Route path="/profile_management" element={<ProfileManagement />} />
 
         <Route
           element={
@@ -150,7 +175,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/achievements" element={<Achievements />} />
-          <Route path="/settings" element={<div>Settings</div>} />
+          <Route path="/settings" element={<Settings />} />
         </Route>
       </Routes>
     </>

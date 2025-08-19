@@ -1,5 +1,5 @@
 import React from "react";
-import InputField from "../ui/inputfield.jsx";
+import InputField from "../ui/inputField.jsx";
 import "../../styles/pages/register.css";
 
 const RegisterForm = ({

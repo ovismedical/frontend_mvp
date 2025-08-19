@@ -13,11 +13,6 @@ const Home = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
 
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    navigate("/login");
-  };
-
   return (
     <div className="home-page-container">
       <UserHeader />
@@ -32,21 +27,6 @@ const Home = () => {
       </div>
 
       <ScaleToggle />
-
-      {/* Temporary Log Out button */}
-      <button
-        onClick={handleLogout}
-        style={{
-          padding: "5px 10px",
-          background: "blue",
-          color: "white",
-          border: "none",
-          borderRadius: "6px",
-          cursor: "pointer",
-        }}
-      >
-        Log Out (Test)
-      </button>
     </div>
   );
 };

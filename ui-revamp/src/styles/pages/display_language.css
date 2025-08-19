@@ -1,0 +1,96 @@
+/* Layout and Container */
+.display-language-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Header */
+.display-language-header {
+  padding: 16px;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 10;
+}
+
+.chevron_backward {
+  font-size: 26px;
+  color: var(--text-600);
+  cursor: pointer;
+}
+
+.search {
+  font-size: 26px;
+  color: var(--text-600);
+  cursor: pointer;
+}
+
+/* Display Language Section */
+.display-language-content {
+  margin-top: 12px;
+}
+
+/* Accordion Header */
+.display-language-accordion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 30px;
+  cursor: pointer;
+}
+
+.display-language-accordion-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.accordion-icon {
+  background-color: var(--blue-50);
+  font-size: 20px;
+  color: var(--blue-700);
+  padding: 5px;
+  border-radius: var(--radius-xl);
+}
+
+.display-language-accordion-title {
+  color: var(--text-500);
+}
+
+.accordion-action-icon {
+  font-size: 20px;
+  color: var(--text-500);
+}
+
+/* Accordion Body */
+.display-language-accordion-body {
+  background: var(--blue-light-100);
+}
+
+.display-language-accordion-option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 35px;
+  cursor: pointer;
+  border-top: 0.5px solid var(--neutral-500);
+  height: 20px;
+}
+
+.display-language-option-text {
+  color: var(--text-500);
+}
+
+.display-language-accordion-option.selected .display-language-option-text {
+  color: var(--blue-700);
+}
+
+.option-icon-check {
+  font-size: 20px;
+  color: var(--blue-700);
+}

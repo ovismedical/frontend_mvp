@@ -1,0 +1,75 @@
+@import "../typography.css";
+@import "../variables.css";
+
+/* Custom Dropdown Styles */
+.custom-dropdown-wrapper {
+  position: relative;
+}
+
+.custom-dropdown {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--blue-900);
+  padding: 8px 12px;
+  border: 1px solid var(--blue-800);
+  border-radius: var(--radius-m);
+  cursor: pointer;
+  background-color: white;
+  min-width: 100px;
+  justify-content: space-between;
+}
+
+/* When selected option is "off" */
+.custom-dropdown.off-state {
+  background-color: var(--blue-light-50);
+  border-color: var(--blue-300);
+  color: var(--text-300);
+}
+
+.custom-dropdown.off-state .expand-icon {
+  color: var(--text-300);
+}
+
+/* When selected option is anything other than "off" */
+.custom-dropdown.on-state {
+  background-color: var(--blue-light-200);
+  border-color: var(--blue-700);
+  color: var(--blue-700);
+}
+
+.custom-dropdown.on-state .expand-icon {
+  color: var(--blue-700);
+}
+
+.dropdown-text {
+  flex: 1;
+}
+
+.expand-icon {
+  font-size: 18px;
+  color: var(--blue-900);
+}
+
+.custom-dropdown-menu {
+  position: absolute;
+  top: 110%;
+  right: 0;
+  background-color: white;
+  border: 1px solid var(--blue-700);
+  border-radius: var(--radius-m);
+  z-index: 10;
+  min-width: 120px;
+}
+
+.custom-dropdown-item {
+  padding: 8px 12px;
+  color: var(--blue-800);
+  cursor: pointer;
+}
+
+.custom-dropdown-item:hover,
+.custom-dropdown-item.active {
+  background-color: var(--blue-light-100);
+  border-radius: var(--radius-m);
+}

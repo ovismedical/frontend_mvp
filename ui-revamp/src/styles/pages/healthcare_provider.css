@@ -1,0 +1,141 @@
+/* Layout and Container */
+.healthcare-provider-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Header */
+.healthcare-provider-header {
+  padding: 16px;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 10;
+}
+
+.chevron_backward {
+  font-size: 26px;
+  color: var(--text-600);
+  cursor: pointer;
+}
+
+.search {
+  font-size: 26px;
+  color: var(--text-600);
+  cursor: pointer;
+}
+
+/* Content */
+.healthcare-provider-content {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Desktop Layout - 2 columns */
+@media (min-width: 768px) {
+  .healthcare-provider-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "doctor team"
+      "emergency team";
+    gap: 32px;
+  }
+
+  .healthcare-provider-doctor {
+    grid-area: doctor;
+  }
+
+  .healthcare-provider-team-members {
+    grid-area: team;
+    margin-top: 0;
+  }
+
+  .healthcare-provider-emergency-contact {
+    grid-area: emergency;
+    margin-top: 0;
+  }
+}
+
+.healthcare-provider-title {
+  color: var(--text-500);
+  margin: 0;
+}
+
+.healthcare-provider-description {
+  color: var(--text-300);
+  margin: 0;
+}
+
+/* Team Members */
+.healthcare-provider-team-members {
+  margin-top: 20px;
+}
+
+.healthcare-provider-team-members-list {
+  margin-top: 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Emergency Contact */
+.healthcare-provider-emergency-contact {
+  margin-top: 20px;
+}
+
+.emergency-contact-card {
+  background: var(--error-50);
+  outline: 1px solid var(--error-700);
+  border-radius: var(--radius-l);
+  padding: 12px 16px;
+  margin-top: 8px;
+}
+
+.emergency-contact-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.emergency-contact-header .e911_emergency {
+  font-size: 20px;
+  color: var(--error-400);
+  font-variation-settings: "FILL" 1;
+  margin-right: 5px;
+}
+
+.emergency-contact-header-text {
+  color: var(--text-500);
+  margin: 0;
+}
+
+.emergency-contact-number {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0;
+}
+.emergency-contact-number .call {
+  font-size: 20px;
+  color: var(--error-700);
+  font-variation-settings: "FILL" 1;
+  margin-right: 5px;
+}
+
+.emergency-contact-number-text {
+  color: var(--error-700);
+  margin: 0;
+}
+
+.emergency-contact-footer {
+  margin: 0;
+  margin-left: 15px;
+  color: var(--text-500);
+}

@@ -20,6 +20,11 @@
 @import "./pages/achievements.css";
 @import "./pages/achievements_library.css";
 @import "./pages/badge_details.css";
+@import "./pages/settings.css";
+@import "./pages/healthcare_provider.css";
+@import "./pages/password.css";
+@import "./pages/display_language.css";
+@import "./pages/profile_management.css";
 
 body {
   background-color: var(--background-500);
