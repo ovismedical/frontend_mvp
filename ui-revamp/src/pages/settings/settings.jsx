@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import UserCard from "../../components/ui/userCard.jsx";
 import Tabs from "../../components/ui/tabs.jsx";
 import CustomDropdown from "../../components/ui/dropdown.jsx";
@@ -7,10 +8,11 @@ import InviteModal from "../../components/ui/inviteModal.jsx";
 
 const Settings = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const [isModalOpen, setModalOpen] = useState(false);
 
-  // User information constant
+  // User information constant (unchanged)
   const userInfo = {
     userImage:
       "https://media.istockphoto.com/id/1437816897/photo/business-woman-manager-or-human-resources-portrait-for-career-success-company-we-are-hiring.jpg?s=612x612&w=0&k=20&c=tyLvtzutRh22j9GqSGI33Z4HpIwv9vL_MZw_xOE19NQ=",
@@ -21,7 +23,7 @@ const Settings = () => {
     email: "lindawong@gmail.com",
   };
 
-  const [activeTab, setActiveTab] = useState("Account");
+  const [activeTab, setActiveTab] = useState(t("account"));
   const [helpOpen, setHelpOpen] = useState(false);
 
   // Add toggle states for Privacy & Data items
@@ -37,20 +39,22 @@ const Settings = () => {
   // Add state to track which dropdown is open
   const [openDropdown, setOpenDropdown] = useState(null);
 
-  // Dropdown options
-  const checkinOptions = ["Off", "Daily", "Every 2 days", "Weekly"];
-  const wellnessOptions = ["Off", "Daily", "Weekly", "Monthly"];
+  // Dropdown options with translations
+  const checkinOptions = [t("off"), t("daily"), t("every_2_days"), t("weekly")];
+
+  const wellnessOptions = [t("off"), t("daily"), t("weekly"), t("monthly")];
+
   const messageOptions = [
-    "Off",
-    "Immediately",
-    "Hourly digest",
-    "Daily digest",
+    t("off"),
+    t("immediately"),
+    t("hourly_digest"),
+    t("daily_digest"),
   ];
 
   const tabs = [
-    { name: "Account" },
-    { name: "Privacy & Data" },
-    { name: "Notifications" },
+    { name: t("account") },
+    { name: t("privacy_data") },
+    { name: t("notifications") },
   ];
 
   const handleTabChange = (tabName) => {
@@ -89,7 +93,7 @@ const Settings = () => {
       state: {
         userImage: userInfo.userImage,
         userName: userInfo.userName,
-        email: userInfo.email, // Add email to userInfo
+        email: userInfo.email,
         phoneNumber: userInfo.phoneNumber,
       },
     });
@@ -116,7 +120,7 @@ const Settings = () => {
       />
 
       <div className="settings-content">
-        {activeTab === "Account" && (
+        {activeTab === t("account") && (
           <div className="account-settings-list">
             <div className="settings-item" onClick={handleHealthCareProvider}>
               <div className="settings-left">
@@ -124,7 +128,7 @@ const Settings = () => {
                   medical_information
                 </span>
                 <span className="settings-item-text body">
-                  Healthcare Provider
+                  {t("healthcare_provider")}
                 </span>
               </div>
               <span className="material-symbols-rounded arrow">
@@ -138,7 +142,7 @@ const Settings = () => {
                   encrypted
                 </span>
                 <span className="settings-item-text body">
-                  Password & Security
+                  {t("password_security")}
                 </span>
               </div>
               <span className="material-symbols-rounded arrow">
@@ -152,7 +156,7 @@ const Settings = () => {
                   settings_motion_mode
                 </span>
                 <span className="settings-item-text body">
-                  Display & Language
+                  {t("display_language")}
                 </span>
               </div>
               <span className="material-symbols-rounded arrow">
@@ -162,7 +166,7 @@ const Settings = () => {
           </div>
         )}
 
-        {activeTab === "Privacy & Data" && (
+        {activeTab === t("privacy_data") && (
           <div className="privacy-settings-list">
             <div className="settings-item">
               <div className="settings-left">
@@ -171,10 +175,10 @@ const Settings = () => {
                 </span>
                 <div className="settings-item-textwrap">
                   <span className="settings-item-text body">
-                    Data Sharing with Provider
+                    {t("data_sharing_provider")}
                   </span>
                   <span className="settings-item-subtext caption">
-                    Allow your healthcare provider to access your wellness data
+                    {t("data_sharing_provider_desc")}
                   </span>
                 </div>
               </div>
@@ -195,10 +199,10 @@ const Settings = () => {
                 </span>
                 <div className="settings-item-textwrap">
                   <span className="settings-item-text body">
-                    Anonymous Analytics
+                    {t("anonymous_analytics")}
                   </span>
                   <span className="settings-item-subtext caption">
-                    Help improve Ovis by sharing anonymized usage data
+                    {t("anonymous_analytics_desc")}
                   </span>
                 </div>
               </div>
@@ -219,10 +223,10 @@ const Settings = () => {
                 </span>
                 <div className="settings-item-textwrap">
                   <span className="settings-item-text body">
-                    Marketing Communications
+                    {t("marketing_communications")}
                   </span>
                   <span className="settings-item-subtext caption">
-                    Receive emails about new features and health tips
+                    {t("marketing_communications_desc")}
                   </span>
                 </div>
               </div>
@@ -238,7 +242,7 @@ const Settings = () => {
           </div>
         )}
 
-        {activeTab === "Notifications" && (
+        {activeTab === t("notifications") && (
           <div className="notification-settings-list">
             <div className="settings-item">
               <div className="settings-left">
@@ -246,13 +250,27 @@ const Settings = () => {
                   notifications_active
                 </span>
                 <span className="settings-item-text body">
-                  Check-in Reminders
+                  {t("checkin_reminders")}
                 </span>
               </div>
               <CustomDropdown
                 options={checkinOptions}
-                value={checkinReminders}
-                onChange={setCheckinReminders}
+                value={t(
+                  checkinReminders
+                    .toLowerCase()
+                    .replace(/ /g, "_")
+                    .replace(/\d+/g, (match) => match)
+                )}
+                onChange={(value) => {
+                  // Map translated value back to internal value
+                  const optionMap = {
+                    [t("off")]: "Off",
+                    [t("daily")]: "Daily",
+                    [t("every_2_days")]: "Every 2 days",
+                    [t("weekly")]: "Weekly",
+                  };
+                  setCheckinReminders(optionMap[value] || value);
+                }}
                 className="settings-custom-dropdown"
                 isOpen={openDropdown === "checkin"}
                 onToggle={() => handleDropdownToggle("checkin")}
@@ -265,13 +283,21 @@ const Settings = () => {
                   stars_2
                 </span>
                 <span className="settings-item-text body">
-                  Wellness Score Updates
+                  {t("wellness_score_updates")}
                 </span>
               </div>
               <CustomDropdown
                 options={wellnessOptions}
-                value={wellnessUpdates}
-                onChange={setWellnessUpdates}
+                value={t(wellnessUpdates.toLowerCase())}
+                onChange={(value) => {
+                  const optionMap = {
+                    [t("off")]: "Off",
+                    [t("daily")]: "Daily",
+                    [t("weekly")]: "Weekly",
+                    [t("monthly")]: "Monthly",
+                  };
+                  setWellnessUpdates(optionMap[value] || value);
+                }}
                 className="settings-custom-dropdown"
                 isOpen={openDropdown === "wellness"}
                 onToggle={() => handleDropdownToggle("wellness")}
@@ -283,12 +309,22 @@ const Settings = () => {
                 <span className="material-symbols-rounded settings-icon">
                   chat
                 </span>
-                <span className="settings-item-text body">Doctor Messages</span>
+                <span className="settings-item-text body">
+                  {t("doctor_messages")}
+                </span>
               </div>
               <CustomDropdown
                 options={messageOptions}
-                value={doctorMessages}
-                onChange={setDoctorMessages}
+                value={t(doctorMessages.toLowerCase().replace(/ /g, "_"))}
+                onChange={(value) => {
+                  const optionMap = {
+                    [t("off")]: "Off",
+                    [t("immediately")]: "Immediately",
+                    [t("hourly_digest")]: "Hourly digest",
+                    [t("daily_digest")]: "Daily digest",
+                  };
+                  setDoctorMessages(optionMap[value] || value);
+                }}
                 className="settings-custom-dropdown"
                 isOpen={openDropdown === "messages"}
                 onToggle={() => handleDropdownToggle("messages")}
@@ -308,7 +344,7 @@ const Settings = () => {
                 help
               </span>
               <span className="settings-item-text help-support body">
-                Help & Support
+                {t("help_support")}
               </span>
             </div>
             <span className="material-symbols-rounded arrow">
@@ -318,37 +354,32 @@ const Settings = () => {
 
           {helpOpen && (
             <div className="help-subtext-content">
-              <p className="help-subtext body">
-                We're here to make sure you have the best possible experience.
-                If you have any questions, encounter an issue, or would like to
-                share feedback, please don't hesitate to get in touch.
-              </p>
+              <p className="help-subtext body">{t("help_description_1")}</p>
 
               <p className="help-subtext body">
-                You can reach us directly at{" "}
-                <a
-                  href="mailto:support@ovismedical.com?subject=App%20Support%20Request"
-                  className="help-link"
-                >
-                  support@ovismedical.com
+                {t("help_description_2")}{" "}
+                <a href="mailto:support@ovismedical.com" className="help-link">
+                  {t("support_email")}
                 </a>{" "}
-                and our team will get back to you as soon as possible.
+                {t("help_description_3")}
               </p>
 
               <p className="help-subtext body">
-                For quick answers to common questions, step-by-step guides, and
-                troubleshooting tips, visit our{" "}
-                <a href="/help_center" className="help-link">
-                  Help Center
+                {t("help_description_4")}{" "}
+                <a
+                  href="#"
+                  className="help-link"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    navigate("/help_center");
+                  }}
+                >
+                  {t("help_center")}
                 </a>
                 .
               </p>
 
-              <p className="help-subtext body">
-                Your feedback is invaluable to us, it helps us improve and
-                continue building a service that supports you every step of the
-                way.
-              </p>
+              <p className="help-subtext body">{t("help_description_5")}</p>
             </div>
           )}
 
@@ -357,7 +388,9 @@ const Settings = () => {
               <span className="material-symbols-rounded settings-icon">
                 chip_extraction
               </span>
-              <span className="settings-item-text logout body">Logout</span>
+              <span className="settings-item-text logout body">
+                {t("logout")}
+              </span>
             </div>
           </div>
         </div>

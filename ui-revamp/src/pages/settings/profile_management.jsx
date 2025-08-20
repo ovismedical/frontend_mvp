@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import InputField from "../../components/ui/inputField.jsx";
 import Button from "../../components/ui/button.jsx";
 
@@ -7,6 +8,7 @@ const ProfileManagement = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const fileInputRef = useRef(null);
+  const { t } = useTranslation();
 
   // Get data from navigation state or use defaults
   const userData = location.state || {};
@@ -41,7 +43,7 @@ const ProfileManagement = () => {
     if (file) {
       // Validate file type
       if (!file.type.startsWith("image/")) {
-        setMessage({ type: "error", text: "Please select a valid image file" });
+        setMessage({ type: "error", text: t("please_select_valid_image") });
         return;
       }
 
@@ -49,7 +51,7 @@ const ProfileManagement = () => {
       if (file.size > 5 * 1024 * 1024) {
         setMessage({
           type: "error",
-          text: "Image size should be less than 5MB",
+          text: t("image_size_too_large"),
         });
         return;
       }
@@ -70,14 +72,14 @@ const ProfileManagement = () => {
 
     // Basic validation
     if (!Email || !FullName || !MobileNumber) {
-      setMessage({ type: "error", text: "Please fill in all required fields" });
+      setMessage({ type: "error", text: t("fill_required_fields") });
       return;
     }
 
     // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(Email)) {
-      setMessage({ type: "error", text: "Please enter a valid email address" });
+      setMessage({ type: "error", text: t("enter_valid_email") });
       return;
     }
 
@@ -88,13 +90,13 @@ const ProfileManagement = () => {
     if (!hkMobileRegex.test(cleanNumber)) {
       setMessage({
         type: "error",
-        text: "Please enter a valid Hong Kong mobile number",
+        text: t("enter_valid_hk_mobile"),
       });
       return;
     }
 
     // If all validation passes, show success and navigate back
-    setMessage({ type: "success", text: "Profile updated successfully!" });
+    setMessage({ type: "success", text: t("profile_updated_successfully") });
 
     // Navigate back to settings after a short delay
     setTimeout(() => {
@@ -132,7 +134,7 @@ const ProfileManagement = () => {
         >
           chevron_backward
         </span>
-        <div className="h4">Profile Management</div>
+        <div className="h4">{t("profile_management")}</div>
         <span className="material-symbols-rounded more_vert"></span>
       </div>
 
@@ -167,10 +169,10 @@ const ProfileManagement = () => {
         </div>
         <div className="profile-details">
           <div className="profile-name body-bold">
-            {FullName || "User Name"}
+            {FullName || t("user_name")}
           </div>
           <div className="profile-email caption">
-            {Email || "user@example.com"}
+            {Email || t("user_email")}
           </div>
         </div>
       </div>
@@ -182,7 +184,7 @@ const ProfileManagement = () => {
           onSubmit={handleSaveChanges}
         >
           <InputField
-            placeholder="Email Address"
+            placeholder={t("email_address")}
             value={Email}
             onChange={(e) => setEmail(e.target.value)}
             leftIcon={<span className="material-symbols-rounded">mail</span>}
@@ -191,7 +193,7 @@ const ProfileManagement = () => {
           />
 
           <InputField
-            placeholder="Full Name"
+            placeholder={t("full_name")}
             value={FullName}
             onChange={(e) => setFullName(e.target.value)}
             leftIcon={<span className="material-symbols-rounded">person</span>}
@@ -199,7 +201,7 @@ const ProfileManagement = () => {
           />
 
           <InputField
-            placeholder="Mobile Number"
+            placeholder={t("mobile_number")}
             value={MobileNumber}
             onChange={(e) => {
               // Remove all non-numeric characters
@@ -224,7 +226,7 @@ const ProfileManagement = () => {
           {/* Save Button */}
           <div className="profile-management-actions">
             <Button className="update-profile-button" type="submit">
-              Save Changes
+              {t("save_changes")}
             </Button>
           </div>
         </form>

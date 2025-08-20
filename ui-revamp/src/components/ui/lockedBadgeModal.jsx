@@ -1,10 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import "../../styles/components/lockedBadgeModal.css";
 import Button from "./button";
 
 const LockedBadgeModal = ({ isOpen, onClose }) => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   if (!isOpen) return null;
 
@@ -17,17 +19,15 @@ const LockedBadgeModal = ({ isOpen, onClose }) => {
         <div className="locked-modal-icon">
           <span className="material-symbols-rounded lock-icon">lock</span>
         </div>
-        <h2 className="locked-modal-title h3">Locked!</h2>
+        <h2 className="locked-modal-title h3">{t("locked")}</h2>
         <p className="locked-modal-text body">
-          Not all badges are available right away. As you make progress and
-          reach higher ranks, new badges will unlock, giving you fresh goals to
-          aim for and new milestones to celebrate.
+          {t("locked_badge_description")}
         </p>
         <Button
           className="locked-modal-button caption"
           onClick={() => navigate("/help_center")}
         >
-          How to Rank Up?
+          {t("how_to_rank_up")}
         </Button>
       </div>
     </div>

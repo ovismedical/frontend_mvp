@@ -1,0 +1,16 @@
+{
+  "achievements": "成就",
+  "recent_achievements": "最近成就",
+  "badge_collection": "徽章收集",
+  "milestones": "里程碑",
+  "see_all": "查看全部",
+  "congratulations": "恭喜",
+  "badge_unlocked": "徽章已解鎖！",
+  "unlocked_on": "於 {{date}} 解鎖",
+  "share": "分享",
+  "build_better_habits": "建立更好的習慣",
+  "advance_rank_footer": "提升您的等級以解鎖新的成就並保持動力。",
+  "locked": "已鎖定！",
+  "locked_badge_description": "並非所有徽章都能立即獲得。隨著您的進步並達到更高等級，新的徽章將解鎖，為您提供新的目標和新的里程碑來慶祝。",
+  "how_to_rank_up": "如何升級？"
+}

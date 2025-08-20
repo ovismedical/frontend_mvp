@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import InputField from "../../components/ui/inputField.jsx";
 import Button from "../../components/ui/button.jsx";
 
 const PasswordSecurity = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   // Separate state for each field
   const [currentPassword, setCurrentPassword] = useState("");
@@ -25,19 +27,19 @@ const PasswordSecurity = () => {
   // Basic validation
   const validateForm = () => {
     if (!currentPassword) {
-      setMessage("Current password is required");
+      setMessage(t("current_password_required"));
       return false;
     }
     if (!newPassword) {
-      setMessage("New password is required");
+      setMessage(t("new_password_required"));
       return false;
     }
     if (newPassword.length < 8) {
-      setMessage("Password must be at least 8 characters");
+      setMessage(t("password_min_length"));
       return false;
     }
     if (newPassword !== confirmPassword) {
-      setMessage("Passwords do not match");
+      setMessage(t("passwords_do_not_match"));
       return false;
     }
 
@@ -50,7 +52,7 @@ const PasswordSecurity = () => {
     if (validateForm()) {
       // Handle password change logic here
       console.log("Password change submitted");
-      setMessage("Password updated successfully!");
+      setMessage(t("password_updated_successfully"));
     }
   };
 
@@ -68,13 +70,15 @@ const PasswordSecurity = () => {
         >
           chevron_backward
         </span>
-        <div className="password-security-header h4">Password and Security</div>
+        <div className="password-security-header h4">
+          {t("password_and_security")}
+        </div>
         <span className="material-symbols-rounded search"></span>
       </div>
       <div className="password-security-content">
         <form className="password-security-fields" onSubmit={handleSubmit}>
           <InputField
-            placeholder="Current Password"
+            placeholder={t("current_password")}
             value={currentPassword}
             onChange={(e) => setCurrentPassword(e.target.value)}
             leftIcon={
@@ -84,7 +88,7 @@ const PasswordSecurity = () => {
           />
 
           <InputField
-            placeholder="New Password"
+            placeholder={t("new_password")}
             value={newPassword}
             onChange={(e) => setNewPassword(e.target.value)}
             leftIcon={
@@ -102,7 +106,7 @@ const PasswordSecurity = () => {
           />
 
           <InputField
-            placeholder="Confirm New Password"
+            placeholder={t("confirm_new_password")}
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             leftIcon={
@@ -125,15 +129,18 @@ const PasswordSecurity = () => {
 
         <div className="password-security-actions">
           <Button className="update-password-button" onClick={handleSubmit}>
-            Update Password
+            {t("update_password")}
           </Button>
 
           <div className="password-security-footer">
             <p className="password-security-footer-text caption">
-              Don't remember your current password?
+              {t("dont_remember_password")}
             </p>
-            <p className="password-security-footer-link caption" onClick={handleResetWithEmail}>
-              Reset Password with Email
+            <p
+              className="password-security-footer-link caption"
+              onClick={handleResetWithEmail}
+            >
+              {t("reset_password_with_email")}
             </p>
           </div>
         </div>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import LockedBadgeModal from "../../components/ui/lockedBadgeModal";
 
 import rankIcon from "../../assets/images/achievements/ranks/wellness_warrior.png";
@@ -19,6 +20,8 @@ import DayClubLocked25 from "../../assets/images/achievements/badges/25DayClubLo
 
 const Achievements = () => {
   const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
+  const currentLang = i18n.language === "zh" ? "zh" : "en";
   const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 768);
   const [showLockedModal, setShowLockedModal] = useState(false);
 
@@ -31,10 +34,17 @@ const Achievements = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // Helper function to get localized text
+  const getLocalizedText = (textObj) => {
+    if (typeof textObj === "string") return textObj;
+    return textObj[currentLang] || textObj.en;
+  };
+
   const handleSeeAll = (e) => {
     e.preventDefault();
     navigate("/achievements_library");
   };
+
   const badgeImages = [
     badge01,
     badge02,
@@ -86,53 +96,118 @@ const Achievements = () => {
     const diffInMs = nowDate - achievementDate;
     const diffInDays = Math.floor(diffInMs / (1000 * 60 * 60 * 24));
 
+    const dateStrings = {
+      today: { en: "Today", zh: "今天" },
+      yesterday: { en: "Yesterday", zh: "昨天" },
+      daysAgo: { en: "days ago", zh: "天前" },
+      weekAgo: { en: "1 week ago", zh: "1週前" },
+      weeksAgo: { en: "weeks ago", zh: "週前" },
+      monthAgo: { en: "1 month ago", zh: "1個月前" },
+      monthsAgo: { en: "個月前", zh: "個月前" },
+      yearAgo: { en: "1 year ago", zh: "1年前" },
+      yearsAgo: { en: "years ago", zh: "年前" },
+    };
+
     if (diffInDays === 0) {
-      return "Today";
+      return getLocalizedText(dateStrings.today);
     } else if (diffInDays === 1) {
-      return "Yesterday";
+      return getLocalizedText(dateStrings.yesterday);
     } else if (diffInDays <= 7) {
-      return `${diffInDays} days ago`;
+      return `${diffInDays} ${getLocalizedText(dateStrings.daysAgo)}`;
     } else if (diffInDays <= 28) {
       const weeks = Math.floor(diffInDays / 7);
-      return weeks === 1 ? "1 week ago" : `${weeks} weeks ago`;
+      return weeks === 1
+        ? getLocalizedText(dateStrings.weekAgo)
+        : `${weeks} ${getLocalizedText(dateStrings.weeksAgo)}`;
     } else if (diffInDays <= 365) {
       const months = Math.floor(diffInDays / 30);
-      return months === 1 ? "1 month ago" : `${months} months ago`;
+      return months === 1
+        ? getLocalizedText(dateStrings.monthAgo)
+        : `${months} ${getLocalizedText(dateStrings.monthsAgo)}`;
     } else {
       const years = Math.floor(diffInDays / 365);
-      return years === 1 ? "1 year ago" : `${years} years ago`;
+      return years === 1
+        ? getLocalizedText(dateStrings.yearAgo)
+        : `${years} ${getLocalizedText(dateStrings.yearsAgo)}`;
     }
   };
 
+  // Rank data with multilingual content
+  const rankData = {
+    title: {
+      en: "Wellness Warrior",
+      zh: "健康戰士",
+    },
+    motto: {
+      en: "You're building powerful habits.",
+      zh: "您正在建立強大的習慣。",
+    },
+    progressText: {
+      en: "Progress to Mindful Maven: 2,450 / 3,000 XP",
+      zh: "邁向專注大師：2,450 / 3,000 經驗值",
+    },
+  };
+
+  // Achievements data with multilingual content
   const achievementsData = [
     {
       type: "streak",
-      title: "7-day streak",
-      summary: "Logged symptoms daily",
+      title: {
+        en: "7-day streak",
+        zh: "7天連續",
+      },
+      summary: {
+        en: "Logged symptoms daily",
+        zh: "每日記錄症狀",
+      },
       timestamp: "2025-08-17T10:30:45Z",
     },
     {
       type: "milestone",
-      title: "First Week Complete",
-      summary: "Completed your first week of tracking",
+      title: {
+        en: "First Week Complete",
+        zh: "第一週完成",
+      },
+      summary: {
+        en: "Completed your first week of tracking",
+        zh: "完成您的第一週追踪",
+      },
       timestamp: "2025-08-16T14:20:30Z",
     },
     {
       type: "consistency",
-      title: "Morning Routine Master",
-      summary: "Logged morning symptoms 5 days in a row",
+      title: {
+        en: "Morning Routine Master",
+        zh: "晨間例行大師",
+      },
+      summary: {
+        en: "Logged morning symptoms 5 days in a row",
+        zh: "連續5天記錄晨間症狀",
+      },
       timestamp: "2025-08-15T08:15:22Z",
     },
     {
       type: "goal",
-      title: "Hydration Hero",
-      summary: "Met daily water intake goal",
+      title: {
+        en: "Hydration Hero",
+        zh: "水分英雄",
+      },
+      summary: {
+        en: "Met daily water intake goal",
+        zh: "達到每日水分攝取目標",
+      },
       timestamp: "2025-08-14T16:45:18Z",
     },
     {
       type: "habit",
-      title: "Medication Consistency",
-      summary: "Took medications on time for 3 days",
+      title: {
+        en: "Medication Consistency",
+        zh: "用藥一致性",
+      },
+      summary: {
+        en: "Took medications on time for 3 days",
+        zh: "連續3天按時服藥",
+      },
       timestamp: "2025-08-10T09:30:12Z",
     },
   ];
@@ -141,24 +216,43 @@ const Achievements = () => {
     .sort((a, b) => b.timestamp - a.timestamp)
     .slice(0, 3);
 
+  // Milestones data with multilingual content
   const milestonesData = [
     {
-      title: "14 day streak",
-      summary: "Reach 14 day streak to unlock",
+      title: {
+        en: "14 day streak",
+        zh: "14天連續",
+      },
+      summary: {
+        en: "Reach 14 day streak to unlock",
+        zh: "達到14天連續以解鎖",
+      },
       img: DayStreakLocked14,
       progress: 10,
       total: 14,
     },
     {
-      title: "21 day streak",
-      summary: "Reach 21 day streak to unlock",
+      title: {
+        en: "21 day streak",
+        zh: "21天連續",
+      },
+      summary: {
+        en: "Reach 21 day streak to unlock",
+        zh: "達到21天連續以解鎖",
+      },
       img: DayStreakLocked21,
       progress: 10,
       total: 21,
     },
     {
-      title: "25 day club",
-      summary: "Log for 25 days to unlock.",
+      title: {
+        en: "25 day club",
+        zh: "25天俱樂部",
+      },
+      summary: {
+        en: "Log for 25 days to unlock.",
+        zh: "記錄25天以解鎖。",
+      },
       img: DayClubLocked25,
       progress: 20,
       total: 25,
@@ -192,7 +286,7 @@ const Achievements = () => {
           onClick={() => navigate(-1)}
         ></span>
 
-        <div className="achievements-header h4">Achievements</div>
+        <div className="achievements-header h4">{t("achievements")}</div>
         <span className="material-symbols-rounded file_save"></span>
       </div>
 
@@ -201,9 +295,11 @@ const Achievements = () => {
           <div className="achievements-rank-icon">
             <img src={rankIcon} alt="Rank Icon" />
           </div>
-          <h4 className="achievements-rank-title h4">Wellness Warrior</h4>
+          <h4 className="achievements-rank-title h4">
+            {getLocalizedText(rankData.title)}
+          </h4>
           <p className="achievements-rank-motto body">
-            You're building powerful habits.
+            {getLocalizedText(rankData.motto)}
           </p>
           <div className="achievements-rank-progress">
             <div className="achievements-progress-bar">
@@ -213,13 +309,15 @@ const Achievements = () => {
               ></div>
             </div>
             <span className="achievements-progress-text caption">
-              Progress to Mindful Maven: 2,450 / 3,000 XP
+              {getLocalizedText(rankData.progressText)}
             </span>
           </div>
         </div>
 
         <div className="achievements-recent-achievements">
-          <h2 className="achievements-section-title h4">Recent Achievements</h2>
+          <h2 className="achievements-section-title h4">
+            {t("recent_achievements")}
+          </h2>
           <div className="achievements-cards-container">
             {recentAchievements.map((achievement, index) => (
               <div
@@ -240,10 +338,10 @@ const Achievements = () => {
                   </span>
                   <div className="achievements-recent-achievements-text">
                     <h4 className="achievements-recent-achievements-title body">
-                      {achievement.title}
+                      {getLocalizedText(achievement.title)}
                     </h4>
                     <p className="achievements-recent-achievements-summary caption">
-                      {achievement.summary}
+                      {getLocalizedText(achievement.summary)}
                     </p>
                   </div>
                 </div>
@@ -261,12 +359,14 @@ const Achievements = () => {
 
         <div className="achievements-badge-collection">
           <div className="achievements-badge-header">
-            <h2 className="achievements-section-title h4">Badge Collection</h2>
+            <h2 className="achievements-section-title h4">
+              {t("badge_collection")}
+            </h2>
             <span
               className="achievements-see-all caption"
               onClick={handleSeeAll}
             >
-              See All
+              {t("see_all")}
             </span>
           </div>
           <div className="badge-collection-container">
@@ -289,12 +389,12 @@ const Achievements = () => {
 
         <div className="achievements-milestones">
           <div className="achievements-milestones-header">
-            <h2 className="achievements-section-title h4">Milestones</h2>
+            <h2 className="achievements-section-title h4">{t("milestones")}</h2>
             <span
               className="achievements-see-all caption"
               onClick={handleSeeAll}
             >
-              See All
+              {t("see_all")}
             </span>
           </div>
           <div className="milestones-container">
@@ -307,16 +407,16 @@ const Achievements = () => {
                     <div className="achievements-milestone-image">
                       <img
                         src={milestone.img}
-                        alt={milestone.title}
+                        alt={getLocalizedText(milestone.title)}
                         className="milestone-icon-image"
                       />
                     </div>
                     <div className="achievements-milestones-text">
                       <h4 className="achievements-milestones-title body">
-                        {milestone.title}
+                        {getLocalizedText(milestone.title)}
                       </h4>
                       <p className="achievements-milestones-summary caption">
-                        {milestone.summary}
+                        {getLocalizedText(milestone.summary)}
                       </p>
                     </div>
                   </div>

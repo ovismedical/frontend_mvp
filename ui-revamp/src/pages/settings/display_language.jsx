@@ -6,19 +6,19 @@ import { useTranslation } from "react-i18next";
 const DisplayLanguage = () => {
   const navigate = useNavigate();
   const { scale, setScale } = useContext(ScaleContext);
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const [languageOpen, setLanguageOpen] = useState(false);
   // Initialize selectedLanguage based on current i18n language
   const [selectedLanguage, setSelectedLanguage] = useState(
-    i18n.language === 'zh' ? "繁體中文" : "English"
+    i18n.language === "zh" ? "繁體中文" : "English"
   );
   const [fontSizeOpen, setFontSizeOpen] = useState(false);
 
   // Map display names to i18n language codes
   const languageMap = {
-    "English": "en",
-    "繁體中文": "zh"
+    English: "en",
+    繁體中文: "zh",
   };
 
   const handleLanguageChange = (displayLanguage) => {
@@ -27,17 +27,17 @@ const DisplayLanguage = () => {
     i18n.changeLanguage(languageCode);
   };
 
-  // Map scale context values to display names
+  // Map scale context values to display names with translations
   const scaleToFontSize = {
-    small: "Small",
-    default: "Medium",
-    large: "Large",
+    small: t("small"),
+    default: t("medium"),
+    large: t("large"),
   };
 
   const fontSizeToScale = {
-    Small: "small",
-    Medium: "default",
-    Large: "large",
+    [t("small")]: "small",
+    [t("medium")]: "default",
+    [t("large")]: "large",
   };
 
   const handleFontSizeChange = (fontSize) => {
@@ -53,7 +53,7 @@ const DisplayLanguage = () => {
         >
           chevron_backward
         </span>
-        <div className="h4">Display and Language</div>
+        <div className="h4">{t("display_and_language")}</div>
         <span className="material-symbols-rounded search"></span>
       </div>
 
@@ -69,7 +69,7 @@ const DisplayLanguage = () => {
               translate
             </span>
             <span className="display-language-accordion-title body">
-              Language / 語言
+              {t("language")}
             </span>
           </div>
           <span className="material-symbols-rounded accordion-action-icon">
@@ -122,7 +122,7 @@ const DisplayLanguage = () => {
               format_size
             </span>
             <span className="display-language-accordion-title body">
-              Font Size
+              {t("font_size")}
             </span>
           </div>
           <span className="material-symbols-rounded accordion-action-icon">
@@ -136,10 +136,10 @@ const DisplayLanguage = () => {
               className={`display-language-accordion-option ${
                 scale === "small" ? "selected" : ""
               }`}
-              onClick={() => handleFontSizeChange("Small")}
+              onClick={() => handleFontSizeChange(t("small"))}
             >
               <span className="display-language-option-text caption">
-                Small
+                {t("small")}
               </span>
               {scale === "small" && (
                 <span className="material-symbols-rounded check">done</span>
@@ -149,10 +149,10 @@ const DisplayLanguage = () => {
               className={`display-language-accordion-option ${
                 scale === "default" ? "selected" : ""
               }`}
-              onClick={() => handleFontSizeChange("Medium")}
+              onClick={() => handleFontSizeChange(t("medium"))}
             >
               <span className="display-language-option-text caption">
-                Medium
+                {t("medium")}
               </span>
               {scale === "default" && (
                 <span className="material-symbols-rounded check">done</span>
@@ -162,10 +162,10 @@ const DisplayLanguage = () => {
               className={`display-language-accordion-option ${
                 scale === "large" ? "selected" : ""
               }`}
-              onClick={() => handleFontSizeChange("Large")}
+              onClick={() => handleFontSizeChange(t("large"))}
             >
               <span className="display-language-option-text caption">
-                Large
+                {t("large")}
               </span>
               {scale === "large" && (
                 <span className="material-symbols-rounded check">done</span>

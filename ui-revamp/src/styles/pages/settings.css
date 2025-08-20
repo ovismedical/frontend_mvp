@@ -121,6 +121,10 @@
   margin-left: 48px; /* align with text */
 }
 
+.help-subtext{
+  color: var(--text-400);
+}
+
 .help-link {
   color: var(--blue-700);
   text-decoration: none;

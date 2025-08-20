@@ -1,9 +1,30 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const AchievementsLibrary = () => {
   const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
+  const currentLang = i18n.language === "zh" ? "zh" : "en";
   const [achievements, setAchievements] = useState([]);
+
+  // Helper function to get localized text
+  const getLocalizedText = (textObj) => {
+    if (typeof textObj === "string") return textObj;
+    return textObj[currentLang] || textObj.en;
+  };
+
+  // Page content with multilingual data
+  const pageContent = {
+    title: {
+      en: "Build Better Habits",
+      zh: "建立更好的習慣",
+    },
+    subtitle: {
+      en: "Unlock badges by showing up daily, tracking your health, and committing to your care—step by step.",
+      zh: "通過每日出現、追踪健康和致力於護理來解鎖徽章——一步一步來。",
+    },
+  };
 
   useEffect(() => {
     const loadAchievements = async () => {
@@ -71,10 +92,11 @@ const AchievementsLibrary = () => {
       </div>
 
       <div className="achievements-library-content">
-        <h2 className="achievements-library-title h2">Build Better Habits</h2>
+        <h2 className="achievements-library-title h2">
+          {getLocalizedText(pageContent.title)}
+        </h2>
         <h2 className="achievements-library-subtitle body">
-          Unlock badges by showing up daily, tracking your health, and
-          committing to your care—step by step.
+          {getLocalizedText(pageContent.subtitle)}
         </h2>
 
         <div className="achievements-library-grid">
@@ -98,7 +120,7 @@ const AchievementsLibrary = () => {
         </div>
 
         <div className="achievements-library-footer caption">
-          Advance your rank to unlock fresh achievements and stay motivated.
+          {t("advance_rank_footer")}
         </div>
       </div>
     </div>

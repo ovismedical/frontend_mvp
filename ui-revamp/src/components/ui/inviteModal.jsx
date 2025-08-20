@@ -1,10 +1,12 @@
 import React from "react";
 import { QRCodeSVG } from "qrcode.react";
 import Button from "../ui/button";
+import { useTranslation } from "react-i18next";
 import "../../styles/components/inviteModal.css";
 
 const InviteModal = ({ isOpen, onClose, userName, inviteLink }) => {
-  if (!isOpen) return null; 
+  if (!isOpen) return null;
+  const { t } = useTranslation();
 
   const [copied, setCopied] = React.useState(false);
 
@@ -44,7 +46,7 @@ const InviteModal = ({ isOpen, onClose, userName, inviteLink }) => {
       <div className="invite-modal">
         {/* Header */}
         <div className="invite-modal-header">
-          <h3 className="invite-modal-title h4">My QR Code</h3>
+          <h3 className="invite-modal-title h4">{t("my_qr_code")}</h3>
           <span
             className="material-symbols-rounded close-icon"
             onClick={onClose}
@@ -62,7 +64,7 @@ const InviteModal = ({ isOpen, onClose, userName, inviteLink }) => {
             fgColor="#000000"
           />
           <p className="invite-modal-text body">
-            Scan this QR code to send request to <b>{userName}</b>
+            {t("scan_qr_code_text", { userName })}
           </p>
         </div>
 
@@ -73,7 +75,7 @@ const InviteModal = ({ isOpen, onClose, userName, inviteLink }) => {
             onClick={handleCopy}
             className="invite-share-btn body"
           >
-            {copied ? " Invite Link Copied" : "Copy Invite Link"}
+            {copied ? t("invite_link_copied") : t("copy_invite_link")}
           </Button>
         </div>
       </div>

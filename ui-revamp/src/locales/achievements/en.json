@@ -1,0 +1,16 @@
+{
+  "achievements": "Achievements",
+  "recent_achievements": "Recent Achievements",
+  "badge_collection": "Badge Collection",
+  "milestones": "Milestones",
+  "see_all": "See All",
+  "congratulations": "Congratulations",
+  "badge_unlocked": "Badge Unlocked!",
+  "unlocked_on": "Unlocked on {{date}}",
+  "share": "Share",
+  "build_better_habits": "Build Better Habits",
+  "advance_rank_footer": "Advance your rank to unlock fresh achievements and stay motivated.",
+  "locked": "Locked!",
+  "locked_badge_description": "Not all badges are available right away. As you make progress and reach higher ranks, new badges will unlock, giving you fresh goals to aim for and new milestones to celebrate.",
+  "how_to_rank_up": "How to Rank Up?"
+}

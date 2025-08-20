@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import html2canvas from "html2canvas";
 import unlockedBadgeImage from "../../assets/images/achievements/badges/unlocked/7daystreak.png";
 import lockedBadgeImage from "../../assets/images/achievements/badges/locked/14daystreak.png";
@@ -8,24 +9,52 @@ import Button from "../../components/ui/button";
 
 const BadgeDetails = () => {
   const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
+  const currentLang = i18n.language === "zh" ? "zh" : "en";
   const shareContentRef = useRef(null);
-  const { variant = "unlocked" } = useParams(); // Get variant from URL params
+  const { variant = "unlocked" } = useParams();
 
-  // Badge configuration based on variant
+  // Helper function to get localized text
+  const getLocalizedText = (textObj) => {
+    if (typeof textObj === "string") return textObj;
+    return textObj[currentLang] || textObj.en;
+  };
+
+  // Format date based on current language
+  const formatDate = (date) => {
+    return date.toLocaleDateString(i18n.language === "zh" ? "zh-CN" : "en-US", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    });
+  };
+
+  // Badge configuration with multilingual content
   const badgeConfig = {
     unlocked: {
       image: unlockedBadgeImage,
-      name: "7-Day Streak",
-      description: "You're on a roll with 7 days of check-ins in a row!",
+      name: {
+        en: "7-Day Streak",
+        zh: "7天連續",
+      },
+      description: {
+        en: "You're on a roll with 7 days of check-ins in a row!",
+        zh: "您連續7天打卡，表現出色！",
+      },
       showCongrats: true,
       showDate: true,
       showShare: true,
     },
     locked: {
       image: lockedBadgeImage,
-      name: "14-Day Streak",
-      description:
-        "Earn this badge by completing check-ins for 14 days in a row. If you miss a day, your streak will reset. You’ve checked in for 13 consecutive days so far.",
+      name: {
+        en: "14-Day Streak",
+        zh: "14天連續",
+      },
+      description: {
+        en: "Earn this badge by completing check-ins for 14 days in a row. If you miss a day, your streak will reset. You've checked in for 13 consecutive days so far.",
+        zh: "通過連續14天完成打卡來獲得此徽章。如果您錯過一天，您的連續記錄將重置。到目前為止，您已經連續打卡13天。",
+      },
       showCongrats: false,
       showDate: false,
       showShare: false,
@@ -50,8 +79,10 @@ const BadgeDetails = () => {
         });
 
         const shareData = {
-          title: "Badge Unlocked!",
-          text: `I just unlocked the ${currentBadge.name} badge!`,
+          title: t("badge_unlocked"),
+          text: `I just unlocked the ${getLocalizedText(
+            currentBadge.name
+          )} badge!`,
           files: [file],
         };
 
@@ -108,28 +139,30 @@ const BadgeDetails = () => {
       <div className="badge-details-content">
         <div className="badge-details-info" ref={shareContentRef}>
           {currentBadge.showCongrats && (
-            <h3 className="badge-details-congrats h4">Congratulations</h3>
+            <h3 className="badge-details-congrats h4">
+              {t("congratulations")}
+            </h3>
           )}
           {variant === "unlocked" && (
-            <h2 className="badge-details-unlocked h2">
-              Badge Unlocked!
-            </h2>
+            <h2 className="badge-details-unlocked h2">{t("badge_unlocked")}</h2>
           )}
 
           <div className="badge-details-image">
             <img src={currentBadge.image} alt="Badge" />
           </div>
 
-          <h2 className="badge-details-name h2">{currentBadge.name}</h2>
+          <h2 className="badge-details-name h2">
+            {getLocalizedText(currentBadge.name)}
+          </h2>
           <p className="badge-details-description body">
-            {currentBadge.description}
+            {getLocalizedText(currentBadge.description)}
           </p>
 
           {currentBadge.showDate && (
             <div className="badge-details-date">
               <span className="material-symbols-rounded event">event</span>
               <p className="badge-details-date-text body">
-                Unlocked on Feb 27, 2025
+                {t("unlocked_on", { date: formatDate(new Date(2025, 1, 27)) })}
               </p>
             </div>
           )}
@@ -145,7 +178,7 @@ const BadgeDetails = () => {
               className="assessment-button body"
               onClick={handleShare}
             >
-              Share
+              {t("share")}
             </Button>
           </div>
         )}

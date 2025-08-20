@@ -1,14 +1,23 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import QuickStartGuideCard from "../components/ui/quickStartGuideCard";
 import FAQItem from "../components/ui/faq";
 import VersionCard from "../components/ui/versionCard";
 
 const HelpCenter = () => {
   const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
+  const currentLang = i18n.language === 'zh' ? 'zh' : 'en';
 
   const [searchTerm, setSearchTerm] = useState("");
   const [isSearchVisible, setIsSearchVisible] = useState(false);
+
+  // Helper function to get localized text
+  const getLocalizedText = (textObj) => {
+    if (typeof textObj === 'string') return textObj;
+    return textObj[currentLang] || textObj.en;
+  };
 
   const toggleSearch = () => {
     setIsSearchVisible(!isSearchVisible);
@@ -20,51 +29,101 @@ const HelpCenter = () => {
   const quickStartGuides = [
     {
       icon: "stars_2",
-      subtext: "Getting started with",
-      title: "Daily Check-in",
+      subtext: {
+        en: "Getting started with",
+        zh: "開始使用"
+      },
+      title: {
+        en: "Daily Check-in",
+        zh: "每日打卡"
+      },
     },
     {
       icon: "analytics",
-      subtext: "Learn about",
-      title: "Analytics Dashboard",
+      subtext: {
+        en: "Learn about",
+        zh: "了解"
+      },
+      title: {
+        en: "Analytics Dashboard",
+        zh: "分析儀表板"
+      },
     },
     {
       icon: "settings",
-      subtext: "Configure your",
-      title: "Account Settings",
+      subtext: {
+        en: "Configure your",
+        zh: "配置您的"
+      },
+      title: {
+        en: "Account Settings",
+        zh: "帳戶設置"
+      },
     },
     {
       icon: "notifications",
-      subtext: "Set up",
-      title: "Notifications",
+      subtext: {
+        en: "Set up",
+        zh: "設置"
+      },
+      title: {
+        en: "Notifications",
+        zh: "通知"
+      },
     },
     {
       icon: "help",
-      subtext: "Get help with",
-      title: "Troubleshooting",
+      subtext: {
+        en: "Get help with",
+        zh: "獲得幫助"
+      },
+      title: {
+        en: "Troubleshooting",
+        zh: "故障排除"
+      },
     },
   ];
 
   const faqs = [
     {
-      question: "How often should I complete my daily check-in?",
-      answer:
-        "We recommend checking in once a day, ideally at the same time each day for consistency.",
+      question: {
+        en: "How often should I complete my daily check-in?",
+        zh: "我應該多久完成一次每日打卡？"
+      },
+      answer: {
+        en: "We recommend checking in once a day, ideally at the same time each day for consistency.",
+        zh: "我們建議每天打卡一次，最好每天在同一時間進行以保持一致性。"
+      },
     },
     {
-      question: "What happens to my health data?",
-      answer:
-        "Your health data is stored securely and used only in accordance with our privacy policy.",
+      question: {
+        en: "What happens to my health data?",
+        zh: "我的健康數據會怎樣？"
+      },
+      answer: {
+        en: "Your health data is stored securely and used only in accordance with our privacy policy.",
+        zh: "您的健康數據會安全存儲，僅按照我們的隱私政策使用。"
+      },
     },
     {
-      question: "How is my privacy protected?",
-      answer:
-        "We take your privacy seriously and implement strict measures to protect your data.",
+      question: {
+        en: "How is my privacy protected?",
+        zh: "我的隱私如何受到保護？"
+      },
+      answer: {
+        en: "We take your privacy seriously and implement strict measures to protect your data.",
+        zh: "我們認真對待您的隱私，並實施嚴格措施保護您的數據。"
+      },
     },
     {
-      question: "What should I do if I encounter a bug?",
-      answer:
-        "If you encounter a bug, please report it to our support team with as much detail as possible.",
+      question: {
+        en: "What should I do if I encounter a bug?",
+        zh: "如果我遇到錯誤該怎麼辦？"
+      },
+      answer: {
+        en: "If you encounter a bug, please report it to our support team with as much detail as possible.",
+        zh: "如果您遇到錯誤，請盡可能詳細地向我們的支援團隊報告。"
+      },
     },
   ];
 
@@ -73,22 +132,48 @@ const HelpCenter = () => {
   const versionCards = [
     {
       version: "V2.1.0",
-      title: "Enhanced Search Features",
-      description:
-        "Improved search functionality with better filters and faster results.",
-      date: "JAN 15, 2025",
+      title: {
+        en: "Enhanced Search Features",
+        zh: "增強搜索功能"
+      },
+      description: {
+        en: "Improved search functionality with better filters and faster results.",
+        zh: "改進的搜索功能，具有更好的過濾器和更快的結果。"
+      },
+      date: {
+        en: "JAN 15, 2025",
+        zh: "2025年1月15日"
+      },
     },
     {
       version: "V2.0.0",
-      title: "UI Revamp",
-      description: "A fresh new look and improved navigation experience.",
-      date: "DEC 10, 2024",
+      title: {
+        en: "UI Revamp",
+        zh: "界面改版"
+      },
+      description: {
+        en: "A fresh new look and improved navigation experience.",
+        zh: "全新外觀和改進的導航體驗。"
+      },
+      date: {
+        en: "DEC 10, 2024",
+        zh: "2024年12月10日"
+      },
     },
     {
       version: "V1.9.5",
-      title: "Performance Improvements",
-      description: "Faster load times and smoother transitions.",
-      date: "NOV 01, 2024",
+      title: {
+        en: "Performance Improvements",
+        zh: "性能改進"
+      },
+      description: {
+        en: "Faster load times and smoother transitions.",
+        zh: "更快的加載時間和更流暢的過渡。"
+      },
+      date: {
+        en: "NOV 01, 2024",
+        zh: "2024年11月1日"
+      },
     },
   ];
 
@@ -97,20 +182,20 @@ const HelpCenter = () => {
 
   const filteredQuickStartGuides = quickStartGuides.filter(
     (guide) =>
-      guide.title.toLowerCase().includes(lowerSearch) ||
-      guide.subtext.toLowerCase().includes(lowerSearch)
+      getLocalizedText(guide.title).toLowerCase().includes(lowerSearch) ||
+      getLocalizedText(guide.subtext).toLowerCase().includes(lowerSearch)
   );
 
   const filteredFaqs = faqs.filter(
     (faq) =>
-      faq.question.toLowerCase().includes(lowerSearch) ||
-      faq.answer.toLowerCase().includes(lowerSearch)
+      getLocalizedText(faq.question).toLowerCase().includes(lowerSearch) ||
+      getLocalizedText(faq.answer).toLowerCase().includes(lowerSearch)
   );
 
   const filteredVersionCards = versionCards.filter(
     (card) =>
-      card.title.toLowerCase().includes(lowerSearch) ||
-      card.description.toLowerCase().includes(lowerSearch) ||
+      getLocalizedText(card.title).toLowerCase().includes(lowerSearch) ||
+      getLocalizedText(card.description).toLowerCase().includes(lowerSearch) ||
       card.version.toLowerCase().includes(lowerSearch)
   );
 
@@ -131,7 +216,7 @@ const HelpCenter = () => {
         >
           chevron_backward
         </span>
-        <div className="help-center-header h4">Help Center</div>
+        <div className="help-center-header h4">{t("help_center")}</div>
         <span
           className="material-symbols-rounded search"
           onClick={toggleSearch}
@@ -146,7 +231,7 @@ const HelpCenter = () => {
           <input
             className="body"
             type="text"
-            placeholder="Search..."
+            placeholder={t("search")}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             autoFocus
@@ -160,16 +245,16 @@ const HelpCenter = () => {
             check_circle
           </span>
           <div className="system-status-text">
-            <p className="system-status-title body">All systems operational</p>
+            <p className="system-status-title body">{t("all_systems_operational")}</p>
             <p className="system-status-subtitle caption">
-              Last updated: 2 minutes ago
+              {t("last_updated")}
             </p>
           </div>
         </div>
 
         {noResults ? (
           <div className="help-center-no-results">
-            <p className="h4">No results found for "{searchTerm}".</p>
+            <p className="h4">{t("no_results_found")} "{searchTerm}".</p>
           </div>
         ) : (
           <>
@@ -178,7 +263,7 @@ const HelpCenter = () => {
               .length > 0 && (
               <section className="quick-start-guide">
                 <h2 className="help-center-section-title h4">
-                  Quick Start Guide
+                  {t("quick_start_guide")}
                 </h2>
                 <div className="quick-start-guide-container">
                   {(isSearchVisible
@@ -188,8 +273,8 @@ const HelpCenter = () => {
                     <QuickStartGuideCard
                       key={index}
                       icon={guide.icon}
-                      subtext={guide.subtext}
-                      title={guide.title}
+                      subtext={getLocalizedText(guide.subtext)}
+                      title={getLocalizedText(guide.title)}
                       variant={colorVariants[index % colorVariants.length]}
                     />
                   ))}
@@ -201,14 +286,14 @@ const HelpCenter = () => {
             {(isSearchVisible ? filteredFaqs : faqs).length > 0 && (
               <section className="faq-section">
                 <h2 className="help-center-section-title h4">
-                  Frequently Asked Questions
+                  {t("frequently_asked_questions")}
                 </h2>
                 <div className="faq-items">
                   {(isSearchVisible ? filteredFaqs : faqs).map((faq, index) => (
                     <FAQItem
                       key={index}
-                      question={faq.question}
-                      answer={faq.answer}
+                      question={getLocalizedText(faq.question)}
+                      answer={getLocalizedText(faq.answer)}
                     />
                   ))}
                 </div>
@@ -217,22 +302,22 @@ const HelpCenter = () => {
 
             {/* Report & Feedback Section */}
             <section className="report-feedback-section">
-              <h2 className="report-feedback-title body">Report & Feedback</h2>
+              <h2 className="report-feedback-title body">{t("report_feedback")}</h2>
               <p className="report-feedback-description caption">
-                Help us improve by reporting bugs or sharing feedback
+                {t("report_feedback_description")}
               </p>
               <div className="report-feedback-button">
                 <button className="report-feedback-button bug caption">
                   <span className="material-symbols-rounded report">
                     report
                   </span>
-                  Report bug
+                  {t("report_bug")}
                 </button>
                 <button className="report-feedback-button feedback caption">
                   <span className="material-symbols-rounded lightbulb">
                     lightbulb
                   </span>
-                  Send Feedback
+                  {t("send_feedback")}
                 </button>
               </div>
             </section>
@@ -241,16 +326,16 @@ const HelpCenter = () => {
             {(isSearchVisible ? filteredVersionCards : versionCards).length >
               0 && (
               <section className="version-history-section">
-                <h2 className="help-center-section-title h4">What’s New</h2>
+                <h2 className="help-center-section-title h4">{t("whats_new")}</h2>
                 <div className="version-history-cards">
                   {(isSearchVisible ? filteredVersionCards : versionCards).map(
                     (card, idx) => (
                       <VersionCard
                         key={idx}
                         version={card.version}
-                        title={card.title}
-                        description={card.description}
-                        date={card.date}
+                        title={getLocalizedText(card.title)}
+                        description={getLocalizedText(card.description)}
+                        date={getLocalizedText(card.date)}
                       />
                     )
                   )}
@@ -262,18 +347,18 @@ const HelpCenter = () => {
 
         {/* Still Need Help Section */}
         <section className="still-need-help-section">
-          <h3 className="still-need-help-title body">Still Need Help?</h3>
+          <h3 className="still-need-help-title body">{t("still_need_help")}</h3>
           <p className="still-need-help-description caption">
-            Our support team is here to assist you with any questions or issues.
+            {t("still_need_help_description")}
           </p>
           <div className="still-need-help-button">
             <button className="still-need-help-button mail caption">
               <span className="material-symbols-rounded mail">mail</span>
-              Email Us
+              {t("email_us")}
             </button>
             <button className="still-need-help-button call caption">
               <span className="material-symbols-rounded call">call</span>
-              Call Support
+              {t("call_support")}
             </button>
           </div>
         </section>
