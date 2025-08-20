@@ -1,0 +1,19 @@
+{
+  "all_medications": "All Medications",
+  "active": "Active",
+  "archived": "Archived",
+  "search_medications": "Search medications...",
+  "no_medications_found": "No medications found matching \"{{searchTerm}}\"",
+  "expired": "Expired",
+  "remaining": "Remaining",
+  "main_info": "Main Info",
+  "expiring_date": "Expiring date",
+  "refill_date": "Refill date",
+  "details": "Details",
+  "dosage": "Dosage",
+  "used_for": "Used For",
+  "side_effects": "Side Effects",
+  "common": "Common:",
+  "less_common": "Less Common:",
+  "serious": "Serious:"
+}

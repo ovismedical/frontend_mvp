@@ -1,9 +1,11 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import "../../styles/components/dailyCheckIn.css";
 import WeeklyProgressRow from "../ui/weekly_ProgressRow";
 import { useNavigate } from "react-router-dom";
 
 const DailyCheckIn = ({ currentDays = 2, longestDays = 12 }) => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   const handleLogToday = (e) => {
@@ -14,9 +16,9 @@ const DailyCheckIn = ({ currentDays = 2, longestDays = 12 }) => {
   return (
     <div className="daily-checkin">
       <div className="header">
-        <h3 className="daily-checkin-title h4">Daily Check-In</h3>
+        <h3 className="daily-checkin-title h4">{t("daily_check_in")}</h3>
         <button className="log-button caption" onClick={handleLogToday}>
-          Log Today
+          {t("log_today")}
         </button>
       </div>
 
@@ -27,8 +29,10 @@ const DailyCheckIn = ({ currentDays = 2, longestDays = 12 }) => {
               local_fire_department
             </span>
             <div className="days-container">
-              <span className="days-amount caption">{currentDays} days</span>
-              <small className="days-label caption">current</small>
+              <span className="days-amount caption">
+                {currentDays} {t("days")}
+              </span>
+              <small className="days-label caption">{t("current")}</small>
             </div>
           </div>
           <div className="streak">
@@ -36,14 +40,18 @@ const DailyCheckIn = ({ currentDays = 2, longestDays = 12 }) => {
               emoji_events
             </span>
             <div className="days-container">
-              <span className="days-amount caption">{longestDays} days</span>
-              <small className="days-label caption">longest</small>
+              <span className="days-amount caption">
+                {longestDays} {t("days")}
+              </span>
+              <small className="days-label caption">{t("longest")}</small>
             </div>
           </div>
         </div>
 
         <div className="weekly-progress">
-          <span className="weekly-progress-title caption">Weekly Progress</span>
+          <span className="weekly-progress-title caption">
+            {t("weekly_progress")}
+          </span>
           <WeeklyProgressRow />
         </div>
       </div>

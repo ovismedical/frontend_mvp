@@ -1,6 +1,7 @@
 import React from "react";
 import ArticleCard from "../ui/articleCard";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import "../../styles/components/careLibrary.css";
 
 const articleData = [
@@ -87,6 +88,7 @@ const articleData = [
 
 const CareLibrary = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const handleViewAll = (e) => {
     e.preventDefault();
@@ -96,9 +98,9 @@ const CareLibrary = () => {
   return (
     <div className="care-library-container">
       <div className="care-library-header">
-        <h2 className="care-library-header-title h4">Your Care Library</h2>
+        <h2 className="care-library-header-title h4">{t("your_care_library")}</h2>
         <a href="#" className="view-all caption" onClick={handleViewAll}>
-          View All
+          {t("view_all")}
         </a>
       </div>
       <div className="article-scroll-container">

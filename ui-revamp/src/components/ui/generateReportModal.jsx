@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import Tabs from "../../components/ui/tabs";
 import "../../styles/components/generateReportModal.css";
 import Button from "../../components/ui/button";
@@ -15,6 +16,7 @@ const getWeekAgo = () => {
 };
 
 const GenerateReportModal = ({ onClose }) => {
+  const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState("By Weeks");
 
   // state for weeks/months
@@ -33,12 +35,12 @@ const GenerateReportModal = ({ onClose }) => {
           (new Date(toDate) - new Date(fromDate)) / (1000 * 60 * 60 * 24)
         ) + 1;
       if (days < 7) {
-        setError("Please select at least a 7-day range.");
+        setError(t("select_at_least_7_days"));
       } else {
         setError("");
       }
     }
-  }, [fromDate, toDate, activeTab]);
+  }, [fromDate, toDate, activeTab, t]);
 
   const handleTabChange = (tabName) => {
     setActiveTab(tabName);
@@ -52,14 +54,14 @@ const GenerateReportModal = ({ onClose }) => {
   const handleGenerate = () => {
     if (activeTab === "By Weeks") {
       if (weeks < 1) {
-        setError("Please select at least 1 week.");
+        setError(t("select_at_least_1_week"));
         return;
       }
       setError("");
       console.log(`Generating report for ${weeks} week(s).`);
     } else if (activeTab === "By Month") {
       if (months < 1) {
-        setError("Please select at least 1 month.");
+        setError(t("select_at_least_1_month"));
         return;
       }
       setError("");
@@ -70,7 +72,7 @@ const GenerateReportModal = ({ onClose }) => {
           (new Date(toDate) - new Date(fromDate)) / (1000 * 60 * 60 * 24)
         ) + 1;
       if (days < 7) {
-        setError("Please select at least a 7-day range.");
+        setError(t("select_at_least_7_days"));
         return;
       }
       setError("");
@@ -79,9 +81,9 @@ const GenerateReportModal = ({ onClose }) => {
   };
 
   const tabs = [
-    { name: "By Weeks" },
-    { name: "By Month" },
-    { name: "Custom Range" },
+    { name: t("by_weeks") },
+    { name: t("by_month") },
+    { name: t("custom_range") },
   ];
 
   const todayStr = getToday();
@@ -95,7 +97,7 @@ const GenerateReportModal = ({ onClose }) => {
       <div className="generate-report-modal">
         <div className="generate-report-modal-header">
           <h3 className="generate-report-modal-title h4">
-            Generate Health Report
+            {t("generate_health_report")}
           </h3>
           <span
             className="material-symbols-rounded close-icon"
@@ -108,66 +110,72 @@ const GenerateReportModal = ({ onClose }) => {
         <Tabs tabs={tabs} onTabChange={handleTabChange} activeTab={activeTab} />
 
         <div className="generate-report-modal-content">
-          {activeTab === "By Weeks" && (
+          {activeTab === t("by_weeks") && (
             <div className="range-selector">
               <button onClick={() => setWeeks(Math.max(1, weeks - 1))}>
                 −
               </button>
-              <span>{weeks} week(s)</span>
+              <span>
+                {weeks} {t("weeks")}
+              </span>
               <button onClick={() => setWeeks(weeks + 1)}>+</button>
             </div>
           )}
 
-          {activeTab === "By Month" && (
+          {activeTab === t("by_month") && (
             <div className="range-selector">
               <button onClick={() => setMonths(Math.max(1, months - 1))}>
                 −
               </button>
-              <span>{months} month(s)</span>
+              <span>
+                {months} {t("months")}
+              </span>
               <button onClick={() => setMonths(months + 1)}>+</button>
             </div>
           )}
 
-          {activeTab === "Custom Range" && (
+          {activeTab === t("custom_range") && (
             <div className="custom-range-selector">
-            <div className="date-picker">
-              <label>
-                From
-                <input
-                  type="date"
-                  value={fromDate}
-                  max={todayStr}
-                  onChange={(e) => {
-                    setFromDate(e.target.value);
-                    setError("");
-                  }}
-                />
-              </label>
-              <label>
-                To
-                <input
-                  type="date"
-                  value={toDate}
-                  max={todayStr}
-                  min={fromDate}
-                  onChange={(e) => {
-                    setToDate(e.target.value);
-                    setError("");
-                  }}
-                />
-              </label>
-              <p className="custom-range-info-message caption">
-                Generating a {customRangeDays} days report.
-              </p>
+              <div className="date-picker">
+                <label>
+                  {t("from")}
+                  <input
+                    type="date"
+                    value={fromDate}
+                    max={todayStr}
+                    onChange={(e) => {
+                      setFromDate(e.target.value);
+                      setError("");
+                    }}
+                  />
+                </label>
+                <label>
+                  {t("to")}
+                  <input
+                    type="date"
+                    value={toDate}
+                    max={todayStr}
+                    min={fromDate}
+                    onChange={(e) => {
+                      setToDate(e.target.value);
+                      setError("");
+                    }}
+                  />
+                </label>
+                <p className="custom-range-info-message caption">
+                  {t("generating_days_report", { count: customRangeDays })}
+                </p>
               </div>
-              {error && <p className="custom-range-error-message caption">{error}</p>}
+              {error && (
+                <p className="custom-range-error-message caption">{error}</p>
+              )}
             </div>
           )}
         </div>
 
         <div className="generate-report-modal-actions">
           <Button variant="outline" className="cancel-btn" onClick={onClose}>
-            Cancel
+            {t("cancel")}
           </Button>
           <Button
             variant="filled"
@@ -179,7 +187,7 @@ const GenerateReportModal = ({ onClose }) => {
               (activeTab === "By Month" && months < 1)
             }
           >
-            Generate Report
+            {t("generate_report")}
           </Button>
         </div>
       </div>

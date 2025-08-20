@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import Tabs from "../../components/ui/tabs";
 import DailyDashboard from "./daily";
 import WeeklyDashboard from "./weekly";
@@ -8,12 +9,12 @@ import GenerateReportModal from "../../components/ui/generateReportModal";
 
 const Dashboard = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState(t("today"));
 
-  const [activeTab, setActiveTab] = useState("Today");
-
-  const tabs = [{ name: "Today" }, { name: "This Week" }, { name: "Monthly" }];
+  const tabs = [{ name: t("today") }, { name: t("this_week") }, { name: t("monthly") }];
 
   const handleTabChange = (tabName) => {
     setActiveTab(tabName);
@@ -27,7 +28,7 @@ const Dashboard = () => {
           onClick={() => navigate(-1)}
         ></span>
 
-        <div className="dashboard-header h4">Health Dashboard</div>
+        <div className="dashboard-header h4">{t("health_dashboard")}</div>
         <span
           className="material-symbols-rounded file_save"
           onClick={() => setIsModalOpen(true)}
@@ -39,9 +40,9 @@ const Dashboard = () => {
       <Tabs tabs={tabs} onTabChange={handleTabChange} activeTab={activeTab} />
 
       <div className="dashboard-content">
-        {activeTab === "Today" && <DailyDashboard />}
-        {activeTab === "This Week" && <WeeklyDashboard />}
-        {activeTab === "Monthly" && <MonthlyDashboard />}
+        {activeTab === t("today") && <DailyDashboard />}
+        {activeTab === t("this_week") && <WeeklyDashboard />}
+        {activeTab === t("monthly") && <MonthlyDashboard />}
       </div>
 
       {isModalOpen && (

@@ -1,16 +1,18 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import Tabs from "../../components/ui/tabs";
 import MedicationList from "../../components/layout/medication_list";
 
 const Medication = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
-  const [activeTab, setActiveTab] = useState("Active");
+  const [activeTab, setActiveTab] = useState(t("active"));
   const [searchTerm, setSearchTerm] = useState("");
   const [isSearchVisible, setIsSearchVisible] = useState(false);
 
-  const tabs = [{ name: "Active" }, { name: "Archived" }];
+  const tabs = [{ name: t("active") }, { name: t("archived") }];
 
   const handleTabChange = (tabName) => {
     setActiveTab(tabName);
@@ -32,7 +34,7 @@ const Medication = () => {
         >
           chevron_backward
         </span>
-        <div className="med-list-header h4">All Medications</div>
+        <div className="med-list-header h4">{t("all_medications")}</div>
         <span
           className="material-symbols-rounded search"
           onClick={toggleSearch}
@@ -47,7 +49,7 @@ const Medication = () => {
           <input
             className="body"
             type="text"
-            placeholder="Search medications..."
+            placeholder={t("search_medications")}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             autoFocus

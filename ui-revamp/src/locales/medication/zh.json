@@ -1,0 +1,20 @@
+{
+  "all_medications": "所有藥物",
+  "active": "活躍",
+  "archived": "已歸檔",
+  "search_medications": "搜索藥物...",
+  "no_medications_found": "未找到與 \"{{searchTerm}}\" 匹配的藥物",
+  "expired": "已過期",
+  "expiring": "即將過期",
+  "remaining": "剩餘",
+  "main_info": "主要信息",
+  "expiring_date": "到期日期",
+  "refill_date": "補充日期",
+  "details": "詳情",
+  "dosage": "劑量",
+  "used_for": "用途",
+  "side_effects": "副作用",
+  "common": "常見：",
+  "less_common": "較少見：",
+  "serious": "嚴重："
+}

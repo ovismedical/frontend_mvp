@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import "../../styles/components/monthlyCalendar.css";
@@ -28,6 +29,7 @@ const symptomData = {
 };
 
 const MonthlyCalendar = () => {
+  const { t, i18n } = useTranslation();
   const [value, setValue] = useState(new Date(2025, 5)); // June 2025
 
   const getTileClass = ({ date, view }) => {
@@ -47,13 +49,16 @@ const MonthlyCalendar = () => {
     }
   };
 
+  // Set locale based on current language
+  const calendarLocale = i18n.language === "zh" ? "zh-CN" : "en-GB";
+
   return (
-    <div className="calendar-container ">
+    <div className="calendar-container">
       <Calendar
         onChange={setValue}
         value={value}
         tileClassName={getTileClass}
-        locale="en-GB"
+        locale={calendarLocale}
         navigationLabel={({ label }) => (
           <span className="calendar-label h4">{label}</span>
         )}
@@ -65,16 +70,16 @@ const MonthlyCalendar = () => {
 
       <div className="legend caption">
         <div>
-          <span className="legend-box moderate"></span> Moderate Symptoms
+          <span className="legend-box moderate"></span> {t("moderate_symptoms")}
         </div>
         <div>
-          <span className="legend-box mild"></span> Mild Symptoms
+          <span className="legend-box mild"></span> {t("mild_symptoms")}
         </div>
         <div>
-          <span className="legend-box severe"></span> Severe Symptoms
+          <span className="legend-box severe"></span> {t("severe_symptoms")}
         </div>
         <div>
-          <span className="legend-box not-logged"></span> Not Logged
+          <span className="legend-box not-logged"></span> {t("not_logged")}
         </div>
       </div>
     </div>

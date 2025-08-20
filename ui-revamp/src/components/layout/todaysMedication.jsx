@@ -1,75 +1,78 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import "../../styles/components/todaysMedication.css";
 import { useNavigate } from "react-router-dom";
 
-const initialMedications = [
-  {
-    id: 1,
-    name: "Doxorubicin",
-    dose: "1 vial",
-    time: "9:00am",
-    stomach: "With Food",
-    icon: "pill",
-    status: "skipped",
-  },
-  {
-    id: 2,
-    name: "Cyclophosphamide",
-    dose: "2 pills",
-    time: "10:30am",
-    stomach: "Empty Stomach",
-    icon: "pill",
-    status: "taken",
-  },
-  {
-    id: 3,
-    name: "Tamoxifen",
-    dose: "1 pill",
-    time: "8:00am",
-    stomach: "With Food",
-    icon: "medication_liquid",
-    status: "taken",
-  },
-  {
-    id: 4,
-    name: "Methotrexate",
-    dose: "1 tablet",
-    time: "12:00pm",
-    stomach: "With Food",
-    icon: "pill",
-    status: "skipped",
-  },
-  {
-    id: 5,
-    name: "Rituximab",
-    dose: "1 infusion",
-    time: "1:30pm",
-    stomach: "Before Meal",
-    icon: "medication_liquid",
-    status: "skipped",
-  },
-  {
-    id: 6,
-    name: "Capecitabine",
-    dose: "2 pills",
-    time: "6:00pm",
-    stomach: "Empty Stomach",
-    icon: "pill",
-    status: "pending",
-  },
-  {
-    id: 7,
-    name: "Anastrozole",
-    dose: "1 pill",
-    time: "7:30pm",
-    stomach: "With Food",
-    icon: "pill",
-    status: "taken",
-  },
-];
-
-const MedicationCard = () => {
+const TodaysMedication = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
+
+  const initialMedications = [
+    {
+      id: 1,
+      name: t("medication_doxorubicin"),
+      dose: t("medication_dose_vial", { count: 1 }),
+      time: "9:00am",
+      stomach: t("with_food"),
+      icon: "pill",
+      status: "skipped",
+    },
+    {
+      id: 2,
+      name: t("medication_cyclophosphamide"),
+      dose: t("medication_dose_pills", { count: 2 }),
+      time: "10:30am",
+      stomach: t("empty_stomach"),
+      icon: "pill",
+      status: "taken",
+    },
+    {
+      id: 3,
+      name: t("medication_tamoxifen"),
+      dose: t("medication_dose_pill", { count: 1 }),
+      time: "8:00am",
+      stomach: t("with_food"),
+      icon: "medication_liquid",
+      status: "taken",
+    },
+    {
+      id: 4,
+      name: t("medication_methotrexate"),
+      dose: t("medication_dose_tablet", { count: 1 }),
+      time: "12:00pm",
+      stomach: t("with_food"),
+      icon: "pill",
+      status: "skipped",
+    },
+    {
+      id: 5,
+      name: t("medication_rituximab"),
+      dose: t("medication_dose_infusion", { count: 1 }),
+      time: "1:30pm",
+      stomach: t("before_meal"),
+      icon: "medication_liquid",
+      status: "skipped",
+    },
+    {
+      id: 6,
+      name: t("medication_capecitabine"),
+      dose: t("medication_dose_pills", { count: 2 }),
+      time: "6:00pm",
+      stomach: t("empty_stomach"),
+      icon: "pill",
+      status: "pending",
+    },
+    {
+      id: 7,
+      name: t("medication_anastrozole"),
+      dose: t("medication_dose_pill", { count: 1 }),
+      time: "7:30pm",
+      stomach: t("with_food"),
+      icon: "pill",
+      status: "taken",
+    },
+  ];
+
   const [medications, setMedications] = useState(initialMedications);
   const now = new Date();
 
@@ -117,9 +120,9 @@ const MedicationCard = () => {
   return (
     <div className="medication-container">
       <div className="medication-header">
-        <h2 className="medication-header-title h4">Today's Medication</h2>
+        <h2 className="medication-header-title h4">{t("todays_medication")}</h2>
         <a href="#" className="view-all caption" onClick={handleViewAll}>
-          View All
+          {t("view_all")}
         </a>
       </div>
 
@@ -155,10 +158,12 @@ const MedicationCard = () => {
               </div>
             </div>
             {med.status === "taken" && (
-              <div className="med-status green-text caption">Taken</div>
+              <div className="med-status green-text caption">{t("taken")}</div>
             )}
             {med.status === "skipped" && (
-              <div className="med-status secondary-text caption">Skipped</div>
+              <div className="med-status secondary-text caption">
+                {t("skipped")}
+              </div>
             )}
             {med.status === "pending" && (
               <div className="med-actions">
@@ -166,13 +171,13 @@ const MedicationCard = () => {
                   className="btn-take caption"
                   onClick={() => handleStatusChange(med.id, "taken")}
                 >
-                  Take
+                  {t("take")}
                 </button>
                 <button
                   className="btn-skip caption"
                   onClick={() => handleStatusChange(med.id, "skipped")}
                 >
-                  Skip
+                  {t("skip")}
                 </button>
               </div>
             )}
@@ -183,4 +188,4 @@ const MedicationCard = () => {
   );
 };
 
-export default MedicationCard;
+export default TodaysMedication;

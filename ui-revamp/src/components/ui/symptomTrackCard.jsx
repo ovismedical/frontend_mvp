@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import "../../styles/components/symptomTrackCard.css";
 
 const getStatus = (intensity) => {
@@ -26,6 +27,7 @@ const statusMap = {
 };
 
 const SymptomTrackCard = ({ iconName, title, intensity }) => {
+  const { t } = useTranslation();
   const status = getStatus(intensity);
   const statusData = statusMap[status];
 
@@ -52,7 +54,9 @@ const SymptomTrackCard = ({ iconName, title, intensity }) => {
             className="symptom-track caption"
             style={{ color: statusData.color }}
           >
-            <span>Intensity: {intensity}/10</span>
+            <span>
+              {t("intensity")}: {intensity}/10
+            </span>
           </div>
         </div>
       </div>

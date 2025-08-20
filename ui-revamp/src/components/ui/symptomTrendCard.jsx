@@ -1,22 +1,25 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import "../../styles/components/symptomTrendCard.css";
 
 const SymptomTrendCard = ({ iconName, title, trend }) => {
+  const { t } = useTranslation();
+
   const trendMap = {
     up: {
-      label: "Trending Up",
+      label: t("trending_up"),
       icon: "trending_up",
       color: "var(--success-600)",
       backgroundColor: "var(--success-50)",
     },
     down: {
-      label: "Trending Down",
+      label: t("trending_down"),
       icon: "trending_down",
       color: "var(--error-600)",
       backgroundColor: "var(--error-50)",
     },
     stable: {
-      label: "Stable",
+      label: t("trending_stable"),
       icon: "trending_flat",
       color: "var(--info-600)",
       backgroundColor: "var(--info-50)",
@@ -44,7 +47,10 @@ const SymptomTrendCard = ({ iconName, title, trend }) => {
         </div>
         <div className="symptom-info">
           <h4 className="symptom-title body">{title}</h4>
-          <div className="symptom-trend caption" style={{ color: trendData.color }}>
+          <div
+            className="symptom-trend caption"
+            style={{ color: trendData.color }}
+          >
             <span
               className="material-symbols-rounded trend-icon"
               style={{ color: trendData.color }}
@@ -56,7 +62,7 @@ const SymptomTrendCard = ({ iconName, title, trend }) => {
         </div>
       </div>
 
-      <button className="symptom-chart-button caption">Chart</button>
+      <button className="symptom-chart-button caption">{t("chart")}</button>
     </div>
   );
 };

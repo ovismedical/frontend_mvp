@@ -1,5 +1,6 @@
-import React from "react";
+import React, { use } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import "../../styles/components/medicationCard.css";
 
 const MedicationCard = ({
@@ -11,6 +12,7 @@ const MedicationCard = ({
   medicationData = null,
 }) => {
   const navigate = useNavigate();
+  const {t} = useTranslation();
 
   const handleCardClick = () => {
     if (medicationData && status !== "archived") {
@@ -25,7 +27,7 @@ const MedicationCard = ({
       case "nearExpiry":
         return {
           icon: "warning",
-          text: "Expiring",
+          text: t("expiring"),
           showProgress: true,
           progressColor: "var(--secondary-500)",
           progressBG: "var(--secondary-100)",
@@ -35,7 +37,7 @@ const MedicationCard = ({
       case "expired":
         return {
           icon: "cancel",
-          text: "Expired",
+          text: t("expired"),
           showProgress: true,
           progressColor: "var(--error-400)",
           progressBG: "var(--error-100)",

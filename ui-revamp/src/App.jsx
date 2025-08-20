@@ -167,9 +167,9 @@ function App() {
 
         <Route
           element={
-            <ProtectedRoute>
-              <BottomNavLayout />
-            </ProtectedRoute>
+            // <ProtectedRoute>
+            <BottomNavLayout />
+            // </ProtectedRoute>
           }
         >
           <Route path="/home" element={<Home />} />

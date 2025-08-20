@@ -1,20 +1,26 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import SmartInsightCard from "../../components/ui/smartInsightCard";
 import SymptomTrackCard from "../../components/ui/symptomTrackCard";
 
 const DailyDashboard = () => {
-  const formattedDate = new Date().toLocaleDateString("en-US", {
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-  });
+  const { t, i18n } = useTranslation();
+
+  const formattedDate = new Date().toLocaleDateString(
+    i18n.language === "zh" ? "zh-CN" : "en-US",
+    {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+    }
+  );
 
   return (
     <div className="daily-dashboard-content">
       <div className="daily-health-summary">
         <div className="daily-health-summary-top">
           <h2 className="daily-health-summary-title h4">
-            Daily Health Summary
+            {t("daily_health_summary")}
           </h2>
           <p className="daily-health-summary-date caption">{formattedDate}</p>
         </div>
@@ -25,11 +31,11 @@ const DailyDashboard = () => {
                 assignment_turned_in
               </span>
               <h3 className="daily-health-summary-card-title body">
-                Stable health
+                {t("stable_health")}
               </h3>
             </div>
             <p className="daily-health-summary-card-subtext caption">
-              All within normal range
+              {t("all_within_normal_range")}
             </p>
           </div>
           <div className="daily-health-summary-card">
@@ -38,59 +44,61 @@ const DailyDashboard = () => {
                 local_fire_department
               </span>
               <h3 className="daily-health-summary-card-title body">
-                12 Day Streak
+                {t("day_streak", { count: 12 })}
               </h3>
             </div>
             <p className="daily-health-summary-card-subtext caption">
-              Tracking consistently
+              {t("tracking_consistently")}
             </p>
           </div>
         </div>
       </div>
       <div className="daily-symptom-track">
-        <h2 className="daily-symptom-track-title h4">Symptoms Tracked Today</h2>
-        <SymptomTrackCard iconName="mood" title="Mood" intensity={8} />
+        <h2 className="daily-symptom-track-title h4">
+          {t("symptoms_tracked_today")}
+        </h2>
+        <SymptomTrackCard iconName="mood" title={t("mood")} intensity={8} />
         <SymptomTrackCard
           iconName="battery_alert"
-          title="Energy Level"
+          title={t("energy_level")}
           intensity={2}
         />
         <SymptomTrackCard
           iconName="bedtime"
-          title="Sleep Quality"
+          title={t("sleep_quality")}
           intensity={6}
         />
         <SymptomTrackCard
           iconName="favorite"
-          title="Pain Level"
+          title={t("pain_level")}
           intensity={3}
         />
       </div>
 
       <div className="daily-smart-insight">
-        <h2 className="daily-insights-title h4"> Smart Insights</h2>
+        <h2 className="daily-insights-title h4">{t("smart_insights")}</h2>
         <SmartInsightCard
           icon="sentiment_satisfied"
-          title="Mood & Sleep Link Detected"
-          description="Your mood tends to improve on nights with 7+ hours of sleep."
+          title={t("mood_sleep_link_detected")}
+          description={t("mood_sleep_link_description")}
           insightType="info"
         />
         <SmartInsightCard
           icon="warning"
-          title="Low Activity Detected"
-          description="Your activity levels dropped below your weekly average."
+          title={t("low_activity_detected")}
+          description={t("low_activity_description")}
           insightType="warning"
         />
         <SmartInsightCard
           icon="celebration"
-          title="Mood Boost"
-          description="You report better mood scores on Saturdays compared to weekdays."
+          title={t("mood_boost")}
+          description={t("mood_boost_description")}
           insightType="success"
         />
         <SmartInsightCard
           icon="error"
-          title="Missed Medication"
-          description="You missed your medication on Tuesday. Try to set a reminder."
+          title={t("missed_medication")}
+          description={t("missed_medication_description")}
           insightType="error"
         />
       </div>

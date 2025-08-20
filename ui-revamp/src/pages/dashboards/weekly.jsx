@@ -1,8 +1,11 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import WeeklyProgressRow from "../../components/ui/weekly_ProgressRow";
 import SmartInsightCard from "../../components/ui/smartInsightCard";
 
 const WeeklyDashboard = () => {
+  const { t, i18n } = useTranslation();
+
   const wellnessScore = {
     value: 4.2,
     trend: "downward", // or 'upward'
@@ -38,31 +41,49 @@ const WeeklyDashboard = () => {
     return "shade-5";
   };
 
-  const bestDayDate = "Wednesday, Jan 15";
-  const challengingDayDate = "Monday, Jan 13";
+  const bestDayDate = new Date(2025, 0, 15).toLocaleDateString(
+    i18n.language === "zh" ? "zh-CN" : "en-US",
+    { weekday: "long", month: "short", day: "numeric" }
+  );
+
+  const challengingDayDate = new Date(2025, 0, 13).toLocaleDateString(
+    i18n.language === "zh" ? "zh-CN" : "en-US",
+    { weekday: "long", month: "short", day: "numeric" }
+  );
+
+  const getMoodStatus = (status) => {
+    switch (status) {
+      case "Improving":
+        return t("improving");
+      case "Declining":
+        return t("declining");
+      default:
+        return t("stable");
+    }
+  };
 
   return (
     <div className="weekly-dashboard-content">
       <div className="current-streak-container">
         <div className="current-streak-row">
-          <h2 className="current-streak-title h4">Current Streak</h2>
+          <h2 className="current-streak-title h4">{t("current_streak")}</h2>
           <div className="current-streak-value">
             <span className="material-symbols-rounded streak-icon">
               local_fire_department
             </span>
-            <span className="streak-label body-semibold">2 days</span>
+            <span className="streak-label body-semibold">2 {t("days")}</span>
           </div>
         </div>
         <div className="weekly-progress-row">
           <WeeklyProgressRow labelFormat="full" labelPosition="above" />
         </div>
         <div className="current-streak-caption caption">
-          Keep it up! You’re doing great this week.
+          {t("keep_it_up_message")}
         </div>
       </div>
 
       <div className="weekly-summary-container">
-        <h2 className="weekly-summary-title h4"> Weekly Summary</h2>
+        <h2 className="weekly-summary-title h4">{t("weekly_summary")}</h2>
 
         <div className="weekly-summary-row">
           <div className="wellness-score-card">
@@ -73,7 +94,7 @@ const WeeklyDashboard = () => {
             >
               {wellnessScore.value}
             </span>
-            <h3 className="wellness-score-title body">Wellness Score</h3>
+            <h3 className="wellness-score-title body">{t("wellness_score")}</h3>
             <div className="wellness-score-caption-container">
               <span
                 className={`material-symbols-rounded caption-icon ${
@@ -85,7 +106,7 @@ const WeeklyDashboard = () => {
                   : "arrow_upward_alt"}
               </span>
               <span className="wellness-score-caption caption">
-                vs {wellnessScore.change} last week
+                {t("vs_last_week", { value: wellnessScore.change })}
               </span>
             </div>
           </div>
@@ -98,7 +119,9 @@ const WeeklyDashboard = () => {
             >
               {engagementLevel.value}
             </span>
-            <h3 className="engagement-level-title body">Engagement Level</h3>
+            <h3 className="engagement-level-title body">
+              {t("engagement_level")}
+            </h3>
             <div className="engagement-level-caption-container">
               <span
                 className={`material-symbols-rounded caption-icon ${
@@ -110,7 +133,7 @@ const WeeklyDashboard = () => {
                   : "arrow_upward_alt"}
               </span>
               <span className="engagement-level-caption caption">
-                vs {engagementLevel.change} last week
+                {t("vs_last_week", { value: engagementLevel.change })}
               </span>
             </div>
           </div>
@@ -118,9 +141,9 @@ const WeeklyDashboard = () => {
 
         <div className="mood-trend-container">
           <div className="mood-trend-header">
-            <span className="mood-trend-title h4">Mood Trend</span>
+            <span className="mood-trend-title h4">{t("mood_trend")}</span>
             <span className={`mood-trend-status ${moodTrend.status} caption`}>
-              {moodTrend.status}
+              {getMoodStatus(moodTrend.status)}
               <span
                 className={`material-symbols-rounded mood-trend-arrow ${
                   moodTrend.status === "Improving" ? "upward" : "downward"
@@ -145,7 +168,7 @@ const WeeklyDashboard = () => {
                     }}
                   ></div>
                   <span className="mood-trend-day-label overline-timestamp">
-                    {day.toUpperCase()}
+                    {t(day)}
                   </span>
                 </div>
               );
@@ -163,12 +186,14 @@ const WeeklyDashboard = () => {
               </span>
             </span>
             <div className="weekly-summary-day-text">
-              <h4 className="weekly-summary-bestDay-title h4">Best Day</h4>
+              <h4 className="weekly-summary-bestDay-title h4">
+                {t("best_day")}
+              </h4>
               <p className="weekly-summary-bestDay-date body">{bestDayDate}</p>
             </div>
           </div>
           <p className="weekly-summary-bestDay-summary caption">
-            Less pain, good energy levels
+            {t("best_day_summary")}
           </p>
         </div>
 
@@ -179,7 +204,7 @@ const WeeklyDashboard = () => {
             </span>
             <div className="weekly-summary-day-text">
               <h4 className="weekly-summary-challengingDay-title h4">
-                Challenging Day
+                {t("challenging_day")}
               </h4>
               <p className="weekly-summary-challengingDay-date body">
                 {challengingDayDate}
@@ -187,35 +212,35 @@ const WeeklyDashboard = () => {
             </div>
           </div>
           <p className="weekly-summary-challengingDay-summary caption">
-            Fatigue spiked, needed extra rest
+            {t("challenging_day_summary")}
           </p>
         </div>
       </div>
 
       <div className="weekly-smart-insight">
-        <h2 className="weekly-insights-title h4"> Smart Insights</h2>
+        <h2 className="weekly-insights-title h4">{t("smart_insights")}</h2>
         <SmartInsightCard
           icon="sentiment_satisfied"
-          title="Mood & Sleep Link Detected"
-          description="Your mood tends to improve on nights with 7+ hours of sleep."
+          title={t("mood_sleep_link_detected")}
+          description={t("mood_sleep_link_description")}
           insightType="info"
         />
         <SmartInsightCard
           icon="warning"
-          title="Low Activity Detected"
-          description="Your activity levels dropped below your weekly average."
+          title={t("low_activity_detected")}
+          description={t("low_activity_description")}
           insightType="warning"
         />
         <SmartInsightCard
           icon="celebration"
-          title="Mood Boost"
-          description="You report better mood scores on Saturdays compared to weekdays."
+          title={t("mood_boost")}
+          description={t("mood_boost_description")}
           insightType="success"
         />
         <SmartInsightCard
           icon="error"
-          title="Missed Medication"
-          description="You missed your medication on Tuesday. Try to set a reminder."
+          title={t("missed_medication")}
+          description={t("missed_medication_description")}
           insightType="error"
         />
       </div>

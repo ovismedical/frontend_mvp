@@ -1,18 +1,29 @@
 import React from "react";
 import MedicationCard from "../../components/ui/medicationCard";
 import medicationsData from "../../data/medications.json";
+import { useTranslation } from "react-i18next";
 import "../../styles/components/medication_list.css";
 
 const MedicationList = ({ activeTab, searchTerm = "" }) => {
+  const { t, i18n } = useTranslation();
+  const currentLang = i18n.language === "zh" ? "zh" : "en";
+
+  // Helper function to get localized text
+  const getLocalizedText = (textObj) => {
+    if (typeof textObj === "string") return textObj;
+    return textObj[currentLang] || textObj.en;
+  };
+
   const filteredMedications = medicationsData.medications.filter((med) => {
     let statusMatch = false;
-    if (activeTab === "Active") {
+    if (activeTab === t("active")) {
       statusMatch = med.active === true;
-    } else if (activeTab === "Archived") {
+    } else if (activeTab === t("archived")) {
       statusMatch = med.active === false;
     }
 
-    const searchMatch = med.med_name
+    const medName = getLocalizedText(med.med_name);
+    const searchMatch = medName
       .toLowerCase()
       .includes(searchTerm.toLowerCase());
 
@@ -47,21 +58,32 @@ const MedicationList = ({ activeTab, searchTerm = "" }) => {
     <div className="med-list">
       {filteredMedications.length === 0 && searchTerm ? (
         <div className="body med-list-no-results">
-          No medications found matching "{searchTerm}"
+          {t("no_medications_found", { searchTerm })}
         </div>
       ) : (
         filteredMedications.map((medication, index) => (
           <MedicationCard
             key={index}
             image={medication.img_path}
-            name={medication.med_name}
-            description={`${medication.med_type} · ${medication.dosage_strength}`}
+            name={getLocalizedText(medication.med_name)}
+            description={`${getLocalizedText(medication.med_type)} · ${
+              medication.dosage_strength
+            }`}
             progress={calculateProgress(
               medication.total_quantity,
               medication.remaining_quantity
             )}
             status={getStatus(medication.expiry_date, medication.active)}
-            medicationData={medication}
+            medicationData={{
+              ...medication,
+              // Pass localized data to the card
+              localizedName: getLocalizedText(medication.med_name),
+              localizedType: getLocalizedText(medication.med_type),
+              localizedPurpose: getLocalizedText(medication.purpose),
+              localizedInstructions: getLocalizedText(
+                medication.dosage_instructions
+              ),
+            }}
           />
         ))
       )}

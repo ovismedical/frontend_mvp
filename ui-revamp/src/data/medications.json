@@ -2,92 +2,185 @@
   "medications": [
     {
       "img_path": "images/medications/tamoxifen.png",
-      "med_name": "Tamoxifen",
-      "med_type": "Tablets",
+      "med_name": {
+        "en": "Tamoxifen",
+        "zh": "他莫昔芬"
+      },
+      "med_type": {
+        "en": "Tablets",
+        "zh": "片劑"
+      },
       "dosage_strength": "20 mg",
       "total_quantity": "50 pcs",
       "remaining_quantity": "28 pcs",
       "expiry_date": "24 December, 2025",
       "refill_date": "16 December, 2024",
       "active": true,
-      "dosage_instructions": "Take 1 tablet daily, after breakfast",
-      "purpose": "Hormone receptor-positive breast cancer",
+      "dosage_instructions": {
+        "en": "Take 1 tablet daily, after breakfast",
+        "zh": "每日1片，早餐後服用"
+      },
+      "purpose": {
+        "en": "Hormone receptor-positive breast cancer",
+        "zh": "激素受體陽性乳腺癌"
+      },
       "side_effects": {
-        "common": ["Hot flashes", "Nausea", "Vaginal discharge"],
-        "less_common": ["Mood changes", "Headaches", "Dizziness"],
-        "serious": [
-          "Blood clots",
-          "Stroke",
-          "Increased risk of endometrial cancer"
-        ]
+        "common": {
+          "en": ["Hot flashes", "Nausea", "Vaginal discharge"],
+          "zh": ["潮熱", "噁心", "陰道分泌物"]
+        },
+        "less_common": {
+          "en": ["Mood changes", "Headaches", "Dizziness"],
+          "zh": ["情緒變化", "頭痛", "頭暈"]
+        },
+        "serious": {
+          "en": [
+            "Blood clots",
+            "Stroke",
+            "Increased risk of endometrial cancer"
+          ],
+          "zh": ["血栓", "中風", "增加子宮內膜癌風險"]
+        }
       }
     },
     {
       "img_path": "/images/medications/letrozole.png",
-      "med_name": "Letrozole (Femara)",
-      "med_type": "Tablets",
+      "med_name": {
+        "en": "Letrozole (Femara)",
+        "zh": "來曲唑 (芙瑪拉)"
+      },
+      "med_type": {
+        "en": "Tablets",
+        "zh": "片劑"
+      },
       "dosage_strength": "2.5 mg",
       "total_quantity": "30 pcs",
       "remaining_quantity": "15 pcs",
       "expiry_date": "15 March, 2026",
       "refill_date": "N/A",
       "active": true,
-      "dosage_instructions": "Take 1 tablet daily, with or without food",
-      "purpose": "Hormone receptor-positive breast cancer (postmenopausal)",
+      "dosage_instructions": {
+        "en": "Take 1 tablet daily, with or without food",
+        "zh": "每日1片，可與食物同服或空腹服用"
+      },
+      "purpose": {
+        "en": "Hormone receptor-positive breast cancer (postmenopausal)",
+        "zh": "激素受體陽性乳腺癌（絕經後）"
+      },
       "side_effects": {
-        "common": ["Joint pain", "Hot flashes", "Fatigue"],
-        "serious": ["Bone loss", "High cholesterol", "Heart issues"]
+        "common": {
+          "en": ["Joint pain", "Hot flashes", "Fatigue"],
+          "zh": ["關節疼痛", "潮熱", "疲勞"]
+        },
+        "serious": {
+          "en": ["Bone loss", "High cholesterol", "Heart issues"],
+          "zh": ["骨質流失", "高膽固醇", "心臟問題"]
+        }
       }
     },
     {
       "img_path": "images/medications/lazido.png",
-      "med_name": "Lazido",
-      "med_type": "Sachets",
+      "med_name": {
+        "en": "Lazido",
+        "zh": "拉西多"
+      },
+      "med_type": {
+        "en": "Sachets",
+        "zh": "沖劑"
+      },
       "dosage_strength": "5g/sachet",
       "total_quantity": "20 sachets",
       "remaining_quantity": "8 sachets",
       "expiry_date": "5 September, 2025",
       "refill_date": "20 November, 2024",
       "active": true,
-      "dosage_instructions": "Mix 1 sachet in water, take twice daily",
-      "purpose": "Electrolyte imbalance (diarrhea/vomiting)",
+      "dosage_instructions": {
+        "en": "Mix 1 sachet in water, take twice daily",
+        "zh": "1包加水沖服，每日兩次"
+      },
+      "purpose": {
+        "en": "Electrolyte imbalance (diarrhea/vomiting)",
+        "zh": "電解質不平衡（腹瀉/嘔吐）"
+      },
       "side_effects": {
-        "common": ["Nausea", "Mild stomach cramps"],
-        "serious": ["Allergic reaction", "High sodium levels"]
+        "common": {
+          "en": ["Nausea", "Mild stomach cramps"],
+          "zh": ["噁心", "輕微胃痙攣"]
+        },
+        "serious": {
+          "en": ["Allergic reaction", "High sodium levels"],
+          "zh": ["過敏反應", "鈉水平過高"]
+        }
       }
     },
     {
       "img_path": "images/medications/ondatron.png",
-      "med_name": "Ondatron",
-      "med_type": "Tablets",
+      "med_name": {
+        "en": "Ondatron",
+        "zh": "昂丹司瓊"
+      },
+      "med_type": {
+        "en": "Tablets",
+        "zh": "片劑"
+      },
       "dosage_strength": "4 mg",
       "total_quantity": "10 pcs",
       "remaining_quantity": "3 pcs",
       "expiry_date": "15 August, 2023",
       "refill_date": "10 January, 2024",
       "active": true,
-      "dosage_instructions": "Take 1 tablet every 8 hours as needed for nausea",
-      "purpose": "Chemotherapy-induced nausea/vomiting",
+      "dosage_instructions": {
+        "en": "Take 1 tablet every 8 hours as needed for nausea",
+        "zh": "噁心時每8小時服用1片"
+      },
+      "purpose": {
+        "en": "Chemotherapy-induced nausea/vomiting",
+        "zh": "化療引起的噁心/嘔吐"
+      },
       "side_effects": {
-        "common": ["Headache", "Constipation"],
-        "serious": ["Irregular heartbeat", "Severe allergic reaction"]
+        "common": {
+          "en": ["Headache", "Constipation"],
+          "zh": ["頭痛", "便秘"]
+        },
+        "serious": {
+          "en": ["Irregular heartbeat", "Severe allergic reaction"],
+          "zh": ["心律不齊", "嚴重過敏反應"]
+        }
       }
     },
     {
       "img_path": "images/medications/paracetamol.png",
-      "med_name": "Paracetamol",
-      "med_type": "Tablets",
+      "med_name": {
+        "en": "Paracetamol",
+        "zh": "撲熱息痛"
+      },
+      "med_type": {
+        "en": "Tablets",
+        "zh": "片劑"
+      },
       "dosage_strength": "500 mg",
       "total_quantity": "20pcs",
       "remaining_quantity": "12pcs",
       "expiry_date": "30 December, 2025",
       "refill_date": "15 November, 2025",
       "active": false,
-      "dosage_instructions": "Take 1-2 tablets every 4-6 hours as needed. Do not exceed 8 tablets in 24 hours.",
-      "purpose": "Pain relief and fever reduction",
+      "dosage_instructions": {
+        "en": "Take 1-2 tablets every 4-6 hours as needed. Do not exceed 8 tablets in 24 hours.",
+        "zh": "根據需要每4-6小時服用1-2片。24小時內不超過8片。"
+      },
+      "purpose": {
+        "en": "Pain relief and fever reduction",
+        "zh": "止痛和退燒"
+      },
       "side_effects": {
-        "common": ["Nausea", "Rash"],
-        "serious": ["Liver damage", "Allergic reaction"]
+        "common": {
+          "en": ["Nausea", "Rash"],
+          "zh": ["噁心", "皮疹"]
+        },
+        "serious": {
+          "en": ["Liver damage", "Allergic reaction"],
+          "zh": ["肝損傷", "過敏反應"]
+        }
       }
     }
   ]

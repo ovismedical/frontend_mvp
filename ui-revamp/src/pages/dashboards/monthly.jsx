@@ -1,28 +1,40 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import MonthlyCalendar from "../../components/ui/monthlyCalendar";
 import SmartInsightCard from "../../components/ui/smartInsightCard";
 import EventItem from "../../components/ui/notableEvents";
 import SymptomTrendCard from "../../components/ui/symptomTrendCard";
 
 const MonthlyDashboard = () => {
+  const { t, i18n } = useTranslation();
+
   const events = [
     {
       iconName: "stethoscope",
-      title: "Oncology Visit",
-      subtitle: "Dr. Smith - Routine checkup",
-      date: "Jun 15, 2025",
+      title: t("oncology_visit"),
+      subtitle: t("oncology_visit_subtitle"),
+      date: new Date(2025, 5, 15).toLocaleDateString(
+        i18n.language === "zh" ? "zh-CN" : "en-US",
+        { month: "short", day: "numeric", year: "numeric" }
+      ),
     },
     {
       iconName: "pill",
-      title: "Medication Change",
-      subtitle: "Dosage reduced to 5mg",
-      date: "Jun 9, 2025",
+      title: t("medication_change"),
+      subtitle: t("medication_change_subtitle"),
+      date: new Date(2025, 5, 9).toLocaleDateString(
+        i18n.language === "zh" ? "zh-CN" : "en-US",
+        { month: "short", day: "numeric", year: "numeric" }
+      ),
     },
     {
       iconName: "labs",
-      title: "Lab Results",
-      subtitle: "Blood work - empty stomach",
-      date: "Jun 3, 2025",
+      title: t("lab_results"),
+      subtitle: t("lab_results_subtitle"),
+      date: new Date(2025, 5, 3).toLocaleDateString(
+        i18n.language === "zh" ? "zh-CN" : "en-US",
+        { month: "short", day: "numeric", year: "numeric" }
+      ),
     },
   ];
 
@@ -31,51 +43,59 @@ const MonthlyDashboard = () => {
       <MonthlyCalendar />
 
       <div className="monthly-symptom-trend">
-        <h2 className="monthly-symptom-trend-title h4"> Symptom Trends</h2>
-        <SymptomTrendCard iconName="mood" title="Mood" trend="up" />
+        <h2 className="monthly-symptom-trend-title h4">
+          {t("symptom_trends")}
+        </h2>
+        <SymptomTrendCard iconName="mood" title={t("mood")} trend="up" />
         <SymptomTrendCard
           iconName="battery_alert"
-          title="Energy Level"
+          title={t("energy_level")}
           trend="down"
         />
         <SymptomTrendCard
           iconName="bedtime"
-          title="Sleep Quality"
+          title={t("sleep_quality")}
           trend="stable"
         />
-        <SymptomTrendCard iconName="favorite" title="Pain Level" trend="down" />
+        <SymptomTrendCard
+          iconName="favorite"
+          title={t("pain_level")}
+          trend="down"
+        />
       </div>
 
       <div className="monthly-smart-insight">
-        <h2 className="monthly-insights-title h4"> Smart Insights</h2>
+        <h2 className="monthly-insights-title h4">{t("smart_insights")}</h2>
         <SmartInsightCard
           icon="sentiment_satisfied"
-          title="Mood & Sleep Link Detected"
-          description="Your mood tends to improve on nights with 7+ hours of sleep."
+          title={t("mood_sleep_link_detected")}
+          description={t("mood_sleep_link_description")}
           insightType="info"
         />
         <SmartInsightCard
           icon="warning"
-          title="Low Activity Detected"
-          description="Your activity levels dropped below your weekly average."
+          title={t("low_activity_detected")}
+          description={t("low_activity_description")}
           insightType="warning"
         />
         <SmartInsightCard
           icon="celebration"
-          title="Mood Boost"
-          description="You report better mood scores on Saturdays compared to weekdays."
+          title={t("mood_boost")}
+          description={t("mood_boost_description")}
           insightType="success"
         />
         <SmartInsightCard
           icon="error"
-          title="Missed Medication"
-          description="You missed your medication on Tuesday. Try to set a reminder."
+          title={t("missed_medication")}
+          description={t("missed_medication_description")}
           insightType="error"
         />
       </div>
 
       <div className="monthly-notable-events">
-        <h2 className="monthly-notable-events-title h4"> Notable Events</h2>
+        <h2 className="monthly-notable-events-title h4">
+          {t("notable_events")}
+        </h2>
         <div>
           {events.map((event, index) => (
             <EventItem
