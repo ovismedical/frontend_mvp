@@ -6,6 +6,7 @@ import SmartInsightCard from "../../components/ui/smartInsightCard";
 const WeeklyDashboard = () => {
   const { t, i18n } = useTranslation();
 
+  // Backend Handling: Fetch weekly summary data from backend (wellnessScore, engagementLevel, moodTrend, bestDay, challengingDay)
   const wellnessScore = {
     value: 4.2,
     trend: "downward", // or 'upward'

@@ -8,6 +8,8 @@ export default function MedicationDetails() {
   const { t, i18n } = useTranslation();
   const currentLang = i18n.language === "zh" ? "zh" : "en";
 
+  // Backend Handling: Fetch medication details from backend using medication ID or context
+  // Example: useEffect(() => { api.getMedicationDetails(id).then(setMedication) }, [id])
   const medication = location.state?.medication;
 
   const defaultMedication = {

@@ -47,6 +47,8 @@ import HealthCareProvider from "./pages/settings/healthcare_provider.jsx";
 import PasswordSecurity from "./pages/settings/password.jsx";
 import DisplayLanguage from "./pages/settings/display_language.jsx";
 import ProfileManagement from "./pages/settings/profile_management.jsx";
+import Appointments from "./pages/appointments/appointment.jsx";
+import AppointmentScheduler from "./pages/appointments/appointment_scheduler.jsx";
 
 function App() {
   const location = useLocation();
@@ -70,6 +72,10 @@ function App() {
     const isPasswordSecurity = location.pathname === "/password_security";
     const isDisplayLanguage = location.pathname === "/display_language";
     const isProfileManagement = location.pathname === "/profile_management";
+    const isAppointment = location.pathname === "/appointments";
+    const isAppointment2 = location.pathname === "/appointment2";
+    const isAppointmentScheduler =
+      location.pathname === "/appointment_scheduler";
 
     document.body.classList.toggle(
       "no-body-padding",
@@ -89,7 +95,10 @@ function App() {
         isHealthCareProvider ||
         isPasswordSecurity ||
         isDisplayLanguage ||
-        isProfileManagement
+        isProfileManagement ||
+        isAppointment ||
+        isAppointment2 ||
+        isAppointmentScheduler
     );
     document.body.classList.toggle(
       "body-centered",
@@ -109,7 +118,10 @@ function App() {
         !isHealthCareProvider &&
         !isPasswordSecurity &&
         !isDisplayLanguage &&
-        !isProfileManagement
+        !isProfileManagement &&
+        !isAppointment &&
+        !isAppointment2 &&
+        !isAppointmentScheduler
     );
   }, [location.pathname]);
 
@@ -164,17 +176,22 @@ function App() {
         <Route path="/password_security" element={<PasswordSecurity />} />
         <Route path="/display_language" element={<DisplayLanguage />} />
         <Route path="/profile_management" element={<ProfileManagement />} />
+        <Route
+          path="/appointment_scheduler"
+          element={<AppointmentScheduler />}
+        />
 
         <Route
           element={
-            // <ProtectedRoute>
-            <BottomNavLayout />
-            // </ProtectedRoute>
+            <ProtectedRoute>
+              <BottomNavLayout />
+            </ProtectedRoute>
           }
         >
           <Route path="/home" element={<Home />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/achievements" element={<Achievements />} />
+          <Route path="/appointments" element={<Appointments />} />
           <Route path="/settings" element={<Settings />} />
         </Route>
       </Routes>

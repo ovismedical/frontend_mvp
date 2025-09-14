@@ -9,6 +9,7 @@ const ForgotPassword = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
 
+  // Backend Handling: Password reset request should be sent to backend API when user submits email
   return (
     <div className="forgotPassword-container">
       <div className="backIcon-container">

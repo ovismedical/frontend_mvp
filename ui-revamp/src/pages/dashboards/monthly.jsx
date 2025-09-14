@@ -8,6 +8,7 @@ import SymptomTrendCard from "../../components/ui/symptomTrendCard";
 const MonthlyDashboard = () => {
   const { t, i18n } = useTranslation();
 
+  // Backend Handling: Fetch monthly events from backend & symptoms, and insights from backend
   const events = [
     {
       iconName: "stethoscope",

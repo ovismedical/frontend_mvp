@@ -63,6 +63,8 @@ const ProfileManagement = () => {
         setMessage({ type: "", text: "" }); // Clear any error messages
       };
       reader.readAsDataURL(file);
+      // Backend Handling: Push updated profile image to backend
+      // Example: await api.updateProfileImage(file)
     }
   };
 
@@ -94,6 +96,9 @@ const ProfileManagement = () => {
       });
       return;
     }
+
+    // Backend Handling: Push updated profile data to backend API
+    // Example: await api.updateProfile({ email: Email, userName: FullName, phoneNumber: cleanNumber, userImage: ProfileImage })
 
     // If all validation passes, show success and navigate back
     setMessage({ type: "success", text: t("profile_updated_successfully") });

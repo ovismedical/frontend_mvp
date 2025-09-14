@@ -26,6 +26,7 @@ const AchievementsLibrary = () => {
     },
   };
 
+  // Backend Handling: Fetch achievements and badge images from backend
   useEffect(() => {
     const loadAchievements = async () => {
       try {
@@ -73,8 +74,9 @@ const AchievementsLibrary = () => {
   }, []);
 
   const handleBadgeDetails = (achievement) => {
-    const variant = achievement.isUnlocked ? "unlocked" : "locked";
-    navigate(`/badge_details/${variant}`);
+  // Backend Handling: Fetch badge details from backend
+  const variant = achievement.isUnlocked ? "unlocked" : "locked";
+  navigate(`/badge_details/${variant}`);
   };
 
   return (

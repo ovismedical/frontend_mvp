@@ -24,6 +24,8 @@ const OTP = () => {
     setError("");
     
     try {
+      // Backend Handling: Push OTP code to backend for verification
+      // Example: POST to /otp/verify with user info and code
       const response = await fetch(
         'https://ovis-backend-mvp.onrender.com/otp/verify',
         {
@@ -75,6 +77,8 @@ const OTP = () => {
 
   const handleResend = async () => {
     try {
+      // Backend Handling: Request backend to resend OTP code
+      // Example: POST to /otp/resend with user info
       const response = await fetch(
         'https://ovis-backend-mvp.onrender.com/otp/resend',
         {

@@ -30,6 +30,8 @@ const Assessment05 = () => {
 
   const handleContinue = () => {
     if (weight !== null) {
+      // Backend Handling: Push assessment data (weight) to backend API if needed
+      // Example: await api.saveAssessmentStep({ weight, unit: selected })
       console.log("Selected weight:", weight, selected);
       navigate("/assessment06");
     } else {

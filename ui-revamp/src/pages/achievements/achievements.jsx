@@ -41,10 +41,12 @@ const Achievements = () => {
   };
 
   const handleSeeAll = (e) => {
-    e.preventDefault();
-    navigate("/achievements_library");
+  // Backend Handling: Navigate to achievements library and fetch all achievements from backend if needed
+  e.preventDefault();
+  navigate("/achievements_library");
   };
 
+  // Backend Handling: Fetch badge images from backend
   const badgeImages = [
     badge01,
     badge02,
@@ -56,6 +58,7 @@ const Achievements = () => {
     badge08,
   ];
 
+  // Backend Handling: Fetch icons from backend / Add more icons if needed
   const getIconByType = (type) => {
     const iconMap = {
       streak: "event_available",
@@ -69,6 +72,7 @@ const Achievements = () => {
     return iconMap[type] || "achievement";
   };
 
+  // Backend Handling: Fetch colors from backend / Add more colors if needed
   const getColorByType = (type) => {
     const colorMap = {
       streak: "blue",
@@ -103,7 +107,7 @@ const Achievements = () => {
       weekAgo: { en: "1 week ago", zh: "1週前" },
       weeksAgo: { en: "weeks ago", zh: "週前" },
       monthAgo: { en: "1 month ago", zh: "1個月前" },
-      monthsAgo: { en: "個月前", zh: "個月前" },
+      monthsAgo: { en: "months ago", zh: "個月前" },
       yearAgo: { en: "1 year ago", zh: "1年前" },
       yearsAgo: { en: "years ago", zh: "年前" },
     };
@@ -133,6 +137,7 @@ const Achievements = () => {
   };
 
   // Rank data with multilingual content
+  // Backend Handling: Fetch user rank data from backend
   const rankData = {
     title: {
       en: "Wellness Warrior",
@@ -149,6 +154,7 @@ const Achievements = () => {
   };
 
   // Achievements data with multilingual content
+  // Backend Handling: Fetch achievements data from backend
   const achievementsData = [
     {
       type: "streak",
@@ -217,6 +223,7 @@ const Achievements = () => {
     .slice(0, 3);
 
   // Milestones data with multilingual content
+  // Backend Handling: Fetch milestones data from backend
   const milestonesData = [
     {
       title: {

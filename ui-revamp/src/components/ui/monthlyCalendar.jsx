@@ -4,6 +4,7 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import "../../styles/components/monthlyCalendar.css";
 
+// Backend Handling: Fetch monthly symptom data from backend
 // Example symptom data
 const symptomData = {
   "2025-06-01": "moderate",

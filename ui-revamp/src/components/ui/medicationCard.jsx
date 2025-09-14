@@ -16,6 +16,8 @@ const MedicationCard = ({
 
   const handleCardClick = () => {
     if (medicationData && status !== "archived") {
+      // Backend Handling: Optionally fetch medication details from backend before navigation
+      // Example: await api.getMedicationDetails(medicationData.id)
       navigate("/medication_details", {
         state: { medication: medicationData },
       });

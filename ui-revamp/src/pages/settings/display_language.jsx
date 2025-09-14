@@ -4,6 +4,7 @@ import { ScaleContext } from "../../context/ScaleContext.jsx";
 import { useTranslation } from "react-i18next";
 
 const DisplayLanguage = () => {
+  // Backend Handling: Fetch and update user language and font size preferences from/to backend
   const navigate = useNavigate();
   const { scale, setScale } = useContext(ScaleContext);
   const { t, i18n } = useTranslation();

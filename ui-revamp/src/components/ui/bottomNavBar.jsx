@@ -13,6 +13,9 @@ const BottomNavBar = () => {
       <NavLink to="/chatbot" className="nav-item">
         <span className="material-symbols-rounded">smart_toy</span>
       </NavLink>
+      <NavLink to="/appointments" className="nav-item">
+        <span className="material-symbols-rounded">calendar_today</span>
+      </NavLink>
       <NavLink to="/achievements" className="nav-item">
         <span className="material-symbols-rounded">award_star</span>
       </NavLink>

@@ -15,6 +15,7 @@ const HealthCareProvider = () => {
     return textObj[currentLang] || textObj.en;
   };
 
+  // Backend Handling: Fetch healthcare provider and care team data from backend
   const careMembers = [
     {
       id: 1,

@@ -17,19 +17,10 @@
   color: var(--blue-light-50);
 }
 
-.custom-button.filled:hover {
-  background-color: var(--blue-800);
-}
-
 .custom-button.outline {
   background-color: transparent;
   color: var(--blue-700);
   border: 2px solid var(--blue-700);
-}
-
-.custom-button.outline:hover {
-  background-color: var(--blue-100);
-  color: var(--blue-700);
 }
 
 .button-content {

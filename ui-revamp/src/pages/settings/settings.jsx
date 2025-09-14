@@ -12,7 +12,7 @@ const Settings = () => {
 
   const [isModalOpen, setModalOpen] = useState(false);
 
-  // User information constant (unchanged)
+  // Backend Handling: Fetch user profile data from backend
   const userInfo = {
     userImage:
       "https://media.istockphoto.com/id/1437816897/photo/business-woman-manager-or-human-resources-portrait-for-career-success-company-we-are-hiring.jpg?s=612x612&w=0&k=20&c=tyLvtzutRh22j9GqSGI33Z4HpIwv9vL_MZw_xOE19NQ=",
@@ -89,6 +89,8 @@ const Settings = () => {
 
   const handleProfileManagement = (e) => {
     e.preventDefault();
+    // Example: const userData = await api.getUserProfile()
+    // Backend Handling: pass userData to navigation state
     navigate("/profile_management", {
       state: {
         userImage: userInfo.userImage,
@@ -186,7 +188,11 @@ const Settings = () => {
                 <input
                   type="checkbox"
                   checked={dataSharing}
-                  onChange={(e) => setDataSharing(e.target.checked)}
+                  onChange={(e) => {
+                    setDataSharing(e.target.checked);
+                    // Backend Handling: Push data sharing preference to backend
+                    // Example: await api.updatePreference('dataSharing', e.target.checked)
+                  }}
                 />
                 <span className="toggle-slider"></span>
               </label>
@@ -210,7 +216,11 @@ const Settings = () => {
                 <input
                   type="checkbox"
                   checked={analytics}
-                  onChange={(e) => setAnalytics(e.target.checked)}
+                  onChange={(e) => {
+                    setAnalytics(e.target.checked);
+                    // Backend Handling: Push analytics preference to backend
+                    // Example: await api.updatePreference('analytics', e.target.checked)
+                  }}
                 />
                 <span className="toggle-slider"></span>
               </label>
@@ -234,7 +244,11 @@ const Settings = () => {
                 <input
                   type="checkbox"
                   checked={marketing}
-                  onChange={(e) => setMarketing(e.target.checked)}
+                  onChange={(e) => {
+                    setMarketing(e.target.checked);
+                    // Backend Handling: Push marketing preference to backend
+                    // Example: await api.updatePreference('marketing', e.target.checked)
+                  }}
                 />
                 <span className="toggle-slider"></span>
               </label>
@@ -270,6 +284,8 @@ const Settings = () => {
                     [t("weekly")]: "Weekly",
                   };
                   setCheckinReminders(optionMap[value] || value);
+                  // Backend Handling: Push check-in reminder preference to backend
+                  // Example: await api.updatePreference('checkinReminders', optionMap[value] || value)
                 }}
                 className="settings-custom-dropdown"
                 isOpen={openDropdown === "checkin"}
@@ -297,6 +313,8 @@ const Settings = () => {
                     [t("monthly")]: "Monthly",
                   };
                   setWellnessUpdates(optionMap[value] || value);
+                  // Backend Handling: Push wellness update preference to backend
+                  // Example: await api.updatePreference('wellnessUpdates', optionMap[value] || value)
                 }}
                 className="settings-custom-dropdown"
                 isOpen={openDropdown === "wellness"}
@@ -324,6 +342,8 @@ const Settings = () => {
                     [t("daily_digest")]: "Daily digest",
                   };
                   setDoctorMessages(optionMap[value] || value);
+                  // Backend Handling: Push doctor message notification preference to backend
+                  // Example: await api.updatePreference('doctorMessages', optionMap[value] || value)
                 }}
                 className="settings-custom-dropdown"
                 isOpen={openDropdown === "messages"}

@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Tabs from "../../components/ui/tabs";
 import Button from "../../components/ui/button.jsx";
+// Backend Handling: Fetch articles and users data from backend
 import articlesData from "../../data/articles.json";
 import usersData from "../../data/users.json";
 import CommentCard from "../../components/ui/commentCard.jsx";
@@ -189,6 +190,7 @@ export default function ArticleDetails() {
   };
 
   const handleCommentSubmit = () => {
+    // Backend Handling: Post new comment to backend
     if (commentText.trim()) {
       console.log("Comment added:", commentText);
       setCommentText("");

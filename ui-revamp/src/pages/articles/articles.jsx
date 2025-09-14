@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Tabs from "../../components/ui/tabs";
+// Backend Handling: Fetch articles data from backend
 import articlesData from "../../data/articles.json";
 import ArticleCard from "../../components/ui/articleCard";
 

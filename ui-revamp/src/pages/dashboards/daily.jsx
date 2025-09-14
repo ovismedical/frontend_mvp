@@ -6,6 +6,7 @@ import SymptomTrackCard from "../../components/ui/symptomTrackCard";
 const DailyDashboard = () => {
   const { t, i18n } = useTranslation();
 
+  // Backend Handling: Fetch daily health summary, symptoms, and insights from backend
   const formattedDate = new Date().toLocaleDateString(
     i18n.language === "zh" ? "zh-CN" : "en-US",
     {

@@ -11,6 +11,7 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
 
+  // Backend Handling: Generate and push report to backend when modal opens
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeTab, setActiveTab] = useState(t("today"));
 

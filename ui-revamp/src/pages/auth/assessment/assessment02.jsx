@@ -24,9 +24,11 @@ const Assessment02 = () => {
       return;
     }
 
-    setErrorMsg(""); // clear error
-    console.log("Selected DOB:", dob);
-    navigate("/assessment03");
+  setErrorMsg(""); // clear error
+  // Backend Handling: Push assessment data (DOB) to backend API if needed
+  // Example: await api.saveAssessmentStep({ dob })
+  console.log("Selected DOB:", dob);
+  navigate("/assessment03");
   };
 
   return (

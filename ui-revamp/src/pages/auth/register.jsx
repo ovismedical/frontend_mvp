@@ -39,6 +39,8 @@ const Register = () => {
     const sex = "male";
 
     try {
+      // Backend Handling: Push registration data to backend API
+      // Example: POST to /otp/register with user info
       const apiUrl = import.meta.env.VITE_API_URL;
       const response = await fetch(`${apiUrl}/otp/register`, {
         method: "POST",

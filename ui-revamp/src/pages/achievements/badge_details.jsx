@@ -30,6 +30,7 @@ const BadgeDetails = () => {
   };
 
   // Badge configuration with multilingual content
+  // Backend Handling: Fetch badge details from backend
   const badgeConfig = {
     unlocked: {
       image: unlockedBadgeImage,
@@ -64,7 +65,8 @@ const BadgeDetails = () => {
   const currentBadge = badgeConfig[variant] || badgeConfig.unlocked;
 
   const handleShare = async () => {
-    try {
+  // Backend Handling: Share or download badge image (push/share to backend if needed)
+  try {
       // Capture the badge content as image
       const canvas = await html2canvas(shareContentRef.current, {
         backgroundColor: "#ffffff",

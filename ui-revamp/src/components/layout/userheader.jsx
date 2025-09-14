@@ -40,6 +40,7 @@ const UserHeader = () => {
       <div className="user-header__text h4">
         <div className="greeting">
           {getGreeting()},{" "}
+          {/* Backend Handling: fetch User's name */}
           <span className="username">{user?.name || t("user")}</span>
         </div>
         <div className="datetime caption">{currentDateTime()}</div>

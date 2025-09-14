@@ -7,6 +7,7 @@ const WellnessScoreCard = () => {
   const [selectedRange, setSelectedRange] = useState("Weekly");
   const [showDropdown, setShowDropdown] = useState(false);
 
+  // Backend Handling: Fetch wellness score data from backend
   const chartData = {
     Weekly: {
       data: [
@@ -67,6 +68,7 @@ const WellnessScoreCard = () => {
 
   const toggleDropdown = () => setShowDropdown((prev) => !prev);
 
+  // Backend Handling: Fetch new data from backend when range changes
   const handleSelect = (range) => {
     setSelectedRange(range);
     setShowDropdown(false);

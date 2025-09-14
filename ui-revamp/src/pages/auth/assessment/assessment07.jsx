@@ -33,7 +33,11 @@ const Assessment07 = () => {
 
         <div className="fitnessSlider-container">
           <FitnessLevelSlider
-            onChange={(level) => console.log("Selected level:", level)}
+            onChange={(level) => {
+              // Backend Handling: Push assessment data (fitness level) to backend API if needed
+              // Example: await api.saveAssessmentStep({ fitnessLevel: level })
+              console.log("Selected level:", level);
+            }}
           />
         </div>
 

@@ -50,15 +50,18 @@ const PasswordSecurity = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
-      // Handle password change logic here
+      // Backend Handling: Push updated password to backend API
+      // Example: await api.updatePassword(currentPassword, newPassword)
       console.log("Password change submitted");
       setMessage(t("password_updated_successfully"));
     }
   };
 
   const handleResetWithEmail = () => {
-    localStorage.removeItem("token");
-    navigate("/forgotPassword");
+  // Backend Handling: Initiate password reset via backend (send reset email)
+  // Example: await api.sendPasswordResetEmail(userEmail)
+  localStorage.removeItem("token");
+  navigate("/forgotPassword");
   };
 
   return (

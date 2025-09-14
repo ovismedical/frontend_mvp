@@ -18,6 +18,7 @@ const Home = () => {
         <HomeNotifications />
       </div>
       <div className="homepage-content-container">
+        {/* Backend Handling: Fetch User's daily check-in data */}
         <DailyCheckIn currentDays={2} longestDays={12} />
         <TodaysMedication />
         <WellnessScoreCard />

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ProgressBar from "../../../components/ui/progressbar";
-import InputField from "../../../components/ui/inputfield";
+import InputField from "../../../components/ui/inputField";
 import Button from "../../../components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -17,6 +17,8 @@ const Assessment01 = () => {
       setError(true);
     } else {
       setError(false);
+      // Backend Handling: Push assessment data (name) to backend API if needed
+      // Example: await api.saveAssessmentStep({ name })
       navigate("/assessment02");
     }
   };

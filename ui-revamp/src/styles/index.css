@@ -25,6 +25,8 @@
 @import "./pages/password.css";
 @import "./pages/display_language.css";
 @import "./pages/profile_management.css";
+@import "./pages/appointment.css";
+@import "./pages/appointment_scheduler.css";
 
 body {
   background-color: var(--background-500);

@@ -29,6 +29,8 @@ export default function Chatbot() {
   const messagesEndRef = useRef(null);
   const inputRef = useRef(null);
 
+  // Backend Handling: Fetch previous conversation history from backend (if needed)
+  // useEffect(() => { /* fetch conversation history */ }, [])
   const severityOptions = [
     { label: "😊 Mild (1-3)", value: "Mild (1-3)" },
     { label: "😐 Moderate (4-6)", value: "Moderate (4-6)" },
@@ -121,7 +123,8 @@ export default function Chatbot() {
   };
 
   const handleBackClick = () => {
-    setShowLoadingModal(true);
+  // Backend Handling: Save completed check-in/report to backend
+  setShowLoadingModal(true);
     setTimeout(() => {
       setShowLoadingModal(false);
       setShowConfirmationModal(true);
@@ -167,7 +170,8 @@ export default function Chatbot() {
   };
 
   const handleSend = () => {
-    if (!input.trim()) return;
+  if (!input.trim()) return;
+  // Backend Handling: Push/save user message to backend
 
     const userMessage = {
       sender: "user",
@@ -194,7 +198,8 @@ export default function Chatbot() {
   };
 
   const handleOptionSelect = (value) => {
-    const userMessage = {
+  // Backend Handling: Push/save selected option to backend
+  const userMessage = {
       sender: "user",
       text: `You selected: ${value}`,
       time: new Date().toLocaleTimeString([], {
@@ -337,6 +342,7 @@ export default function Chatbot() {
 
       {showLoadingModal && (
         <div className="modal-overlay">
+          {/* Backend Handling: Process assessment and save results to backend */}
           <div className="modal-box">
             <div className="spinner" />
             <h3 className="h3">{statusMessages[currentStatusIndex]}</h3>
@@ -373,6 +379,7 @@ export default function Chatbot() {
 
       {showReportModal && (
         <div className="modal-overlay" onClick={closeReportModal}>
+          {/* Backend Handling: Save/send reported issue to backend */}
           <div className="modal-box" onClick={(e) => e.stopPropagation()}>
             <h3 className="h3">Report an Issue</h3>
             <p className="body">

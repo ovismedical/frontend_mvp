@@ -16,6 +16,9 @@ export default function VoiceInputChatbot() {
   const [currentStatusIndex, setCurrentStatusIndex] = useState(0);
   const [showReportModal, setShowReportModal] = useState(false);
 
+
+  // Backend Handling: Fetch previous voice conversation history from backend (if needed)
+  // useEffect(() => { /* fetch voice conversation history */ }, [])
   const [conversation, setConversation] = useState([
     {
       sender: "bot",
@@ -39,6 +42,8 @@ export default function VoiceInputChatbot() {
     onEnd: () => {
       const finalText = transcriptRef.current.trim();
       if (!finalText) return;
+
+      // Backend Handling: Save user voice input to backend
 
       setConversation((prev) => [
         ...prev,
@@ -81,7 +86,8 @@ export default function VoiceInputChatbot() {
   };
 
   const handleSaveClick = () => {
-    setShowLoadingModal(true);
+  // Backend Handling: Save completed voice check-in/report to backend
+  setShowLoadingModal(true);
     setCurrentStatusIndex(0);
     let index = 0;
 
@@ -217,6 +223,7 @@ export default function VoiceInputChatbot() {
       {/* Loading Modal */}
       {showLoadingModal && (
         <div className="modal-overlay">
+          {/* Backend Handling: Process voice assessment and save results to backend */}
           <div className="modal-box">
             <div className="spinner" />
             <h3 className="h3">{statusMessages[currentStatusIndex]}</h3>
@@ -287,6 +294,7 @@ export default function VoiceInputChatbot() {
           className="modal-overlay"
           onClick={() => setShowReportModal(false)}
         >
+          {/* Backend Handling: Save/send reported issue to backend */}
           <div className="modal-box" onClick={(e) => e.stopPropagation()}>
             <h3 className="h3">Report an Issue</h3>
             <p className="body">

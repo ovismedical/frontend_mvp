@@ -26,6 +26,7 @@ const HelpCenter = () => {
     }
   };
 
+  // Backend Handling: Fetch help center quick start guides, FAQs, and version history from backend
   const quickStartGuides = [
     {
       icon: "stars_2",
@@ -84,6 +85,7 @@ const HelpCenter = () => {
     },
   ];
 
+  // Backend Handling: Fetch FAQs from backend
   const faqs = [
     {
       question: {
@@ -129,6 +131,7 @@ const HelpCenter = () => {
 
   const colorVariants = ["blue", "secondary", "lavender"];
 
+  // Backend Handling: Fetch version history from backend
   const versionCards = [
     {
       version: "V2.1.0",
@@ -302,6 +305,7 @@ const HelpCenter = () => {
 
             {/* Report & Feedback Section */}
             <section className="report-feedback-section">
+              {/* Backend Handling: Push reported bug or feedback to backend */}
               <h2 className="report-feedback-title body">{t("report_feedback")}</h2>
               <p className="report-feedback-description caption">
                 {t("report_feedback_description")}
@@ -352,6 +356,7 @@ const HelpCenter = () => {
             {t("still_need_help_description")}
           </p>
           <div className="still-need-help-button">
+            {/* Backend Handling: Push contact request (email/call) to backend */}
             <button className="still-need-help-button mail caption">
               <span className="material-symbols-rounded mail">mail</span>
               {t("email_us")}

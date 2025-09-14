@@ -27,6 +27,8 @@ const Login = () => {
     setMessage("");
 
     try {
+      // Backend Handling: Push login credentials to backend API
+      // Example: POST to /token with username and password
       const apiUrl = import.meta.env.VITE_API_URL;
 
       const response = await fetch(`${apiUrl}/token`, {

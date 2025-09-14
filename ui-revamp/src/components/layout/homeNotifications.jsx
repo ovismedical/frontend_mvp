@@ -6,6 +6,7 @@ import "../../styles/components/homeNotifications.css";
 const HomeNotifications = () => {
   const { t } = useTranslation();
 
+  // Backend Handling : Fetch notifications from API
   const [notifications, setNotifications] = useState([
     {
       id: 1,
