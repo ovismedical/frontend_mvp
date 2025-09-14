@@ -19,7 +19,7 @@ A modern React + Vite web application for healthcare and wellness management.
 ## Installation & Setup
 
 ```bash
-git clone https://github.com/Kirandeephere/ovis-ui-revamp.git
+git clone "project URL"
 cd ovis-ui-revamp
 npm install
 ```
