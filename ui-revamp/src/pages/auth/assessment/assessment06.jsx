@@ -29,6 +29,8 @@ const Assessment06 = () => {
 
   const handleContinue = () => {
     if (selected && sign) {
+      // Backend Handling: Push assessment data (blood type) to backend API if needed
+      // Example: await api.saveAssessmentStep({ bloodType: selected + (sign === "add" ? "+" : "-") })
       const finalBloodType = selected + (sign === "add" ? "+" : "-");
       console.log("Final blood type:", finalBloodType);
       navigate("/assessment07");
@@ -38,9 +40,11 @@ const Assessment06 = () => {
   };
 
   const handleSkip = () => {
-    const finalBloodType = "N/A";
-    console.log("Skipped. Blood type saved as:", finalBloodType);
-    navigate("/assessment07");
+  const finalBloodType = "N/A";
+  // Backend Handling: Push assessment data (blood type: N/A) to backend API if needed
+  // Example: await api.saveAssessmentStep({ bloodType: "N/A" })
+  console.log("Skipped. Blood type saved as:", finalBloodType);
+  navigate("/assessment07");
   };
 
   return (

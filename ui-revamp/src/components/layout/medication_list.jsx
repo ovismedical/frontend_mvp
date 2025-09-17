@@ -8,6 +8,9 @@ const MedicationList = ({ activeTab, searchTerm = "" }) => {
   const { t, i18n } = useTranslation();
   const currentLang = i18n.language === "zh" ? "zh" : "en";
 
+  // Backend Handling: Fetch medication data from backend (replace local JSON)
+  // Example: useEffect(() => { api.getMedications().then(setMedications) }, [activeTab, searchTerm])
+
   // Helper function to get localized text
   const getLocalizedText = (textObj) => {
     if (typeof textObj === "string") return textObj;

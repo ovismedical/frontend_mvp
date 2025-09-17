@@ -1,0 +1,137 @@
+[
+  {
+    "id": 1,
+    "patientId": 1,
+    "importance": "critical",
+    "type": { "en": "Vitals Alert", "zh": "生命体征警报" },
+    "title": "Pressure Spike",
+    "description": "Blood pressure spike detected: 190/110 mmHg",
+    "timestamp": "2025-08-24T07:30:00Z"
+  },
+  {
+    "id": 2,
+    "patientId": 2,
+    "importance": "urgent",
+    "type": { "en": "Missed Medication", "zh": "漏服药物" },
+    "title": "Dose Missed",
+    "description": "Missed insulin dose for 2 consecutive days",
+    "timestamp": "2025-08-24T07:10:00Z"
+  },
+  {
+    "id": 3,
+    "patientId": 2,
+    "importance": "caution",
+    "type": { "en": "Symptom Spike", "zh": "症状加重" },
+    "title": "Fatigue Alert",
+    "description": "Severe fatigue reported 2 times this week",
+    "timestamp": "2025-08-24T06:00:00Z"
+  },
+  {
+    "id": 4,
+    "patientId": 3,
+    "importance": "info",
+    "type": { "en": "Appointment Reminder", "zh": "预约提醒" },
+    "title": "Visit Reminder",
+    "description": "Upcoming consultation scheduled tomorrow at 10AM",
+    "timestamp": "2025-08-23T15:30:00Z"
+  },
+  {
+    "id": 5,
+    "patientId": 4,
+    "importance": "critical",
+    "type": { "en": "Vitals Alert", "zh": "生命体征警报" },
+    "title": "Oxygen Drop",
+    "description": "Oxygen saturation dropped to 82%",
+    "timestamp": "2025-08-24T08:00:00Z"
+  },
+  {
+    "id": 6,
+    "patientId": 5,
+    "importance": "caution",
+    "type": { "en": "Lab Results", "zh": "化验结果" },
+    "title": "Liver Alert",
+    "description": "Liver enzyme levels elevated in latest test",
+    "timestamp": "2025-08-22T12:00:00Z"
+  },
+  {
+    "id": 7,
+    "patientId": 6,
+    "importance": "urgent",
+    "type": { "en": "Treatment Update", "zh": "治疗更新" },
+    "title": "Treatment Delay",
+    "description": "Chemotherapy cycle postponed due to low blood count",
+    "timestamp": "2025-08-21T09:00:00Z"
+  },
+  {
+    "id": 8,
+    "patientId": 7,
+    "importance": "info",
+    "type": { "en": "Appointment Reminder", "zh": "预约提醒" },
+    "title": "Scan Reminder",
+    "description": "Follow-up scan scheduled in 2 days",
+    "timestamp": "2025-08-20T10:00:00Z"
+  },
+  {
+    "id": 9,
+    "patientId": 8,
+    "importance": "urgent",
+    "type": { "en": "Missed Medication", "zh": "漏服药物" },
+    "title": "Dose Lapse",
+    "description": "Missed dose for 5 consecutive days",
+    "timestamp": "2025-08-24T06:50:00Z"
+  },
+  {
+    "id": 10,
+    "patientId": 9,
+    "importance": "caution",
+    "type": { "en": "Symptom Spike", "zh": "症状加重" },
+    "title": "Cough Alert",
+    "description": "Persistent cough noted during check-in",
+    "timestamp": "2025-08-23T18:20:00Z"
+  },
+  {
+    "id": 11,
+    "patientId": 10,
+    "importance": "critical",
+    "type": { "en": "Emergency Admission", "zh": "急诊入院" },
+    "title": "ER Admission",
+    "description": "Patient admitted to ER for severe chest pain",
+    "timestamp": "2025-08-24T09:15:00Z"
+  },
+  {
+    "id": 12,
+    "patientId": 11,
+    "importance": "urgent",
+    "type": { "en": "Allergy Alert", "zh": "过敏警报" },
+    "title": "Allergy Alert",
+    "description": "Allergic reaction to prescribed medication reported",
+    "timestamp": "2025-08-24T08:45:00Z"
+  },
+  {
+    "id": 13,
+    "patientId": 12,
+    "importance": "caution",
+    "type": { "en": "Device Battery Low", "zh": "设备电量低" },
+    "title": "Battery Low",
+    "description": "Pacemaker battery level below threshold",
+    "timestamp": "2025-08-23T22:00:00Z"
+  },
+  {
+    "id": 14,
+    "patientId": 13,
+    "importance": "info",
+    "type": { "en": "Wellness Check", "zh": "健康检查" },
+    "title": "Survey Done",
+    "description": "Patient completed daily wellness survey",
+    "timestamp": "2025-08-23T10:00:00Z"
+  },
+  {
+    "id": 15,
+    "patientId": 14,
+    "importance": "info",
+    "type": { "en": "Insurance Update", "zh": "保险更新" },
+    "title": "Insurance Update",
+    "description": "Insurance information updated successfully",
+    "timestamp": "2025-08-22T16:30:00Z"
+  }
+]

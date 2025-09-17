@@ -24,15 +24,19 @@ const Assessment03 = () => {
       return;
     }
 
-    setError(false);
-    console.log("Selected Gender:", selected); // Save/print the value
-    navigate("/assessment04");
+  setError(false);
+  // Backend Handling: Push assessment data (gender) to backend API if needed
+  // Example: await api.saveAssessmentStep({ gender: selected })
+  console.log("Selected Gender:", selected); // Save/print the value
+  navigate("/assessment04");
   };
 
   const handleSkip = () => {
-    setSelected("N/A");
-    console.log("Selected Gender: N/A");
-    navigate("/assessment04");
+  setSelected("N/A");
+  // Backend Handling: Push assessment data (gender: N/A) to backend API if needed
+  // Example: await api.saveAssessmentStep({ gender: "N/A" })
+  console.log("Selected Gender: N/A");
+  navigate("/assessment04");
   };
 
   return (

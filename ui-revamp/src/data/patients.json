@@ -1,0 +1,215 @@
+[
+  {
+    "id": 1,
+    "avatar": "https://t3.ftcdn.net/jpg/03/62/50/16/360_F_362501638_FimxwTbbGUoRtjaypXDPGAyYCFvfvYy0.jpg",
+    "name": "Aisha Patel",
+    "cancer": { "en": "Ovarian Cancer", "zh": "卵巢癌" },
+    "stage": { "en": "Stage III", "zh": "III期" },
+    "lastUpdate": "2 hours ago",
+    "medications": [
+      {
+        "medName": "Tamoxifen",
+        "strength": "20mg",
+        "quantity": 30,
+        "type": "Tablet",
+        "expirationDate": "2025-08-01",
+        "startedDate": "2023-01-01",
+        "refilledDate": "2024-01-01",
+        "dosageInstructions": "Twice daily",
+        "usedFor": "Hormonal therapy used to block estrogen receptors in breast tissue.",
+        "status": "active",
+        "sideEffects": {
+          "common": ["Hot flashes", "Fatigue", "Headache"],
+          "lessCommon": ["Nausea", "Joint pain"],
+          "serious": ["Allergic reactions", "Severe dizziness"]
+        }
+      },
+      {
+        "medName": "Letrozole",
+        "strength": "2.5mg",
+        "quantity": 6,
+        "type": "Tablet",
+        "expirationDate": "2024-12-15",
+        "startedDate": "2023-01-01",
+        "dosageInstructions": "Once daily",
+        "usedFor": "Aromatase inhibitor used for hormone receptor positive breast cancer in postmenopausal women",
+        "status": "active",
+        "sideEffects": {
+          "common": ["Hair loss", "Numbness or tingling", "Muscle aches"],
+          "lessCommon": ["Mouth sores", "Diarrhea"],
+          "serious": ["Severe allergic reactions", "Heart rhythm changes"]
+        }
+      },
+      {
+        "medName": "Doxorubicin",
+        "strength": "60 mg/m²",
+        "quantity": 30,
+        "type": "Tablet",
+        "expirationDate": "2025-03-10",
+        "startedDate": "2024-05-23",
+        "dosageInstructions": "Once every 10 days",
+        "usedFor": "Chemotherapy agent used to kill rapidly dividing cancer cells.",
+        "status": "active",
+        "sideEffects": {
+          "common": ["High blood pressure", "Fatigue"],
+          "lessCommon": ["Nosebleeds", "Headache"],
+          "serious": ["Blood clots", "Severe bleeding"]
+        }
+      },
+      {
+        "medName": "Ibuprofen",
+        "strength": "60 mg/m²",
+        "quantity": 5,
+        "type": "Injection",
+        "expirationDate": "2025-03-10",
+        "startedDate": "2024-05-23",
+        "endedDate": "2024-06-01",
+        "dosageInstructions": "As needed",
+        "usedFor": "Discontinued due to stomach irritation",
+        "status": "discontinued",
+        "sideEffects": {
+          "common": ["High blood pressure", "Fatigue"],
+          "lessCommon": ["Nosebleeds", "Headache"],
+          "serious": ["Blood clots", "Severe bleeding"]
+        }
+      },
+      {
+        "medName": "Omeprazole",
+        "strength": "20mg",
+        "quantity": 50,
+        "type": "Tablet",
+        "expirationDate": "2025-03-10",
+        "startedDate": "2024-05-23",
+        "endedDate": "2024-06-01",
+        "dosageInstructions": "Once weekly",
+        "usedFor": "8-week course for acid reflux",
+        "status": "completed",
+        "sideEffects": {
+          "common": ["High blood pressure", "Fatigue"],
+          "lessCommon": ["Nosebleeds", "Headache"],
+          "serious": ["Blood clots", "Severe bleeding"]
+        }
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "avatar": "https://img.freepik.com/free-photo/front-view-business-woman-suit_23-2148603018.jpg",
+    "name": "Amelia Chen",
+    "cancer": { "en": "Breast Cancer", "zh": "乳腺癌" },
+    "stage": { "en": "Stage II", "zh": "II期" },
+    "lastUpdate": "1 hour ago"
+  },
+  {
+    "id": 3,
+    "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRs10cupyp3Wf-pZvdPjGQuKne14ngVZbYdDQ&s",
+    "name": "Daniel Romero",
+    "cancer": { "en": "Lung Cancer", "zh": "肺癌" },
+    "stage": { "en": "NED", "zh": "无病变" },
+    "lastUpdate": "5 hours ago"
+  },
+  {
+    "id": 4,
+    "avatar": "https://t3.ftcdn.net/jpg/05/83/41/98/360_F_583419866_97XPxjHDJkQ2RKMmGWdgrbqJhEZeQb55.jpg",
+    "name": "Sofia Ivanova",
+    "cancer": { "en": "Leukemia", "zh": "白血病" },
+    "stage": { "en": "Acute Phase", "zh": "急性期" },
+    "lastUpdate": "10 minutes ago"
+  },
+  {
+    "id": 5,
+    "avatar": "https://t3.ftcdn.net/jpg/06/20/79/64/360_F_620796488_9b3fBDnhkqYmaJhCJZOu1h9QvRRoxfJM.jpg",
+    "name": "Liam O'Connor",
+    "cancer": { "en": "Prostate Cancer", "zh": "前列腺癌" },
+    "stage": { "en": "Stage I", "zh": "I期" },
+    "lastUpdate": "3 days ago"
+  },
+  {
+    "id": 6,
+    "avatar": "https://images.squarespace-cdn.com/content/v1/631ba8eed2196a6795698665/6d0d06ce-e8a5-434e-a633-a4893841b6a3/2022-08-10-Trinet-Henderson-Tiara-1485.jpg",
+    "name": "Zoe Müller",
+    "cancer": { "en": "Breast Cancer", "zh": "乳腺癌" },
+    "stage": { "en": "Stage IV", "zh": "IV期" },
+    "lastUpdate": "6 hours ago"
+  },
+  {
+    "id": 7,
+    "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTk4oDSZq9g6dYtHZVvrDB9KiQUb8TB0PFYu34En5NLgOyYMoFNhYtsXJmYDpWATmCsTZY&usqp=CAU",
+    "name": "Ethan Williams",
+    "cancer": { "en": "Colorectal Cancer", "zh": "结直肠癌" },
+    "stage": { "en": "Stage II", "zh": "II期" },
+    "lastUpdate": "8 hours ago"
+  },
+  {
+    "id": 8,
+    "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnGsZTSylmtlhlgmyHP3sg78j6ABq8hSLlwqyjoLamEE7Djdj1piY90MH0TTAtZrdw8I0&usqp=CAU",
+    "name": "Olivia Dubois",
+    "cancer": { "en": "Pancreatic Cancer", "zh": "胰腺癌" },
+    "stage": { "en": "Stage III", "zh": "III期" },
+    "lastUpdate": "12 hours ago"
+  },
+  {
+    "id": 9,
+    "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRObwzaYOuzqyGQw6Y2J28yFh9sQQ9QJexYlA&s",
+    "name": "Maya Singh",
+    "cancer": { "en": "Lymphoma", "zh": "淋巴瘤" },
+    "stage": { "en": "Stage IV", "zh": "IV期" },
+    "lastUpdate": "30 minutes ago"
+  },
+  {
+    "id": 10,
+    "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpLZ5Lhgn0hwn8_1EyvTyK2VBuqZ_kB6e7sDDV6doVJn9EtYTZJ860LniyrBI_tB07YVY&usqp=CAU",
+    "name": "Jacob Kim",
+    "cancer": { "en": "Stomach Cancer", "zh": "胃癌" },
+    "stage": { "en": "Stage I", "zh": "I期" },
+    "lastUpdate": "1 day ago"
+  },
+  {
+    "id": 11,
+    "avatar": "https://plus.unsplash.com/premium_photo-1690407617542-2f210cf20d7e?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8d29tYW4lMjBoZWFkc2hvdHxlbnwwfHwwfHx8MA%3D%3D",
+    "name": "Emma Rossi",
+    "cancer": { "en": "Cervical Cancer", "zh": "宫颈癌" },
+    "stage": { "en": "Stage II", "zh": "II期" },
+    "lastUpdate": "2 days ago"
+  },
+  {
+    "id": 12,
+    "avatar": "https://t3.ftcdn.net/jpg/02/10/52/68/360_F_210526825_Ofue4ciCf8Q6Tx1zEL6iygy83daAi7Kw.jpg",
+    "name": "Noah Johnson",
+    "cancer": { "en": "Liver Cancer", "zh": "肝癌" },
+    "stage": { "en": "Stage III", "zh": "III期" },
+    "lastUpdate": "4 hours ago"
+  },
+  {
+    "id": 13,
+    "avatar": "https://images.squarespace-cdn.com/content/v1/631ba8eed2196a6795698665/b488239b-f181-4333-8662-45ba36335d7f/2022-02-11-Trinet-Geena-0319-OneDrive+-+Social+Media.jpg",
+    "name": "Ava Brown",
+    "cancer": { "en": "Skin Cancer", "zh": "皮肤癌" },
+    "stage": { "en": "NED", "zh": "无病变" },
+    "lastUpdate": "7 hours ago"
+  },
+  {
+    "id": 14,
+    "avatar": "https://media.istockphoto.com/id/1208414307/photo/happy-male-executive-in-office.jpg?s=612x612&w=0&k=20&c=3krD8gIdPmHFVwbcHGyQDXUGlcyzmcWQNyRMRp_93P8=",
+    "name": "Mohammed Al-Farsi",
+    "cancer": { "en": "Thyroid Cancer", "zh": "甲状腺癌" },
+    "stage": { "en": "Stage I", "zh": "I期" },
+    "lastUpdate": "5 days ago"
+  },
+  {
+    "id": 15,
+    "avatar": "https://images.unsplash.com/photo-1633332755192-727a05c4013d?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bWFsZSUyMGhlYWRzaG90fGVufDB8fDB8fHww",
+    "name": "Lucas Garcia",
+    "cancer": { "en": "Testicular Cancer", "zh": "睾丸癌" },
+    "stage": { "en": "Stage II", "zh": "II期" },
+    "lastUpdate": "9 hours ago"
+  },
+  {
+    "id": 16,
+    "avatar": "https://randomuser.me/api/portraits/women/21.jpg",
+    "name": "Lila Singh",
+    "cancer": { "en": "Skin Cancer", "zh": "皮肤癌" },
+    "stage": { "en": "Unknown", "zh": "未知" },
+    "lastUpdate": "Just now"
+  }
+]

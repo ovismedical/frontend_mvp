@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import "../../styles/components/inviteModal.css";
 
 const InviteModal = ({ isOpen, onClose, userName, inviteLink }) => {
+  // Backend Handling: Invite link should be generated or fetched from backend for the user
   if (!isOpen) return null;
   const { t } = useTranslation();
 

@@ -1,0 +1,41 @@
+@import "../variables.css";
+@import "../typography.css";
+
+.doctor-header {
+  background-color: var(--blue-700);
+  padding: 20px 16px 20px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.doctor-header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.doctor-header-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.doctor-header-info {
+  display: flex;
+  flex-direction: column;
+  color: var(--blue-light-50);
+}
+
+.bell-button {
+  background: transparent;
+  border: none;
+  color: var(--blue-light-50);
+  cursor: pointer;
+  padding: 4px;
+}
+
+.material-symbols-rounded.notify {
+  font-size: 25px;
+}

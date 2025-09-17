@@ -121,7 +121,7 @@
   margin-left: 48px; /* align with text */
 }
 
-.help-subtext{
+.help-subtext {
   color: var(--text-400);
 }
 
@@ -179,4 +179,64 @@
 
 .toggle-switch input:checked + .toggle-slider:before {
   transform: translateX(20px);
+}
+
+/* Doctor Settings User Header */
+.settings-doctor-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Pushes search icon to right */
+  margin: 30px auto;
+  width: 90%;
+}
+
+.settings-doctor-header .settings-doctor-left {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* 15px between avatar and info */
+}
+
+.settings-search-input-container {
+  padding: 0 20px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.settings-search-input-container input {
+  width: 90%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  outline: none;
+}
+
+
+.settings-doctor-avatar {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.settings-doctor-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.settings-doctor-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.settings-doctor-name {
+  color: var(--blue-700);
+  margin: 0;
+}
+
+.settings-doctor-department {
+  color: var(--text-500);
+  margin: 0;
 }

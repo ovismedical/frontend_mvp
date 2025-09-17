@@ -8,6 +8,7 @@ const PasswordLink = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
 
+  // Backend Handling: Password reset link is sent to user's email via backend API before this screen
   return (
     <div className="passwordLink-container">
       <div className="backIcon-container">

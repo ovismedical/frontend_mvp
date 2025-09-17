@@ -75,5 +75,8 @@
   "my_qr_code": "我的二維碼",
   "scan_qr_code_text": "掃描此二維碼以向 {{userName}} 發送請求",
   "copy_invite_link": "複製邀請連結",
-  "invite_link_copied": "邀請連結已複製"
+  "invite_link_copied": "邀請連結已複製",
+  "patient_alerts": "患者提醒",
+  "medication_reminders": "用药提醒",
+  "new_report": "有新报告"
 }

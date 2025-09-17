@@ -4,16 +4,24 @@ import Button from "../../components/ui/button.jsx";
 import blueLogo from "../../assets/images/logo_blue.png";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { useAuth } from "../../context/AuthContext"; // Add this import
 
 const Login = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const { login } = useAuth(); // Get login function from context
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
+
+  // Demo users
+  const demoUsers = {
+    patient: { username: "patient", password: "patient123", role: "patient" },
+    doctor: { username: "doctor", password: "doctor123", role: "doctor" },
+  };
 
   const toggleShowPassword = () => setShowPassword((prev) => !prev);
 
@@ -25,33 +33,50 @@ const Login = () => {
 
     setLoading(true);
     setMessage("");
+    
 
-    try {
-      const apiUrl = import.meta.env.VITE_API_URL;
+    // Simulate API delay
+    setTimeout(() => {
+      const user = Object.values(demoUsers).find(
+        (user) => user.username === username && user.password === password
+      );
 
-      const response = await fetch(`${apiUrl}/token`, {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams({
-          username,
-          password,
-        }),
-      });
+      // Backend Handling: Push login credentials to backend API
+      // Example: POST to /token with username and password
+      
+      if (user) {
+        // Store user info in localStorage
+        const userData = {
+          access_token: "demo_token_" + Date.now(),
+          token_type: "bearer",
+          user: {
+            username: user.username,
+            role: user.role,
+          },
+        };
 
-      const data = await response.json();
+        localStorage.setItem("token", JSON.stringify(userData));
 
-      if (data.details === "Invalid credentials") {
-        setMessage("Login failed. Please check your username or password.");
+        // Update auth context - this is the key part!
+        login({
+          username: user.username,
+          role: user.role,
+        });
+
+        // Navigate based on user role
+        if (user.role === "doctor") {
+          navigate("/doctor_home");
+        } else {
+          navigate("/home");
+        }
       } else {
-        localStorage.setItem("token", JSON.stringify(data));
-        navigate("/home");
+        setMessage(
+          "Invalid credentials. Try: patient/patient123 or doctor/doctor123"
+        );
       }
-    } catch (error) {
-      console.error("Login error:", error);
-      setMessage("Unable to connect to server.");
-    } finally {
+
       setLoading(false);
-    }
+    }, 1000);
   };
 
   return (

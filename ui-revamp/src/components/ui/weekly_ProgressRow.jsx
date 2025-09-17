@@ -5,8 +5,9 @@ const ProgressRow = ({ labelFormat = "short", labelPosition = "below" }) => {
   const checkedInIndexes = [1, 2];
 
   // const todayIndex = new Date().getDay(); // 0 (Sun) - 6 (Sat)
-  const todayIndex = 4; // For testing purposes, set to Tuesday
+  const todayIndex = 4; // To Do: For testing purposes, set to Tuesday , remove this and uncomment above line for dynamic
 
+  // Backend Handling: Fetch user's check-in data for the week to determine checkedInIndexes
   const daysOfWeek = [
     { labelShort: "M", labelFull: "Mon", index: 0 }, // Monday
     { labelShort: "T", labelFull: "Tue", index: 1 },
