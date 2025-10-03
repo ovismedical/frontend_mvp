@@ -22,9 +22,20 @@ export const AuthProvider = ({ children }) => {
     initAuth();
   }, []);
 
+  // Add login function
+  const login = (userData) => {
+    setUser(userData);
+  };
+
+  // Add logout function
+  const logout = () => {
+    localStorage.removeItem("token");
+    setUser(null);
+  };
+
   return (
     <AuthContext.Provider
-      value={{ user, setUser, isAuthLoading, isAuthenticated }}
+      value={{ user, setUser, isAuthLoading, isAuthenticated, login, logout }}
     >
       {children}
     </AuthContext.Provider>

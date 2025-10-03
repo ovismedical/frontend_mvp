@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import "../../styles/components/careLibrary.css";
 
+// Backend Handling: Fetch articles from backend
 const articleData = [
   {
     title: "5 Easy Meals for Treatment Days",

@@ -5,6 +5,7 @@ import "../../styles/components/doctorCard.css";
 export default function DoctorCard() {
   const { t } = useTranslation();
 
+  // Backend Handling: Fetch healthcare provider data from backend
   return (
     <div className="doctor-card">
       <div className="top-section">

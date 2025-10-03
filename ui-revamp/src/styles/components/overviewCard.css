@@ -1,0 +1,71 @@
+.doctor-home-overview-card {
+  background-color: var(--background-100);
+  border: 1px solid var(--neutral-500);
+  border-radius: var(--radius-l);
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+}
+
+.doctor-home-overview-card.blue {
+  background-color: var(--blue-light-100);
+  border: 1px solid var(--blue-600);
+}
+
+.doctor-home-overview-card-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+}
+
+.doctor-home-overview-card-row .icon {
+  font-size: 25px;
+  color: var(--secondary-600);
+}
+
+.doctor-home-overview-card-row .icon.blue {
+  color: var(--blue-600);
+}
+
+.doctor-home-overview-card-change {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.doctor-home-overview-card-change .change-icon {
+  font-size: 20px;
+}
+
+.doctor-home-overview-card-change-value {
+  margin: 0;
+}
+
+.positive {
+  color: var(--success-600);
+}
+
+.negative {
+  color: var(--error-600);
+}
+
+.doctor-home-overview-card-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.doctor-home-overview-card-value {
+  margin: 0;
+  color: var(--secondary-600);
+}
+
+.doctor-home-overview-card-value.blue {
+  color: var(--blue-600);
+}
+
+.doctor-home-overview-card-title {
+  margin: 0;
+}

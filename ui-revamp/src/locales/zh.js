@@ -7,6 +7,10 @@ import medication from "./medication/zh.json";
 import achievement from "./achievements/zh.json";
 import settings from "./settings/zh.json";
 import helpcenter from "./helpcenter/zh.json";
+import doctorhome from "./doctorhome/zh.json";
+import notifications from "./notifications/zh.json";
+import patients from "./patients/zh.json";
+import addmedication from "./addmedication/zh.json";
 
 export default {
   ...common,
@@ -18,4 +22,8 @@ export default {
   ...achievement,
   ...settings,
   ...helpcenter,
+  ...doctorhome,
+  ...notifications,
+  ...patients,
+  ...addmedication,
 };

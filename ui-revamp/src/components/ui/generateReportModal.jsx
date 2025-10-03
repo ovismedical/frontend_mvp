@@ -15,6 +15,7 @@ const getWeekAgo = () => {
   return weekAgo.toISOString().split("T")[0];
 };
 
+// Backend Handling: Generate and push health report to backend
 const GenerateReportModal = ({ onClose }) => {
   const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState("By Weeks");

@@ -17,14 +17,18 @@ const Assessment09 = () => {
       setError(true);
       return;
     }
+    // Backend Handling: Push assessment data (frequency) to backend API if needed
+    // Example: await api.saveAssessmentStep({ frequency: selected })
     console.log("Frequency value:", selected);
     navigate("/home");
   };
 
   const handleNotSure = () => {
-    setSelected("N/A");
-    console.log("Frequency value: N/A");
-    navigate("/home");
+  setSelected("N/A");
+  // Backend Handling: Push assessment data (frequency: N/A) to backend API if needed
+  // Example: await api.saveAssessmentStep({ frequency: "N/A" })
+  console.log("Frequency value: N/A");
+  navigate("/home");
   };
 
   return (

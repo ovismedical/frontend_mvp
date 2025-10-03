@@ -75,6 +75,9 @@
   "my_qr_code": "My QR Code",
   "scan_qr_code_text": "Scan this QR code to send request to {{userName}}",
   "copy_invite_link": "Copy Invite Link",
-  "invite_link_copied": "Invite Link Copied"
+  "invite_link_copied": "Invite Link Copied",
+  "patient_alerts": "Patient Alerts",
+  "medication_reminders": "Medication Reminders",
+  "new_report": "New Report Available"
 }
   

@@ -1,0 +1,18 @@
+{
+  "follow_ups": "跟進",
+  "search_patients": "搜尋患者...",
+  "filters": "篩選",
+  "clear_filters": "清除篩選",
+  "importance": "重要性",
+  "type": "類型",
+  "critical_alerts": "緊急警報",
+  "urgent_alerts": "緊急提醒",
+  "caution_alerts": "注意提醒",
+  "info": "資訊",
+  "just_now": "剛剛",
+  "min_ago": "{{count}} 分鐘前",
+  "hour_ago": "{{count}} 小時前",
+  "hours_ago": "{{count}} 小時前",
+  "day_ago": "{{count}} 天前",
+  "days_ago": "{{count}} 天前"
+}

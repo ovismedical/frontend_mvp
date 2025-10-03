@@ -30,6 +30,8 @@ const Assessment04 = () => {
 
   const handleContinue = () => {
     if (heightValue?.height) {
+      // Backend Handling: Push assessment data (height) to backend API if needed
+      // Example: await api.saveAssessmentStep({ height: heightValue.height, unit: selectedUnit })
       console.log("Selected height:", heightValue.height);
       navigate("/assessment05");
     } else {

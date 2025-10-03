@@ -17,6 +17,8 @@ const Assessment01 = () => {
       setError(true);
     } else {
       setError(false);
+      // Backend Handling: Push assessment data (name) to backend API if needed
+      // Example: await api.saveAssessmentStep({ name })
       navigate("/assessment02");
     }
   };

@@ -1,0 +1,77 @@
+[
+  {
+    "id": 1,
+    "name": "Dr. Emily Chen",
+    "specialty": "Breast Oncologist (Lead Doctor)",
+    "icon": "local_hospital",
+    "avatar": "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=80&h=80&fit=crop&crop=face",
+    "phone": "+852 2234 5678",
+    "unavailableDates": ["2025-08-25", "2025-08-30"],
+    "unavailableTimes": {
+      "2025-08-23": ["09:30 AM", "10:00 AM"],
+      "2025-08-26": ["02:00 PM", "03:00 PM"]
+    }
+  },
+  {
+    "id": 2,
+    "name": "Dr. Michael Smith",
+    "specialty": "Radiologist",
+    "icon": "radiology",
+    "avatar": "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=80&h=80&fit=crop&crop=face",
+    "phone": "+852 2345 6789",
+    "unavailableDates": ["2025-08-27"],
+    "unavailableTimes": {
+      "2025-08-24": ["11:00 AM", "01:00 PM"],
+      "2025-08-28": ["09:30 AM"]
+    }
+  },
+  {
+    "id": 3,
+    "name": "Dr. Anita Gupta",
+    "specialty": "Pathologist",
+    "icon": "science",
+    "avatar": "https://www.healthywomen.org/media-library/dr-anita-gupta.jpg?id=51470438&width=1200&height=800&quality=85&coordinates=0%2C0%2C0%2C213",
+    "phone": "+852 2456 7890",
+    "unavailableDates": [],
+    "unavailableTimes": {
+      "2025-08-29": ["10:30 AM", "11:00 AM"]
+    }
+  },
+  {
+    "id": 4,
+    "name": "Nurse Karen Lee",
+    "specialty": "Oncology Nurse",
+    "icon": "masks",
+    "avatar": "https://images.unsplash.com/photo-1527613426441-4da17471b66d?w=80&h=80&fit=crop&crop=face",
+    "phone": "+852 2567 8901",
+    "unavailableDates": ["2025-08-31"],
+    "unavailableTimes": {
+      "2025-08-25": ["03:00 PM"]
+    }
+  },
+  {
+    "id": 5,
+    "name": "Dr. David Kim",
+    "specialty": "Surgeon",
+    "icon": "surgical",
+    "avatar": "https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=80&h=80&fit=crop&crop=face",
+    "phone": "+852 2678 9012",
+    "unavailableDates": ["2025-08-26", "2025-09-02"],
+    "unavailableTimes": {
+      "2025-08-27": ["09:30 AM", "10:00 AM", "10:30 AM"]
+    }
+  },
+  {
+    "id": 6,
+    "name": "Dr. Laura Brown",
+    "specialty": "Psychologist",
+    "icon": "psychology",
+    "avatar": "https://images.unsplash.com/photo-1651008376811-b90baee60c1f?w=80&h=80&fit=crop&crop=face",
+    "phone": "+852 2789 0123",
+    "unavailableDates": [],
+    "unavailableTimes": {
+      "2025-08-24": ["02:00 PM"],
+      "2025-08-30": ["01:00 PM", "02:00 PM"]
+    }
+  }
+]

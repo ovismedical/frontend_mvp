@@ -5,16 +5,24 @@ import blueLogo from "../../assets/images/logo_blue.png";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { authAPI } from "../../utils/api.js";
+import { useAuth } from "../../context/AuthContext";
 
 const Login = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const { login } = useAuth(); // Get login function from context
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
+
+  // Demo users
+  const demoUsers = {
+    patient: { username: "patient", password: "patient123", role: "patient" },
+    doctor: { username: "doctor", password: "doctor123", role: "doctor" },
+  };
 
   const toggleShowPassword = () => setShowPassword((prev) => !prev);
 
@@ -26,19 +34,29 @@ const Login = () => {
 
     setLoading(true);
     setMessage("");
-
+    
     try {
       const data = await authAPI.login(username, password);
+      
+      if (data && data.user) {
+        // Update auth context - this is the key part!
+        login({
+          username: data.user.username,
+          role: data.user.role,
+        });
 
-      if (data.details === "Invalid credentials") {
-        setMessage("Login failed. Please check your username or password.");
+        // Navigate based on user role
+        if (data.user.role === "doctor") {
+          navigate("/doctor_home");
+        } else {
+          navigate("/home");
+        }
       } else {
-        localStorage.setItem("token", JSON.stringify(data));
-        navigate("/home");
+        setMessage("Invalid credentials. Please try again.");
       }
     } catch (error) {
       console.error("Login error:", error);
-      setMessage("Unable to connect to server.");
+      setMessage("Login failed. Please check your credentials and try again.");
     } finally {
       setLoading(false);
     }

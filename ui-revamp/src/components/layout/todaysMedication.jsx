@@ -7,6 +7,7 @@ const TodaysMedication = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
+  // Backend Handling: Fetch user's medication data for today
   const initialMedications = [
     {
       id: 1,
@@ -103,7 +104,7 @@ const TodaysMedication = () => {
     ...pastMeds.slice(0, 1),
     ...futureMeds.slice(0, 2),
   ];
-
+  // Backend Handling: Push updated medication status to backend
   const handleStatusChange = (id, newStatus) => {
     setMedications((prevMeds) =>
       prevMeds.map((med) =>

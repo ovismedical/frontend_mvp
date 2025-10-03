@@ -1,3 +1,4 @@
+// Backend Handling: Fetch symptom tracking data from backend
 import React from "react";
 import { useTranslation } from "react-i18next";
 import "../../styles/components/symptomTrackCard.css";
