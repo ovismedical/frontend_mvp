@@ -4,6 +4,7 @@ import Button from "../../components/ui/button.jsx";
 import blueLogo from "../../assets/images/logo_blue.png";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { authAPI } from "../../utils/api.js";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -27,18 +28,7 @@ const Login = () => {
     setMessage("");
 
     try {
-      const apiUrl = import.meta.env.VITE_API_URL;
-
-      const response = await fetch(`${apiUrl}/token`, {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams({
-          username,
-          password,
-        }),
-      });
-
-      const data = await response.json();
+      const data = await authAPI.login(username, password);
 
       if (data.details === "Invalid credentials") {
         setMessage("Login failed. Please check your username or password.");

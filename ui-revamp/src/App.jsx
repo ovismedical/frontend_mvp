@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import { useEffect } from "react";
 import { useAuth } from "./context/AuthContext";
-import ProtectedRoute from "./components/ProtectedRoute";
+import ProtectedRoute from "./components/protectedRoute";
 import BottomNavLayout from "./components/layout/bottomNavLayout.jsx";
 
 // Screens
@@ -47,6 +47,7 @@ import HealthCareProvider from "./pages/settings/healthcare_provider.jsx";
 import PasswordSecurity from "./pages/settings/password.jsx";
 import DisplayLanguage from "./pages/settings/display_language.jsx";
 import ProfileManagement from "./pages/settings/profile_management.jsx";
+import ConnectionTest from "./components/ConnectionTest.jsx";
 
 function App() {
   const location = useLocation();
@@ -164,6 +165,7 @@ function App() {
         <Route path="/password_security" element={<PasswordSecurity />} />
         <Route path="/display_language" element={<DisplayLanguage />} />
         <Route path="/profile_management" element={<ProfileManagement />} />
+        <Route path="/test-connection" element={<ConnectionTest />} />
 
         <Route
           element={

@@ -492,3 +492,131 @@
 .daily-insights-title {
   color: var(--text-500);
 }
+
+/* Combined Health Insights Section */
+.daily-health-insights {
+  margin-top: 5%;
+  background-color: var(--background-100);
+  border-radius: var(--radius-l);
+  padding: 20px;
+  outline: 1px solid var(--neutral-500);
+}
+
+.section-subtitle {
+  color: var(--text-600);
+  margin-bottom: 16px;
+  margin-top: 24px;
+  font-size: 1rem;
+}
+
+.section-subtitle:first-child {
+  margin-top: 0;
+}
+
+/* Triage Priority Section */
+.triage-priority-section {
+  margin-bottom: 24px;
+}
+
+.error-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  background: #ffebee;
+  border-radius: 12px;
+  border-left: 4px solid #f44336;
+}
+
+.error-icon {
+  font-size: 24px;
+  color: #f44336;
+}
+
+.error-content {
+  flex: 1;
+}
+
+.error-title {
+  margin: 0 0 4px 0;
+  color: #c62828;
+}
+
+.error-message {
+  margin: 0;
+  color: #d32f2f;
+}
+
+/* Symptoms Section */
+.symptoms-section {
+  margin-bottom: 24px;
+}
+
+.symptoms-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 16px;
+  max-width: 100%;
+}
+
+.no-symptoms-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px;
+  text-align: center;
+  color: var(--text-400);
+  grid-column: 1 / -1;
+}
+
+.no-symptoms-message .material-symbols-rounded {
+  font-size: 48px;
+  margin-bottom: 12px;
+  opacity: 0.6;
+}
+
+.no-symptoms-message p {
+  margin: 0;
+  font-size: 14px;
+}
+
+/* Diagnosis Section */
+.diagnosis-section {
+  margin-bottom: 24px;
+}
+
+.diagnosis-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Smart Insights Section */
+.smart-insights-section {
+  margin-bottom: 0;
+}
+
+.insights-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .daily-health-insights {
+    padding: 16px;
+  }
+  
+  .symptoms-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  
+  .section-subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+  }
+}
+

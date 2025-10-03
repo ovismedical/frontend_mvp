@@ -4,6 +4,7 @@ import Button from "../../components/ui/button.jsx";
 import blueLogo from "../../assets/images/logo_blue.png";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { authAPI } from "../../utils/api.js";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -39,21 +40,14 @@ const Register = () => {
     const sex = "male";
 
     try {
-      const apiUrl = import.meta.env.VITE_API_URL;
-      const response = await fetch(`${apiUrl}/otp/register`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          username,
-          access_code: accessCode,
-          password,
-          email,
-        }),
+      const data = await authAPI.register({
+        username,
+        access_code: accessCode,
+        password,
+        email,
       });
 
-      const data = await response.json();
-
-      if (response.ok) {
+      if (data) {
         setMessage("Account created successfully! Redirecting...");
         localStorage.setItem("email",email);
         setEmail("");

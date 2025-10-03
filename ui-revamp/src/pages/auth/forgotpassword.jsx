@@ -1,5 +1,5 @@
 import React from "react";
-import InputField from "../../components/ui/inputField.jsx";
+import InputField from "../../components/ui/inputfield.jsx";
 import Button from "../../components/ui/button.jsx";
 import forgotPassImg from "../../assets/images/forgot_password.png";
 import { useNavigate } from "react-router-dom";

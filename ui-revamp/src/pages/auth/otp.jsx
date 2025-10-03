@@ -5,6 +5,7 @@ import otpImg from "../../assets/images/otp.png";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
+import { authAPI } from "../../utils/api.js";
 
 const OTP = () => {
   const navigate = useNavigate();
@@ -24,40 +25,22 @@ const OTP = () => {
     setError("");
     
     try {
-      const response = await fetch(
-        'https://ovis-backend-mvp.onrender.com/otp/verify',
-        {
-          method: 'POST',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            user_id: localStorage.getItem("username"),
-            email: email_address || localStorage.getItem("email"),
-            otp_code: code,
-            purpose: "registration",
-          }),
-        }
-      );
+      const data = await authAPI.verifyOTP({
+        user_id: localStorage.getItem("username"),
+        email: email_address || localStorage.getItem("email"),
+        otp_code: code,
+        purpose: "registration",
+      });
 
-      if (response.ok) {
-        const data = await response.json();
-        localStorage.removeItem("username");
-        localStorage.removeItem("email");
-        setSuccess(true);
-        setTimeout(() => {
-          navigate('/login');
-        }, 1500);
-      } else {
-        const errorData = await response.json();
-        setError(errorData.detail || "Invalid OTP code. Please try again.");
-        setResetOtp(true);
-        setTimeout(() => setResetOtp(false), 50);
-      }
+      localStorage.removeItem("username");
+      localStorage.removeItem("email");
+      setSuccess(true);
+      setTimeout(() => {
+        navigate('/login');
+      }, 1500);
     } catch (error) {
       console.error('OTP verification error:', error);
-      setError("Network error. Please check your connection and try again.");
+      setError(error.message || "Invalid OTP code. Please try again.");
       setResetOtp(true);
       setTimeout(() => setResetOtp(false), 50);
     }
@@ -75,35 +58,20 @@ const OTP = () => {
 
   const handleResend = async () => {
     try {
-      const response = await fetch(
-        'https://ovis-backend-mvp.onrender.com/otp/resend',
-        {
-          method: 'POST',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            user_id: localStorage.getItem("username"),
-            email: email_address || localStorage.getItem("email"),
-            purpose: "registration",
-          }),
-        }
-      );
+      await authAPI.resendOTP({
+        user_id: localStorage.getItem("username"),
+        email: email_address || localStorage.getItem("email"),
+        purpose: "registration",
+      });
 
-      if (response.ok) {
-        setTimeLeft(30);
-        setCanResend(false);
-        setError("");
-        setResetOtp(true);
-        setTimeout(() => setResetOtp(false), 50);
-      } else {
-        const errorData = await response.json();
-        setError(errorData.detail || "Failed to resend OTP. Please try again.");
-      }
+      setTimeLeft(30);
+      setCanResend(false);
+      setError("");
+      setResetOtp(true);
+      setTimeout(() => setResetOtp(false), 50);
     } catch (error) {
       console.error('Resend OTP error:', error);
-      setError("Network error. Please try again.");
+      setError(error.message || "Failed to resend OTP. Please try again.");
     }
   };
 

@@ -2,10 +2,14 @@ import React, { useState, useEffect, useRef } from "react";
 import BotMessage from "../components/ui/botMessage";
 import UserMessage from "../components/ui/userMessage";
 import OptionsList from "../components/ui/optionsList";
+import FlorenceChat from "../components/chat/FlorenceChat";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 export default function Chatbot() {
   const navigate = useNavigate();
+  const { isAuthenticated } = useAuth();
+  const [useFlorenceAI, setUseFlorenceAI] = useState(true);
 
   const [showLoadingModal, setShowLoadingModal] = useState(false);
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
@@ -253,6 +257,11 @@ export default function Chatbot() {
     };
   }, [showMenu]);
 
+  // If using Florence AI and user is authenticated, show Florence chat
+  if (useFlorenceAI && isAuthenticated) {
+    return <FlorenceChat onClose={() => navigate("/home")} />;
+  }
+
   return (
     <div className="chatbot-container">
       <div className="chatbot-header">
@@ -264,12 +273,30 @@ export default function Chatbot() {
         </span>
         <div className="chatbot-header h4">Florence - AI Nurse</div>
         <div className="more_vert_container" style={{ position: "relative" }}>
+        <div className="header-actions">
+          <button 
+            onClick={() => setUseFlorenceAI(!useFlorenceAI)}
+            className="ai-toggle"
+            title={useFlorenceAI ? "Switch to Basic Mode" : "Switch to Florence AI"}
+            style={{
+              background: 'none',
+              border: 'none',
+              fontSize: '1.5rem',
+              cursor: 'pointer',
+              padding: '0.5rem',
+              borderRadius: '50%',
+              transition: 'background-color 0.2s'
+            }}
+          >
+            {useFlorenceAI ? "🤖" : "💬"}
+          </button>
           <span
             className="material-symbols-rounded more_vert"
             onClick={toggleMenu}
           >
             more_vert
           </span>
+        </div>
 
           {showMenu && (
             <ul className="more_vert_menu">

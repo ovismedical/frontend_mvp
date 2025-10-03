@@ -26,13 +26,22 @@ const statusMap = {
   },
 };
 
-const SymptomTrackCard = ({ iconName, title, intensity }) => {
+const SymptomTrackCard = ({ iconName, title, intensity, symptomData, onClick }) => {
   const { t } = useTranslation();
   const status = getStatus(intensity);
   const statusData = statusMap[status];
 
+  const handleClick = () => {
+    if (onClick && symptomData) {
+      onClick(symptomData);
+    }
+  };
+
   return (
-    <div className="symptom-track-card">
+    <div 
+      className={`symptom-track-card ${onClick ? 'clickable' : ''}`}
+      onClick={handleClick}
+    >
       <div className="symptom-track-left">
         <div
           className="symptom-track-icon"
@@ -49,24 +58,25 @@ const SymptomTrackCard = ({ iconName, title, intensity }) => {
           </span>
         </div>
         <div className="symptom-track-info">
-          <h4 className="symptom-track-title body">{title}</h4>
-          <div
-            className="symptom-track caption"
-            style={{ color: statusData.color }}
-          >
-            <span>
+          <h4 className="symptom-track-title body">{title.charAt(0).toUpperCase() + title.slice(1)}</h4>
+          <div className="symptom-track">
+            <span className="symptom-intensity caption" style={{ color: statusData.color }}>
               {t("intensity")}: {intensity}/10
+            </span>
+            <span
+              className="material-symbols-rounded track-icon"
+              style={{ color: statusData.color }}
+            >
+              {statusData.icon}
             </span>
           </div>
         </div>
       </div>
-
-      <span
-        className="material-symbols-rounded track-icon"
-        style={{ color: statusData.color }}
-      >
-        {statusData.icon}
-      </span>
+      {onClick && (
+        <span className="material-symbols-rounded click-indicator">
+          info
+        </span>
+      )}
     </div>
   );
 };

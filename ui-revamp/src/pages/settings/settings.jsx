@@ -5,26 +5,52 @@ import UserCard from "../../components/ui/userCard.jsx";
 import Tabs from "../../components/ui/tabs.jsx";
 import CustomDropdown from "../../components/ui/dropdown.jsx";
 import InviteModal from "../../components/ui/inviteModal.jsx";
+import { authAPI } from "../../utils/api.js";
 
 const Settings = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
 
   const [isModalOpen, setModalOpen] = useState(false);
-
-  // User information constant (unchanged)
-  const userInfo = {
-    userImage:
-      "https://media.istockphoto.com/id/1437816897/photo/business-woman-manager-or-human-resources-portrait-for-career-success-company-we-are-hiring.jpg?s=612x612&w=0&k=20&c=tyLvtzutRh22j9GqSGI33Z4HpIwv9vL_MZw_xOE19NQ=",
-    userName: "Linda Wong",
-    condition: "Breast Cancer - Stage 2",
+  const [userInfo, setUserInfo] = useState({
+    userImage: "https://media.istockphoto.com/id/1437816897/photo/business-woman-manager-or-human-resources-portrait-for-career-success-company-we-are-hiring.jpg?s=612x612&w=0&k=20&c=tyLvtzutRh22j9GqSGI33Z4HpIwv9vL_MZw_xOE19NQ=",
+    userName: "",
+    condition: "",
     status: "active-treatment",
-    phoneNumber: "12345678",
-    email: "lindawong@gmail.com",
-  };
+    phoneNumber: "",
+    email: "",
+  });
+  const [loading, setLoading] = useState(true);
 
   const [activeTab, setActiveTab] = useState(t("account"));
   const [helpOpen, setHelpOpen] = useState(false);
+
+  // Fetch user data from backend
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        setLoading(true);
+        const userData = await authAPI.getUserInfo();
+        
+        // Update user info with fetched data
+        setUserInfo({
+          userImage: "https://media.istockphoto.com/id/1437816897/photo/business-woman-manager-or-human-resources-portrait-for-career-success-company-we-are-hiring.jpg?s=612x612&w=0&k=20&c=tyLvtzutRh22j9GqSGI33Z4HpIwv9vL_MZw_xOE19NQ=",
+          userName: userData.full_name || userData.username || "User",
+          condition: userData.condition || "No condition specified",
+          status: "active-treatment",
+          phoneNumber: userData.phoneNumber || "",
+          email: userData.email || "",
+        });
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+        // Keep default values on error
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUserData();
+  }, []);
 
   // Add toggle states for Privacy & Data items
   const [dataSharing, setDataSharing] = useState(true);
@@ -91,10 +117,10 @@ const Settings = () => {
     e.preventDefault();
     navigate("/profile_management", {
       state: {
-        userImage: userInfo.userImage,
-        userName: userInfo.userName,
+        full_name: userInfo.userName,
         email: userInfo.email,
         phoneNumber: userInfo.phoneNumber,
+        condition: userInfo.condition,
       },
     });
   };
@@ -102,14 +128,21 @@ const Settings = () => {
   return (
     <div className="settings-container">
       <div className="settings-user-card">
-        <UserCard
-          userImage={userInfo.userImage}
-          userName={userInfo.userName}
-          condition={userInfo.condition}
-          status={userInfo.status}
-          onProfileManagement={handleProfileManagement}
-          onQRCodeClick={() => setModalOpen(true)}
-        />
+        {loading ? (
+          <div className="loading-container">
+            <div className="loading-spinner"></div>
+            <p>{t("loading") || "Loading user data..."}</p>
+          </div>
+        ) : (
+          <UserCard
+            userImage={userInfo.userImage}
+            userName={userInfo.userName}
+            condition={userInfo.condition}
+            status={userInfo.status}
+            onProfileManagement={handleProfileManagement}
+            onQRCodeClick={() => setModalOpen(true)}
+          />
+        )}
       </div>
 
       <Tabs

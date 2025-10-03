@@ -1,13 +1,19 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import MonthlyCalendar from "../../components/ui/monthlyCalendar";
 import SmartInsightCard from "../../components/ui/smartInsightCard";
 import EventItem from "../../components/ui/notableEvents";
 import SymptomTrendCard from "../../components/ui/symptomTrendCard";
+import { triageAPI } from "../../utils/api";
+import { useAuth } from "../../context/AuthContext";
 
 const MonthlyDashboard = () => {
   const { t, i18n } = useTranslation();
+  const { user, isAuthenticated } = useAuth();
+  const [smartInsights, setSmartInsights] = useState([]);
+  const [loading, setLoading] = useState(true);
 
+  // TODO: Replace with real events data from backend
   const events = [
     {
       iconName: "stethoscope",
@@ -38,6 +44,27 @@ const MonthlyDashboard = () => {
     },
   ];
 
+  useEffect(() => {
+    const fetchInsights = async () => {
+      try {
+        if (user && user.username) {
+          const insightsResponse = await triageAPI.getSmartInsights(user.username);
+          if (insightsResponse.success && insightsResponse.insights) {
+            setSmartInsights(insightsResponse.insights);
+          }
+        }
+      } catch (err) {
+        console.error("Failed to fetch insights:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (user !== null) {
+      fetchInsights();
+    }
+  }, [user]);
+
   return (
     <div className="monthly-dashboard-content">
       <MonthlyCalendar />
@@ -64,33 +91,20 @@ const MonthlyDashboard = () => {
         />
       </div>
 
-      <div className="monthly-smart-insight">
-        <h2 className="monthly-insights-title h4">{t("smart_insights")}</h2>
-        <SmartInsightCard
-          icon="sentiment_satisfied"
-          title={t("mood_sleep_link_detected")}
-          description={t("mood_sleep_link_description")}
-          insightType="info"
-        />
-        <SmartInsightCard
-          icon="warning"
-          title={t("low_activity_detected")}
-          description={t("low_activity_description")}
-          insightType="warning"
-        />
-        <SmartInsightCard
-          icon="celebration"
-          title={t("mood_boost")}
-          description={t("mood_boost_description")}
-          insightType="success"
-        />
-        <SmartInsightCard
-          icon="error"
-          title={t("missed_medication")}
-          description={t("missed_medication_description")}
-          insightType="error"
-        />
-      </div>
+      {smartInsights && smartInsights.length > 0 && (
+        <div className="monthly-smart-insight">
+          <h2 className="monthly-insights-title h4">{t("smart_insights")}</h2>
+          {smartInsights.map((insight, index) => (
+            <SmartInsightCard
+              key={index}
+              icon={insight.icon}
+              title={t(insight.title)}
+              description={t(insight.description)}
+              insightType={insight.insightType}
+            />
+          ))}
+        </div>
+      )}
 
       <div className="monthly-notable-events">
         <h2 className="monthly-notable-events-title h4">
