@@ -34,6 +34,21 @@ export const useFullscreen = () => {
         // Firefox support
         await element.mozRequestFullScreen();
       }
+
+      // Additional mobile optimizations
+      setTimeout(() => {
+        // Hide browser UI on mobile Chrome
+        if (window.navigator && window.navigator.standalone === false) {
+          // Scroll to hide address bar
+          window.scrollTo(0, 1);
+          setTimeout(() => window.scrollTo(0, 0), 100);
+        }
+        
+        // Set body height to viewport height to prevent scrolling
+        document.body.style.height = '100vh';
+        document.body.style.overflow = 'hidden';
+      }, 100);
+
     } catch (error) {
       console.warn('Could not enter fullscreen mode:', error);
     }
@@ -72,19 +87,47 @@ export const useFullscreen = () => {
     document.addEventListener('mozfullscreenchange', handleFullscreenChange);
     document.addEventListener('MSFullscreenChange', handleFullscreenChange);
 
+    // Add touch event listener to hide browser UI on scroll
+    const hideBrowserUI = () => {
+      if (window.scrollY > 0) {
+        window.scrollTo(0, 1);
+        setTimeout(() => window.scrollTo(0, 0), 100);
+      }
+    };
+
+    // Listen for touch events to hide browser UI
+    document.addEventListener('touchstart', hideBrowserUI, { passive: true });
+    document.addEventListener('touchend', hideBrowserUI, { passive: true });
+
     // Attempt to enter fullscreen after a short delay
     // This ensures the page is fully loaded
     const timer = setTimeout(() => {
       enterFullscreen();
     }, 500);
 
+    // Additional timer to try hiding browser UI
+    const hideUITimer = setTimeout(() => {
+      // Force hide browser UI by scrolling
+      window.scrollTo(0, 1);
+      setTimeout(() => window.scrollTo(0, 0), 100);
+      
+      // Try to hide browser UI again after a delay
+      setTimeout(() => {
+        window.scrollTo(0, 1);
+        setTimeout(() => window.scrollTo(0, 0), 100);
+      }, 1000);
+    }, 1000);
+
     // Cleanup
     return () => {
       clearTimeout(timer);
+      clearTimeout(hideUITimer);
       document.removeEventListener('fullscreenchange', handleFullscreenChange);
       document.removeEventListener('webkitfullscreenchange', handleFullscreenChange);
       document.removeEventListener('mozfullscreenchange', handleFullscreenChange);
       document.removeEventListener('MSFullscreenChange', handleFullscreenChange);
+      document.removeEventListener('touchstart', hideBrowserUI);
+      document.removeEventListener('touchend', hideBrowserUI);
     };
   }, [isMobile, enterFullscreen, handleFullscreenChange]);
 

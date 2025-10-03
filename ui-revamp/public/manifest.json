@@ -1,0 +1,19 @@
+{
+  "name": "Ovis",
+  "short_name": "Ovis",
+  "description": "Ovis Medical App",
+  "start_url": "/",
+  "display": "fullscreen",
+  "orientation": "portrait",
+  "theme_color": "#000000",
+  "background_color": "#ffffff",
+  "icons": [
+    {
+      "src": "/vite.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "categories": ["medical", "health"],
+  "lang": "en"
+}

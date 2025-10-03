@@ -43,6 +43,40 @@ body {
   box-sizing: border-box;
 }
 
+/* Mobile fullscreen optimizations */
+@media screen and (max-width: 768px) {
+  body {
+    /* Use full viewport height on mobile */
+    min-height: 100vh;
+    /* Prevent overscroll and bounce effects */
+    overscroll-behavior: none;
+    /* Handle safe areas for notched devices */
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+    padding-top: max(60px, env(safe-area-inset-top));
+    padding-bottom: max(34px, env(safe-area-inset-bottom));
+  }
+  
+  /* Hide browser UI on mobile when in fullscreen */
+  html:fullscreen body,
+  html:-webkit-full-screen body,
+  html:-moz-full-screen body {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  /* Ensure content fills the screen */
+  #root {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
 body.no-body-padding {
   padding: 0 !important;
   overflow: hidden;
