@@ -1,7 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import { useAuth } from "./context/AuthContext";
 import { useBodyClasses } from "./hooks/useBodyClasses";
-import { useFullscreen } from "./hooks/useFullscreen";
 import { renderRootRedirect } from "./utils/routeHelpers.jsx";
 
 // Route Components
@@ -14,9 +13,6 @@ function App() {
 
   // Apply body classes based on current route
   useBodyClasses();
-
-  // Handle fullscreen on mobile devices
-  useFullscreen();
 
   if (isAuthLoading) return null;
 
