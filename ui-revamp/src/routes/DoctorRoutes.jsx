@@ -1,7 +1,7 @@
 import React from "react";
 import { Route } from "react-router-dom";
 import BottomNavLayout from "../components/layout/bottomNavLayout.jsx";
-import ProtectedRoute from "../components/protectedRoute";
+import ProtectedRoute from "../components/ProtectedRoute";
 
 // Doctor Pages
 import DoctorHome from "../pages/doctor/home.jsx";

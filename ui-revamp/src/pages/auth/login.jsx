@@ -38,18 +38,19 @@ const Login = () => {
     try {
       const data = await authAPI.login(username, password);
       
-      if (data && data.access_token) {
-        // Store token in localStorage
-        localStorage.setItem("token", JSON.stringify(data));
-        
+      if (data && data.user) {
         // Update auth context - this is the key part!
         login({
-          username: username, // Use the username from the form
-          role: "patient", // Default to patient, we'll get the actual role from userinfo
+          username: data.user.username,
+          role: data.user.role,
         });
 
-        // Navigate to home first, then we can determine role from userinfo
-        navigate("/home");
+        // Navigate based on user role
+        if (data.user.role === "doctor") {
+          navigate("/doctor_home");
+        } else {
+          navigate("/home");
+        }
       } else {
         setMessage("Invalid credentials. Please try again.");
       }

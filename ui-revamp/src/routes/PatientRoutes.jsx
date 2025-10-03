@@ -1,6 +1,6 @@
 import React from "react";
 import { Route } from "react-router-dom";
-import ProtectedRoute from "../components/protectedRoute";
+import ProtectedRoute from "../components/ProtectedRoute";
 import BottomNavLayout from "../components/layout/bottomNavLayout.jsx";
 
 // Patient Pages
