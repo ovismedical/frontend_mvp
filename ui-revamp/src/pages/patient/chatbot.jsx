@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import BotMessage from "../../components/ui/botMessage";
 import UserMessage from "../../components/ui/userMessage";
 import OptionsList from "../../components/ui/optionsList";
-import FlorenceChat from "../../components/chat/FlorenceChat";
+import FlorenceChat from "./florence_chat";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 

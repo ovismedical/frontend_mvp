@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
-import BotMessage from "../ui/botMessage";
-import UserMessage from "../ui/userMessage";
-import OptionsList from "../ui/optionsList";
+import { useTranslation } from "react-i18next";
+import BotMessage from "../../components/ui/botMessage";
+import UserMessage from "../../components/ui/userMessage";
+import OptionsList from "../../components/ui/optionsList";
 import { florenceAPI } from "../../utils/api.js";
 import { useAuth } from "../../context/AuthContext.jsx";
 
 const FlorenceChat = ({ onClose }) => {
+  const { t, i18n } = useTranslation();
   const { user } = useAuth();
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
@@ -18,6 +20,10 @@ const FlorenceChat = ({ onClose }) => {
   const [isEndingSession, setIsEndingSession] = useState(false);
   const messagesEndRef = useRef(null);
   const inputRef = useRef(null);
+
+  // Get current language code for API calls and locale formatting
+  const currentLanguage = i18n.language === "zh" ? "zh-HK" : "en";
+  const locale = i18n.language === "zh" ? "zh-HK" : "en-US";
 
   // Get dynamic quick response options based on last bot message
   const getQuickResponseOptions = () => {
@@ -33,11 +39,11 @@ const FlorenceChat = ({ onClose }) => {
         message.includes("rate") || message.includes("level") ||
         message.includes("how bad") || message.includes("how severe")) {
       return [
-        { label: "1 - Very Mild", value: "1" },
-        { label: "2 - Mild", value: "2" },
-        { label: "3 - Moderate", value: "3" },
-        { label: "4 - Severe", value: "4" },
-        { label: "5 - Very Severe", value: "5" }
+        { label: t("quick_responses_very_mild"), value: "1" },
+        { label: t("quick_responses_mild"), value: "2" },
+        { label: t("quick_responses_moderate"), value: "3" },
+        { label: t("quick_responses_severe"), value: "4" },
+        { label: t("quick_responses_very_severe"), value: "5" }
       ];
     }
     
@@ -45,11 +51,11 @@ const FlorenceChat = ({ onClose }) => {
     if (message.includes("frequency") || message.includes("often") ||
         message.includes("how many times") || message.includes("how frequently")) {
       return [
-        { label: "1 - Rarely", value: "1" },
-        { label: "2 - Occasionally", value: "2" },
-        { label: "3 - Sometimes", value: "3" },
-        { label: "4 - Often", value: "4" },
-        { label: "5 - Very Often", value: "5" }
+        { label: t("quick_responses_rarely"), value: "1" },
+        { label: t("quick_responses_occasionally"), value: "2" },
+        { label: t("quick_responses_moderate"), value: "3" },
+        { label: t("quick_responses_often"), value: "4" },
+        { label: t("quick_responses_very_often"), value: "5" }
       ];
     }
     
@@ -58,10 +64,10 @@ const FlorenceChat = ({ onClose }) => {
         message.includes("are you") || message.includes("is it") ||
         message.includes("yes") || message.includes("no")) {
       return [
-        { label: "✅ Yes", value: "Yes" },
-        { label: "❌ No", value: "No" },
-        { label: "🤔 Not sure", value: "I'm not sure" },
-        { label: "🔄 Sometimes", value: "Sometimes" }
+        { label: `✅ ${t("quick_responses_yes")}`, value: t("quick_responses_yes") },
+        { label: `❌ ${t("quick_responses_no")}`, value: t("quick_responses_no") },
+        { label: `🤔 ${t("quick_responses_not_sure")}`, value: t("quick_responses_not_sure") },
+        { label: `🔄 ${t("quick_responses_sometimes")}`, value: t("quick_responses_sometimes") }
       ];
     }
     
@@ -69,11 +75,11 @@ const FlorenceChat = ({ onClose }) => {
     if (message.includes("how long") || message.includes("duration") ||
         message.includes("when did") || message.includes("since when")) {
       return [
-        { label: "🕐 Just now", value: "Just now" },
-        { label: "⏰ A few hours", value: "A few hours" },
-        { label: "📅 A day", value: "A day" },
-        { label: "📆 A few days", value: "A few days" },
-        { label: "🗓️ A week or more", value: "A week or more" }
+        { label: `🕐 ${t("quick_responses_just_now")}`, value: t("quick_responses_just_now") },
+        { label: `⏰ ${t("quick_responses_few_hours")}`, value: t("quick_responses_few_hours") },
+        { label: `📅 ${t("quick_responses_a_day")}`, value: t("quick_responses_a_day") },
+        { label: `📆 ${t("quick_responses_few_days")}`, value: t("quick_responses_few_days") },
+        { label: `🗓️ ${t("quick_responses_week_or_more")}`, value: t("quick_responses_week_or_more") }
       ];
     }
     
@@ -81,11 +87,11 @@ const FlorenceChat = ({ onClose }) => {
     if (message.includes("pain") || message.includes("hurt") ||
         message.includes("ache") || message.includes("symptom")) {
       return [
-        { label: "😷 Headache", value: "I have a headache" },
-        { label: "🤒 Fever", value: "I have a fever" },
-        { label: "🤢 Nausea", value: "I feel nauseous" },
-        { label: "😴 Fatigue", value: "I feel tired" },
-        { label: "💊 Other", value: "I have other symptoms" }
+        { label: `😷 ${t("quick_responses_headache_symptom")}`, value: t("quick_responses_have_headache") },
+        { label: `🤒 ${t("quick_responses_fever_symptom")}`, value: t("quick_responses_have_fever") },
+        { label: `🤢 ${t("quick_responses_nausea_symptom")}`, value: t("quick_responses_feel_nauseous") },
+        { label: `😴 ${t("quick_responses_fatigue_symptom")}`, value: t("quick_responses_feel_tired") },
+        { label: `💊 ${t("quick_responses_other_symptoms")}`, value: t("quick_responses_other_symptoms_text") }
       ];
     }
     
@@ -94,12 +100,12 @@ const FlorenceChat = ({ onClose }) => {
   };
   
   const getDefaultOptions = () => [
-    { label: "😷 I have a headache", value: "I have a headache" },
-    { label: "🤒 I feel feverish", value: "I feel feverish" },
-    { label: "🤢 I feel nauseous", value: "I feel nauseous" },
-    { label: "💪 I feel great!", value: "I feel great!" },
-    { label: "😴 I'm tired", value: "I'm tired" },
-    { label: "💊 Medication questions", value: "I have questions about my medication" }
+    { label: `😷 ${t("quick_responses_headache")}`, value: t("quick_responses_have_headache") },
+    { label: `🤒 ${t("quick_responses_feverish")}`, value: t("quick_responses_have_fever") },
+    { label: `🤢 ${t("quick_responses_nauseous")}`, value: t("quick_responses_feel_nauseous") },
+    { label: `💪 ${t("quick_responses_great")}`, value: t("quick_responses_great") },
+    { label: `😴 ${t("quick_responses_tired")}`, value: t("quick_responses_feel_tired") },
+    { label: `💊 ${t("quick_responses_medication_questions")}`, value: t("quick_responses_medication_questions") }
   ];
 
   // Auto-scroll to bottom when new messages arrive
@@ -117,11 +123,21 @@ const FlorenceChat = ({ onClose }) => {
     };
   }, []);
 
+  // Reinitialize session when language changes
+  useEffect(() => {
+    if (sessionId && isSessionActive) {
+      // End current session and start new one with new language
+      endSession().then(() => {
+        initializeSession();
+      });
+    }
+  }, [i18n.language]);
+
   const initializeSession = async () => {
     try {
       setIsLoading(true);
       const response = await florenceAPI.startSession({
-        language: "en",
+        language: currentLanguage,
         input_mode: "keyboard",
         treatment_status: "undergoing_treatment"
       });
@@ -133,10 +149,11 @@ const FlorenceChat = ({ onClose }) => {
       setMessages([
         {
           sender: "bot",
-          text: response.message || "Hello! I'm Florence, your AI health assistant. How can I help you today?",
-          time: new Date().toLocaleTimeString([], {
+          text: response.message || t("welcome_message"),
+          time: new Date().toLocaleTimeString(locale, {
             hour: "2-digit",
             minute: "2-digit",
+            hour12: false,
           }),
         },
       ]);
@@ -145,10 +162,11 @@ const FlorenceChat = ({ onClose }) => {
       setMessages([
         {
           sender: "bot",
-          text: "I'm having trouble connecting right now. Please try again later.",
-          time: new Date().toLocaleTimeString([], {
+          text: t("trouble_connecting"),
+          time: new Date().toLocaleTimeString(locale, {
             hour: "2-digit",
             minute: "2-digit",
+            hour12: false,
           }),
         },
       ]);
@@ -163,9 +181,10 @@ const FlorenceChat = ({ onClose }) => {
     const userMessage = {
       sender: "user",
       text: input.trim(),
-      time: new Date().toLocaleTimeString([], {
+      time: new Date().toLocaleTimeString(locale, {
         hour: "2-digit",
         minute: "2-digit",
+        hour12: false,
       }),
     };
 
@@ -184,9 +203,10 @@ const FlorenceChat = ({ onClose }) => {
       const botMessage = {
         sender: "bot",
         text: response.response || response.message,
-        time: new Date().toLocaleTimeString([], {
+        time: new Date().toLocaleTimeString(locale, {
           hour: "2-digit",
           minute: "2-digit",
+          hour12: false,
         }),
       };
 
@@ -195,10 +215,11 @@ const FlorenceChat = ({ onClose }) => {
       console.error("Failed to send message to Florence:", error);
       const errorMessage = {
         sender: "bot",
-        text: "I'm sorry, I'm having trouble responding right now. Please try again.",
-        time: new Date().toLocaleTimeString([], {
+        text: t("trouble_responding"),
+        time: new Date().toLocaleTimeString(locale, {
           hour: "2-digit",
           minute: "2-digit",
+          hour12: false,
         }),
       };
       setMessages(prev => [...prev, errorMessage]);
@@ -260,10 +281,11 @@ const FlorenceChat = ({ onClose }) => {
       // Show completion message
       const completionMessage = {
         sender: "bot",
-        text: "Thank you for chatting with me! Your assessment is being processed and will be available in your dashboard shortly.",
-        time: new Date().toLocaleTimeString([], {
+        text: t("thank_you_chat"),
+        time: new Date().toLocaleTimeString(locale, {
           hour: "2-digit",
           minute: "2-digit",
+          hour12: false,
         }),
       };
       setMessages(prev => [...prev, completionMessage]);
@@ -292,13 +314,23 @@ const FlorenceChat = ({ onClose }) => {
         >
           chevron_backward
         </span>
-        <div className="chatbot-header h4">Florence AI</div>
+        <div className="chatbot-header h4">
+          {t("florence_ai")}
+          <span className="language-indicator" style={{ 
+            fontSize: '0.8rem', 
+            marginLeft: '0.5rem', 
+            opacity: 0.7,
+            fontWeight: 'normal'
+          }}>
+            {i18n.language === "zh" ? "中文" : "EN"}
+          </span>
+        </div>
         <div className="more_vert_container" style={{ position: "relative" }}>
           <div className="header-actions">
             <button 
               onClick={restartConversation}
               className="ai-toggle"
-              title="Restart Conversation"
+              title={t("restart_conversation")}
               disabled={isLoading}
               style={{
                 background: 'none',
@@ -315,7 +347,7 @@ const FlorenceChat = ({ onClose }) => {
             <button 
               onClick={handleEndChat}
               className="ai-toggle"
-              title="End Chat & Get Assessment"
+              title={t("end_chat_assessment")}
               disabled={isLoading || !isSessionActive}
               style={{
                 background: 'none',
@@ -346,10 +378,11 @@ const FlorenceChat = ({ onClose }) => {
         
         {isLoading && (
           <BotMessage 
-            text="Florence is thinking..." 
-            time={new Date().toLocaleTimeString([], {
+            text={t("florence_thinking")} 
+            time={new Date().toLocaleTimeString(locale, {
               hour: "2-digit",
               minute: "2-digit",
+              hour12: false,
             })}
             isLoading={true}
           />
@@ -361,6 +394,14 @@ const FlorenceChat = ({ onClose }) => {
       {/* Quick Response Options */}
       {isSessionActive && !isLoading && (
         <div className="chatbot-options">
+          <div className="options-title" style={{
+            padding: '0.5rem 1rem',
+            fontSize: '0.9rem',
+            color: '#6c757d',
+            fontWeight: '500'
+          }}>
+            {t("quick_responses_title")}
+          </div>
           <OptionsList 
             options={getQuickResponseOptions()} 
             onSelect={handleQuickResponse}
@@ -375,7 +416,7 @@ const FlorenceChat = ({ onClose }) => {
             ref={inputRef}
             className="chatbot-input body"
             type="text"
-            placeholder={isSessionActive ? "Message" : "Connecting to Florence..."}
+            placeholder={isSessionActive ? t("message") : t("connecting_to_florence_placeholder")}
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && sendMessage()}
@@ -400,7 +441,7 @@ const FlorenceChat = ({ onClose }) => {
             color: '#6c757d',
             fontSize: '0.9rem'
           }}>
-            🔄 Connecting to Florence AI...
+            🔄 {t("connecting_to_florence")}
           </div>
         )}
       </div>
@@ -409,9 +450,9 @@ const FlorenceChat = ({ onClose }) => {
       {showEndChatModal && (
         <div className="modal-overlay">
           <div className="modal-box">
-            <h3 className="h3">End Chat & Generate Assessment</h3>
+            <h3 className="h3">{t("end_chat_generate_assessment")}</h3>
             <p className="modal-subtext body">
-              Are you sure you want to end this conversation? Florence will analyze our chat and generate a comprehensive health assessment for you.
+              {t("end_chat_confirmation")}
             </p>
             <div className="modal-actions">
               <button
@@ -427,7 +468,7 @@ const FlorenceChat = ({ onClose }) => {
                   cursor: isEndingSession ? 'not-allowed' : 'pointer'
                 }}
               >
-                {isEndingSession ? 'Processing...' : 'End Chat'}
+                {isEndingSession ? t("processing") : t("end_chat")}
               </button>
               <button 
                 className="caption" 
@@ -442,7 +483,7 @@ const FlorenceChat = ({ onClose }) => {
                   cursor: isEndingSession ? 'not-allowed' : 'pointer'
                 }}
               >
-                Cancel
+                {t("cancel")}
               </button>
             </div>
           </div>

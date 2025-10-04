@@ -11,6 +11,7 @@ import doctorhome from "./doctorhome/en.json";
 import notifications from "./notifications/en.json";
 import patients from "./patients/en.json";
 import addmedication from "./addmedication/en.json";
+import florence from "./florence/en.json";
 
 export default {
   ...common,
@@ -26,4 +27,5 @@ export default {
   ...notifications,
   ...patients,
   ...addmedication,
+  ...florence,
 };
