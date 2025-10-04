@@ -62,9 +62,26 @@ const DailyDashboard = () => {
           
           if (latestTriage.success && latestTriage.triage_assessment) {
             console.log("✅ Debug - Setting triage data:", latestTriage.triage_assessment);
+            console.log("🔍 Debug - Structured assessment:", latestTriage.structured_assessment);
+            
+            // Convert symptoms object to array format for frontend compatibility
+            let structuredAssessment = latestTriage.structured_assessment;
+            if (structuredAssessment && structuredAssessment.symptoms && typeof structuredAssessment.symptoms === 'object' && !Array.isArray(structuredAssessment.symptoms)) {
+              console.log("🔄 Converting symptoms object to array format");
+              const symptomsArray = Object.entries(structuredAssessment.symptoms).map(([symptomName, symptomData]) => ({
+                symptom: symptomName,
+                ...symptomData
+              }));
+              structuredAssessment = {
+                ...structuredAssessment,
+                symptoms: symptomsArray
+              };
+              console.log("✅ Converted symptoms:", symptomsArray);
+            }
+            
             setTriageData({
               ...latestTriage.triage_assessment,
-              structured_assessment: latestTriage.structured_assessment
+              structured_assessment: structuredAssessment
             });
           } else {
             console.log("❌ Debug - No triage data found");
@@ -162,6 +179,13 @@ const DailyDashboard = () => {
         <div className="symptoms-section">
           <h3 className="section-subtitle body-semibold">{t("symptoms_tracked_today")}</h3>
           <div className="symptoms-grid">
+            {(() => {
+              console.log("🔍 Debug - Checking symptoms data:");
+              console.log("  - triageData:", triageData);
+              console.log("  - structured_assessment:", triageData?.structured_assessment);
+              console.log("  - symptoms:", triageData?.structured_assessment?.symptoms);
+              return null;
+            })()}
             {triageData && triageData.structured_assessment && triageData.structured_assessment.symptoms && triageData.structured_assessment.symptoms.length > 0 ? (
               // Use real symptoms from conversation assessment
               triageData.structured_assessment.symptoms.map((symptom, index) => {
