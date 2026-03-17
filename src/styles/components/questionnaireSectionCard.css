@@ -1,0 +1,118 @@
+/* Questionnaire Section Card — mirrors SymptomTrackCard layout */
+
+.qs-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border: none;
+  box-shadow: 0 0 0 1px var(--neutral-600);
+  border-radius: var(--radius-l);
+  margin-bottom: 2%;
+  background-color: var(--background-100);
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.qs-card.clickable {
+  cursor: pointer;
+}
+
+.qs-card.clickable:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.qs-card-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+}
+
+.qs-card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.qs-card-icon .material-symbols-rounded {
+  font-size: 28px;
+}
+
+.qs-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.qs-card-title {
+  margin: 0;
+  color: var(--text-500);
+}
+
+/* Severity Pill */
+.qs-severity-pill {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: var(--radius-xl);
+  font-size: 11px;
+  font-weight: 600;
+  width: fit-content;
+}
+
+.qs-severity-pill.success {
+  background: var(--success-50);
+  color: var(--success-700);
+}
+
+.qs-severity-pill.warning {
+  background: var(--warning-50);
+  color: var(--warning-700);
+}
+
+.qs-severity-pill.error {
+  background: var(--error-50);
+  color: var(--error-700);
+}
+
+.qs-severity-pill.neutral {
+  background: var(--neutral-100);
+  color: var(--text-400);
+}
+
+.qs-click-indicator {
+  font-size: 18px;
+  color: var(--primary);
+  opacity: 0.6;
+  flex-shrink: 0;
+  margin-left: 8px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .qs-card {
+    padding: 10px 12px;
+  }
+
+  .qs-card-left {
+    gap: 12px;
+  }
+
+  .qs-card-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .qs-card-icon .material-symbols-rounded {
+    font-size: 24px;
+  }
+
+  .qs-card-title {
+    font-size: 13px;
+  }
+}

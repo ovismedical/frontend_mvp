@@ -79,7 +79,8 @@ export function useQuestionnaireState({ onToast } = {}) {
         };
 
         await symptomQuestionnaireAPI.submitQuestionnaire(submissionData);
-        await symptomQuestionnaireAPI.deleteDraft().catch(() => {});
+        // Fire-and-forget: don't block UI waiting for draft cleanup
+        symptomQuestionnaireAPI.deleteDraft().catch(() => {});
         localStorage.removeItem('questionnaire_draft');
         setShowSaveModal(true);
         setIsDirty(false);

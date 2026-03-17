@@ -36,6 +36,7 @@
 @import "./pages/doctor/add_medication.css";
 
 body {
+  font-family: var(--font-body);
   background-color: var(--background-500);
   margin: 0;
   padding: 60px 16px 34px 16px;

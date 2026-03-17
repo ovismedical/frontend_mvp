@@ -184,7 +184,7 @@
   box-shadow: 0 0 0 1px var(--background-600), var(--shadow-s);
   z-index: 20;
   padding: 12px 0;
-  font-family: sans-serif;
+  font-family: var(--font-body);
 }
 
 .filter-menu-header {

@@ -168,7 +168,7 @@ export const symptomQuestionnaire = [
   {
     id: "SN004",
     title: "Dyspnea",
-    icon: "lungs",
+    icon: "pulmonology",
     questions: [
       {
         id: "dyspnea_frequency",

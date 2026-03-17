@@ -19,7 +19,7 @@ const SECTION_ICONS = {
   SN001: "restaurant",
   SN002: "wc",
   SN003: "coronavirus",
-  SN004: "lungs",
+  SN004: "pulmonology",
   SN005: "water_drop",
   SN006: "bedtime",
   SN007: "battery_alert",

@@ -100,6 +100,65 @@
   margin-bottom: 4px;
 }
 
+/* Modal header with severity pill */
+.symptom-modal-header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+/* Questionnaire section modal responses */
+.qs-modal-responses {
+  display: flex;
+  flex-direction: column;
+}
+
+.qs-modal-response-item {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--neutral-100);
+}
+
+.qs-modal-response-item:last-child {
+  border-bottom: none;
+}
+
+.qs-modal-question {
+  color: var(--text-400);
+  margin: 0 0 6px 0;
+}
+
+/* Severity pill (shared with questionnaireSectionCard) */
+.qs-severity-pill {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: var(--radius-xl);
+  font-size: 11px;
+  font-weight: 600;
+  width: fit-content;
+  flex-shrink: 0;
+}
+
+.qs-severity-pill.success {
+  background: var(--success-50);
+  color: var(--success-700);
+}
+
+.qs-severity-pill.warning {
+  background: var(--warning-50);
+  color: var(--warning-700);
+}
+
+.qs-severity-pill.error {
+  background: var(--error-50);
+  color: var(--error-700);
+}
+
+.qs-severity-pill.neutral {
+  background: var(--neutral-100);
+  color: var(--text-400);
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .symptom-modal-overlay {

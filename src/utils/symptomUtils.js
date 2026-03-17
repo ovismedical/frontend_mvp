@@ -110,7 +110,9 @@ export const getTrendFromIntensity = (intensity) => {
 
 export const formatSymptomName = (name) => {
   if (!name) return 'Unknown Symptom';
-  return name.charAt(0).toUpperCase() + name.slice(1);
+  return name
+    .replace(/_/g, ' ')
+    .replace(/\b\w/g, (c) => c.toUpperCase());
 };
 
 export const getInsightTypeFromSeverity = (severity) => {

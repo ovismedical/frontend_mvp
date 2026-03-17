@@ -4,7 +4,7 @@
   align-items: center;
   width: 100%;
   padding: 8px 0;
-  font-family: sans-serif;
+  font-family: var(--font-body);
 }
 
 .event-item-left {

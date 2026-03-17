@@ -90,7 +90,7 @@
 }
 
 .blood-type-group {
-  font-family: Archivo;
+  font-family: var(--font-heading);
   font-size: 130px;
   font-style: normal;
   font-weight: 500;

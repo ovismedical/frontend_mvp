@@ -6,10 +6,12 @@ import SymptomTrackCard from "../../../components/ui/symptomTrackCard";
 import TriageAlertCard from "../../../components/ui/triageAlertCard";
 import DiagnosisInsightCard from "../../../components/ui/diagnosisInsightCard";
 import SymptomDetailModal from "../../../components/ui/symptomDetailModal";
+import QuestionnaireSectionCard from "../../../components/ui/questionnaireSectionCard";
 import { triageAPI, symptomQuestionnaireAPI, questionsAPI } from "../../../utils/api";
 import { useAuth } from "../../../context/AuthContext";
 import { getSymptomIcon, getSeverityIntensity, formatSymptomName } from "../../../utils/symptomUtils";
 import { getAlertLevelConfig } from "../../../utils/triageUtils";
+import { getSectionIcon } from "../../../utils/severityUtils";
 
 const DailyDashboard = () => {
   const navigate = useNavigate();
@@ -80,7 +82,8 @@ const DailyDashboard = () => {
             
             setTriageData({
               ...latestTriage.triage_assessment,
-              structured_assessment: structuredAssessment
+              structured_assessment: structuredAssessment,
+              created_at: latestTriage.created_at
             });
           }
 
@@ -183,35 +186,85 @@ const DailyDashboard = () => {
         </div>
       )}
 
-      {/* Section 3: Symptoms Tracked Today */}
-      <div className="daily-symptoms-section">
-        <h3 className="daily-section-title h4">{t("symptoms_tracked_today")}</h3>
-        <div className="symptoms-grid">
-          {triageData && triageData.structured_assessment && triageData.structured_assessment.symptoms && triageData.structured_assessment.symptoms.length > 0 ? (
-            triageData.structured_assessment.symptoms.map((symptom, index) => {
-              const iconName = getSymptomIcon(symptom.symptom);
-              const intensity = getSeverityIntensity(symptom.severity);
-              const title = formatSymptomName(symptom.symptom);
+      {/* Combined Symptoms Section */}
+      {(() => {
+        const hasSymptoms = triageData?.structured_assessment?.symptoms?.length > 0;
+        const hasSections = questionnaireData?.sections?.length > 0;
+        let viewMode = 'empty';
+        if (hasSymptoms && hasSections) {
+          const triageTime = new Date(triageData.created_at || 0).getTime();
+          const questionnaireTime = new Date(questionnaireData.timestamp || 0).getTime();
+          viewMode = questionnaireTime >= triageTime ? 'questionnaire' : 'triage';
+        } else if (hasSections) {
+          viewMode = 'questionnaire';
+        } else if (hasSymptoms) {
+          viewMode = 'triage';
+        }
 
-              return (
-                <SymptomTrackCard
-                  key={index}
-                  iconName={iconName}
-                  title={title}
-                  intensity={intensity}
-                  symptomData={symptom}
-                  onClick={handleSymptomClick}
-                />
-              );
-            })
-          ) : (
-            <div className="no-symptoms-message">
-              <span className="material-symbols-rounded">info</span>
-              <p className="body">{t("no_symptoms_tracked")}</p>
+        return (
+          <div className="daily-symptoms-section">
+            <div className="daily-symptoms-header">
+              <h3 className="daily-section-title h4">{t("symptoms_tracked_today")}</h3>
+              {viewMode === 'questionnaire' && questionnaireData && (
+                <div className="daily-symptoms-stats">
+                  <span className="caption">
+                    {questionnaireData.sections_completed || 0}/{questionnaireData.total_sections || 0} sections
+                  </span>
+                  <span className="caption">{questionnaireData.completion_percentage || 0}%</span>
+                </div>
+              )}
             </div>
-          )}
-        </div>
-      </div>
+
+            <div className="symptoms-grid">
+              {viewMode === 'triage' &&
+                triageData.structured_assessment.symptoms.map((symptom, index) => {
+                  const iconName = getSymptomIcon(symptom.symptom);
+                  const intensity = getSeverityIntensity(symptom.severity);
+                  const title = formatSymptomName(symptom.symptom);
+                  return (
+                    <SymptomTrackCard
+                      key={index}
+                      iconName={iconName}
+                      title={title}
+                      intensity={intensity}
+                      symptomData={symptom}
+                      onClick={handleSymptomClick}
+                    />
+                  );
+                })}
+
+              {viewMode === 'questionnaire' &&
+                questionnaireData.sections.map((section) => (
+                  <QuestionnaireSectionCard
+                    key={section.section_id}
+                    iconName={getSectionIcon(section.section_id)}
+                    title={section.title}
+                    severityScore={section.severity_score}
+                    sectionData={section}
+                    onClick={handleSymptomClick}
+                  />
+                ))}
+
+              {viewMode === 'empty' && (
+                <div className="no-symptoms-message">
+                  <span className="material-symbols-rounded">info</span>
+                  <p className="body">{t("no_symptoms_tracked")}</p>
+                </div>
+              )}
+            </div>
+
+            {viewMode === 'questionnaire' && questionnaireData && (
+              <button
+                className="questionnaire-view-btn"
+                onClick={() => navigate("/questionnaire-detail", { state: { record: questionnaireData } })}
+              >
+                <span>View Full Report</span>
+                <span className="material-symbols-rounded">arrow_forward</span>
+              </button>
+            )}
+          </div>
+        );
+      })()}
 
       {/* Section 4: Clinical Analysis (Diagnosis + Smart Insights) */}
       {((triageData && triageData.diagnosis_predictions && triageData.diagnosis_predictions.length > 0) ||
@@ -250,52 +303,6 @@ const DailyDashboard = () => {
               </div>
             </div>
           )}
-        </div>
-      )}
-
-      {/* Section 5: Symptom Questionnaire */}
-      {questionnaireData && (
-        <div className="daily-questionnaire-section">
-          <h3 className="daily-section-title h4">Symptom Questionnaire</h3>
-          <div className="questionnaire-record-card">
-            <div className="questionnaire-header-info">
-              <div className="questionnaire-icon-wrapper">
-                <span className="material-symbols-rounded">description</span>
-              </div>
-              <div className="questionnaire-details">
-                <h4 className="body-semibold">Daily Symptom Report</h4>
-                <p className="caption">
-                  {new Date(questionnaireData.timestamp).toLocaleDateString(
-                    i18n.language === "zh" ? "zh-CN" : "en-US",
-                    { month: "short", day: "numeric", year: "numeric", hour: "2-digit", minute: "2-digit" }
-                  )}
-                </p>
-              </div>
-            </div>
-
-            <div className="questionnaire-stats">
-              <div className="stat-item">
-                <span className="stat-value">{questionnaireData.sections_completed || 0}/{questionnaireData.total_sections || 0}</span>
-                <span className="stat-label caption">Sections</span>
-              </div>
-              <div className="stat-item">
-                <span className="stat-value">{questionnaireData.completion_percentage || 0}%</span>
-                <span className="stat-label caption">Complete</span>
-              </div>
-              <div className="stat-item">
-                <span className="stat-value">{Object.keys(questionnaireData.answers || {}).length}</span>
-                <span className="stat-label caption">Responses</span>
-              </div>
-            </div>
-
-            <button
-              className="questionnaire-view-btn"
-              onClick={() => navigate("/questionnaire-detail", { state: { record: questionnaireData } })}
-            >
-              <span>View Details</span>
-              <span className="material-symbols-rounded">arrow_forward</span>
-            </button>
-          </div>
         </div>
       )}
 

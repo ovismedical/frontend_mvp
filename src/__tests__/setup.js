@@ -29,3 +29,21 @@ const localStorageMock = (() => {
 })()
 
 Object.defineProperty(window, 'localStorage', { value: localStorageMock })
+
+// Mock Element.scrollIntoView (not implemented in jsdom)
+Element.prototype.scrollIntoView = () => {}
+
+// Mock window.matchMedia (not implemented in jsdom)
+Object.defineProperty(window, 'matchMedia', {
+  writable: true,
+  value: (query) => ({
+    matches: false,
+    media: query,
+    onchange: null,
+    addListener: () => {},
+    removeListener: () => {},
+    addEventListener: () => {},
+    removeEventListener: () => {},
+    dispatchEvent: () => {},
+  }),
+})
