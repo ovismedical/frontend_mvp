@@ -1,0 +1,126 @@
+.symptom-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.symptom-modal-content {
+  background: var(--background-100);
+  border-radius: var(--radius-l);
+  max-width: 500px;
+  width: 100%;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  border: none;
+  box-shadow: 0 0 0 1px var(--neutral-500);
+}
+
+.symptom-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--neutral-500);
+  background: var(--background-100);
+}
+
+.symptom-modal-title {
+  margin: 0;
+}
+
+.symptom-modal-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-500);
+  transition: all 0.2s ease;
+}
+
+.symptom-modal-close:hover {
+  background-color: var(--neutral-200);
+  color: var(--text-700);
+}
+
+.symptom-modal-close .material-symbols-rounded {
+  font-size: 20px;
+}
+
+.symptom-modal-body {
+  padding: 24px;
+  background: var(--background-100);
+}
+
+.symptom-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.symptom-detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.symptom-detail-item.full-width {
+  grid-column: 1 / -1;
+}
+
+.symptom-detail-label {
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.symptom-detail-value {
+  word-break: break-word;
+}
+
+.symptom-tag {
+  display: inline-block;
+  background-color: var(--primary-100);
+  color: var(--primary-700);
+  padding: 4px 8px;
+  border-radius: var(--radius-s);
+  font-size: 12px;
+  font-weight: 500;
+  margin-right: 6px;
+  margin-bottom: 4px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .symptom-modal-overlay {
+    padding: 10px;
+  }
+  
+  .symptom-modal-content {
+    max-height: 90vh;
+  }
+  
+  .symptom-modal-header {
+    padding: 16px 20px;
+  }
+  
+  .symptom-modal-body {
+    padding: 20px;
+  }
+  
+  .symptom-detail-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}

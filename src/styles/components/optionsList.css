@@ -1,0 +1,46 @@
+.options-scroll-container {
+  display: flex;
+  gap: 8px;
+  margin-inline: 8px;
+  margin-bottom: 1%;
+  overflow-x: auto;
+  animation: fadeIn 0.3s ease;
+  background-color: var(--background-500);
+
+  /* Hide scrollbar cross-browser */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+.options-scroll-container {
+  scroll-behavior: smooth;
+}
+
+.options-scroll-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
+}
+.options-scroll-container button {
+  flex: 0 0 auto;
+  white-space: nowrap;
+  padding: 8px 12px;
+  margin: 0.5%;
+  border: none;
+  box-shadow: 0 0 0 1px var(--neutral-500);
+  border-radius: var(--radius-m);
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+  background-color: transparent;
+}
+
+.options-scroll-container button:hover {
+  transform: scale(1.05);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

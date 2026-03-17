@@ -1,0 +1,233 @@
+/* Layout and Container */
+.help-center-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Header */
+.help-center-header {
+  padding: 16px;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  background: var(--background-500);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 10;
+}
+
+.chevron_backward {
+  font-size: 26px;
+  color: var(--text-600);
+  cursor: pointer;
+}
+
+.search {
+  font-size: 26px;
+  color: var(--text-600);
+  cursor: pointer;
+}
+
+/* Main Content */
+.help-center-content {
+  margin: 15px;
+  flex: 1;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.help-center-content::-webkit-scrollbar {
+  display: none;
+}
+
+/* No Results */
+.help-center-no-results {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--error-600);
+}
+
+/* Search Input */
+.help-center-search-input-container {
+  padding: 0 20px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.help-center-search-input-container input {
+  width: 90%;
+  padding: 10px;
+  box-shadow: 0 0 0 1px #ccc;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+}
+
+/* System Status */
+.help-center-system-status {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+  border-radius: var(--radius-xs);
+  border-left: 10px solid var(--success-700);
+}
+
+.help-center-system-status .material-symbols-rounded {
+  font-variation-settings: "FILL" 1;
+  color: var(--success-700);
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.help-center-system-status .system-status-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.help-center-system-status .system-status-title {
+  margin: 0;
+  color: var(--text-500);
+}
+
+.help-center-system-status .system-status-subtitle {
+  margin: 0;
+  color: var(--text-300);
+}
+
+/* Section Title */
+.help-center-section-title {
+  color: var(--text-500);
+  margin-top: 30px;
+}
+
+/* Quick Start Guide */
+.quick-start-guide-container {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.quick-start-guide-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* FAQ Items */
+.faq-items {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Report & Feedback Section */
+.report-feedback-section {
+  background-color: var(--info-50);
+  box-shadow: 0 0 0 2px var(--info-700);
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 30px;
+}
+
+.report-feedback-title {
+  margin: 0;
+  color: var(--text-600);
+}
+
+.report-feedback-description {
+  margin: 8px 0 20px;
+  color: var(--text-400);
+}
+
+.report-feedback-button {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.report-feedback-button {
+  flex: 1;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  color: var(--info-50);
+  align-items: center;
+  justify-content: center;
+}
+
+.report-feedback-button.bug,
+.report-feedback-button.feedback {
+  background-color: var(--info-700);
+}
+
+.lightbulb,
+.report {
+  font-variation-settings: "FILL" 1;
+  font-size: 22px;
+}
+
+/* Version History Cards */
+.version-history-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Still Need Help Section */
+.still-need-help-section {
+  background-color: var(--blue-50);
+  box-shadow: 0 0 0 2px var(--blue-700);
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 30px;
+}
+
+.still-need-help-title {
+  margin: 0;
+  color: var(--text-600);
+}
+
+.still-need-help-description {
+  margin: 8px 0 20px;
+  color: var(--text-400);
+}
+
+.still-need-help-button {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.still-need-help-button {
+  flex: 1;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  color: var(--blue-50);
+  align-items: center;
+  justify-content: center;
+}
+
+.still-need-help-button.mail,
+.still-need-help-button.call {
+  background-color: var(--blue-700);
+}
+
+.mail,
+.call {
+  font-variation-settings: "FILL" 1;
+  font-size: 22px;
+}

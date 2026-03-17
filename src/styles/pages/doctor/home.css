@@ -1,0 +1,379 @@
+.doctor-home-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.doctor-home-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 90%;
+  margin: 0 auto;
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.doctor-home-content::-webkit-scrollbar {
+  display: none;
+}
+
+/* Common Styles */
+.doctor-home-section-title {
+  color: var(--text-500);
+}
+
+/* Overview Section */
+.doctor-home-overview-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 16px;
+}
+
+/* Quick Actions Section */
+.doctor-home-quick-actions {
+  margin-bottom: 180px;
+}
+
+.doctor-home-quick-actions-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 16px;
+}
+
+.quick-action-card {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  border: none;
+  box-shadow: 0 0 0 1px var(--neutral-500);
+  background-color: var(--background-100);
+  padding: 15px;
+  border-radius: var(--radius-l);
+  align-items: center;
+  justify-content: center;
+}
+
+.action-card-icon {
+  color: var(--blue-600);
+  font-variation-settings: "FILL" 1;
+  font-size: 30px;
+}
+
+.quick-action-card-text {
+  color: var(--text-400);
+  margin-bottom: 0;
+}
+
+/* Responsive Layout for Larger Screens */
+@media (min-width: 900px) {
+  .doctor-home-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: auto 1fr;
+    gap: 32px;
+    align-items: start;
+    max-width: 70%;
+  }
+
+  .doctor-home-overview {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+  }
+
+  .doctor-home-quick-actions {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+  }
+
+  .doctor-home-recent-activity {
+    grid-column: 1 / 3;
+    grid-row: 2 / 3;
+  }
+
+  .doctor-home-overview-cards {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+
+  .doctor-home-quick-actions-cards {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, 1fr);
+  }
+
+  .doctor-home-recent-activity-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+}
+
+/* Choose Patient Modal */
+.choose-patient-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.25);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.choose-patient-modal {
+  background: var(--background-500);
+  border-radius: var(--radius-l);
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  padding: 20px 18px 18px 18px;
+  animation: fadeInUp 0.25s ease;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Modal Header with Close Button */
+.choose-patient-modal-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 12px;
+  position: relative;
+}
+
+.choose-patient-title {
+  color: var(--text-500);
+  margin: 0 auto;
+}
+
+.choose-patient-close {
+  cursor: pointer;
+  font-size: 22px;
+  color: var(--text-500);
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.choose-patient-dropdown {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 0;
+  max-height: 220px;
+  overflow-y: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+}
+.choose-patient-dropdown::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+.choose-patient-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: var(--radius-m);
+  cursor: pointer;
+  transition: background 0.15s;
+  color: var(--text-500);
+}
+.choose-patient-option:hover {
+  background: var(--blue-50);
+}
+
+.choose-patient-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-xl);
+  object-fit: cover;
+  background: var(--background-300);
+}
+
+/* Add Patient Modal */
+.add-patient-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.25);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-patient-modal {
+  background: var(--background-500);
+  border-radius: var(--radius-l);
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  padding: 20px 18px 18px 18px;
+  animation: fadeInUp 0.25s ease;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.add-patient-modal-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 12px;
+  position: relative;
+}
+
+.add-patient-title {
+  color: var(--text-500);
+  margin: 0 auto;
+}
+
+.add-patient-close {
+  cursor: pointer;
+  font-size: 22px;
+  color: var(--text-500);
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.add-patient-subtext {
+  color: var(--text-400);
+  margin: 0 0 5px 0;
+}
+
+/* --- Send Patient Message Modal --- */
+.message-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.25);
+  z-index: 1100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.message-modal {
+  background: var(--background-500);
+  border-radius: var(--radius-l);
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  padding: 20px 18px 18px 18px;
+  animation: fadeInUp 0.25s ease;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.message-modal-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 12px;
+  position: relative;
+}
+.message-modal-title {
+  color: var(--text-500);
+  margin: 0 auto;
+}
+.message-modal-close {
+  cursor: pointer;
+  font-size: 22px;
+  color: var(--text-500);
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.message-input,
+.message-textarea {
+  margin-top: 4px;
+  padding: 8px;
+  height: 30px;
+  border-radius: var(--radius-s);
+  border: none;
+  box-shadow: 0 0 0 1px var(--neutral-300);
+  width: 95%;
+  background: var(--background-100);
+  color: var(--text-500);
+}
+.message-textarea {
+  min-height: 60px;
+  resize: vertical;
+}
+
+.message-send-btn {
+  margin-top: 8px;
+  background: var(--blue-700);
+  color: var(--blue-light-50);
+  border: none;
+  border-radius: var(--radius-m);
+  padding: 10px 0;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.message-dropdown {
+  position: relative;
+  user-select: none;
+  width: 100%;
+  margin-bottom: 4px;
+}
+.message-dropdown-selected {
+  padding: 12px;
+  border: none;
+  box-shadow: 0 0 0 1px var(--neutral-300);
+  border-radius: var(--radius-s);
+  background: var(--background-50);
+  color: var(--text-500);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+.message-dropdown-selected.placeholder {
+  color: var(--text-300);
+}
+.message-dropdown-list {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  width: 99%;
+  background: #fff;
+  border: none;
+  box-shadow: 0 0 0 1px var(--neutral-300);
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  z-index: 20;
+  max-height: 180px;
+  overflow-y: auto;
+}
+.message-dropdown-item {
+  padding: 12px;
+  cursor: pointer;
+  color: var(--text-300);
+  transition: background 0.15s;
+}
+.message-dropdown-item:hover {
+  background: var(--blue-50);
+  color: var(--blue-500);
+}
+.message-dropdown-item.selected {
+  background: var(--blue-50);
+  color: var(--blue-500);
+}

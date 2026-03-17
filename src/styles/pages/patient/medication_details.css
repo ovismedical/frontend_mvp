@@ -1,0 +1,158 @@
+.med-details-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.med-details-header {
+  padding: 16px;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  background: var(--background-500);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 10;
+}
+
+.chevron_backward {
+  font-size: 26px;
+  color: var(--text-600);
+  cursor: pointer;
+}
+
+.med-details-content {
+  padding-inline: 5%;
+  padding-top: 2%;
+  flex: 1;
+  overflow-y: auto;
+  /* Hide scrollbar for webkit browsers */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.med-details-content::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.med-details-body {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 2%;
+  margin-bottom: 30px;
+}
+
+.med-details-image {
+  width: auto;
+  flex-shrink: 0;
+}
+
+.med-details-info {
+  flex: 1;
+}
+
+.med-info-title {
+  margin: 0;
+  color: var(--text-500);
+}
+
+.med-info-meta {
+  color: var(--text-300);
+}
+
+.med-info-remaining {
+  color: var(--text-400);
+}
+
+.progress-bar {
+  height: 6px;
+  background: var(--blue-100);
+  border-radius: var(--radius-xl);
+  margin-top: 10px;
+}
+
+.progress {
+  height: 6px;
+  background: var(--blue-700);
+  border-radius: var(--radius-xl);
+}
+
+.med-details-section-title {
+  color: var(--secondary-600);
+  margin-bottom: 1%;
+}
+
+.main-info-card {
+  background-color: var(--background-50);
+  padding: 10px;
+  border-radius: var(--radius-s);
+}
+
+.main-info-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 0;
+  color: var(--text-500);
+}
+
+.main-info-row span:nth-child(2) {
+  color: var(--blue-700);
+}
+
+.dosage-card {
+  background-color: var(--blue-light-50);
+  padding: 10px;
+  box-shadow: 0 0 0 1px var(--blue-700);
+  border-radius: var(--radius-s);
+  margin-bottom: 2%;
+}
+
+.dosage-card p {
+  margin: 0;
+}
+
+.dosage-label {
+  color: var(--blue-700);
+}
+
+.used-for-card {
+  background-color: var(--background-50);
+  padding: 10px;
+  border-radius: var(--radius-s);
+}
+
+.used-for-card p {
+  margin: 0;
+}
+
+.used-for-label {
+  color: var(--blue-700);
+}
+
+.dosage-label-value,
+.used-for-label-value {
+  padding-left: 5px;
+  color: var(--text-500);
+}
+
+.side-effects {
+  margin-bottom: 120px;
+}
+.side-effect-group {
+  background-color: var(--background-50);
+  padding: 10px;
+  border-radius: var(--radius-s);
+  margin-bottom: 2%;
+}
+
+.common,
+.less-common {
+  color: var(--blue-700);
+}
+
+.serious {
+  color: var(--error-700);
+}

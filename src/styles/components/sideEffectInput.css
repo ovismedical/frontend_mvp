@@ -1,0 +1,53 @@
+.side-effect-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.side-effect-field label {
+  color: var(--text-500);
+}
+
+.side-effect-input {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 8px;
+  box-shadow: 0 0 0 1px var(--background-600);
+  border: none;
+  border-radius: 8px;
+  background: var(--background-50);
+  cursor: text;
+}
+
+.side-effect-chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  background: var(--blue-light-100);
+  box-shadow: 0 0 0 1px var(--blue-300);
+  border: none;
+  color: var(--text-500);
+  font-size: 13px;
+  border-radius: 16px;
+}
+
+.chip-remove {
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--text-500);
+}
+
+.side-effect-input input {
+  border: none;
+  outline: none;
+  flex: 1;
+  min-width: 100px;
+  background: transparent;
+  color: var(--text-500);
+}
+
+.side-effect-input input::placeholder {
+  color: var(--text-200);
+}
