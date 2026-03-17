@@ -39,7 +39,6 @@ const OTP = () => {
         navigate('/login');
       }, 1500);
     } catch (error) {
-      console.error('OTP verification error:', error);
       setError(error.message || "Invalid OTP code. Please try again.");
       setResetOtp(true);
       setTimeout(() => setResetOtp(false), 50);
@@ -70,7 +69,6 @@ const OTP = () => {
       setResetOtp(true);
       setTimeout(() => setResetOtp(false), 50);
     } catch (error) {
-      console.error('Resend OTP error:', error);
       setError(error.message || "Failed to resend OTP. Please try again.");
     }
   };

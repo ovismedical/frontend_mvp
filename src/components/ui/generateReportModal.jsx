@@ -59,14 +59,12 @@ const GenerateReportModal = ({ onClose }) => {
         return;
       }
       setError("");
-      console.log(`Generating report for ${weeks} week(s).`);
     } else if (activeTab === "By Month") {
       if (months < 1) {
         setError(t("select_at_least_1_month"));
         return;
       }
       setError("");
-      console.log(`Generating report for ${months} month(s).`);
     } else {
       const days =
         Math.ceil(
@@ -77,7 +75,6 @@ const GenerateReportModal = ({ onClose }) => {
         return;
       }
       setError("");
-      console.log(`Generating report from ${fromDate} to ${toDate}.`);
     }
   };
 

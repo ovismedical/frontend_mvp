@@ -27,7 +27,6 @@ const Assessment03 = () => {
   setError(false);
   // Backend Handling: Push assessment data (gender) to backend API if needed
   // Example: await api.saveAssessmentStep({ gender: selected })
-  console.log("Selected Gender:", selected); // Save/print the value
   navigate("/assessment04");
   };
 
@@ -35,7 +34,6 @@ const Assessment03 = () => {
   setSelected("N/A");
   // Backend Handling: Push assessment data (gender: N/A) to backend API if needed
   // Example: await api.saveAssessmentStep({ gender: "N/A" })
-  console.log("Selected Gender: N/A");
   navigate("/assessment04");
   };
 

@@ -20,7 +20,6 @@ const Assessment04 = () => {
     setSelectedUnit(option);
     setHeightValue({});
     setShowError(false); // Reset error if switching unit
-    console.log("Selected unit:", option);
   };
 
   const handleHeightChange = (val) => {
@@ -32,7 +31,6 @@ const Assessment04 = () => {
     if (heightValue?.height) {
       // Backend Handling: Push assessment data (height) to backend API if needed
       // Example: await api.saveAssessmentStep({ height: heightValue.height, unit: selectedUnit })
-      console.log("Selected height:", heightValue.height);
       navigate("/assessment05");
     } else {
       setShowError(true);

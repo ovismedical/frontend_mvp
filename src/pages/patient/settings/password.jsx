@@ -52,7 +52,6 @@ const PasswordSecurity = () => {
     if (validateForm()) {
       // Backend Handling: Push updated password to backend API
       // Example: await api.updatePassword(currentPassword, newPassword)
-      console.log("Password change submitted");
       setMessage(t("password_updated_successfully"));
     }
   };

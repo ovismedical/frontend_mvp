@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import StepperProgress from "../../components/questionnaire/StepperProgress";
 import QuestionSection from "../../components/questionnaire/QuestionSection";
 import QuestionnaireNavigation from "../../components/questionnaire/QuestionnaireNavigation";
@@ -12,6 +12,7 @@ import "../../styles/questionnaire.css";
 
 export default function SymptomQuestionnaire() {
   const navigate = useNavigate();
+  const location = useLocation();
   const { showToast, ToastContainer } = useToast();
 
   // State management
@@ -107,7 +108,6 @@ export default function SymptomQuestionnaire() {
         setIsDirty(false);
       }
     } catch (error) {
-      console.error("Error saving questionnaire:", error);
       showToast(error.message || "Failed to save. Please try again.", "error");
     } finally {
       setIsSubmitting(false);
@@ -147,8 +147,17 @@ export default function SymptomQuestionnaire() {
     return () => clearTimeout(autoSave);
   }, [answers, isDirty, currentSection, isSubmitting]);
 
-  // Load draft on mount
+  // Load draft on mount (or pre-fill from edit mode)
   useEffect(() => {
+    // Priority 1: Edit mode — pre-fill from navigation state
+    const editData = location.state;
+    if (editData?.answers && editData?.isEdit) {
+      setAnswers(editData.answers);
+      setCurrentSection(0);
+      return;
+    }
+
+    // Priority 2: Load saved draft
     const loadDraft = async () => {
       try {
         const backendDraft = await symptomQuestionnaireAPI.getDraft();

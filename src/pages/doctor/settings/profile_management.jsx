@@ -46,10 +46,9 @@ const ProfileManagement = () => {
         setExercises(userInfo.exercises || []);
         setCheckups(userInfo.checkups || "");
       } catch (error) {
-        console.error("Error fetching user data:", error);
-        setMessage({ 
-          type: "error", 
-          text: t("error_loading_user_data") || "Error loading user data" 
+        setMessage({
+          type: "error",
+          text: t("error_loading_user_data") || "Error loading user data"
         });
       } finally {
         setInitialLoading(false);
@@ -112,10 +111,9 @@ const ProfileManagement = () => {
         });
       }, 1500);
     } catch (error) {
-      console.error("Error updating user info:", error);
-      setMessage({ 
-        type: "error", 
-        text: t("error_updating_profile") || "Error updating profile. Please try again." 
+      setMessage({
+        type: "error",
+        text: t("error_updating_profile") || "Error updating profile. Please try again."
       });
     } finally {
       setLoading(false);

@@ -191,7 +191,6 @@ export default function ArticleDetails() {
   const handleCommentSubmit = () => {
     // Backend Handling: Post new comment to backend
     if (commentText.trim()) {
-      console.log("Comment added:", commentText);
       setCommentText("");
     }
   };

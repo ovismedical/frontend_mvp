@@ -24,6 +24,7 @@ import ProfileManagement from "../pages/patient/settings/profile_management.jsx"
 import Appointments from "../pages/patient/appointments/appointment.jsx";
 import AppointmentScheduler from "../pages/patient/appointments/appointment_scheduler.jsx";
 import SymptomQuestionnaire from "../pages/patient/symptom-questionnaire.jsx";
+import QuestionnaireDetail from "../pages/patient/questionnaire-detail.jsx";
 
 export const getPatientRoutes = () => [
   // Public patient routes (no bottom nav)
@@ -85,6 +86,11 @@ export const getPatientRoutes = () => [
     key="symptom_quiz"
     path="/symptom-quiz"
     element={<SymptomQuestionnaire />}
+  />,
+  <Route
+    key="questionnaire_detail"
+    path="/questionnaire-detail"
+    element={<QuestionnaireDetail />}
   />,
 
   // Protected routes with bottom navigation

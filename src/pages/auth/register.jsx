@@ -59,7 +59,6 @@ const Register = () => {
         setMessage(data.detail || "Account creation failed.");
       }
     } catch (error) {
-      console.error("Error:", error);
       setMessage("Network error or backend not running.");
     } finally {
       setLoading(false);

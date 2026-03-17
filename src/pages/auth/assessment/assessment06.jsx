@@ -18,21 +18,17 @@ const Assessment06 = () => {
   const handleSelect = (option) => {
     setSelected(option);
     setShowError(false);
-    console.log("Selected blood type:", option);
   };
 
   const handleSignSelect = (value) => {
     setSign(value);
     setShowError(false);
-    console.log("Selected sign:", value);
   };
 
   const handleContinue = () => {
     if (selected && sign) {
       // Backend Handling: Push assessment data (blood type) to backend API if needed
       // Example: await api.saveAssessmentStep({ bloodType: selected + (sign === "add" ? "+" : "-") })
-      const finalBloodType = selected + (sign === "add" ? "+" : "-");
-      console.log("Final blood type:", finalBloodType);
       navigate("/assessment07");
     } else {
       setShowError(true);
@@ -40,10 +36,8 @@ const Assessment06 = () => {
   };
 
   const handleSkip = () => {
-  const finalBloodType = "N/A";
   // Backend Handling: Push assessment data (blood type: N/A) to backend API if needed
   // Example: await api.saveAssessmentStep({ bloodType: "N/A" })
-  console.log("Skipped. Blood type saved as:", finalBloodType);
   navigate("/assessment07");
   };
 

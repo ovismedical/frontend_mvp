@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import SmartInsightCard from "../../../components/ui/smartInsightCard";
 import SymptomTrackCard from "../../../components/ui/symptomTrackCard";
@@ -11,6 +12,7 @@ import { getSymptomIcon, getSeverityIntensity, formatSymptomName } from "../../.
 import { getAlertLevelConfig } from "../../../utils/triageUtils";
 
 const DailyDashboard = () => {
+  const navigate = useNavigate();
   const { t, i18n } = useTranslation();
   const { user, isAuthenticated } = useAuth();
   const [triageData, setTriageData] = useState(null);
@@ -47,42 +49,25 @@ const DailyDashboard = () => {
       try {
         setLoading(true);
         
-        console.log("🔍 Debug - Auth context user:", user);
-        console.log("🔍 Debug - Is authenticated:", isAuthenticated);
-        
         if (user && user.username) {
           const patientId = user.username;
-          console.log("🔍 Debug - Fetching data for:", patientId);
           
           // Fetch triage data, smart insights, questionnaire data, and streak in parallel
           const [latestTriage, insightsResponse, questionnaireResponse, streakResponse] = await Promise.all([
             triageAPI.getLatestTriage(patientId),
             triageAPI.getSmartInsights(patientId),
-            symptomQuestionnaireAPI.getLatest().catch(err => {
-              console.log("No questionnaire data:", err);
-              return null;
-            }),
-            questionsAPI.getStreak(patientId).catch(err => {
-              console.log("No streak data:", err);
-              return null;
-            })
+            symptomQuestionnaireAPI.getLatest().catch(() => null),
+            questionsAPI.getStreak(patientId).catch(() => null)
           ]);
 
           if (streakResponse) {
             setCurrentStreak(streakResponse.streak || 0);
           }
           
-          console.log("🔍 Debug - Triage API response:", latestTriage);
-          console.log("🔍 Debug - Insights API response:", insightsResponse);
-          
           if (latestTriage.success && latestTriage.triage_assessment) {
-            console.log("✅ Debug - Setting triage data:", latestTriage.triage_assessment);
-            console.log("🔍 Debug - Structured assessment:", latestTriage.structured_assessment);
-            
             // Convert symptoms object to array format for frontend compatibility
             let structuredAssessment = latestTriage.structured_assessment;
             if (structuredAssessment && structuredAssessment.symptoms && typeof structuredAssessment.symptoms === 'object' && !Array.isArray(structuredAssessment.symptoms)) {
-              console.log("🔄 Converting symptoms object to array format");
               const symptomsArray = Object.entries(structuredAssessment.symptoms).map(([symptomName, symptomData]) => ({
                 symptom: symptomName,
                 ...symptomData
@@ -91,35 +76,23 @@ const DailyDashboard = () => {
                 ...structuredAssessment,
                 symptoms: symptomsArray
               };
-              console.log("✅ Converted symptoms:", symptomsArray);
             }
             
             setTriageData({
               ...latestTriage.triage_assessment,
               structured_assessment: structuredAssessment
             });
-          } else {
-            console.log("❌ Debug - No triage data found");
           }
-          
+
           if (insightsResponse.success && insightsResponse.insights) {
-            console.log("✅ Debug - Setting smart insights:", insightsResponse.insights);
             setSmartInsights(insightsResponse.insights);
-          } else {
-            console.log("❌ Debug - No insights data found");
           }
-          
+
           if (questionnaireResponse) {
-            console.log("✅ Debug - Setting questionnaire data:", questionnaireResponse);
             setQuestionnaireData(questionnaireResponse);
-          } else {
-            console.log("❌ Debug - No questionnaire data found");
           }
-        } else {
-          console.log("❌ Debug - No user data available - not authenticated");
         }
       } catch (err) {
-        console.error("Failed to fetch data:", err);
         setError(err.message);
       } finally {
         setLoading(false);
@@ -317,9 +290,7 @@ const DailyDashboard = () => {
 
             <button
               className="questionnaire-view-btn"
-              onClick={() => {
-                console.log("View questionnaire details:", questionnaireData);
-              }}
+              onClick={() => navigate("/questionnaire-detail", { state: { record: questionnaireData } })}
             >
               <span>View Details</span>
               <span className="material-symbols-rounded">arrow_forward</span>

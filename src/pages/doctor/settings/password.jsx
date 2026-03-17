@@ -51,7 +51,6 @@ const PasswordSecurity = () => {
     e.preventDefault();
     if (validateForm()) {
       // Handle password change logic here
-      console.log("Password change submitted");
       setMessage(t("password_updated_successfully"));
     }
   };

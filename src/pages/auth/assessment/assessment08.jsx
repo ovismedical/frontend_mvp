@@ -32,7 +32,6 @@ const Assessment08 = () => {
     } else {
       // Backend Handling: Push assessment data (activities) to backend API if needed
       // Example: await api.saveAssessmentStep({ activities: selected })
-      console.log("Selected activities:", selected);
       navigate("/assessment09");
     }
   };

@@ -33,8 +33,6 @@ const InviteModal = ({ isOpen, onClose, userName, inviteLink }) => {
         if (successful) {
           setCopied(true);
           setTimeout(() => setCopied(false), 2000);
-        } else {
-          console.log("Copy failed");
         }
       }
     } catch (err) {

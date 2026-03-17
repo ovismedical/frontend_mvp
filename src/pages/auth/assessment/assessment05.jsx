@@ -20,7 +20,6 @@ const Assessment05 = () => {
     setSelected(option);
     setWeight(null); // reset weight when switching unit
     setShowError(false); // reset error
-    console.log("Selected unit:", option);
   };
 
   const handleWeightChange = (val) => {
@@ -32,7 +31,6 @@ const Assessment05 = () => {
     if (weight !== null) {
       // Backend Handling: Push assessment data (weight) to backend API if needed
       // Example: await api.saveAssessmentStep({ weight, unit: selected })
-      console.log("Selected weight:", weight, selected);
       navigate("/assessment06");
     } else {
       setShowError(true);

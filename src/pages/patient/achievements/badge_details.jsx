@@ -183,7 +183,6 @@ const BadgeDetails = () => {
             alert("Badge image downloaded!");
           }
         } catch (error) {
-          console.error("Error sharing image:", error);
           const url = URL.createObjectURL(blob);
           const a = document.createElement("a");
           a.href = url;
@@ -196,7 +195,6 @@ const BadgeDetails = () => {
         }
       }, "image/png");
     } catch (error) {
-      console.error("Error creating image:", error);
       alert("Unable to create image. Please try again.");
     }
   };
