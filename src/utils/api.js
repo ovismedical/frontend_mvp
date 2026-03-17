@@ -171,8 +171,51 @@ export const achievementsAPI = {
 
 // Calendar API calls
 export const calendarAPI = {
+  getEvents: async () => {
+    const response = await fetch(`${API_BASE_URL}/calendar/events`, {
+      method: "GET",
+      headers: getAuthHeaders(),
+    });
+    return handleResponse(response);
+  },
+
+  createEvent: async (eventData) => {
+    const response = await fetch(`${API_BASE_URL}/calendar/createevent`, {
+      method: "POST",
+      headers: getAuthHeaders(),
+      body: JSON.stringify(eventData),
+    });
+    return handleResponse(response);
+  },
+
+  getAuthStatus: async () => {
+    const response = await fetch(`${API_BASE_URL}/calendar/auth/status`, {
+      method: "GET",
+      headers: getAuthHeaders(),
+    });
+    return handleResponse(response);
+  },
+
+  startAuth: async () => {
+    const response = await fetch(`${API_BASE_URL}/calendar/auth/start`, {
+      method: "GET",
+      headers: getAuthHeaders(),
+    });
+    return handleResponse(response);
+  },
+
+  getDoctorFreeBlocks: async (blockData) => {
+    const response = await fetch(`${API_BASE_URL}/calendar/doctor/free-blocks`, {
+      method: "POST",
+      headers: getAuthHeaders(),
+      body: JSON.stringify(blockData),
+    });
+    return handleResponse(response);
+  },
+
+  // Keep old names as aliases for backward compatibility
   getAppointments: async () => {
-    const response = await fetch(`${API_BASE_URL}/calendar`, {
+    const response = await fetch(`${API_BASE_URL}/calendar/events`, {
       method: "GET",
       headers: getAuthHeaders(),
     });
@@ -180,7 +223,7 @@ export const calendarAPI = {
   },
 
   createAppointment: async (appointmentData) => {
-    const response = await fetch(`${API_BASE_URL}/calendar`, {
+    const response = await fetch(`${API_BASE_URL}/calendar/createevent`, {
       method: "POST",
       headers: getAuthHeaders(),
       body: JSON.stringify(appointmentData),
@@ -191,8 +234,32 @@ export const calendarAPI = {
 
 // Analytics API calls
 export const analyticsAPI = {
-  getAnalytics: async (timeframe = "week") => {
-    const response = await fetch(`${API_BASE_URL}/analytics?timeframe=${timeframe}`, {
+  getUnifiedAssessments: async () => {
+    const response = await fetch(`${API_BASE_URL}/analytics/unified_assessments`, {
+      method: "GET",
+      headers: getAuthHeaders(),
+    });
+    return handleResponse(response);
+  },
+
+  getWeeklyAnalytics: async (weekOffset = 0) => {
+    const response = await fetch(`${API_BASE_URL}/analytics/weekly?week_offset=${weekOffset}`, {
+      method: "GET",
+      headers: getAuthHeaders(),
+    });
+    return handleResponse(response);
+  },
+
+  getMonthlyAnalytics: async (monthOffset = 0) => {
+    const response = await fetch(`${API_BASE_URL}/analytics/monthly?month_offset=${monthOffset}`, {
+      method: "GET",
+      headers: getAuthHeaders(),
+    });
+    return handleResponse(response);
+  },
+
+  getAssessmentById: async (assessmentId) => {
+    const response = await fetch(`${API_BASE_URL}/analytics/assessment/${assessmentId}`, {
       method: "GET",
       headers: getAuthHeaders(),
     });
@@ -281,6 +348,57 @@ export const symptomQuestionnaireAPI = {
 
   getLatest: async () => {
     const response = await fetch(`${API_BASE_URL}/symptom-questionnaire/latest`, {
+      method: "GET",
+      headers: getAuthHeaders(),
+    });
+    return handleResponse(response);
+  }
+};
+
+// Doctor API calls
+export const doctorAPI = {
+  getPatients: async () => {
+    const response = await fetch(`${API_BASE_URL}/doctor/patients`, {
+      method: "GET",
+      headers: getAuthHeaders(),
+    });
+    return handleResponse(response);
+  },
+
+  getPatientDetails: async () => {
+    const response = await fetch(`${API_BASE_URL}/doctor/patients/details`, {
+      method: "GET",
+      headers: getAuthHeaders(),
+    });
+    return handleResponse(response);
+  },
+
+  getAlerts: async (limit = 50) => {
+    const response = await fetch(`${API_BASE_URL}/doctor/alerts?limit=${limit}`, {
+      method: "GET",
+      headers: getAuthHeaders(),
+    });
+    return handleResponse(response);
+  },
+
+  getPatientAssessments: async (patientId) => {
+    const response = await fetch(`${API_BASE_URL}/doctor/patient/${patientId}/assessments`, {
+      method: "GET",
+      headers: getAuthHeaders(),
+    });
+    return handleResponse(response);
+  },
+
+  getPatientAssessmentDetail: async (patientId, sessionId) => {
+    const response = await fetch(`${API_BASE_URL}/doctor/patient/${patientId}/assessment/${sessionId}`, {
+      method: "GET",
+      headers: getAuthHeaders(),
+    });
+    return handleResponse(response);
+  },
+
+  getPatientQuestionnaires: async (patientId) => {
+    const response = await fetch(`${API_BASE_URL}/doctor/patient/${patientId}/questionnaires`, {
       method: "GET",
       headers: getAuthHeaders(),
     });

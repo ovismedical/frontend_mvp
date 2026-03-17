@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import WeeklyProgressRow from "../../../components/ui/weekly_ProgressRow";
 import SmartInsightCard from "../../../components/ui/smartInsightCard";
-import { symptomQuestionnaireAPI, questionsAPI } from "../../../utils/api";
+import { symptomQuestionnaireAPI, questionsAPI, analyticsAPI } from "../../../utils/api";
 import { useAuth } from "../../../context/AuthContext";
 
 const WeeklyDashboard = () => {
@@ -10,33 +10,24 @@ const WeeklyDashboard = () => {
   const { user } = useAuth();
   const [questionnaireHistory, setQuestionnaireHistory] = useState([]);
   const [currentStreak, setCurrentStreak] = useState(0);
-
-  // Backend Handling: Fetch weekly summary data from backend (wellnessScore, engagementLevel, moodTrend, bestDay, challengingDay)
-  const wellnessScore = {
-    value: 4.2,
-    trend: "downward", // or 'upward'
-    change: 4.1,
-  };
-
-  const engagementLevel = {
-    value: 8,
-    trend: "upward", // or 'downward'
-    change: 2.5,
-  };
-
-  const moodTrend = {
-    mon: 1,
-    tue: 2,
-    wed: 4,
-    thu: 0,
-    fri: 0,
-    sat: 0,
-    sun: 0,
-    status: "Improving",
-  };
+  const [weeklyData, setWeeklyData] = useState(null);
 
   const days = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
-  const maxMood = Math.max(...days.map((day) => moodTrend[day]));
+
+  // Derive display values from API data or use defaults
+  const totalAssessments = weeklyData?.totalAssessments ?? 0;
+  const overallTrend = weeklyData?.overallTrend ?? "No Data";
+
+  // Build mood trend from dailyData (7 days of avgSeverity)
+  const dailyData = weeklyData?.dailyData ?? [];
+  const moodTrend = {};
+  days.forEach((day, i) => {
+    moodTrend[day] = dailyData[i]?.avgSeverity ?? 0;
+  });
+  const moodStatus = overallTrend === "Improving" ? "Improving"
+    : overallTrend === "Concerning" ? "Declining"
+    : "Stable";
+  const maxMood = Math.max(...days.map((day) => moodTrend[day]), 1);
 
   const getMoodShade = (value) => {
     if (value === 0) return "shade-0";
@@ -47,15 +38,22 @@ const WeeklyDashboard = () => {
     return "shade-5";
   };
 
-  const bestDayDate = new Date(2025, 0, 15).toLocaleDateString(
-    i18n.language === "zh" ? "zh-CN" : "en-US",
-    { weekday: "long", month: "short", day: "numeric" }
-  );
+  // Find best and most challenging days from dailyData
+  const daysWithData = dailyData.filter((d) => d.hasData);
+  const bestDay = daysWithData.length > 0
+    ? daysWithData.reduce((a, b) => (a.avgSeverity <= b.avgSeverity ? a : b))
+    : null;
+  const challengingDay = daysWithData.length > 0
+    ? daysWithData.reduce((a, b) => (a.avgSeverity >= b.avgSeverity ? a : b))
+    : null;
 
-  const challengingDayDate = new Date(2025, 0, 13).toLocaleDateString(
-    i18n.language === "zh" ? "zh-CN" : "en-US",
-    { weekday: "long", month: "short", day: "numeric" }
-  );
+  const formatDayDate = (dateStr) => {
+    if (!dateStr) return "";
+    return new Date(dateStr + "T12:00:00").toLocaleDateString(
+      i18n.language === "zh" ? "zh-CN" : "en-US",
+      { weekday: "long", month: "short", day: "numeric" }
+    );
+  };
 
   const getMoodStatus = (status) => {
     switch (status) {
@@ -68,11 +66,35 @@ const WeeklyDashboard = () => {
     }
   };
 
-  // Fetch questionnaire history and streak for the week
+  // Smart insights from backend
+  const smartInsights = weeklyData?.insights ?? [];
+
+  // Map backend insight types to SmartInsightCard insightType
+  const mapInsightType = (type) => {
+    switch (type) {
+      case "critical": return "error";
+      case "warning": return "warning";
+      case "positive": return "success";
+      default: return "info";
+    }
+  };
+
+  // Map backend icon names (fa-*) to material icons
+  const mapInsightIcon = (icon) => {
+    if (icon?.includes("exclamation")) return "error";
+    if (icon?.includes("heartbeat")) return "warning";
+    if (icon?.includes("chart-line") || icon?.includes("trending")) return "trending_up";
+    if (icon?.includes("check-circle")) return "check_circle";
+    if (icon?.includes("calendar")) return "event";
+    if (icon?.includes("info")) return "info";
+    return "lightbulb";
+  };
+
+  // Fetch all weekly data in parallel
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [historyResponse, streakResponse] = await Promise.all([
+        const [historyResponse, streakResponse, analyticsResponse] = await Promise.all([
           symptomQuestionnaireAPI.getHistory(7).catch(err => {
             console.error("Failed to fetch questionnaire history:", err);
             return null;
@@ -80,7 +102,11 @@ const WeeklyDashboard = () => {
           user.username ? questionsAPI.getStreak(user.username).catch(err => {
             console.error("Failed to fetch streak:", err);
             return null;
-          }) : Promise.resolve(null)
+          }) : Promise.resolve(null),
+          analyticsAPI.getWeeklyAnalytics(0).catch(err => {
+            console.error("Failed to fetch weekly analytics:", err);
+            return null;
+          })
         ]);
 
         if (historyResponse && historyResponse.history) {
@@ -88,6 +114,9 @@ const WeeklyDashboard = () => {
         }
         if (streakResponse) {
           setCurrentStreak(streakResponse.streak || 0);
+        }
+        if (analyticsResponse?.success && analyticsResponse.data) {
+          setWeeklyData(analyticsResponse.data);
         }
       } catch (err) {
         console.error("Failed to fetch weekly data:", err);
@@ -124,54 +153,37 @@ const WeeklyDashboard = () => {
 
         <div className="weekly-summary-row">
           <div className="wellness-score-card">
-            <span
-              className={`wellness-score-value h4 ${
-                wellnessScore.trend === "downward" ? "downward" : "upward"
-              }`}
-            >
-              {wellnessScore.value}
+            <span className={`wellness-score-value h4 ${overallTrend === "Concerning" ? "downward" : "upward"}`}>
+              {totalAssessments}
             </span>
-            <h3 className="wellness-score-title body">{t("wellness_score")}</h3>
+            <h3 className="wellness-score-title body">{t("assessments")}</h3>
             <div className="wellness-score-caption-container">
-              <span
-                className={`material-symbols-rounded caption-icon ${
-                  wellnessScore.trend === "downward" ? "downward" : "upward"
-                }`}
-              >
-                {wellnessScore.trend === "downward"
-                  ? "arrow_downward_alt"
-                  : "arrow_upward_alt"}
+              <span className={`material-symbols-rounded caption-icon ${overallTrend === "Concerning" ? "downward" : "upward"}`}>
+                {overallTrend === "Concerning" ? "arrow_downward_alt" : "arrow_upward_alt"}
               </span>
               <span className="wellness-score-caption caption">
-                {t("vs_last_week", { value: wellnessScore.change })}
+                {overallTrend}
               </span>
             </div>
           </div>
 
           <div className="engagement-level-card">
-            <span
-              className={`engagement-level-value h4 ${
-                engagementLevel.trend === "downward" ? "downward" : "upward"
-              }`}
-            >
-              {engagementLevel.value}
+            <span className="engagement-level-value h4 upward">
+              {weeklyData?.totalAlerts ?? 0}
             </span>
             <h3 className="engagement-level-title body">
-              {t("engagement_level")}
+              {t("alerts")}
             </h3>
             <div className="engagement-level-caption-container">
-              <span
-                className={`material-symbols-rounded caption-icon ${
-                  engagementLevel.trend === "downward" ? "downward" : "upward"
-                }`}
-              >
-                {engagementLevel.trend === "downward"
-                  ? "arrow_downward_alt"
-                  : "arrow_upward_alt"}
-              </span>
-              <span className="engagement-level-caption caption">
-                {t("vs_last_week", { value: engagementLevel.change })}
-              </span>
+              {weeklyData?.mostConcerningSymptom ? (
+                <span className="engagement-level-caption caption">
+                  {weeklyData.mostConcerningSymptom.name}: {weeklyData.mostConcerningSymptom.avgSeverity}/5
+                </span>
+              ) : (
+                <span className="engagement-level-caption caption">
+                  {t("no_concerns")}
+                </span>
+              )}
             </div>
           </div>
         </div>
@@ -179,14 +191,14 @@ const WeeklyDashboard = () => {
         <div className="mood-trend-container">
           <div className="mood-trend-header">
             <span className="mood-trend-title h4">{t("mood_trend")}</span>
-            <span className={`mood-trend-status ${moodTrend.status} caption`}>
-              {getMoodStatus(moodTrend.status)}
+            <span className={`mood-trend-status ${moodStatus} caption`}>
+              {getMoodStatus(moodStatus)}
               <span
                 className={`material-symbols-rounded mood-trend-arrow ${
-                  moodTrend.status === "Improving" ? "upward" : "downward"
+                  moodStatus === "Improving" ? "upward" : "downward"
                 }`}
               >
-                {moodTrend.status === "Improving"
+                {moodStatus === "Improving"
                   ? "trending_up"
                   : "trending_down"}
               </span>
@@ -195,14 +207,12 @@ const WeeklyDashboard = () => {
           <div className="mood-trend-bar-chart">
             {days.map((day) => {
               const value = moodTrend[day];
-              const height = `${(value / (maxMood || 1)) * 100}%`;
+              const height = `${(value / maxMood) * 100}%`;
               return (
                 <div key={day} className="mood-trend-bar-wrapper">
                   <div
                     className={`mood-trend-bar ${getMoodShade(value)}`}
-                    style={{
-                      height,
-                    }}
+                    style={{ height }}
                   ></div>
                   <span className="mood-trend-day-label overline-timestamp">
                     {t(day)}
@@ -214,45 +224,51 @@ const WeeklyDashboard = () => {
         </div>
       </div>
 
-      <div className="weekly-summary-days">
-        <div className="weekly-summary-bestDay">
-          <div className="weekly-summary-day-left">
-            <span className="weekly-summary-bestDay-dayIcon">
-              <span className="material-symbols-rounded family_star">
-                family_star
-              </span>
-            </span>
-            <div className="weekly-summary-day-text">
-              <h4 className="weekly-summary-bestDay-title h4">
-                {t("best_day")}
-              </h4>
-              <p className="weekly-summary-bestDay-date body">{bestDayDate}</p>
-            </div>
-          </div>
-          <p className="weekly-summary-bestDay-summary caption">
-            {t("best_day_summary")}
-          </p>
-        </div>
-
-        <div className="weekly-summary-challengingDay">
-          <div className="weekly-summary-day-left">
-            <span className="weekly-summary-challengingDay-dayIcon">
-              <span className="material-symbols-rounded swords">swords</span>
-            </span>
-            <div className="weekly-summary-day-text">
-              <h4 className="weekly-summary-challengingDay-title h4">
-                {t("challenging_day")}
-              </h4>
-              <p className="weekly-summary-challengingDay-date body">
-                {challengingDayDate}
+      {(bestDay || challengingDay) && (
+        <div className="weekly-summary-days">
+          {bestDay && (
+            <div className="weekly-summary-bestDay">
+              <div className="weekly-summary-day-left">
+                <span className="weekly-summary-bestDay-dayIcon">
+                  <span className="material-symbols-rounded family_star">
+                    family_star
+                  </span>
+                </span>
+                <div className="weekly-summary-day-text">
+                  <h4 className="weekly-summary-bestDay-title h4">
+                    {t("best_day")}
+                  </h4>
+                  <p className="weekly-summary-bestDay-date body">{formatDayDate(bestDay.date)}</p>
+                </div>
+              </div>
+              <p className="weekly-summary-bestDay-summary caption">
+                {t("best_day_summary")}
               </p>
             </div>
-          </div>
-          <p className="weekly-summary-challengingDay-summary caption">
-            {t("challenging_day_summary")}
-          </p>
+          )}
+
+          {challengingDay && challengingDay !== bestDay && (
+            <div className="weekly-summary-challengingDay">
+              <div className="weekly-summary-day-left">
+                <span className="weekly-summary-challengingDay-dayIcon">
+                  <span className="material-symbols-rounded swords">swords</span>
+                </span>
+                <div className="weekly-summary-day-text">
+                  <h4 className="weekly-summary-challengingDay-title h4">
+                    {t("challenging_day")}
+                  </h4>
+                  <p className="weekly-summary-challengingDay-date body">
+                    {formatDayDate(challengingDay.date)}
+                  </p>
+                </div>
+              </div>
+              <p className="weekly-summary-challengingDay-summary caption">
+                {t("challenging_day_summary")}
+              </p>
+            </div>
+          )}
         </div>
-      </div>
+      )}
 
       {/* Questionnaire History Section */}
       {questionnaireHistory.length > 0 && (
@@ -286,33 +302,20 @@ const WeeklyDashboard = () => {
         </div>
       )}
 
-      <div className="weekly-smart-insight">
-        <h2 className="weekly-insights-title h4">{t("smart_insights")}</h2>
-        <SmartInsightCard
-          icon="sentiment_satisfied"
-          title={t("mood_sleep_link_detected")}
-          description={t("mood_sleep_link_description")}
-          insightType="info"
-        />
-        <SmartInsightCard
-          icon="warning"
-          title={t("low_activity_detected")}
-          description={t("low_activity_description")}
-          insightType="warning"
-        />
-        <SmartInsightCard
-          icon="celebration"
-          title={t("mood_boost")}
-          description={t("mood_boost_description")}
-          insightType="success"
-        />
-        <SmartInsightCard
-          icon="error"
-          title={t("missed_medication")}
-          description={t("missed_medication_description")}
-          insightType="error"
-        />
-      </div>
+      {smartInsights.length > 0 && (
+        <div className="weekly-smart-insight">
+          <h2 className="weekly-insights-title h4">{t("smart_insights")}</h2>
+          {smartInsights.map((insight, index) => (
+            <SmartInsightCard
+              key={insight.id || index}
+              icon={mapInsightIcon(insight.icon)}
+              title={insight.title}
+              description={insight.description}
+              insightType={mapInsightType(insight.type)}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 };

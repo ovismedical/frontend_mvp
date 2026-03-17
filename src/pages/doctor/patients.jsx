@@ -1,75 +1,55 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import patientsData from "../../fixtures/patients.json";
+import { doctorAPI } from "../../utils/api";
 
-const stageColor = (stageObj) => {
-  const stage = typeof stageObj === "string" ? stageObj : stageObj?.en || "";
-  // Positive outcome
-  if (
-    stage === "NED" ||
-    stage.includes("Remission") ||
-    stage.includes("Survivorship")
-  )
-    return "var(--success-600)";
+const alertLevelColor = (level) => {
+  switch (level) {
+    case "RED": return "var(--error-600)";
+    case "ORANGE": return "var(--warning-600)";
+    case "YELLOW": return "var(--blue-600)";
+    case "GREEN": return "var(--success-600)";
+    default: return "var(--neutral-600)";
+  }
+};
 
-  // Severe / advanced
-  if (
-    stage.includes("Stage IV") ||
-    stage.includes("Refractory") ||
-    stage.includes("End-of-Life") ||
-    stage.includes("Palliative")
-  )
-    return "var(--error-600)";
-
-  // Medium–high risk / advancing
-  if (
-    stage.includes("Stage III") ||
-    stage.includes("Progressive") ||
-    stage.includes("Relapse") ||
-    stage.includes("Recurrence")
-  )
-    return "var(--warning-600)";
-
-  // Early stage (informational)
-  if (
-    stage.includes("Stage 0") ||
-    stage.includes("Stage I") ||
-    stage.includes("Stage II") ||
-    stage.includes("Diagnostic") ||
-    stage.includes("Staging Phase")
-  )
-    return "var(--blue-600)";
-
-  // Active/ongoing management (not remission but not severe)
-  if (
-    stage.includes("Acute Phase") ||
-    stage.includes("Chronic Phase") ||
-    stage.includes("Maintenance") ||
-    stage.includes("Follow-up")
-  )
-    return "var(--lavender-600)";
-
-  // Default
-  return "var(--neutral-600)";
+const alertLevelLabel = (level) => {
+  switch (level) {
+    case "RED": return "Critical";
+    case "ORANGE": return "Urgent";
+    case "YELLOW": return "Caution";
+    case "GREEN": return "Stable";
+    default: return "No Data";
+  }
 };
 
 const DoctorPatients = () => {
   const navigate = useNavigate();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const [search, setSearch] = useState("");
   const [patients, setPatients] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [showFilter, setShowFilter] = useState(false);
-  const [selectedCancers, setSelectedCancers] = useState([]);
-  const [selectedStages, setSelectedStages] = useState([]);
+  const [selectedAlertLevels, setSelectedAlertLevels] = useState([]);
   const [openSections, setOpenSections] = useState({
-    cancer: false,
-    stage: false,
+    alertLevel: false,
   });
   const filterMenuRef = useRef(null);
 
   useEffect(() => {
-    setPatients(patientsData);
+    const fetchPatients = async () => {
+      try {
+        const res = await doctorAPI.getPatientDetails();
+        if (res?.patients) {
+          setPatients(res.patients);
+        }
+      } catch (err) {
+        console.error("Failed to fetch patients:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchPatients();
   }, []);
 
   useEffect(() => {
@@ -83,25 +63,16 @@ const DoctorPatients = () => {
     return () => document.removeEventListener("mousedown", handleClick);
   }, [showFilter]);
 
-  // Unique cancer types and stages (objects)
-  const cancerTypes = [
-    ...new Map(patientsData.map((p) => [p.cancer.en, p.cancer])).values(),
-  ];
-  const stages = [
-    ...new Map(patientsData.map((p) => [p.stage.en, p.stage])).values(),
-  ];
+  const alertLevelOptions = ["RED", "ORANGE", "YELLOW", "GREEN"];
 
-  const toggleSelection = (value, setFunc, state) => {
-    if (state.includes(value)) {
-      setFunc(state.filter((v) => v !== value));
-    } else {
-      setFunc([...state, value]);
-    }
+  const toggleAlertLevel = (value) => {
+    setSelectedAlertLevels((prev) =>
+      prev.includes(value) ? prev.filter((v) => v !== value) : [...prev, value]
+    );
   };
 
   const clearFilters = () => {
-    setSelectedCancers([]);
-    setSelectedStages([]);
+    setSelectedAlertLevels([]);
   };
 
   const toggleSection = (key) => {
@@ -109,16 +80,32 @@ const DoctorPatients = () => {
   };
 
   const filteredPatients = patients.filter((p) => {
-    const matchesSearch = p.name.toLowerCase().includes(search.toLowerCase());
-    const matchesCancer =
-      selectedCancers.length === 0 || selectedCancers.includes(p.cancer.en);
-    const matchesStage =
-      selectedStages.length === 0 || selectedStages.includes(p.stage.en);
-    return matchesSearch && matchesCancer && matchesStage;
+    const name = p.full_name || p.username || "";
+    const matchesSearch = name.toLowerCase().includes(search.toLowerCase());
+    const matchesAlert =
+      selectedAlertLevels.length === 0 ||
+      selectedAlertLevels.includes(p.latest_alert_level);
+    return matchesSearch && matchesAlert;
   });
 
-  const handlePatientClick = (id) => {
-    navigate(`/patient_details/${id}`);
+  const handlePatientClick = (username) => {
+    navigate(`/patient_details/${username}`);
+  };
+
+  const formatDate = (dateStr) => {
+    if (!dateStr) return t("no_data");
+    const d = new Date(dateStr);
+    if (isNaN(d.getTime())) return dateStr;
+    const now = new Date();
+    const diffMs = now - d;
+    const diffMins = Math.floor(diffMs / 60000);
+    if (diffMins < 1) return t("just_now");
+    if (diffMins < 60) return t("min_ago", { count: diffMins });
+    const diffHrs = Math.floor(diffMins / 60);
+    if (diffHrs < 24)
+      return t(diffHrs === 1 ? "hour_ago" : "hours_ago", { count: diffHrs });
+    const diffDays = Math.floor(diffHrs / 24);
+    return t(diffDays === 1 ? "day_ago" : "days_ago", { count: diffDays });
   };
 
   return (
@@ -164,76 +151,32 @@ const DoctorPatients = () => {
             </button>
           </div>
 
-          {/* Cancer Type Section */}
+          {/* Alert Level Section */}
           <div className="filter-section">
             <div
               className="filter-section-header body"
-              onClick={() => toggleSection("cancer")}
+              onClick={() => toggleSection("alertLevel")}
             >
-              <span>{t("cancer_type")}</span>
+              <span>{t("alert_level")}</span>
               <span className="material-symbols-rounded filter-section-header-icon">
-                {openSections.cancer ? "expand_less" : "expand_more"}
+                {openSections.alertLevel ? "expand_less" : "expand_more"}
               </span>
             </div>
-            {openSections.cancer && (
+            {openSections.alertLevel && (
               <div className="filter-options">
-                {cancerTypes.map((type) => (
+                {alertLevelOptions.map((level) => (
                   <label
-                    key={type.en}
+                    key={level}
                     className={`filter-option caption${
-                      selectedCancers.includes(type.en) ? " selected" : ""
+                      selectedAlertLevels.includes(level) ? " selected" : ""
                     }`}
                   >
                     <input
                       type="checkbox"
-                      checked={selectedCancers.includes(type.en)}
-                      onChange={() =>
-                        toggleSelection(
-                          type.en,
-                          setSelectedCancers,
-                          selectedCancers
-                        )
-                      }
+                      checked={selectedAlertLevels.includes(level)}
+                      onChange={() => toggleAlertLevel(level)}
                     />
-                    {type[i18n.language] || type.en}
-                  </label>
-                ))}
-              </div>
-            )}
-          </div>
-
-          {/* Stage Section */}
-          <div className="filter-section">
-            <div
-              className="filter-section-header body"
-              onClick={() => toggleSection("stage")}
-            >
-              <span>{t("stage")}</span>
-              <span className="material-symbols-rounded filter-section-header-icon">
-                {openSections.stage ? "expand_less" : "expand_more"}
-              </span>
-            </div>
-            {openSections.stage && (
-              <div className="filter-options">
-                {stages.map((stage) => (
-                  <label
-                    key={stage.en}
-                    className={`filter-option caption${
-                      selectedStages.includes(stage.en) ? " selected" : ""
-                    }`}
-                  >
-                    <input
-                      type="checkbox"
-                      checked={selectedStages.includes(stage.en)}
-                      onChange={() =>
-                        toggleSelection(
-                          stage.en,
-                          setSelectedStages,
-                          selectedStages
-                        )
-                      }
-                    />
-                    {stage[i18n.language] || stage.en}
+                    {alertLevelLabel(level)}
                   </label>
                 ))}
               </div>
@@ -244,36 +187,49 @@ const DoctorPatients = () => {
 
       {/* Patient List */}
       <div className="patient-list">
-        {filteredPatients.map((p) => (
-          <div
-            key={p.id}
-            className="patient-item"
-            onClick={() => handlePatientClick(p.id)}
-          >
-            <img src={p.avatar} alt={p.name} className="patient-avatar" />
-            <div className="patient-info">
-              <div className="patient-info-row">
-                <span className="patient-name h4">{p.name}</span>
-                <span className="patient-status">
-                  <span
-                    className="status-dot"
-                    style={{ backgroundColor: stageColor(p.stage) }}
-                  ></span>
-                  <span className="material-symbols-rounded chevron_forward">
-                    chevron_right
+        {loading ? (
+          <div className="patient-list-loading body">{t("loading")}</div>
+        ) : filteredPatients.length === 0 ? (
+          <div className="patient-list-empty body">{t("no_patients_found")}</div>
+        ) : (
+          filteredPatients.map((p) => (
+            <div
+              key={p.username}
+              className="patient-item"
+              onClick={() => handlePatientClick(p.username)}
+            >
+              <div className="doctor-notifications-avatar-placeholder">
+                {(p.full_name || p.username || "?").charAt(0).toUpperCase()}
+              </div>
+              <div className="patient-info">
+                <div className="patient-info-row">
+                  <span className="patient-name h4">
+                    {p.full_name || p.username}
                   </span>
-                </span>
-              </div>
-              <div className="patient-cancer body">
-                {p.cancer[i18n.language] || p.cancer.en} -{" "}
-                {p.stage[i18n.language] || p.stage.en}
-              </div>
-              <div className="patient-update caption">
-                {t("last_update", { date: p.lastUpdate })}
+                  <span className="patient-status">
+                    <span
+                      className="status-dot"
+                      style={{
+                        backgroundColor: alertLevelColor(p.latest_alert_level),
+                      }}
+                    ></span>
+                    <span className="material-symbols-rounded chevron_forward">
+                      chevron_right
+                    </span>
+                  </span>
+                </div>
+                <div className="patient-cancer body">
+                  {alertLevelLabel(p.latest_alert_level)}
+                </div>
+                <div className="patient-update caption">
+                  {p.last_assessment_date
+                    ? t("last_update", { date: formatDate(p.last_assessment_date) })
+                    : t("no_assessments_yet")}
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))
+        )}
       </div>
     </div>
   );

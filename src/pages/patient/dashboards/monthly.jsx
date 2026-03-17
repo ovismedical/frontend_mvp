@@ -4,15 +4,16 @@ import MonthlyCalendar from "../../../components/ui/monthlyCalendar";
 import SmartInsightCard from "../../../components/ui/smartInsightCard";
 import EventItem from "../../../components/ui/notableEvents";
 import SymptomTrendCard from "../../../components/ui/symptomTrendCard";
-import { triageAPI, symptomQuestionnaireAPI } from "../../../utils/api";
+import { triageAPI, symptomQuestionnaireAPI, analyticsAPI } from "../../../utils/api";
 import { useAuth } from "../../../context/AuthContext";
 
 const MonthlyDashboard = () => {
   const { t, i18n } = useTranslation();
-  const { user, isAuthenticated } = useAuth();
+  const { user } = useAuth();
   const [smartInsights, setSmartInsights] = useState([]);
   const [loading, setLoading] = useState(true);
   const [questionnaireHistory, setQuestionnaireHistory] = useState([]);
+  const [monthlyData, setMonthlyData] = useState(null);
 
   // Backend Handling: Fetch monthly events from backend & symptoms, and insights from backend
   const events = [
@@ -45,21 +46,54 @@ const MonthlyDashboard = () => {
     },
   ];
 
+  // Derive symptom trends from monthly analytics data
+  const getSymptomTrend = (symptomName) => {
+    if (!monthlyData?.symptomsByDay?.[symptomName]) return "stable";
+    const dayData = monthlyData.symptomsByDay[symptomName];
+    const days = Object.keys(dayData).map(Number).sort((a, b) => a - b);
+    if (days.length < 2) return "stable";
+    const mid = Math.floor(days.length / 2);
+    const firstHalf = days.slice(0, mid).map((d) => dayData[d]);
+    const secondHalf = days.slice(mid).map((d) => dayData[d]);
+    const avgFirst = firstHalf.reduce((a, b) => a + b, 0) / firstHalf.length;
+    const avgSecond = secondHalf.reduce((a, b) => a + b, 0) / secondHalf.length;
+    if (avgSecond < avgFirst - 0.3) return "down";
+    if (avgSecond > avgFirst + 0.3) return "up";
+    return "stable";
+  };
+
+  const availableSymptoms = monthlyData?.availableSymptoms ?? [];
+  const symptomIconMap = {
+    cough: "respiratory",
+    nausea: "sick",
+    lack_of_appetite: "no_meals",
+    fatigue: "battery_alert",
+    pain: "favorite",
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         if (user && user.username) {
-          const [insightsResponse, historyResponse] = await Promise.all([
+          const [insightsResponse, historyResponse, monthlyResponse] = await Promise.all([
             triageAPI.getSmartInsights(user.username),
-            symptomQuestionnaireAPI.getHistory(30) // Get last 30 submissions
+            symptomQuestionnaireAPI.getHistory(30),
+            analyticsAPI.getMonthlyAnalytics(0).catch(err => {
+              console.error("Failed to fetch monthly analytics:", err);
+              return null;
+            })
           ]);
-          
+
           if (insightsResponse.success && insightsResponse.insights) {
             setSmartInsights(insightsResponse.insights);
           }
-          
+
           if (historyResponse && historyResponse.history) {
             setQuestionnaireHistory(historyResponse.history);
+          }
+
+          if (monthlyResponse?.success && monthlyResponse.data) {
+            setMonthlyData(monthlyResponse.data);
           }
         }
       } catch (err) {
@@ -123,22 +157,23 @@ const MonthlyDashboard = () => {
         <h2 className="monthly-symptom-trend-title h4">
           {t("symptom_trends")}
         </h2>
-        <SymptomTrendCard iconName="mood" title={t("mood")} trend="up" />
-        <SymptomTrendCard
-          iconName="battery_alert"
-          title={t("energy_level")}
-          trend="down"
-        />
-        <SymptomTrendCard
-          iconName="bedtime"
-          title={t("sleep_quality")}
-          trend="stable"
-        />
-        <SymptomTrendCard
-          iconName="favorite"
-          title={t("pain_level")}
-          trend="down"
-        />
+        {availableSymptoms.length > 0 ? (
+          availableSymptoms.map((symptom) => (
+            <SymptomTrendCard
+              key={symptom}
+              iconName={symptomIconMap[symptom] || "monitor_heart"}
+              title={symptom.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())}
+              trend={getSymptomTrend(symptom)}
+            />
+          ))
+        ) : (
+          <>
+            <SymptomTrendCard iconName="mood" title={t("mood")} trend="stable" />
+            <SymptomTrendCard iconName="battery_alert" title={t("energy_level")} trend="stable" />
+            <SymptomTrendCard iconName="bedtime" title={t("sleep_quality")} trend="stable" />
+            <SymptomTrendCard iconName="favorite" title={t("pain_level")} trend="stable" />
+          </>
+        )}
       </div>
 
       {smartInsights && smartInsights.length > 0 && (

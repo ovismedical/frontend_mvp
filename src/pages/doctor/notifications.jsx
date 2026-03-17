@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import notificationsData from "../../fixtures/notifications.json";
-import patientsData from "../../fixtures/patients.json";
+import { doctorAPI } from "../../utils/api";
 
 // utility: format relative time
 const timeAgo = (timestamp, t) => {
@@ -17,6 +16,25 @@ const timeAgo = (timestamp, t) => {
   return t(diffDays === 1 ? "day_ago" : "days_ago", { count: diffDays });
 };
 
+// Map alert_level to importance
+const alertToImportance = (level) => {
+  switch (level) {
+    case "RED": return "critical";
+    case "ORANGE": return "urgent";
+    case "YELLOW": return "caution";
+    default: return "info";
+  }
+};
+
+// Map assessment_type to display type
+const assessmentTypeLabel = (type) => {
+  switch (type) {
+    case "questionnaire_triage": return "Symptom Questionnaire";
+    case "florence_conversation_with_triage": return "AI Conversation";
+    default: return "Assessment";
+  }
+};
+
 const sections = [
   { key: "critical", label: "critical_alerts", icon: "priority_high" },
   { key: "urgent", label: "urgent_alerts", icon: "warning" },
@@ -25,7 +43,7 @@ const sections = [
 ];
 
 const DoctorNotifications = () => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const [search, setSearch] = useState("");
   const [showFilter, setShowFilter] = useState(false);
   const [selectedTypes, setSelectedTypes] = useState([]);
@@ -35,21 +53,57 @@ const DoctorNotifications = () => {
     importance: false,
   });
   const filterMenuRef = useRef(null);
+  const [enrichedNotifications, setEnrichedNotifications] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  // merge notifications with patient info
-  const enrichedNotifications = notificationsData.map((n) => {
-    const patient = patientsData.find((p) => p.id === n.patientId);
-    return { ...n, patient };
-  });
+  // Fetch real alerts and patient details from backend
+  useEffect(() => {
+    const fetchAlerts = async () => {
+      try {
+        const [alertsRes, patientsRes] = await Promise.all([
+          doctorAPI.getAlerts(),
+          doctorAPI.getPatientDetails(),
+        ]);
+
+        const patientMap = {};
+        if (patientsRes?.patients) {
+          patientsRes.patients.forEach((p) => {
+            patientMap[p.username] = p;
+          });
+        }
+
+        const notifications = (alertsRes?.alerts || []).map((alert, idx) => {
+          const patient = patientMap[alert.patient_id] || {};
+          return {
+            id: alert.session_id || idx,
+            importance: alertToImportance(alert.alert_level),
+            type: assessmentTypeLabel(alert.assessment_type),
+            description: alert.alert_rationale || (alert.key_symptoms || []).join(", ") || "Flagged for review",
+            timestamp: alert.created_at,
+            patient: {
+              name: patient.full_name || alert.patient_id,
+              username: alert.patient_id,
+            },
+            key_symptoms: alert.key_symptoms || [],
+            recommended_timeline: alert.recommended_timeline,
+          };
+        });
+
+        setEnrichedNotifications(notifications);
+      } catch (err) {
+        console.error("Failed to fetch alerts:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchAlerts();
+  }, []);
 
   const notificationTypes = [
     ...new Set(enrichedNotifications.map((n) => n.type)),
   ];
 
-  const importanceOptions = sections.map((s) => ({
-    key: s.key,
-    label: t(s.label),
-  }));
+  const importanceOptions = sections.map((s) => s.key);
 
   useEffect(() => {
     if (!showFilter) return;
@@ -104,32 +158,14 @@ const DoctorNotifications = () => {
   };
 
   // Map type to color
-  const getTypeColor = (typeObj) => {
-    // Always use the English value for color mapping
-    const type = typeof typeObj === "string" ? typeObj : typeObj?.en || "";
-    switch (type.toLowerCase()) {
-      case "missed medication":
-        return "var(--warning-600)";
-      case "vitals alert":
-        return "var(--error-600)";
-      case "symptom spike":
+  const getTypeColor = (type) => {
+    switch (type) {
+      case "Symptom Questionnaire":
         return "var(--secondary-600)";
-      case "lab results":
+      case "AI Conversation":
         return "var(--info-600)";
-      case "appointment reminder":
-        return "var(--blue-600)";
-      case "treatment update":
-        return "var(--success-600)";
-      case "emergency admission":
-        return "var(--error-700)";
-      case "allergy alert":
-        return "var(--warning-700)";
-      case "wellness check":
-        return "var(--success-700)";
-      case "insurance update":
-        return "var(--blue-700)";
       default:
-        return "var(--neutral-600)"; // fallback color
+        return "var(--neutral-600)";
     }
   };
 
@@ -230,17 +266,17 @@ const DoctorNotifications = () => {
               <div className="doctor-notifications-filter-options">
                 {notificationTypes.map((type) => (
                   <label
-                    key={type.en}
+                    key={type}
                     className={`doctor-notifications-filter-option caption${
-                      selectedTypes.includes(type.en) ? " selected" : ""
+                      selectedTypes.includes(type) ? " selected" : ""
                     }`}
                   >
                     <input
                       type="checkbox"
-                      checked={selectedTypes.includes(type.en)}
-                      onChange={() => toggleSelection(type.en)}
+                      checked={selectedTypes.includes(type)}
+                      onChange={() => toggleSelection(type)}
                     />
-                    {type[i18n.language] || type.en}
+                    {type}
                   </label>
                 ))}
               </div>
@@ -270,11 +306,9 @@ const DoctorNotifications = () => {
                     </div>
                     {grouped[s.key].map((n) => (
                       <div key={n.id} className="doctor-notifications-item">
-                        <img
-                          src={n.patient?.avatar}
-                          alt=""
-                          className="doctor-notifications-avatar"
-                        />
+                        <div className="doctor-notifications-avatar-placeholder">
+                          {(n.patient?.name || "?").charAt(0).toUpperCase()}
+                        </div>
                         <div className="doctor-notifications-info">
                           <div className="doctor-notifications-info-row">
                             <span className="doctor-notifications-patient h4">
@@ -290,7 +324,7 @@ const DoctorNotifications = () => {
                               color: getTypeColor(n.type),
                             }}
                           >
-                            {n.type[i18n.language] || n.type.en}
+                            {n.type}
                           </div>
                           <div className="doctor-notifications-description body">
                             {n.description}
@@ -320,11 +354,9 @@ const DoctorNotifications = () => {
                     </div>
                     {grouped[s.key].map((n) => (
                       <div key={n.id} className="doctor-notifications-item">
-                        <img
-                          src={n.patient?.avatar}
-                          alt=""
-                          className="doctor-notifications-avatar"
-                        />
+                        <div className="doctor-notifications-avatar-placeholder">
+                          {(n.patient?.name || "?").charAt(0).toUpperCase()}
+                        </div>
                         <div className="doctor-notifications-info">
                           <div className="doctor-notifications-info-row">
                             <span className="doctor-notifications-patient h4">
@@ -340,7 +372,7 @@ const DoctorNotifications = () => {
                               color: getTypeColor(n.type),
                             }}
                           >
-                            {n.type[i18n.language] || n.type.en}
+                            {n.type}
                           </div>
                           <div className="doctor-notifications-description body">
                             {n.description}
