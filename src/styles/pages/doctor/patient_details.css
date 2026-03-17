@@ -381,7 +381,7 @@
   padding: 12px;
   border: none;
   box-shadow: 0 0 0 1px var(--background-600);
-  border-radius: 10px;
+  border-radius: var(--radius-xs);
   background: var(--background-50);
   color: var(--text-500);
   display: flex;
@@ -405,9 +405,8 @@
   width: 99%;
   background: #fff;
   border: none;
-  box-shadow: 0 0 0 1px var(--background-600);
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  border-radius: var(--radius-xs);
+  box-shadow: 0 0 0 1px var(--background-600), 0 2px 8px rgba(0, 0, 0, 0.06);
   z-index: 20;
   max-height: 180px;
   overflow-y: auto;

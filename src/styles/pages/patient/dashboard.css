@@ -560,14 +560,14 @@
   align-items: center;
   gap: 12px;
   padding: 16px;
-  background: #ffebee;
-  border-radius: 12px;
-  border-left: 4px solid #f44336;
+  background: var(--error-50);
+  border-radius: var(--radius-s);
+  border-left: 4px solid var(--error-500);
 }
 
 .error-icon {
   font-size: 24px;
-  color: #f44336;
+  color: var(--error-500);
 }
 
 .error-content {
@@ -576,12 +576,12 @@
 
 .error-title {
   margin: 0 0 4px 0;
-  color: #c62828;
+  color: var(--error-700);
 }
 
 .error-message {
   margin: 0;
-  color: #d32f2f;
+  color: var(--error-600);
 }
 
 

@@ -159,7 +159,6 @@ const FlorenceChat = ({ onClose, embedded = false, onSessionChange }) => {
         },
       ]);
     } catch (error) {
-      console.error("Failed to initialize Florence session:", error);
       setMessages([
         {
           sender: "bot",
@@ -199,8 +198,6 @@ const FlorenceChat = ({ onClose, embedded = false, onSessionChange }) => {
         message: input.trim()
       });
 
-      console.log("Florence API Response:", response);
-
       const botMessage = {
         sender: "bot",
         text: response.response || response.message,
@@ -213,7 +210,6 @@ const FlorenceChat = ({ onClose, embedded = false, onSessionChange }) => {
 
       setMessages(prev => [...prev, botMessage]);
     } catch (error) {
-      console.error("Failed to send message to Florence:", error);
       const errorMessage = {
         sender: "bot",
         text: t("trouble_responding"),

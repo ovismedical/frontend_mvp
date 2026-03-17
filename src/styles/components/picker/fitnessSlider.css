@@ -29,21 +29,21 @@
 
 .styled-slider::-webkit-slider-runnable-track {
   height: 35px;
-  border-radius: 999px;
+  border-radius: var(--radius-xl);
   background: linear-gradient(
     to right,
     var(--blue-700) calc(var(--progress) * 100%),
-    #e0e0e0 0%
+    var(--neutral-100) 0%
   );
 }
 
 .styled-slider::-moz-range-track {
   height: 35px;
-  border-radius: 999px;
+  border-radius: var(--radius-xl);
   background: linear-gradient(
     to right,
     var(--blue-700) calc(var(--progress) * 100%),
-    #e0e0e0 0%
+    var(--neutral-100) 0%
   );
 }
 

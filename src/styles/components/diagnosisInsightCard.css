@@ -1,6 +1,6 @@
 .diagnosis-insight-card {
   background: var(--surface);
-  border-radius: 12px;
+  border-radius: var(--radius-s);
   padding: 16px;
   margin-bottom: 12px;
   box-shadow: 0 0 0 1px var(--outline-variant);
@@ -40,7 +40,7 @@
   align-items: center;
   gap: 4px;
   padding: 4px 8px;
-  border-radius: 12px;
+  border-radius: var(--radius-s);
   font-size: 11px;
   font-weight: 500;
 }
@@ -116,7 +116,7 @@
 .diagnosis-reasoning {
   padding: 8px 12px;
   background: var(--surface-variant);
-  border-radius: 8px;
+  border-radius: var(--radius-2xs);
   border-left: 3px solid var(--primary);
 }
 

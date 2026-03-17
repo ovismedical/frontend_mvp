@@ -36,21 +36,21 @@
   gap: 8px;
   padding: 12px 16px;
   margin: 16px;
-  border-radius: 8px;
+  border-radius: var(--radius-2xs);
   font-size: 14px;
   animation: slideIn 0.3s ease-out;
 }
 
 .message.success {
-  background-color: #e8f5e8;
-  color: #2e7d32;
-  box-shadow: 0 0 0 1px #c8e6c9;
+  background-color: var(--success-50);
+  color: var(--success-700);
+  box-shadow: 0 0 0 1px var(--success-100);
 }
 
 .message.error {
-  background-color: #ffeaea;
-  color: #c62828;
-  box-shadow: 0 0 0 1px #ffcdd2;
+  background-color: var(--error-50);
+  color: var(--error-700);
+  box-shadow: 0 0 0 1px var(--error-100);
 }
 
 .message .material-symbols-rounded {

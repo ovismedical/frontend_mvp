@@ -39,8 +39,8 @@
 .med-search-input-container input {
   width: 90%;
   padding: 10px;
-  box-shadow: 0 0 0 1px #ccc;
+  box-shadow: 0 0 0 1px var(--neutral-300);
   border: none;
-  border-radius: 10px;
+  border-radius: var(--radius-xs);
   outline: none;
 }

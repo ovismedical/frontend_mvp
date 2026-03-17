@@ -158,6 +158,7 @@
   --spacing-160: 160px;
 
   /* 🔲 Border Radius */
+  --radius-2xs: 8px;
   --radius-xs: 10px;
   --radius-s: 12px;
   --radius-m: 14px;
@@ -168,5 +169,34 @@
   --shadow-sm: 0px 4px 4px rgba(0, 0, 0, 0.25);
   --shadow-md: 0px 8px 8px rgba(0, 0, 0, 0.25);
   --shadow-lg: 0px 12px 12px rgba(0, 0, 0, 0.25);
+
+  /* 🏷️ Semantic Aliases */
+  --primary: var(--lavender-500);
+  --primary-100: var(--lavender-100);
+  --primary-700: var(--lavender-700);
+  --primary-container: var(--lavender-100);
+  --on-primary-container: var(--lavender-900);
+
+  --surface: var(--background-100);
+  --surface-variant: var(--background-300);
+  --on-surface: var(--text-900);
+  --on-surface-variant: var(--text-600);
+  --outline-variant: var(--neutral-300);
+
+  --success: var(--success-500);
+  --warning: var(--warning-500);
+  --error: var(--error-500);
+  --info: var(--info-500);
+
+  /* RGB values for rgba() usage */
+  --success-rgb: 54, 188, 81;
+  --warning-rgb: 255, 185, 0;
+  --error-rgb: 255, 68, 71;
+  --info-rgb: 0, 213, 190;
+
+  /* Additional aliases */
+  --shadow-s: var(--shadow-sm);
+  --gray-100: var(--neutral-100);
+  --border-200: var(--neutral-200);
 
 }

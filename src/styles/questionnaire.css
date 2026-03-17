@@ -275,7 +275,7 @@
 .section-icon {
   width: 48px;
   height: 48px;
-  border-radius: 12px; /* Squircle */
+  border-radius: var(--radius-s); /* Squircle */
   background: linear-gradient(135deg, var(--blue-100), var(--blue-50));
   color: var(--blue-600);
   display: flex;
@@ -756,7 +756,7 @@
   position: absolute;
   padding: 8px 10px;
   border: none;
-  box-shadow: 0 0 0 1px var(--neutral-300);
+  box-shadow: 0 0 0 1px var(--neutral-300), 0 1px 2px rgba(0, 0, 0, 0.05);
   border-radius: var(--radius-s);
   background-color: white;
   cursor: pointer;
@@ -767,7 +767,6 @@
   font-weight: 600;
   font-family: var(--font-body);
   color: var(--text-600);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
   white-space: nowrap;
   z-index: 1;
 }

@@ -73,8 +73,6 @@ export const useFullscreen = () => {
 
   // Handle fullscreen change events
   const handleFullscreenChange = useCallback(() => {
-    const isCurrentlyFullscreen = !!document.fullscreenElement;
-    console.log('Fullscreen state changed:', isCurrentlyFullscreen);
   }, []);
 
   useEffect(() => {

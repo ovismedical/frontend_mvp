@@ -5,26 +5,23 @@ const API_BASE_URL = import.meta.env.VITE_API_URL;
 // Helper function to get auth headers
 const getAuthHeaders = () => {
   const tokenData = localStorage.getItem("token");
-  console.log("🔍 Debug - Token data from localStorage:", tokenData);
-  
+
   let token = null;
   try {
     if (tokenData) {
       const parsed = JSON.parse(tokenData);
       token = parsed?.access_token;
-      console.log("🔍 Debug - Parsed token:", token ? `${token.substring(0, 20)}...` : "null");
     }
   } catch (e) {
-    console.error("🔍 Debug - Error parsing token:", e);
+    // Token parsing failed — proceed without auth
   }
-  
+
   const headers = {
     "Content-Type": "application/json",
     "Accept": "application/json",
     ...(token && { Authorization: `Bearer ${token}` })
   };
-  
-  console.log("🔍 Debug - Auth headers:", headers);
+
   return headers;
 };
 

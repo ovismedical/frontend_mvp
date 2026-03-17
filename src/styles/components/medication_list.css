@@ -14,12 +14,12 @@
 
 .med-list::-webkit-scrollbar-track {
   background: var(--gray-100);
-  border-radius: 10px;
+  border-radius: var(--radius-xs);
 }
 
 .med-list::-webkit-scrollbar-thumb {
   background: var(--blue-300);
-  border-radius: 10px;
+  border-radius: var(--radius-xs);
 }
 
 .med-list::-webkit-scrollbar-thumb:hover {

@@ -105,7 +105,7 @@ doctor-notifications-list::-webkit-scrollbar {
   display: flex;
   align-items: flex-start;
   padding: 12px 16px;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--neutral-50);
 }
 
 .doctor-notifications-info {
@@ -150,9 +150,8 @@ doctor-notifications-list::-webkit-scrollbar {
   width: 280px;
   background: var(--background-100);
   border: none;
-  box-shadow: 0 0 0 1px var(--background-600);
-  border-radius: 12px;
-  box-shadow: var(--shadow-s);
+  border-radius: var(--radius-s);
+  box-shadow: 0 0 0 1px var(--background-600), var(--shadow-s);
   z-index: 20;
   padding: 12px 0;
   font-family: sans-serif;
@@ -179,7 +178,7 @@ doctor-notifications-list::-webkit-scrollbar {
 }
 
 .doctor-notifications-filter-section {
-  border-bottom: 1px solid #f1f1f1;
+  border-bottom: 1px solid var(--neutral-50);
 }
 
 .doctor-notifications-filter-section-header {
@@ -268,15 +267,9 @@ doctor-notifications-list::-webkit-scrollbar {
   font-size: 13px;
   font-weight: 500;
   margin: 2px 0;
-}
-
-.doctor-notifications-type-tag {
-  font-size: 13px;
-  font-weight: 500;
-  margin: 2px 0;
   display: flex;
   align-items: center;
-  gap: 5px; /* 5px gap between dot and text */
+  gap: 5px;
 }
 
 .doctor-notifications-type-tag::before {

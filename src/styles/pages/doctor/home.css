@@ -356,9 +356,8 @@
   width: 99%;
   background: #fff;
   border: none;
-  box-shadow: 0 0 0 1px var(--neutral-300);
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  border-radius: var(--radius-xs);
+  box-shadow: 0 0 0 1px var(--neutral-300), 0 2px 8px rgba(0, 0, 0, 0.06);
   z-index: 20;
   max-height: 180px;
   overflow-y: auto;

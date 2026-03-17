@@ -207,8 +207,8 @@
   width: 90%;
   padding: 10px;
   border: none;
-  box-shadow: 0 0 0 1px #ccc;
-  border-radius: 10px;
+  box-shadow: 0 0 0 1px var(--neutral-300);
+  border-radius: var(--radius-xs);
   outline: none;
 }
 

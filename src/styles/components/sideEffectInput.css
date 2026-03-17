@@ -15,7 +15,7 @@
   padding: 8px;
   box-shadow: 0 0 0 1px var(--background-600);
   border: none;
-  border-radius: 8px;
+  border-radius: var(--radius-2xs);
   background: var(--background-50);
   cursor: text;
 }

@@ -19,9 +19,8 @@
   width: 100%;
   max-height: 80vh;
   overflow-y: auto;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
   border: none;
-  box-shadow: 0 0 0 1px var(--neutral-500);
+  box-shadow: 0 0 0 1px var(--neutral-500), 0 10px 25px rgba(0, 0, 0, 0.2);
 }
 
 .symptom-modal-header {
