@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import SegmentedControl from "../ui/SegmentedControl";
 import BottomSheetPicker from "../ui/BottomSheetPicker";
+import FrequencyScale from "./FrequencyScale";
 import { vibrate } from "../../../utils/mobile";
+
+const FREQUENCY_VALUES = new Set(["none", "1-2", "3-4", "5-6", "6+"]);
 
 export default function SingleSelectQuestion({ question, value, onChange }) {
   const [showPicker, setShowPicker] = useState(false);
@@ -18,10 +21,22 @@ export default function SingleSelectQuestion({ question, value, onChange }) {
   // Determine display mode
   const optionCount = question.options.length;
   const avgLabelLength = question.options.reduce((acc, curr) => acc + curr.label.length, 0) / optionCount;
-  
+
+  // Frequency scale: exact 5-option frequency pattern
+  const isFrequency = optionCount === 5 &&
+    question.options.every(o => FREQUENCY_VALUES.has(o.value));
+
+  if (isFrequency) {
+    return (
+      <div className="single-select-question">
+        <FrequencyScale question={question} value={value} onChange={onChange} />
+      </div>
+    );
+  }
+
   // Mode logic
   const isSegmented = optionCount <= 3 && avgLabelLength < 20;
-  const isPicker = optionCount >= 5; // Use picker for long lists (e.g. frequencies)
+  const isPicker = optionCount >= 8;
 
   if (isSegmented) {
     return (
