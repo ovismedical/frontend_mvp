@@ -651,6 +651,57 @@
   font-family: var(--font-body);
 }
 
+/* Front / Back view toggle — shared by BodyDiagramQuestion and MuscleHighlighterQuestion */
+.body-view-toggle {
+  display: flex;
+  background-color: var(--neutral-100);
+  border-radius: var(--radius-m);
+  padding: 4px;
+  gap: 4px;
+  margin-bottom: 12px;
+}
+
+.body-view-btn {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 10px;
+  border-radius: var(--radius-s);
+  font-size: 14px;
+  font-weight: 500;
+  font-family: var(--font-body);
+  color: var(--text-600);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  touch-action: manipulation;
+}
+
+.body-view-btn.active {
+  background-color: white;
+  color: var(--primary);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  font-weight: 600;
+}
+
+/* Muscle highlighter library wrapper */
+.muscle-highlighter-wrapper {
+  display: flex;
+  justify-content: center;
+  background-color: var(--neutral-50);
+  border-radius: var(--radius-l);
+  padding: 8px;
+  box-shadow: 0 0 0 1px var(--neutral-200);
+  overflow: hidden;
+}
+
+/* Extra regions (e.g. jaw) not supported by the library — chip toggles */
+.muscle-extra-regions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 4px;
+}
+
 /* Body Diagram — SVG-based */
 .body-diagram-question {
   margin-top: 16px;
@@ -853,9 +904,10 @@
   flex-direction: column;
   align-items: center;
   padding: 16px 12px;
-  border: 2px solid var(--neutral-200);
+  border: none;
+  box-shadow: 0 0 0 1px var(--neutral-200);
   border-radius: var(--radius-m);
-  background-color: white;
+  background-color: var(--background-50);
   cursor: pointer;
   transition: all 0.15s ease;
   min-height: 120px;
@@ -867,9 +919,8 @@
 }
 
 .color-option.selected {
-  border-color: var(--blue-500);
+  box-shadow: 0 0 0 2px var(--blue-500);
   background-color: var(--blue-50);
-  box-shadow: 0 0 0 1px var(--blue-500);
 }
 
 .color-swatch {
@@ -877,8 +928,7 @@
   height: 72px;
   border-radius: 50%;
   margin-bottom: 10px;
-  border: 2px solid rgba(0,0,0,0.1);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.1), 0 2px 6px rgba(0, 0, 0, 0.12);
 }
 
 .color-label {
@@ -888,6 +938,30 @@
   font-weight: 600;
   font-family: var(--font-body);
   line-height: 1.2;
+}
+
+/* "Other – please specify" option in color chart — spans full width, no swatch */
+.color-option--other {
+  grid-column: 1 / -1;
+  flex-direction: row;
+  min-height: 56px;
+  padding: 16px;
+  justify-content: center;
+  gap: 8px;
+}
+
+.color-option--other .color-label {
+  font-size: 15px;
+  text-align: left;
+}
+
+.color-option--other.selected {
+  box-shadow: 0 0 0 2px var(--blue-500);
+  background-color: var(--blue-50);
+}
+
+.color-option--other.selected .color-label {
+  color: var(--blue-900);
 }
 
 /* Navigation */

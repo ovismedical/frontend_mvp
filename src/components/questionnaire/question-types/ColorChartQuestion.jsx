@@ -16,18 +16,29 @@ export default function ColorChartQuestion({ question, value, onChange }) {
     <div className="color-chart-question">
       <div className="color-options" role="group" aria-labelledby={`question-${question.id}`}>
         {question.colorOptions?.map((color) => (
-          <button
-            key={color.value}
-            className={`color-option ${selectedColors.includes(color.value) ? 'selected' : ''}`}
-            aria-pressed={selectedColors.includes(color.value)}
-            onClick={() => handleColorClick(color.value)}
-          >
-            <div
-              className="color-swatch"
-              style={{ backgroundColor: color.hex }}
-            />
-            <span className="color-label">{color.label}</span>
-          </button>
+          color.isOther ? (
+            <button
+              key={color.value}
+              className={`color-option color-option--other ${selectedColors.includes(color.value) ? 'selected' : ''}`}
+              aria-pressed={selectedColors.includes(color.value)}
+              onClick={() => handleColorClick(color.value)}
+            >
+              <span className="color-label">{color.label}</span>
+            </button>
+          ) : (
+            <button
+              key={color.value}
+              className={`color-option ${selectedColors.includes(color.value) ? 'selected' : ''}`}
+              aria-pressed={selectedColors.includes(color.value)}
+              onClick={() => handleColorClick(color.value)}
+            >
+              <div
+                className="color-swatch"
+                style={{ backgroundColor: color.hex }}
+              />
+              <span className="color-label">{color.label}</span>
+            </button>
+          )
         ))}
       </div>
     </div>

@@ -33,7 +33,7 @@
   background-color: var(--background-600);
   color: var(--text-500);
   border: none;
-  border-radius: 25px;
+  border-radius: var(--radius-xl);
   cursor: pointer;
   transition: all 0.3s ease;
 }

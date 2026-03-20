@@ -2,7 +2,13 @@ import React, { useCallback } from "react";
 import { vibrate } from "../../../utils/mobile";
 
 export default function SliderQuestion({ question, value, onChange }) {
-  const { min = 0, max = 10, step = 1, unit = "" } = question.sliderConfig || {};
+  const { min = 0, max = 10, step = 1, unit = "", minLabel, maxLabel } = question.sliderConfig || {};
+
+  const edgeLabel = (v) => {
+    if (v === min && minLabel) return minLabel;
+    if (v === max && maxLabel) return maxLabel;
+    return `${v}${unit}`;
+  };
   const isActivated = value !== undefined;
 
   const handleActivate = useCallback((e) => {
@@ -62,16 +68,16 @@ export default function SliderQuestion({ question, value, onChange }) {
               value={value}
               onChange={handleSliderChange}
               className="slider"
-              aria-valuetext={`${value}${unit ? " " + unit : ""}`}
+              aria-valuetext={edgeLabel(value)}
             />
             <div className="slider-value-display">
-              {value}{unit}
+              {edgeLabel(value)}
             </div>
           </>
         )}
         <div className="slider-labels">
-          <span className="slider-min">{min}{unit}</span>
-          <span className="slider-max">{max}{unit}</span>
+          <span className="slider-min">{minLabel || `${min}${unit}`}</span>
+          <span className="slider-max">{maxLabel || `${max}${unit}`}</span>
         </div>
       </div>
     </div>

@@ -3,12 +3,18 @@ import { vibrate } from "../../../utils/mobile";
 
 export default function MultiSelectQuestion({ question, value, onChange }) {
   const selectedValues = value || [];
+  const exclusiveOptions = question.exclusiveOptions || [];
 
   const handleOptionToggle = (optionValue) => {
     vibrate(5);
-    const newSelection = selectedValues.includes(optionValue)
-      ? selectedValues.filter(v => v !== optionValue)
-      : [...selectedValues, optionValue];
+    let newSelection;
+    if (selectedValues.includes(optionValue)) {
+      newSelection = selectedValues.filter(v => v !== optionValue);
+    } else if (exclusiveOptions.includes(optionValue)) {
+      newSelection = [optionValue];
+    } else {
+      newSelection = [...selectedValues.filter(v => !exclusiveOptions.includes(v)), optionValue];
+    }
     onChange(newSelection);
   };
 

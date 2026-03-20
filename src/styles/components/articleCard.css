@@ -57,7 +57,7 @@
 .article-image-container {
   position: relative;
   height: 83px;
-  border-radius: 15px;
+  border-radius: var(--radius-m);
   overflow: hidden;
 }
 

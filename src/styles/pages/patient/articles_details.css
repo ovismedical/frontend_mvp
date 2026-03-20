@@ -154,7 +154,7 @@
 }
 
 .content-img {
-  border-radius: 25px;
+  border-radius: var(--radius-xl);
   width: auto;
   max-height: 500px;
   object-fit: cover;

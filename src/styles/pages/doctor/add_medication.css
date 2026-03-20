@@ -102,7 +102,7 @@
   top: 110%;
   left: 0;
   width: 99%;
-  background: #fff;
+  background: var(--background-50);
   border: none;
   border-radius: var(--radius-xs);
   box-shadow: 0 0 0 1px var(--background-600), 0 2px 8px rgba(0, 0, 0, 0.06);

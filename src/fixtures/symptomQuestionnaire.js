@@ -84,11 +84,23 @@ export const symptomQuestionnaire = [
           { value: "sausage_cracks", label: "Sausage-shape with cracks on surface", hex: "#DEB887" },
           { value: "smooth_sausage", label: "Smooth, soft sausage-shape", hex: "#F4A460" },
           { value: "soft_blobs", label: "Soft blobs with clear cut edges", hex: "#D2B48C" },
-          { value: "liquid", label: "Liquid consistency with no solid pieces", hex: "#F5DEB3" }
+          { value: "liquid", label: "Liquid consistency with no solid pieces", hex: "#F5DEB3" },
+          { value: "others_specify", label: "Other – please specify", hex: null, isOther: true }
         ],
         conditional: {
           dependsOn: "bowel_frequency",
           showIf: (value) => ["3-4", "5-6", "6+"].includes(value)
+        },
+        required: false
+      },
+      {
+        id: "stool_appearance_other_text",
+        type: "text",
+        text: "Please specify:",
+        placeholder: "Describe the appearance...",
+        conditional: {
+          dependsOn: "stool_appearance",
+          showIf: (value) => Array.isArray(value) && value.includes("others_specify")
         },
         required: false
       }
@@ -308,10 +320,12 @@ export const symptomQuestionnaire = [
         type: "slider",
         text: "Around how many hours have you slept last night in total?",
         sliderConfig: {
-          min: 1,
-          max: 9,
+          min: 0.5,
+          max: 9.5,
           step: 0.5,
-          unit: " hours"
+          unit: " hours",
+          minLabel: "Less than 1 hour",
+          maxLabel: "More than 9 hours"
         },
         conditional: {
           dependsOn: "sleep_quality",
@@ -324,6 +338,7 @@ export const symptomQuestionnaire = [
         type: "multi-select",
         text: "Have these symptoms affected your quality of sleep? (Choose all that apply)",
         options: [
+          { value: "not_applicable", label: "Not applicable" },
           { value: "muscle_pain", label: "Muscle pain" },
           { value: "joint_pain", label: "Joint pain" },
           { value: "sore_throat", label: "Sore throat" },
@@ -331,12 +346,23 @@ export const symptomQuestionnaire = [
           { value: "anxiety", label: "Feeling anxious and/or depressed" },
           { value: "memory", label: "Memory or concentration problems" },
           { value: "exhausted", label: "Exhausted by everyday tasks" },
-          { value: "not_applicable", label: "Not applicable" },
-          { value: "others", label: "Others, please specify" }
+          { value: "others_specify", label: "Other – please specify" }
         ],
+        exclusiveOptions: ["not_applicable"],
         conditional: {
           dependsOn: "sleep_quality",
           showIf: (value) => value >= 4
+        },
+        required: false
+      },
+      {
+        id: "sleep_symptoms_other_text",
+        type: "text",
+        text: "Please specify:",
+        placeholder: "Describe your symptom...",
+        conditional: {
+          dependsOn: "sleep_symptoms",
+          showIf: (value) => Array.isArray(value) && value.includes("others_specify")
         },
         required: false
       }
@@ -474,9 +500,10 @@ export const symptomQuestionnaire = [
         text: "How long do they last?",
         sliderConfig: {
           min: 0,
-          max: 30,
+          max: 15,
           step: 1,
-          unit: " minutes"
+          unit: " minutes",
+          maxLabel: "15+ min"
         },
         conditional: {
           dependsOn: "hot_flash_frequency",
@@ -489,6 +516,7 @@ export const symptomQuestionnaire = [
         type: "multi-select",
         text: "Do they come with the following symptoms? (Choose all that apply)",
         options: [
+          { value: "not_applicable", label: "Not applicable" },
           { value: "palpitations", label: "Palpitations (Rapid heartbeat)" },
           { value: "sweating", label: "Sweating" },
           { value: "nausea", label: "Nausea" },
@@ -497,11 +525,24 @@ export const symptomQuestionnaire = [
           { value: "headache", label: "Headache" },
           { value: "weakness", label: "Weakness" },
           { value: "suffocation", label: "Feeling of suffocation" },
-          { value: "chills", label: "Followed by chills" }
+          { value: "chills", label: "Followed by chills" },
+          { value: "others_specify", label: "Other – please specify" }
         ],
+        exclusiveOptions: ["not_applicable"],
         conditional: {
           dependsOn: "hot_flash_frequency",
           showIf: (value) => ["3-4", "5-6", "6+"].includes(value)
+        },
+        required: false
+      },
+      {
+        id: "hot_flash_symptoms_other_text",
+        type: "text",
+        text: "Please specify:",
+        placeholder: "Describe your symptom...",
+        conditional: {
+          dependsOn: "hot_flash_symptoms",
+          showIf: (value) => Array.isArray(value) && value.includes("others_specify")
         },
         required: false
       }
@@ -596,9 +637,9 @@ export const symptomQuestionnaire = [
           { value: "right_head", label: "Right side of head", style: { top: "20%", left: "70%" } },
           { value: "left_head", label: "Left side of head", style: { top: "20%", left: "30%" } },
           { value: "back_head", label: "Back of head", style: { top: "25%", left: "50%" } },
-          { value: "neck", label: "Neck", style: { top: "35%", left: "50%" } },
-          { value: "behind_eyes", label: "Behind eyes", style: { top: "30%", left: "50%" } },
-          { value: "temple", label: "Temple", style: { top: "25%", left: "40%" } },
+          { value: "left_temple", label: "Left temple", style: { top: "25%", left: "30%" } },
+          { value: "right_temple", label: "Right temple", style: { top: "25%", left: "70%" } },
+          { value: "behind_eyes", label: "Between eyes", style: { top: "30%", left: "50%" } },
           { value: "forehead", label: "Forehead", style: { top: "15%", left: "50%" } },
           { value: "top_head", label: "Top of head", style: { top: "10%", left: "50%" } }
         ],
@@ -650,31 +691,33 @@ export const symptomQuestionnaire = [
     questions: [
       {
         id: "muscle_pain_areas",
-        type: "body-diagram",
+        type: "muscle-diagram",
         text: "Please choose all the areas where you have experienced muscle pain since the last record.",
         bodyRegions: [
-          { value: "left_shoulder", label: "Left shoulder", style: { top: "25%", left: "20%" } },
-          { value: "right_shoulder", label: "Right shoulder", style: { top: "25%", left: "80%" } },
-          { value: "left_upper_arm", label: "Left upper arm", style: { top: "35%", left: "25%" } },
-          { value: "right_upper_arm", label: "Right upper arm", style: { top: "35%", left: "75%" } },
-          { value: "left_lower_arm", label: "Left lower arm", style: { top: "45%", left: "30%" } },
-          { value: "right_lower_arm", label: "Right lower arm", style: { top: "45%", left: "70%" } },
-          { value: "left_buttock", label: "Left buttock", style: { top: "55%", left: "35%" } },
-          { value: "right_buttock", label: "Right buttock", style: { top: "55%", left: "65%" } },
-          { value: "left_upper_leg", label: "Left upper leg", style: { top: "65%", left: "40%" } },
-          { value: "right_upper_leg", label: "Right upper leg", style: { top: "65%", left: "60%" } },
-          { value: "left_lower_leg", label: "Left lower leg", style: { top: "80%", left: "35%" } },
-          { value: "right_lower_leg", label: "Right lower leg", style: { top: "80%", left: "65%" } },
-          { value: "left_jaw", label: "Left jaw", style: { top: "20%", left: "30%" } },
-          { value: "right_jaw", label: "Right jaw", style: { top: "20%", left: "70%" } },
-          { value: "left_chest_male", label: "Left chest (male)", style: { top: "30%", left: "40%" } },
-          { value: "right_chest_male", label: "Right chest (male)", style: { top: "30%", left: "60%" } },
-          { value: "left_breast_female", label: "Left breast (female)", style: { top: "30%", left: "40%" } },
-          { value: "right_breast_female", label: "Right breast (female)", style: { top: "30%", left: "60%" } },
-          { value: "abdomen", label: "Abdomen", style: { top: "40%", left: "50%" } },
-          { value: "upper_back", label: "Upper back", style: { top: "30%", left: "50%" } },
-          { value: "lower_back", label: "Lower back", style: { top: "45%", left: "50%" } },
-          { value: "neck", label: "Neck", style: { top: "25%", left: "50%" } }
+          { value: "left_jaw",        label: "Left jaw",          side: "front" },
+          { value: "right_jaw",       label: "Right jaw",         side: "front" },
+          { value: "neck",            label: "Neck",              side: "front" },
+          { value: "left_chest",      label: "Left chest",        side: "front" },
+          { value: "right_chest",     label: "Right chest",       side: "front" },
+          { value: "abdomen",         label: "Abdomen",           side: "front" },
+          { value: "left_shoulder",   label: "Left shoulder",     side: "front" },
+          { value: "right_shoulder",  label: "Right shoulder",    side: "front" },
+          { value: "left_bicep",      label: "Left bicep",        side: "front" },
+          { value: "right_bicep",     label: "Right bicep",       side: "front" },
+          { value: "left_lower_arm",  label: "Left forearm",      side: "front" },
+          { value: "right_lower_arm", label: "Right forearm",     side: "front" },
+          { value: "left_quadriceps", label: "Left quadriceps",   side: "front" },
+          { value: "right_quadriceps",label: "Right quadriceps",  side: "front" },
+          { value: "left_lower_leg",  label: "Left lower leg",    side: "front" },
+          { value: "right_lower_leg", label: "Right lower leg",   side: "front" },
+          { value: "upper_back",      label: "Upper back",        side: "back" },
+          { value: "lower_back",      label: "Lower back",        side: "back" },
+          { value: "left_buttock",    label: "Left buttock",      side: "back" },
+          { value: "right_buttock",   label: "Right buttock",     side: "back" },
+          { value: "left_tricep",     label: "Left tricep",       side: "back" },
+          { value: "right_tricep",    label: "Right tricep",      side: "back" },
+          { value: "left_hamstrings", label: "Left hamstrings",   side: "back" },
+          { value: "right_hamstrings",label: "Right hamstrings",  side: "back" }
         ],
         required: true
       }

@@ -5,6 +5,7 @@ import MultiSelectQuestion from "./question-types/MultiSelectQuestion";
 import TextInputQuestion from "./question-types/TextInputQuestion";
 import SliderQuestion from "./question-types/SliderQuestion";
 import BodyDiagramQuestion from "./question-types/BodyDiagramQuestion";
+import MuscleHighlighterQuestion from "./question-types/MuscleHighlighterQuestion";
 import ColorChartQuestion from "./question-types/ColorChartQuestion";
 
 export default function QuestionRenderer({ question, value, onChange, answers, hasError }) {
@@ -61,6 +62,14 @@ export default function QuestionRenderer({ question, value, onChange, answers, h
       case "body-diagram":
         return (
           <BodyDiagramQuestion
+            question={question}
+            value={value}
+            onChange={onChange}
+          />
+        );
+      case "muscle-diagram":
+        return (
+          <MuscleHighlighterQuestion
             question={question}
             value={value}
             onChange={onChange}

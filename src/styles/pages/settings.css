@@ -156,7 +156,7 @@
   right: 0;
   bottom: 0;
   background-color: var(--neutral-200);
-  border-radius: 24px;
+  border-radius: var(--radius-xl);
   transition: 0.3s;
   min-width: 44px;
 }

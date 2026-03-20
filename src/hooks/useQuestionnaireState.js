@@ -78,8 +78,8 @@ export function useQuestionnaireState({ onToast } = {}) {
           completion_percentage: progress
         };
 
-        await symptomQuestionnaireAPI.submitQuestionnaire(submissionData);
-        // Fire-and-forget: don't block UI waiting for draft cleanup
+        // Fire-and-forget: submit + delete draft in background, don't block UI
+        symptomQuestionnaireAPI.submitQuestionnaire(submissionData).catch(() => {});
         symptomQuestionnaireAPI.deleteDraft().catch(() => {});
         localStorage.removeItem('questionnaire_draft');
         setShowSaveModal(true);
@@ -104,7 +104,6 @@ export function useQuestionnaireState({ onToast } = {}) {
         symptomQuestionnaireAPI.saveDraft(draftData)
           .then(() => {
             localStorage.setItem('questionnaire_draft', JSON.stringify({ answers, currentSection }));
-            onToast?.("Draft saved", "success");
             setIsDirty(false);
           })
           .catch(() => {

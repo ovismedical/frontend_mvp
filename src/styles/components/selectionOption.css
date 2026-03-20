@@ -5,7 +5,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 2px solid transparent;
+  border: none;
+  box-shadow: 0 0 0 2px transparent;
   border-radius: var(--radius-m);
   padding: 15px;
   cursor: pointer;
@@ -14,7 +15,7 @@
 }
 
 .selection-option.selected {
-  border-color: var(--blue-700);
+  box-shadow: 0 0 0 2px var(--blue-700);
   background-color: var(--blue-light-100);
 }
 

@@ -20,7 +20,8 @@
 .custom-button.outline {
   background-color: transparent;
   color: var(--blue-700);
-  border: 2px solid var(--blue-700);
+  border: none;
+  box-shadow: 0 0 0 2px var(--blue-700);
 }
 
 .button-content {

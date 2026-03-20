@@ -58,7 +58,10 @@ export default function QuestionnaireInline() {
       {/* Save Modal */}
       {state.showSaveModal && (
         <SaveModal
-          onClose={() => state.setShowSaveModal(false)}
+          onClose={() => {
+            state.setShowSaveModal(false);
+            navigate("/home");
+          }}
           onConfirm={() => {
             state.setShowSaveModal(false);
             navigate("/dashboard");
