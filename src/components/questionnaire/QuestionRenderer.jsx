@@ -8,6 +8,7 @@ import BodyDiagramQuestion from "./question-types/BodyDiagramQuestion";
 import MuscleHighlighterQuestion from "./question-types/MuscleHighlighterQuestion";
 import JointHighlighterQuestion from "./question-types/JointHighlighterQuestion";
 import ColorChartQuestion from "./question-types/ColorChartQuestion";
+import BristolChartQuestion from "./question-types/BristolChartQuestion";
 
 export default function QuestionRenderer({ question, value, onChange, answers, hasError }) {
   // Check conditional logic
@@ -87,6 +88,14 @@ export default function QuestionRenderer({ question, value, onChange, answers, h
       case "color-chart":
         return (
           <ColorChartQuestion
+            question={question}
+            value={value}
+            onChange={onChange}
+          />
+        );
+      case "bristol-chart":
+        return (
+          <BristolChartQuestion
             question={question}
             value={value}
             onChange={onChange}

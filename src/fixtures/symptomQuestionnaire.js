@@ -85,18 +85,11 @@ export const symptomQuestionnaire = [
       },
       {
         id: "stool_appearance",
-        type: "color-chart",
+        type: "bristol-chart",
         text: "Which of the following has the closest resemblance to the shape of your faeces?",
-        colorOptions: [
-          { value: "small_pebbles", label: "Small pebbles", hex: "#8B4513" },
-          { value: "black_tarry", label: "Black and tarry", hex: "#000000" },
-          { value: "mushy_ragged", label: "Mushy with ragged edges", hex: "#D2691E" },
-          { value: "lumpy_sausage", label: "Lumpy and sausage-like", hex: "#CD853F" },
-          { value: "sausage_cracks", label: "Sausage-shape with cracks on surface", hex: "#DEB887" },
-          { value: "smooth_sausage", label: "Smooth, soft sausage-shape", hex: "#F4A460" },
-          { value: "soft_blobs", label: "Soft blobs with clear cut edges", hex: "#D2B48C" },
-          { value: "liquid", label: "Liquid consistency with no solid pieces", hex: "#F5DEB3" },
-          { value: "others_specify", label: "Other – please specify", hex: null, isOther: true }
+        extraOptions: [
+          { value: "black_tarry", label: "Black and tarry", isAlert: true },
+          { value: "others_specify", label: "Other – please specify", isOther: true }
         ],
         conditional: {
           dependsOn: "bowel_frequency",
@@ -111,7 +104,7 @@ export const symptomQuestionnaire = [
         placeholder: "Describe the appearance...",
         conditional: {
           dependsOn: "stool_appearance",
-          showIf: (value) => Array.isArray(value) && value.includes("others_specify")
+          showIf: (value) => value === "others_specify"
         },
         required: false
       }
