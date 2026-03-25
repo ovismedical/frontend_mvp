@@ -1,10 +1,10 @@
 {
   "medications": [
     {
-      "img_path": "images/medications/tamoxifen.png",
+      "img_path": "images/medications/medication_a.png",
       "med_name": {
-        "en": "Tamoxifen",
-        "zh": "他莫昔芬"
+        "en": "Medication A",
+        "zh": "藥物A"
       },
       "med_type": {
         "en": "Tablets",
@@ -44,10 +44,10 @@
       }
     },
     {
-      "img_path": "/images/medications/letrozole.png",
+      "img_path": "/images/medications/medication_b.png",
       "med_name": {
-        "en": "Letrozole (Femara)",
-        "zh": "來曲唑 (芙瑪拉)"
+        "en": "Medication B",
+        "zh": "藥物B"
       },
       "med_type": {
         "en": "Tablets",
@@ -79,10 +79,10 @@
       }
     },
     {
-      "img_path": "images/medications/lazido.png",
+      "img_path": "images/medications/medication_c.png",
       "med_name": {
-        "en": "Lazido",
-        "zh": "拉西多"
+        "en": "Medication C",
+        "zh": "藥物C"
       },
       "med_type": {
         "en": "Sachets",
@@ -114,10 +114,10 @@
       }
     },
     {
-      "img_path": "images/medications/ondatron.png",
+      "img_path": "images/medications/medication_d.png",
       "med_name": {
-        "en": "Ondatron",
-        "zh": "昂丹司瓊"
+        "en": "Medication D",
+        "zh": "藥物D"
       },
       "med_type": {
         "en": "Tablets",
@@ -149,10 +149,10 @@
       }
     },
     {
-      "img_path": "images/medications/paracetamol.png",
+      "img_path": "images/medications/medication_e.png",
       "med_name": {
-        "en": "Paracetamol",
-        "zh": "撲熱息痛"
+        "en": "Medication E",
+        "zh": "藥物E"
       },
       "med_type": {
         "en": "Tablets",

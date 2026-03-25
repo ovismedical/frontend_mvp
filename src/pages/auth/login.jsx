@@ -93,7 +93,7 @@ const Login = () => {
       </a>
 
       <p className="login-footer caption">
-        <span>{t("alreadyHaveAnAccount")}</span>
+        <span>{t("dontHaveAnAccount")}</span>
         <a href="/register" className="login-link caption">
           {t("register")}
         </a>

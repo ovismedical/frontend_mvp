@@ -79,7 +79,7 @@ export function makeAppointment(overrides = {}) {
 export function makeMedication(overrides = {}) {
   return {
     id: 'med_1',
-    name: 'Paracetamol',
+    name: 'Medication E',
     dosage: '500mg',
     frequency: 'twice daily',
     ...overrides,

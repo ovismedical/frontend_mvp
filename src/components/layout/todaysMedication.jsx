@@ -11,7 +11,7 @@ const TodaysMedication = () => {
   const initialMedications = [
     {
       id: 1,
-      name: t("medication_doxorubicin"),
+      name: t("medication_f"),
       dose: t("medication_dose_vial", { count: 1 }),
       time: "9:00am",
       stomach: t("with_food"),
@@ -20,7 +20,7 @@ const TodaysMedication = () => {
     },
     {
       id: 2,
-      name: t("medication_cyclophosphamide"),
+      name: t("medication_g"),
       dose: t("medication_dose_pills", { count: 2 }),
       time: "10:30am",
       stomach: t("empty_stomach"),
@@ -29,7 +29,7 @@ const TodaysMedication = () => {
     },
     {
       id: 3,
-      name: t("medication_tamoxifen"),
+      name: t("medication_a"),
       dose: t("medication_dose_pill", { count: 1 }),
       time: "8:00am",
       stomach: t("with_food"),
@@ -38,7 +38,7 @@ const TodaysMedication = () => {
     },
     {
       id: 4,
-      name: t("medication_methotrexate"),
+      name: t("medication_h"),
       dose: t("medication_dose_tablet", { count: 1 }),
       time: "12:00pm",
       stomach: t("with_food"),
@@ -47,7 +47,7 @@ const TodaysMedication = () => {
     },
     {
       id: 5,
-      name: t("medication_rituximab"),
+      name: t("medication_i"),
       dose: t("medication_dose_infusion", { count: 1 }),
       time: "1:30pm",
       stomach: t("before_meal"),
@@ -56,7 +56,7 @@ const TodaysMedication = () => {
     },
     {
       id: 6,
-      name: t("medication_capecitabine"),
+      name: t("medication_j"),
       dose: t("medication_dose_pills", { count: 2 }),
       time: "6:00pm",
       stomach: t("empty_stomach"),
@@ -65,7 +65,7 @@ const TodaysMedication = () => {
     },
     {
       id: 7,
-      name: t("medication_anastrozole"),
+      name: t("medication_k"),
       dose: t("medication_dose_pill", { count: 1 }),
       time: "7:30pm",
       stomach: t("with_food"),

@@ -8,7 +8,7 @@
     "lastUpdate": "2 hours ago",
     "medications": [
       {
-        "medName": "Tamoxifen",
+        "medName": "Medication A",
         "strength": "20mg",
         "quantity": 30,
         "type": "Tablet",
@@ -25,7 +25,7 @@
         }
       },
       {
-        "medName": "Letrozole",
+        "medName": "Medication B",
         "strength": "2.5mg",
         "quantity": 6,
         "type": "Tablet",
@@ -41,7 +41,7 @@
         }
       },
       {
-        "medName": "Doxorubicin",
+        "medName": "Medication F",
         "strength": "60 mg/m²",
         "quantity": 30,
         "type": "Tablet",
@@ -57,7 +57,7 @@
         }
       },
       {
-        "medName": "Ibuprofen",
+        "medName": "Medication L",
         "strength": "60 mg/m²",
         "quantity": 5,
         "type": "Injection",
@@ -74,7 +74,7 @@
         }
       },
       {
-        "medName": "Omeprazole",
+        "medName": "Medication M",
         "strength": "20mg",
         "quantity": 50,
         "type": "Tablet",

@@ -788,6 +788,68 @@
   padding-top: 4px;
 }
 
+/* Joint Highlighter — hybrid overlay on muscle library body */
+.joint-highlighter-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  background-color: var(--neutral-50);
+  border-radius: var(--radius-l);
+  padding: 8px;
+  box-shadow: 0 0 0 1px var(--neutral-200);
+  overflow: hidden;
+}
+
+.joint-highlighter-body {
+  pointer-events: none;
+}
+
+.joint-overlay-container {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 280px;
+  height: 560px;
+}
+
+.joint-dot {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+  z-index: 2;
+}
+
+.joint-dot-inner {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: var(--lavender-100, #e8dcfd);
+  box-shadow: 0 0 0 1.5px var(--lavender-400, #926df8);
+  transition: all 0.15s ease;
+}
+
+.joint-dot:hover .joint-dot-inner {
+  transform: scale(1.15);
+}
+
+.joint-dot.selected .joint-dot-inner {
+  width: 20px;
+  height: 20px;
+  background-color: var(--primary, #926df8);
+  box-shadow: 0 0 0 2px var(--lavender-600, #7c4dff), 0 0 8px rgba(146, 109, 248, 0.4);
+}
+
 /* Body Diagram — SVG-based */
 .body-diagram-question {
   margin-top: 16px;

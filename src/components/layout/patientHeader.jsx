@@ -40,7 +40,7 @@ const PatientHeader = () => {
       <div className="user-header__text h4">
         <div className="greeting">
           {getGreeting()},{" "}
-          <span className="username">{user?.name || t("user")}</span>
+          <span className="username">{user?.name || user?.username || t("user")}</span>
         </div>
         <div className="datetime caption">{currentDateTime()}</div>
       </div>

@@ -29,11 +29,22 @@ export const symptomQuestionnaire = [
           { value: "taste", label: "Taste changes" },
           { value: "fullness", label: "Feeling of fullness" },
           { value: "mood", label: "Low mood / Lost interest in taking food and drinks" },
-          { value: "others", label: "Others, please specify" }
+          { value: "others_specify", label: "Other – please specify" }
         ],
         conditional: {
           dependsOn: "appetite_rating",
           showIf: (value) => value >= 4
+        },
+        required: false
+      },
+      {
+        id: "appetite_causes_other_text",
+        type: "text",
+        text: "Please specify:",
+        placeholder: "Describe the cause...",
+        conditional: {
+          dependsOn: "appetite_causes",
+          showIf: (value) => Array.isArray(value) && value.includes("others_specify")
         },
         required: false
       }
@@ -220,11 +231,22 @@ export const symptomQuestionnaire = [
           { value: "getting_up", label: "Getting out of bed" },
           { value: "stairs", label: "Walking up the stairs" },
           { value: "walking", label: "Walking short distances" },
-          { value: "others", label: "Others, please specify" }
+          { value: "others_specify", label: "Other – please specify" }
         ],
         conditional: {
           dependsOn: "dyspnea_frequency",
           showIf: (value) => ["3-4", "5-6", "6+"].includes(value)
+        },
+        required: false
+      },
+      {
+        id: "dyspnea_activities_other_text",
+        type: "text",
+        text: "Please specify:",
+        placeholder: "Describe the activity...",
+        conditional: {
+          dependsOn: "dyspnea_activities",
+          showIf: (value) => Array.isArray(value) && value.includes("others_specify")
         },
         required: false
       }
@@ -269,11 +291,22 @@ export const symptomQuestionnaire = [
           { value: "bladder", label: "Bladder" },
           { value: "prostate", label: "Prostate" },
           { value: "urethra", label: "Urethra" },
-          { value: "others", label: "Others, please specify" }
+          { value: "others_specify", label: "Other – please specify" }
         ],
         conditional: {
           dependsOn: "dysuria_frequency",
           showIf: (value) => ["3-4", "5-6", "6+"].includes(value)
+        },
+        required: false
+      },
+      {
+        id: "dysuria_location_other_text",
+        type: "text",
+        text: "Please specify:",
+        placeholder: "Describe the location...",
+        conditional: {
+          dependsOn: "dysuria_location",
+          showIf: (value) => Array.isArray(value) && value.includes("others_specify")
         },
         required: false
       },
@@ -658,27 +691,29 @@ export const symptomQuestionnaire = [
     questions: [
       {
         id: "joint_pain_areas",
-        type: "body-diagram",
+        type: "joint-diagram",
         text: "Please choose all the areas where you have experienced joint pain since the last record.",
         bodyRegions: [
-          { value: "left_shoulder", label: "Left shoulder girdle", style: { top: "25%", left: "20%" } },
-          { value: "right_shoulder", label: "Right shoulder girdle", style: { top: "25%", left: "80%" } },
-          { value: "left_elbow", label: "Left elbow", style: { top: "40%", left: "25%" } },
-          { value: "right_elbow", label: "Right elbow", style: { top: "40%", left: "75%" } },
-          { value: "left_wrist", label: "Left wrist", style: { top: "55%", left: "30%" } },
-          { value: "right_wrist", label: "Right wrist", style: { top: "55%", left: "70%" } },
-          { value: "left_fingers", label: "Fingers on left hand", style: { top: "60%", left: "25%" } },
-          { value: "right_fingers", label: "Fingers on right hand", style: { top: "60%", left: "75%" } },
-          { value: "upper_back", label: "Upper back", style: { top: "30%", left: "50%" } },
-          { value: "lower_back", label: "Lower back", style: { top: "45%", left: "50%" } },
-          { value: "left_hip", label: "Left hip", style: { top: "60%", left: "35%" } },
-          { value: "right_hip", label: "Right hip", style: { top: "60%", left: "65%" } },
-          { value: "left_knee", label: "Left knee", style: { top: "75%", left: "40%" } },
-          { value: "right_knee", label: "Right knee", style: { top: "75%", left: "60%" } },
-          { value: "left_ankle", label: "Left ankle", style: { top: "85%", left: "35%" } },
-          { value: "right_ankle", label: "Right ankle", style: { top: "85%", left: "65%" } },
-          { value: "left_toes", label: "Toes on left foot", style: { top: "90%", left: "30%" } },
-          { value: "right_toes", label: "Toes on right foot", style: { top: "90%", left: "70%" } }
+          // Front view
+          { value: "left_shoulder",  label: "Left shoulder girdle",   side: "front" },
+          { value: "right_shoulder", label: "Right shoulder girdle",  side: "front" },
+          { value: "left_elbow",     label: "Left elbow",             side: "front" },
+          { value: "right_elbow",    label: "Right elbow",            side: "front" },
+          { value: "left_wrist",     label: "Left wrist",             side: "front" },
+          { value: "right_wrist",    label: "Right wrist",            side: "front" },
+          { value: "left_fingers",   label: "Fingers on left hand",   side: "front" },
+          { value: "right_fingers",  label: "Fingers on right hand",  side: "front" },
+          { value: "left_hip",       label: "Left hip",               side: "front" },
+          { value: "right_hip",      label: "Right hip",              side: "front" },
+          { value: "left_knee",      label: "Left knee",              side: "front" },
+          { value: "right_knee",     label: "Right knee",             side: "front" },
+          { value: "left_ankle",     label: "Left ankle",             side: "front" },
+          { value: "right_ankle",    label: "Right ankle",            side: "front" },
+          { value: "left_toes",      label: "Toes on left foot",      side: "front" },
+          { value: "right_toes",     label: "Toes on right foot",     side: "front" },
+          // Back view
+          { value: "upper_back",     label: "Upper back",             side: "back" },
+          { value: "lower_back",     label: "Lower back",             side: "back" }
         ],
         required: true
       }

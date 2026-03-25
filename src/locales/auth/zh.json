@@ -1,5 +1,6 @@
 {
   "alreadyHaveAnAccount": "已經有帳戶了 ",
+  "dontHaveAnAccount": "還沒有帳戶？ ",
   "welcome_title": "歡迎使用 Ovis！",
   "welcome_subtitle": "我們將您的健康資訊整合到一個應用程式中，配合 AI 的強大功能",
   "welcome_button": "開始使用",

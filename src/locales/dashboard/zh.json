@@ -99,5 +99,8 @@
   "this_week": "本週",
   "same_day": "同日",
   "emergency": "緊急",
-  "health_insights": "健康洞察"
+  "health_insights": "健康洞察",
+  "no_concerns": "無異常",
+  "alerts": "警報",
+  "assessments": "評估"
 }

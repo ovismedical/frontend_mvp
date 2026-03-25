@@ -14,8 +14,8 @@ export default function MedicationDetails() {
 
   const defaultMedication = {
     med_name: {
-      en: "Tamoxifen",
-      zh: "他莫昔芬",
+      en: "Medication A",
+      zh: "藥物A",
     },
     med_type: {
       en: "Tablets",

@@ -117,5 +117,8 @@
   "this_week": "This Week",
   "same_day": "Same Day",
   "emergency": "Emergency",
-  "health_insights": "Health Insights"
+  "health_insights": "Health Insights",
+  "no_concerns": "No concerns",
+  "alerts": "Alerts",
+  "assessments": "assessments"
 }
