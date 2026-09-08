@@ -16,7 +16,7 @@ export const getDoctorRoutes = () => [
   <Route
     key="protected_routes"
     element={
-      <ProtectedRoute>
+      <ProtectedRoute role="doctor">
         <BottomNavLayout isPatient={false} />
       </ProtectedRoute>
     }
@@ -26,6 +26,14 @@ export const getDoctorRoutes = () => [
     <Route path="/doctor_notifications" element={<DoctorNotifications />} />
     <Route path="/doctor_settings" element={<DoctorSettings />} />
   </Route>,
-  <Route path="/patient_details/:patientId" element={<PatientDetails />} />,
-  <Route path="/add_medication/:patientId" element={<AddMedications />} />,
+  <Route
+    key="patient_details"
+    path="/patient_details/:patientId"
+    element={<ProtectedRoute role="doctor"><PatientDetails /></ProtectedRoute>}
+  />,
+  <Route
+    key="add_medication"
+    path="/add_medication/:patientId"
+    element={<ProtectedRoute role="doctor"><AddMedications /></ProtectedRoute>}
+  />,
 ];

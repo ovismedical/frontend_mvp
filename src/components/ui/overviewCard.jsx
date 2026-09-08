@@ -19,16 +19,18 @@ const OverviewCard = ({
       >
         {icon}
       </div>
-      <div className="doctor-home-overview-card-change">
-        <div className={`material-symbols-rounded change-icon ${changeClass}`}>
-          {changeIcon}
+      {changeValue != null && (
+        <div className="doctor-home-overview-card-change">
+          <div className={`material-symbols-rounded change-icon ${changeClass}`}>
+            {changeIcon}
+          </div>
+          <p
+            className={`doctor-home-overview-card-change-value ${changeClass} body`}
+          >
+            {changeValue}
+          </p>
         </div>
-        <p
-          className={`doctor-home-overview-card-change-value ${changeClass} body`}
-        >
-          {changeValue}
-        </p>
-      </div>
+      )}
     </div>
     <div className="doctor-home-overview-card-info">
       <p

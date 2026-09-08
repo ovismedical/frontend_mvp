@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { authAPI } from "../../utils/api.js";
 import { useAuth } from "../../context/AuthContext";
+import { normalizeUser, homeFor } from "../../utils/auth.js";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -17,12 +18,6 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
-
-  // Demo users
-  const demoUsers = {
-    patient: { username: "patient", password: "patient123", role: "patient" },
-    doctor: { username: "doctor", password: "doctor123", role: "doctor" },
-  };
 
   const toggleShowPassword = () => setShowPassword((prev) => !prev);
 
@@ -41,20 +36,21 @@ const Login = () => {
       if (data && data.access_token) {
         // Store token for future API calls
         localStorage.setItem("token", JSON.stringify(data));
-        
-        // Update auth context - this is the key part!
-        login({
-          username: username, // Use the username from the form
-          role: "patient", // Default to patient, could be enhanced later
-        });
 
-        // Navigate based on user role (for now, default to patient home)
-        navigate("/home");
+        // Resolve the role from the server, then send the user to the right home
+        const profile = normalizeUser(await authAPI.getUserInfo());
+        login(profile);
+        navigate(homeFor(profile));
       } else {
         setMessage("Invalid credentials. Please try again.");
       }
     } catch (error) {
-      setMessage("Login failed. Please check your credentials and try again.");
+      localStorage.removeItem("token");
+      setMessage(
+        /401|Invalid credentials/i.test(error.message || "")
+          ? "Invalid username or password."
+          : "Login failed. Please check your connection and try again."
+      );
     } finally {
       setLoading(false);
     }

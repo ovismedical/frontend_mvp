@@ -12,5 +12,15 @@
   "take": "Take",
   "taken": "Taken",
   "skipped": "Skipped",
-  "register": "Register"
+  "register": "Register",
+  "coming_soon": "Coming soon",
+  "coming_soon_message": "This feature isn't connected yet. What you see here is a preview and nothing is saved.",
+  "sample_data": "Sample data",
+  "sample_data_message": "Placeholder for illustration only — not your real medication record. Changes here aren't saved.",
+  "medication_sample_message": "Placeholder medication list for illustration only. Medication tracking isn't connected to your clinical record yet, so Take/Skip aren't saved.",
+  "appointments_coming_soon": "Appointment booking isn't connected to your clinic's calendar yet. The appointments shown are examples.",
+  "password_coming_soon": "Password changes and resets aren't available yet. Contact your care team if you need help signing in.",
+  "next_badge_progress": "Next badge: {{title}} — {{progress}}/{{total}} days",
+  "all_badges_unlocked": "All badges unlocked — keep the streak going!",
+  "streak_summary": "{{current}}-day streak · longest {{longest}} days"
 }

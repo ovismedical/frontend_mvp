@@ -12,5 +12,15 @@
   "take": "服用",
   "taken": "已服用",
   "skipped": "已跳過",
-  "register": "註冊"
+  "register": "註冊",
+  "coming_soon": "即將推出",
+  "coming_soon_message": "此功能尚未連接，這裡顯示的只是預覽，不會儲存任何內容。",
+  "sample_data": "示範資料",
+  "sample_data_message": "僅供示範的佔位資料，並非你的真實藥物記錄。這裡的更改不會儲存。",
+  "medication_sample_message": "僅供示範的藥物清單。藥物追蹤尚未連接到你的臨床記錄，「服用／略過」不會儲存。",
+  "appointments_coming_soon": "預約功能尚未連接到診所日曆，顯示的預約只是示例。",
+  "password_coming_soon": "暫時無法更改或重設密碩。如需協助登入，請聯絡你的醫療團隊。",
+  "next_badge_progress": "下一個徽章：{{title}} — {{progress}}/{{total}} 天",
+  "all_badges_unlocked": "已解鎖所有徽章 — 繼續保持！",
+  "streak_summary": "連續 {{current}} 天 · 最長 {{longest}} 天"
 }

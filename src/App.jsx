@@ -9,7 +9,7 @@ import { getPatientRoutes } from "./routes/PatientRoutes.jsx";
 import { getDoctorRoutes } from "./routes/DoctorRoutes.jsx";
 
 function App() {
-  const { isAuthenticated, isAuthLoading } = useAuth();
+  const { isAuthenticated, isAuthLoading, user } = useAuth();
 
   // Apply body classes based on current route
   useBodyClasses();
@@ -18,7 +18,7 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/" element={renderRootRedirect(isAuthenticated)} />
+      <Route path="/" element={renderRootRedirect(isAuthenticated, user)} />
 
       {/* Auth & Onboarding Routes */}
       {getAuthRoutes()}

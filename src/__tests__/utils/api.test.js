@@ -123,9 +123,20 @@ describe('symptomQuestionnaireAPI', () => {
 // doctorAPI
 // ===================================================================
 describe('doctorAPI', () => {
-  it('getPatients returns array', async () => {
+  it('getPatients returns the backend { patients: [...] } shape', async () => {
     const result = await doctorAPI.getPatients()
-    expect(Array.isArray(result)).toBe(true)
+    expect(Array.isArray(result.patients)).toBe(true)
+  })
+
+  it('getPatientDetails returns enriched patients with latest alert', async () => {
+    const result = await doctorAPI.getPatientDetails()
+    expect(result.patients[0]).toMatchObject({ username: 'testpatient', latest_alert_level: 'RED' })
+  })
+
+  it('getPatientAssessments is scoped to assigned patients', async () => {
+    const ok = await doctorAPI.getPatientAssessments('testpatient')
+    expect(ok.count).toBe(1)
+    await expect(doctorAPI.getPatientAssessments('stranger')).rejects.toThrow(/not assigned/)
   })
 })
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import RegisterForm from "../../components/layout/registerForm.jsx";
 import Button from "../../components/ui/button.jsx";
 import blueLogo from "../../assets/images/logo_blue.png";
@@ -20,6 +20,17 @@ const Register = () => {
   const [showConfirm, setShowConfirm] = useState(false);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
+  // Whether the server wants an email OTP step (Twilio configured) or accepts direct sign-up
+  const [otpRequired, setOtpRequired] = useState(true);
+
+  useEffect(() => {
+    let cancelled = false;
+    authAPI
+      .getConfig()
+      .then((cfg) => { if (!cancelled) setOtpRequired(cfg?.registration?.otp_required !== false); })
+      .catch(() => { if (!cancelled) setOtpRequired(true); });
+    return () => { cancelled = true; };
+  }, []);
 
   const handleRegister = async () => {
     if (!email || !username || !password || !confirmPassword || !accessCode) {
@@ -35,6 +46,18 @@ const Register = () => {
     setMessage("");
 
     try {
+      if (!otpRequired) {
+        await authAPI.registerDirect({
+          username,
+          access_code: accessCode.toUpperCase(),
+          password,
+          email,
+        });
+        setMessage("Account created successfully! Redirecting to login...");
+        setTimeout(() => navigate("/login"), 1500);
+        return;
+      }
+
       const data = await authAPI.register({
         username,
         access_code: accessCode,
@@ -59,7 +82,7 @@ const Register = () => {
         setMessage(data.detail || "Account creation failed.");
       }
     } catch (error) {
-      setMessage("Network error or backend not running.");
+      setMessage(error?.message && !/HTTP error/.test(error.message) ? error.message : "Network error or backend not running.");
     } finally {
       setLoading(false);
     }

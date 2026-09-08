@@ -59,5 +59,10 @@
   "oct": "Oct",
   "nov": "Nov",
   "dec": "Dec",
-  "your_care_library": "Your Care Library"
+  "your_care_library": "Your Care Library",
+  "notification_flagged_for": "Flagged for {{doctor}}",
+  "your_care_team": "your care team",
+  "wellness_no_data": "Complete a check-in to start your score",
+  "wellness_need_more_data": "More check-ins needed for a trend",
+  "no_data": "No data"
 }

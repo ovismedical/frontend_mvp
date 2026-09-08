@@ -22,5 +22,21 @@
   "select_message_type": "選擇訊息類型",
   "send_message": "發送訊息",
   "scan_patient_qr": "掃描患者二維碼",
-  "patient": "病人："
+  "patient": "病人：",
+  "checked_in_today": "今日已登記",
+  "flagged_this_week": "本週已標記",
+  "new_checkin": "新症狀記錄",
+  "new_assessment": "新 Florence 評估",
+  "no_recent_activity": "你的病人暫時未有活動。",
+  "doctor": "醫生",
+  "clinician": "臨床醫生",
+  "no_data": "沒有數據",
+  "just_now": "剛剛",
+  "min_ago": "{{count}} 分鐘前",
+  "hour_ago": "{{count}} 小時前",
+  "hours_ago": "{{count}} 小時前",
+  "day_ago": "{{count}} 天前",
+  "days_ago": "{{count}} 天前",
+  "loading": "載入中...",
+  "no_patients_found": "尚未有指派的病人。"
 }

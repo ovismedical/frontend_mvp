@@ -12,13 +12,21 @@ const getAuthHeaders = () => {
       const parsed = JSON.parse(tokenData);
       token = parsed?.access_token;
     }
-  } catch (e) {
+  } catch {
     // Token parsing failed — proceed without auth
+  }
+
+  let timezone = null;
+  try {
+    timezone = Intl.DateTimeFormat().resolvedOptions().timeZone || null;
+  } catch {
+    // Older engines: fall back to server-side UTC
   }
 
   const headers = {
     "Content-Type": "application/json",
     "Accept": "application/json",
+    ...(timezone && { "X-Timezone": timezone }),
     ...(token && { Authorization: `Bearer ${token}` })
   };
 
@@ -41,6 +49,25 @@ export const authAPI = {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: new URLSearchParams({ username, password }),
+    });
+    return handleResponse(response);
+  },
+
+  // Capability flags: whether sign-up needs an OTP step, whether Florence AI is live
+  getConfig: async () => {
+    const response = await fetch(`${API_BASE_URL}/auth/config`, {
+      method: "GET",
+      headers: { Accept: "application/json" },
+    });
+    return handleResponse(response);
+  },
+
+  // Direct registration (no OTP) - used when Twilio isn't configured on the server
+  registerDirect: async (userData) => {
+    const response = await fetch(`${API_BASE_URL}/register`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify(userData),
     });
     return handleResponse(response);
   },
@@ -118,6 +145,15 @@ export const florenceAPI = {
     return handleResponse(response);
   },
 
+  // Background assessment/triage result for a finished session (poll until triage_status !== "generating")
+  getResult: async (sessionId) => {
+    const response = await fetch(`${API_BASE_URL}/florence/result/${sessionId}`, {
+      method: "GET",
+      headers: getAuthHeaders(),
+    });
+    return handleResponse(response);
+  },
+
   getSessionHistory: async (sessionId) => {
     const response = await fetch(`${API_BASE_URL}/florence/session/${sessionId}`, {
       method: "GET",
@@ -146,8 +182,8 @@ export const questionsAPI = {
     return handleResponse(response);
   },
 
-  getStreak: async (username) => {
-    const response = await fetch(`${API_BASE_URL}/getstreak?username=${encodeURIComponent(username)}`, {
+  getStreak: async () => {
+    const response = await fetch(`${API_BASE_URL}/getstreak`, {
       method: "GET",
       headers: getAuthHeaders(),
     });

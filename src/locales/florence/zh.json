@@ -11,7 +11,7 @@
   "processing": "處理中...",
   "end_chat": "結束對話",
   "cancel": "取消",
-  "thank_you_chat": "謝謝您與我聊天！您的評估正在處理中，很快將在您的儀表板中提供。",
+  "thank_you_chat": "感謝你與我聊天！我已為你的醫療團隊保存對話，正在準備你的評估。",
   "trouble_responding": "抱歉，我現在無法回應。請稍後再試。",
   "trouble_connecting": "我現在連接有問題。請稍後再試。",
   "welcome_message": "您好！我是 Florence，您的 AI 健康助手。今天我能為您做什麼？",
@@ -19,9 +19,8 @@
   "session_restarted": "會話已重新開始",
   "chat_ended": "聊天會話已結束",
   "quick_responses_title": "快速回應",
-  
   "quick_responses_headache": "我有頭痛",
-  "quick_responses_feverish": "我感到發燒", 
+  "quick_responses_feverish": "我感到發燒",
   "quick_responses_nauseous": "我感到噁心",
   "quick_responses_great": "我感覺很好！",
   "quick_responses_tired": "我很累",
@@ -32,7 +31,7 @@
   "quick_responses_sometimes": "有時",
   "quick_responses_very_mild": "1 - 非常輕微",
   "quick_responses_mild": "2 - 輕微",
-  "quick_responses_moderate": "3 - 中等", 
+  "quick_responses_moderate": "3 - 中等",
   "quick_responses_severe": "4 - 嚴重",
   "quick_responses_very_severe": "5 - 非常嚴重",
   "quick_responses_rarely": "1 - 很少",
@@ -53,5 +52,7 @@
   "quick_responses_have_fever": "我有發燒",
   "quick_responses_feel_nauseous": "我感到噁心",
   "quick_responses_feel_tired": "我感到疲勞",
-  "quick_responses_other_symptoms_text": "我有其他症狀"
+  "quick_responses_other_symptoms_text": "我有其他症狀",
+  "assessment_ready": "你的評估已完成 — 警報級別 {{level}}：{{description}} 你可以在儀表板查看完整報告。",
+  "assessment_still_processing": "你的評估需要多一點時間，完成後會顯示在儀表板。"
 }

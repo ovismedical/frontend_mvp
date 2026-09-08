@@ -2,6 +2,10 @@ import '@testing-library/jest-dom'
 import { afterAll, afterEach, beforeAll } from 'vitest'
 import { cleanup } from '@testing-library/react'
 import { server } from './mocks/server.js'
+import i18n from '../i18n.js'
+
+// Real translations in tests so assertions can use the visible English strings
+beforeAll(() => i18n.changeLanguage('en'))
 
 // Start MSW server before all tests
 beforeAll(() => server.listen({ onUnhandledRequest: 'warn' }))

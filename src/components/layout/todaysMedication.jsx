@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import "../../styles/components/todaysMedication.css";
 import { useNavigate } from "react-router-dom";
+import StatusBanner from "../../components/ui/statusBanner";
 
 const TodaysMedication = () => {
   const { t } = useTranslation();
@@ -127,6 +128,7 @@ const TodaysMedication = () => {
         </a>
       </div>
 
+      <StatusBanner variant="sample" message={t("medication_sample_message")} />
       <div className="medication-box">
         {sortedMedications.map((med) => (
           <div key={med.id} className={`medication-item ${med.status}`}>

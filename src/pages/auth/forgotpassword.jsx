@@ -4,6 +4,7 @@ import Button from "../../components/ui/button.jsx";
 import forgotPassImg from "../../assets/images/forgot_password.png";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import StatusBanner from "../../components/ui/statusBanner";
 
 const ForgotPassword = () => {
   const navigate = useNavigate();
@@ -12,6 +13,7 @@ const ForgotPassword = () => {
   // Backend Handling: Password reset request should be sent to backend API when user submits email
   return (
     <div className="forgotPassword-container">
+      <StatusBanner variant="coming-soon" message={t("password_coming_soon")} />
       <div className="backIcon-container">
         <span
           className="material-symbols-rounded chevronB_icon"

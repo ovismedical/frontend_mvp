@@ -1,0 +1,66 @@
+.status-banner {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin: 8px 16px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px dashed;
+}
+
+.status-banner--sample {
+  background: #fffbeb;
+  border-color: #f59e0b;
+  color: #92400e;
+}
+
+.status-banner--coming-soon {
+  background: #f1f5f9;
+  border-color: #94a3b8;
+  color: #475569;
+}
+
+.status-banner-icon {
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.status-banner-text strong {
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status-banner-text p {
+  margin: 2px 0 0;
+}
+
+.status-banner--compact {
+  margin: 0;
+  padding: 6px 10px;
+  border-radius: 999px;
+  align-items: center;
+}
+
+.status-banner--compact .status-banner-icon {
+  font-size: 16px;
+}
+
+/* Inline tag for cards/buttons that are placeholders */
+.coming-soon-tag {
+  display: inline-block;
+  margin-top: 6px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #e2e8f0;
+  color: #475569;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.quick-action-card.is-coming-soon {
+  opacity: 0.55;
+  cursor: not-allowed;
+}

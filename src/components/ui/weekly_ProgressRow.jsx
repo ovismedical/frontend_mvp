@@ -1,58 +1,65 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { symptomQuestionnaireAPI, analyticsAPI } from "../../utils/api";
+import { checkedInDays, mondayIndex } from "../../utils/weekProgress";
 import "../../styles/components/weekly_progressRow.css";
 
-const ProgressRow = ({ labelFormat = "short", labelPosition = "below" }) => {
-  const checkedInIndexes = [1, 2];
+const DAYS = [
+  { labelShort: "M", labelFull: "Mon" },
+  { labelShort: "T", labelFull: "Tue" },
+  { labelShort: "W", labelFull: "Wed" },
+  { labelShort: "T", labelFull: "Thu" },
+  { labelShort: "F", labelFull: "Fri" },
+  { labelShort: "S", labelFull: "Sat" },
+  { labelShort: "S", labelFull: "Sun" },
+];
 
-  // const todayIndex = new Date().getDay(); // 0 (Sun) - 6 (Sat)
-  const todayIndex = 4; // To Do: For testing purposes, set to Tuesday , remove this and uncomment above line for dynamic
+const ProgressRow = ({ labelFormat = "short", labelPosition = "below", checkedIndexes = null }) => {
+  const [fetched, setFetched] = useState(new Set());
 
-  // Backend Handling: Fetch user's check-in data for the week to determine checkedInIndexes
-  const daysOfWeek = [
-    { labelShort: "M", labelFull: "Mon", index: 0 }, // Monday
-    { labelShort: "T", labelFull: "Tue", index: 1 },
-    { labelShort: "W", labelFull: "Wed", index: 2 },
-    { labelShort: "T", labelFull: "Thu", index: 3 },
-    { labelShort: "F", labelFull: "Fri", index: 4 },
-    { labelShort: "S", labelFull: "Sat", index: 5 },
-    { labelShort: "S", labelFull: "Sun", index: 6 }, // Sunday
-  ];
+  useEffect(() => {
+    if (checkedIndexes) return undefined;
+    let cancelled = false;
+    (async () => {
+      const [history, unified] = await Promise.allSettled([
+        symptomQuestionnaireAPI.getHistory(30),
+        analyticsAPI.getUnifiedAssessments(),
+      ]);
+      if (cancelled) return;
+      const timestamps = [];
+      if (history.status === "fulfilled") {
+        (history.value?.history || []).forEach((h) => timestamps.push(h.timestamp || h.submitted_at));
+      }
+      if (unified.status === "fulfilled") {
+        (unified.value?.assessments || []).forEach((a) => timestamps.push(a.date));
+      }
+      setFetched(checkedInDays(timestamps));
+    })();
+    return () => { cancelled = true; };
+  }, [checkedIndexes]);
 
-  const getLabel = (day) =>
-    labelFormat === "short" ? day.labelShort : day.labelFull;
+  const checked = checkedIndexes ? new Set(checkedIndexes) : fetched;
+  const todayIndex = mondayIndex(new Date());
+  const getLabel = (day) => (labelFormat === "short" ? day.labelShort : day.labelFull);
 
   return (
     <div className="progress-row">
-      {daysOfWeek.map((day, i) => {
-        const isChecked = checkedInIndexes.includes(day.index);
-        const isToday = day.index === todayIndex;
-        const isPast =
-          day.index < todayIndex || (todayIndex === 0 && day.index !== 0); // Sunday edge case
+      {DAYS.map((day, index) => {
+        const isChecked = checked.has(index);
+        const isToday = index === todayIndex;
+        const isPast = index < todayIndex;
 
-        let statusClass = "";
-        if (isChecked) {
-          statusClass = "checked";
-        } else if (isToday) {
-          statusClass = "today";
-        } else if (isPast) {
-          statusClass = "missed";
-        } else {
-          statusClass = "upcoming";
-        }
+        let statusClass = "upcoming";
+        if (isChecked) statusClass = "checked";
+        else if (isToday) statusClass = "today";
+        else if (isPast) statusClass = "missed";
 
         return (
-          <div key={i} className="day-card">
-            {labelPosition === "above" && (
-              <span className={`day-label overline`}>{getLabel(day)}</span>
-            )}
-            <span
-              className={`material-symbols-rounded day-icon ${statusClass}`}
-            >
+          <div key={index} className="day-card">
+            {labelPosition === "above" && <span className="day-label overline">{getLabel(day)}</span>}
+            <span className={`material-symbols-rounded day-icon ${statusClass}`}>
               {isChecked ? "check_circle" : "circle"}
             </span>
-            {labelPosition === "below" && (
-              <span className={`day-label overline`}>{getLabel(day)}</span>
-            )}
+            {labelPosition === "below" && <span className="day-label overline">{getLabel(day)}</span>}
           </div>
         );
       })}

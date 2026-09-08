@@ -11,7 +11,7 @@
   "processing": "Processing...",
   "end_chat": "End Chat",
   "cancel": "Cancel",
-  "thank_you_chat": "Thank you for chatting with me! Your assessment is being processed and will be available in your dashboard shortly.",
+  "thank_you_chat": "Thank you for chatting with me! I've saved our conversation for your care team and I'm preparing your assessment now — this takes a moment.",
   "trouble_responding": "I'm sorry, I'm having trouble responding right now. Please try again.",
   "trouble_connecting": "I'm having trouble connecting right now. Please try again later.",
   "welcome_message": "Hello! I'm Florence, your AI health assistant. How can I help you today?",
@@ -19,9 +19,8 @@
   "session_restarted": "Session restarted",
   "chat_ended": "Chat session ended",
   "quick_responses_title": "Quick responses",
-  
   "quick_responses_headache": "I have a headache",
-  "quick_responses_feverish": "I feel feverish", 
+  "quick_responses_feverish": "I feel feverish",
   "quick_responses_nauseous": "I feel nauseous",
   "quick_responses_great": "I feel great!",
   "quick_responses_tired": "I'm tired",
@@ -32,7 +31,7 @@
   "quick_responses_sometimes": "Sometimes",
   "quick_responses_very_mild": "1 - Very Mild",
   "quick_responses_mild": "2 - Mild",
-  "quick_responses_moderate": "3 - Moderate", 
+  "quick_responses_moderate": "3 - Moderate",
   "quick_responses_severe": "4 - Severe",
   "quick_responses_very_severe": "5 - Very Severe",
   "quick_responses_rarely": "1 - Rarely",
@@ -53,5 +52,7 @@
   "quick_responses_have_fever": "I have a fever",
   "quick_responses_feel_nauseous": "I feel nauseous",
   "quick_responses_feel_tired": "I feel tired",
-  "quick_responses_other_symptoms_text": "I have other symptoms"
+  "quick_responses_other_symptoms_text": "I have other symptoms",
+  "assessment_ready": "Your assessment is ready — alert level {{level}}: {{description}} You can see the full report on your dashboard.",
+  "assessment_still_processing": "Your assessment is taking a little longer than usual. It will appear on your dashboard as soon as it's ready."
 }

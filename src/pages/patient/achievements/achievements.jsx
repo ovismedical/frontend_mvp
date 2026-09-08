@@ -36,6 +36,7 @@ const Achievements = () => {
   const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 768);
   const [showLockedModal, setShowLockedModal] = useState(false);
   const [achievements, setAchievements] = useState([]);
+  const [streak, setStreak] = useState({ current: 0, longest: 0 });
 
   useEffect(() => {
     const handleResize = () => {
@@ -52,6 +53,7 @@ const Achievements = () => {
         const data = await achievementsAPI.getMyAchievements();
         if (data.success) {
           setAchievements(data.achievements || []);
+          setStreak({ current: data.current_streak || 0, longest: data.longest_streak || 0 });
         }
       } catch (err) {
         console.error("Failed to fetch achievements:", err);
@@ -160,11 +162,19 @@ const Achievements = () => {
     }
   };
 
-  // Rank data (still hardcoded — out of scope for this change)
+  // Rank block driven by the real streak: next locked badge and how far along it is
+  const nextBadge = [...achievements].filter((a) => !a.unlocked).sort((a, b) => a.total - b.total)[0] || null;
+  const rankProgress = nextBadge ? Math.min(100, Math.round((nextBadge.progress / nextBadge.total) * 100)) : 100;
   const rankData = {
     title: { en: "Wellness Warrior", zh: "健康戰士" },
-    motto: { en: "You're building powerful habits.", zh: "您正在建立強大的習慣。" },
-    progressText: { en: "Progress to Mindful Maven: 2,450 / 3,000 XP", zh: "邁向專注大師：2,450 / 3,000 經驗值" },
+    motto: {
+      en: t("streak_summary", { current: streak.current, longest: streak.longest }),
+      zh: t("streak_summary", { current: streak.current, longest: streak.longest }),
+    },
+    progressText: nextBadge
+      ? { en: t("next_badge_progress", { title: nextBadge.title.en, progress: nextBadge.progress, total: nextBadge.total }),
+          zh: t("next_badge_progress", { title: nextBadge.title.zh, progress: nextBadge.progress, total: nextBadge.total }) }
+      : { en: t("all_badges_unlocked"), zh: t("all_badges_unlocked") },
   };
 
   // Derive recent achievements from backend data (unlocked ones, most recent first)
@@ -233,7 +243,7 @@ const Achievements = () => {
             <div className="achievements-progress-bar">
               <div
                 className="achievements-progress-fill"
-                style={{ width: "75%" }}
+                style={{ width: `${rankProgress}%` }}
               ></div>
             </div>
             <span className="achievements-progress-text caption">

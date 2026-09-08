@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import InputField from "../../../components/ui/inputfield.jsx";
 import Button from "../../../components/ui/button.jsx";
+import StatusBanner from "../../../components/ui/statusBanner";
 
 const PasswordSecurity = () => {
   const navigate = useNavigate();
@@ -62,6 +63,7 @@ const PasswordSecurity = () => {
 
   return (
     <div className="password-security-container">
+      <StatusBanner variant="coming-soon" message={t("password_coming_soon")} />
       <div className="password-security-header">
         <span
           className="material-symbols-rounded chevron_backward"
@@ -127,7 +129,7 @@ const PasswordSecurity = () => {
         </form>
 
         <div className="password-security-actions">
-          <Button className="update-password-button" onClick={handleSubmit}>
+          <Button className="update-password-button" onClick={handleSubmit} disabled>
             {t("update_password")}
           </Button>
 

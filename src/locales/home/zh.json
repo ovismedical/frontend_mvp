@@ -59,5 +59,10 @@
   "oct": "10月",
   "nov": "11月",
   "dec": "12月",
-  "your_care_library": "您的護理圖書館"
+  "your_care_library": "您的護理圖書館",
+  "notification_flagged_for": "已標記給 {{doctor}}",
+  "your_care_team": "你的醫療團隊",
+  "wellness_no_data": "完成一次記錄以開始計算分數",
+  "wellness_need_more_data": "需要更多記錄才能顯示趨勢",
+  "no_data": "沒有數據"
 }

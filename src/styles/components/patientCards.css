@@ -72,3 +72,13 @@
   justify-content: center;
   cursor: pointer;
 }
+
+.patient-card-image--initials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary-100, #e3ecff);
+  color: var(--primary-600, #1d4ed8);
+  font-weight: 600;
+  font-size: 18px;
+}

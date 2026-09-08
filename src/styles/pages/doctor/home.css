@@ -376,3 +376,13 @@
   background: var(--blue-50);
   color: var(--blue-500);
 }
+
+.choose-patient-avatar--initials {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary-100, #e3ecff);
+  color: var(--primary-600, #1d4ed8);
+  font-weight: 600;
+  font-size: 12px;
+}

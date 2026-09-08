@@ -1,23 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import Tabs from "../../../components/ui/tabs.jsx";
 import CustomDropdown from "../../../components/ui/dropdown.jsx";
 import InviteModal from "../../../components/ui/inviteModal.jsx";
+import { useAuth } from "../../../context/AuthContext";
+import { initialsOf } from "../../../utils/timeAgo";
 
 const DoctorSettings = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
 
   const [isModalOpen, setModalOpen] = useState(false);
+  const { user, logout } = useAuth();
 
   const userInfo = {
-    userImage:
-      "https://img.freepik.com/free-photo/medium-shot-smiley-doctor-with-coat_23-2148814212.jpg?semt=ais_hybrid&w=740&q=80",
-    userName: "Dr. Sarah Johnson",
-    department: "Cardiology Department",
-    phoneNumber: "12345678",
-    email: "SarahJohnson@gmail.com",
+    userImage: null,
+    userName: user?.name || t("doctor"),
+    department: [user?.specialty, user?.hospital].filter(Boolean).join(" · ") || t("clinician"),
+    phoneNumber: user?.phone || "",
+    email: user?.email || "",
+    accessCode: user?.code || "",
   };
 
   const [activeTab, setActiveTab] = useState(t("account"));
@@ -83,7 +86,7 @@ const DoctorSettings = () => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
+    logout();
     navigate("/login");
   };
 
@@ -239,8 +242,8 @@ const DoctorSettings = () => {
     <div className="settings-container">
       <div className="settings-doctor-header">
         <div className="settings-doctor-left">
-          <div className="settings-doctor-avatar">
-            <img src={userInfo.userImage} alt={userInfo.userName} />
+          <div className="settings-doctor-avatar settings-doctor-avatar--initials" aria-hidden="true">
+            {initialsOf(userInfo.userName)}
           </div>
           <div className="settings-doctor-info">
             <h2 className="settings-doctor-name h4">{userInfo.userName}</h2>

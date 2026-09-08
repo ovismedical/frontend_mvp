@@ -4,6 +4,7 @@ import Tabs from "../../../components/ui/tabs";
 import AppointmentCard from "../../../components/ui/appointmentCard";
 import appointmentsData from "../../../fixtures/appointments.json";
 import doctorsData from "../../../fixtures/doctors.json";
+import StatusBanner from "../../../components/ui/statusBanner";
 
 const Appointment = () => {
   const navigate = useNavigate();
@@ -75,6 +76,7 @@ const Appointment = () => {
 
   return (
     <div className="appointment-container">
+      <StatusBanner variant="coming-soon" messageKey="appointments_coming_soon" />
       <div className="appointment-header">
         <span
           className="material-symbols-rounded"

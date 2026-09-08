@@ -10,6 +10,13 @@ import { MemoryRouter } from 'react-router-dom'
 import { AuthProvider } from '../../context/AuthContext.jsx'
 import { ScaleProvider } from '../../context/ScaleContext.jsx'
 import App from '../../App.jsx'
+import { http, HttpResponse } from 'msw'
+import { server } from '../mocks/server.js'
+import { doctorUser } from '../mocks/handlers.js'
+
+const API = 'http://localhost:8000'
+// The app decides the role from /userinfo, so doctor tests swap that handler
+const useDoctorRole = () => server.use(http.get(`${API}/userinfo`, () => HttpResponse.json(doctorUser)))
 
 // Helper: render App at a specific route with auth pre-set
 function renderApp(route = '/', { authenticated = false } = {}) {
@@ -88,16 +95,7 @@ describe('Doctor Bottom Nav Bar', () => {
 
   navTargets.forEach(({ icon, expectedPath }) => {
     test(`doctor nav item "${icon}" navigates to ${expectedPath}`, async () => {
-      // Set doctor role in token
-      localStorage.setItem(
-        'token',
-        JSON.stringify({
-          access_token: 'fake-jwt-token-for-testing',
-          token_type: 'Bearer',
-          user: { role: 'doctor' },
-        })
-      )
-
+      useDoctorRole()
       renderApp('/doctor_home', { authenticated: true })
       await waitForApp()
 

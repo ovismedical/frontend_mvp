@@ -22,5 +22,21 @@
   "select_message_type": "Select message type",
   "send_message": "Send Message",
   "scan_patient_qr": "Scan the patient QR code",
-  "patient": "Patient:"
+  "patient": "Patient:",
+  "checked_in_today": "Checked In Today",
+  "flagged_this_week": "Flagged This Week",
+  "new_checkin": "New Check-in",
+  "new_assessment": "New Florence Assessment",
+  "no_recent_activity": "No activity from your patients yet.",
+  "doctor": "Doctor",
+  "clinician": "Clinician",
+  "no_data": "No data",
+  "just_now": "Just now",
+  "min_ago": "{{count}} min ago",
+  "hour_ago": "{{count}} hour ago",
+  "hours_ago": "{{count}} hours ago",
+  "day_ago": "{{count}} day ago",
+  "days_ago": "{{count}} days ago",
+  "loading": "Loading...",
+  "no_patients_found": "No patients assigned yet."
 }

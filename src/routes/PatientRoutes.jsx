@@ -27,77 +27,77 @@ import SymptomQuestionnaire from "../pages/patient/symptom-questionnaire.jsx";
 import QuestionnaireDetail from "../pages/patient/questionnaire-detail.jsx";
 
 export const getPatientRoutes = () => [
-  // Public patient routes (no bottom nav)
-  <Route key="chatbot" path="/chatbot" element={<Chatbot />} />,
+  // Patient routes without the bottom nav (still auth + role guarded)
+  <Route key="chatbot" path="/chatbot" element={<ProtectedRoute role="patient"><Chatbot /></ProtectedRoute>} />,
   <Route
     key="chatbot_voice"
     path="/chatbot_voice"
-    element={<VoiceInputChatbot />}
+    element={<ProtectedRoute role="patient"><VoiceInputChatbot /></ProtectedRoute>}
   />,
-  <Route key="medication" path="/medication" element={<MedicationList />} />,
+  <Route key="medication" path="/medication" element={<ProtectedRoute role="patient"><MedicationList /></ProtectedRoute>} />,
   <Route
     key="medication_details"
     path="/medication_details"
-    element={<MedicationDetails />}
+    element={<ProtectedRoute role="patient"><MedicationDetails /></ProtectedRoute>}
   />,
-  <Route key="help_center" path="/help_center" element={<HelpCenter />} />,
-  <Route key="articles" path="/articles" element={<Article />} />,
+  <Route key="help_center" path="/help_center" element={<ProtectedRoute role="patient"><HelpCenter /></ProtectedRoute>} />,
+  <Route key="articles" path="/articles" element={<ProtectedRoute role="patient"><Article /></ProtectedRoute>} />,
   <Route
     key="articles_details"
     path="/articles_details"
-    element={<ArticleDetails />}
+    element={<ProtectedRoute role="patient"><ArticleDetails /></ProtectedRoute>}
   />,
   <Route
     key="achievements_library"
     path="/achievements_library"
-    element={<AchievementsLibrary />}
+    element={<ProtectedRoute role="patient"><AchievementsLibrary /></ProtectedRoute>}
   />,
   <Route
     key="badge_details"
     path="/badge_details/:variant"
-    element={<BadgeDetails />}
+    element={<ProtectedRoute role="patient"><BadgeDetails /></ProtectedRoute>}
   />,
   <Route
     key="healthcare_provider"
     path="/healthcare_provider"
-    element={<HealthCareProvider />}
+    element={<ProtectedRoute role="patient"><HealthCareProvider /></ProtectedRoute>}
   />,
   <Route
     key="password_security"
     path="/password_security"
-    element={<PasswordSecurity />}
+    element={<ProtectedRoute role="patient"><PasswordSecurity /></ProtectedRoute>}
   />,
   <Route
     key="display_language"
     path="/display_language"
-    element={<DisplayLanguage />}
+    element={<ProtectedRoute role="patient"><DisplayLanguage /></ProtectedRoute>}
   />,
   <Route
     key="profile_management"
     path="/profile_management"
-    element={<ProfileManagement />}
+    element={<ProtectedRoute role="patient"><ProfileManagement /></ProtectedRoute>}
   />,
   <Route
     key="appointment_scheduler"
     path="/appointment_scheduler"
-    element={<AppointmentScheduler />}
+    element={<ProtectedRoute role="patient"><AppointmentScheduler /></ProtectedRoute>}
   />,
   <Route
     key="symptom_quiz"
     path="/symptom-quiz"
-    element={<SymptomQuestionnaire />}
+    element={<ProtectedRoute role="patient"><SymptomQuestionnaire /></ProtectedRoute>}
   />,
   <Route
     key="questionnaire_detail"
     path="/questionnaire-detail"
-    element={<QuestionnaireDetail />}
+    element={<ProtectedRoute role="patient"><QuestionnaireDetail /></ProtectedRoute>}
   />,
 
   // Protected routes with bottom navigation
   <Route
     key="protected_routes"
     element={
-      <ProtectedRoute>
+      <ProtectedRoute role="patient">
         <BottomNavLayout isPatient={true} />
       </ProtectedRoute>
     }

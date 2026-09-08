@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import StatusBanner from "../../../components/ui/statusBanner";
 
 export default function MedicationDetails() {
   const navigate = useNavigate();
@@ -74,6 +75,7 @@ export default function MedicationDetails() {
 
   return (
     <div className="med-details-container">
+      <StatusBanner variant="sample" message={t("medication_sample_message")} />
       <div className="med-details-header">
         <span
           className="material-symbols-rounded chevron_backward"

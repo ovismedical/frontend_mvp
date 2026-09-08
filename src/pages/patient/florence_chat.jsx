@@ -18,6 +18,11 @@ const FlorenceChat = ({ onClose, embedded = false, onSessionChange }) => {
   const [customOptions, setCustomOptions] = useState([]);
   const [showEndChatModal, setShowEndChatModal] = useState(false);
   const [isEndingSession, setIsEndingSession] = useState(false);
+  // Latest session for the unmount cleanup (effects with [] deps would otherwise see the initial null)
+  const sessionIdRef = useRef(null);
+  const sessionActiveRef = useRef(false);
+  useEffect(() => { sessionIdRef.current = sessionId; }, [sessionId]);
+  useEffect(() => { sessionActiveRef.current = isSessionActive; }, [isSessionActive]);
   const messagesEndRef = useRef(null);
   const inputRef = useRef(null);
 
@@ -117,8 +122,9 @@ const FlorenceChat = ({ onClose, embedded = false, onSessionChange }) => {
   useEffect(() => {
     initializeSession();
     return () => {
-      if (sessionId) {
-        endSession();
+      // Leaving the page finishes the session: the conversation is saved and analysed in the background
+      if (sessionIdRef.current && sessionActiveRef.current) {
+        florenceAPI.endSession(sessionIdRef.current).catch(() => {});
       }
     };
   }, []);
@@ -267,31 +273,45 @@ const FlorenceChat = ({ onClose, embedded = false, onSessionChange }) => {
     setShowEndChatModal(true);
   };
 
+  const stamp = () =>
+    new Date().toLocaleTimeString(locale, { hour: "2-digit", minute: "2-digit", hour12: false });
+
+  const pushBotMessage = (text) => setMessages((prev) => [...prev, { sender: "bot", text, time: stamp() }]);
+
+  // The server saves the chat instantly and runs assessment + triage in the background;
+  // poll for the result so the patient sees the outcome without waiting on the model.
+  const waitForResult = async (id, { intervalMs = 2000, maxWaitMs = 90000 } = {}) => {
+    const deadline = Date.now() + maxWaitMs;
+    while (Date.now() < deadline) {
+      const result = await florenceAPI.getResult(id);
+      if (result.triage_status !== "generating") return result;
+      await new Promise((r) => setTimeout(r, intervalMs));
+    }
+    return null;
+  };
+
   const confirmEndChat = async () => {
     if (!sessionId) return;
-    
+
     setIsEndingSession(true);
     try {
-      await florenceAPI.endSession(sessionId);
+      const finished = await florenceAPI.endSession(sessionId);
       setShowEndChatModal(false);
       setIsSessionActive(false);
-      
-      // Show completion message
-      const completionMessage = {
-        sender: "bot",
-        text: t("thank_you_chat"),
-        time: new Date().toLocaleTimeString(locale, {
-          hour: "2-digit",
-          minute: "2-digit",
-          hour12: false,
-        }),
-      };
-      setMessages(prev => [...prev, completionMessage]);
-      
-      // Redirect to dashboard after a delay
-      setTimeout(() => {
-        onClose();
-      }, 3000);
+      pushBotMessage(t("thank_you_chat"));
+
+      if (finished.triage_status === "generating") {
+        const result = await waitForResult(sessionId);
+        if (result?.alert_level) {
+          pushBotMessage(t("assessment_ready", { level: result.alert_level, description: result.alert_description }));
+        } else {
+          pushBotMessage(t("assessment_still_processing"));
+        }
+      } else if (finished.alert_level) {
+        pushBotMessage(t("assessment_ready", { level: finished.alert_level, description: finished.alert_description }));
+      }
+
+      setTimeout(() => onClose(), 3500);
     } catch (error) {
       console.error("Failed to end Florence session:", error);
       setIsEndingSession(false);
@@ -406,6 +426,20 @@ const FlorenceChat = ({ onClose, embedded = false, onSessionChange }) => {
             options={getQuickResponseOptions()} 
             onSelect={handleQuickResponse}
           />
+        </div>
+      )}
+
+      {/* Embedded mode has no header, so the session actions live above the input */}
+      {embedded && isSessionActive && (
+        <div className="chatbot-embedded-actions">
+          <button type="button" className="chatbot-embedded-action caption" onClick={restartConversation} disabled={isLoading || isEndingSession}>
+            <span className="material-symbols-rounded">refresh</span>
+            {t("restart_conversation")}
+          </button>
+          <button type="button" className="chatbot-embedded-action caption primary" onClick={handleEndChat} disabled={isLoading || isEndingSession}>
+            <span className="material-symbols-rounded">task_alt</span>
+            {t("end_chat_assessment")}
+          </button>
         </div>
       )}
 

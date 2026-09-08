@@ -428,3 +428,139 @@
   background: var(--blue-50);
   color: var(--blue-500);
 }
+
+
+/* --- live-data patient details --- */
+.patient-record-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 0 16px 24px;
+}
+
+.patient-record-item .doctor-notifications-patient {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.alert-pill {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.concern-chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.concern-chip {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--neutral-100, #f1f5f9);
+  color: var(--text-700, #334155);
+}
+
+.concern-chip--high {
+  background: var(--warning-100, #fef3c7);
+  color: var(--warning-700, #b45309);
+}
+
+.concern-flag-list {
+  margin: 8px 0 0;
+  padding-left: 18px;
+  color: var(--warning-700, #b45309);
+}
+
+.triage-summary p {
+  margin: 4px 0;
+}
+
+.record-actions {
+  display: flex;
+  gap: 16px;
+  margin-top: 10px;
+}
+
+.record-link {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--primary-600, #1d4ed8);
+  font: inherit;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.record-expanded {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--neutral-200, #e2e8f0);
+}
+
+.record-expanded p {
+  margin: 4px 0;
+}
+
+.record-diagnosis {
+  background: var(--neutral-50, #f8fafc);
+  border-radius: 10px;
+  padding: 8px 10px;
+  margin-top: 8px;
+}
+
+.record-section {
+  margin-top: 10px;
+}
+
+.record-response {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 4px 0;
+  border-top: 1px solid var(--neutral-100, #f1f5f9);
+}
+
+.record-response span:last-child {
+  font-weight: 600;
+  text-align: right;
+}
+
+.record-transcript {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.transcript-bubble {
+  max-width: 85%;
+  padding: 8px 12px;
+  border-radius: 12px;
+  line-height: 1.4;
+}
+
+.transcript-bubble--patient {
+  align-self: flex-end;
+  background: var(--primary-100, #e3ecff);
+}
+
+.transcript-bubble--florence {
+  align-self: flex-start;
+  background: var(--neutral-100, #f1f5f9);
+}
+
+.transcript-role {
+  display: block;
+  opacity: 0.7;
+  margin-bottom: 2px;
+}

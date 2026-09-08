@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import Tabs from "../../../components/ui/tabs";
 import MedicationList from "../../../components/layout/medication_list";
+import StatusBanner from "../../../components/ui/statusBanner";
 
 const Medication = () => {
   const navigate = useNavigate();
@@ -57,6 +58,7 @@ const Medication = () => {
         </div>
       )}
 
+      <StatusBanner variant="sample" message={t("medication_sample_message")} />
       <Tabs tabs={tabs} onTabChange={handleTabChange} activeTab={activeTab} />
       <MedicationList activeTab={activeTab} searchTerm={searchTerm} />
     </div>

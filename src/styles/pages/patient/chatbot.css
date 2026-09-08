@@ -218,3 +218,40 @@
   background: var(--background-600);
   border-radius: var(--radius-s);
 }
+
+/* Session actions shown in embedded (Daily Check-In) mode, where the header is hidden */
+.chatbot-embedded-actions {
+  display: flex;
+  gap: 8px;
+  padding: 8px 16px 0;
+}
+
+.chatbot-embedded-action {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--neutral-200, #e2e8f0);
+  background: #fff;
+  color: var(--text-700, #334155);
+  font: inherit;
+  cursor: pointer;
+}
+
+.chatbot-embedded-action .material-symbols-rounded {
+  font-size: 18px;
+}
+
+.chatbot-embedded-action.primary {
+  background: var(--primary-600, #1d4ed8);
+  border-color: var(--primary-600, #1d4ed8);
+  color: #fff;
+}
+
+.chatbot-embedded-action:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

@@ -7,10 +7,13 @@ const PatientCard = ({
   name,
   cancerType,
   stage,
+  subtitle,
+  status,
   onEditStage,
   onGenerateReport,
 }) => {
   const { t } = useTranslation();
+  const initials = (name || "?").trim().split(/\s+/).slice(0, 2).map((w) => w[0]?.toUpperCase() || "").join("") || "?";
 
   // Always use the English value for logic
   const getStatusMeta = (stageObj) => {
@@ -95,8 +98,8 @@ const PatientCard = ({
     };
   };
 
-  // Use the English value for status logic
-  const { label, icon, color, backgroundColor } = getStatusMeta(stage);
+  // Use the English value for status logic (unless the caller supplies a ready-made status)
+  const { label, icon, color, backgroundColor } = status || getStatusMeta(stage);
 
   // For display, show translated value if available
   const displayStage =
@@ -108,11 +111,15 @@ const PatientCard = ({
     <div className="patient-card">
       {/* Left Section */}
       <div className="patient-card-left">
-        <img src={image} alt={name} className="patient-card-image" />
+        {image ? (
+          <img src={image} alt={name} className="patient-card-image" />
+        ) : (
+          <div className="patient-card-image patient-card-image--initials" aria-hidden="true">{initials}</div>
+        )}
         <div className="patient-card-info">
           <h3 className="patient-card-name h4">{name}</h3>
           <p className="patient-card-diagnosis body">
-            {cancerType} - {displayStage}
+            {subtitle ?? `${cancerType} - ${displayStage}`}
           </p>
           <p className="patient-card-status caption" style={{ color }}>
             {label}
@@ -128,12 +135,16 @@ const PatientCard = ({
 
       {/* Right Section */}
       <div className="patient-card-actions">
-        <button className="action-btn" onClick={onGenerateReport}>
-          <span className="material-symbols-rounded">file_save</span>
-        </button>
-        <button className="action-btn" onClick={onEditStage}>
-          <span className="material-symbols-rounded">person_edit</span>
-        </button>
+        {onGenerateReport && (
+          <button className="action-btn" onClick={onGenerateReport}>
+            <span className="material-symbols-rounded">file_save</span>
+          </button>
+        )}
+        {onEditStage && (
+          <button className="action-btn" onClick={onEditStage}>
+            <span className="material-symbols-rounded">person_edit</span>
+          </button>
+        )}
       </div>
     </div>
   );

@@ -6,6 +6,7 @@ import Tabs from "../../../components/ui/tabs.jsx";
 import CustomDropdown from "../../../components/ui/dropdown.jsx";
 import InviteModal from "../../../components/ui/inviteModal.jsx";
 import { authAPI } from "../../../utils/api.js";
+import { useAuth } from "../../../context/AuthContext";
 
 const Settings = () => {
   const navigate = useNavigate();
@@ -108,8 +109,9 @@ const Settings = () => {
     navigate("/display_language");
   };
 
+  const { logout } = useAuth();
   const handleLogout = () => {
-    localStorage.removeItem("token");
+    logout();
     navigate("/login");
   };
 
