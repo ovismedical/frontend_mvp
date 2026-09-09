@@ -199,7 +199,7 @@ const DoctorPatients = () => {
               onClick={() => handlePatientClick(p.username)}
             >
               <div className="patient-avatar patient-avatar--initials">
-                {(p.full_name || p.username || "?").charAt(0).toUpperCase()}
+                {(p.full_name || p.username || "?").trim().charAt(0).toUpperCase() || "?"}
               </div>
               <div className="patient-info">
                 <div className="patient-info-row">
