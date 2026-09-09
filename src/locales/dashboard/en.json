@@ -96,9 +96,6 @@
   "select_at_least_7_days": "Please select at least a 7-day range.",
   "health_assessment": "Health Assessment",
   "potential_conditions": "Potential Conditions",
-  "all_good": "All Good",
-  "monitor_closely": "Monitor Closely",
-  "attention_needed": "Attention Needed",
   "urgent_care": "Urgent Care",
   "assessment_pending": "Assessment Pending",
   "symptoms_within_normal": "Your symptoms are within normal range",
@@ -114,11 +111,12 @@
   "limited_evidence": "Limited evidence",
   "routine": "Routine",
   "follow_up": "Follow-up",
-  "this_week": "This Week",
   "same_day": "Same Day",
   "emergency": "Emergency",
   "health_insights": "Health Insights",
   "no_concerns": "No concerns",
   "alerts": "Alerts",
-  "assessments": "assessments"
+  "assessments": "assessments",
+  "month_calendar_summary": "{{count}} check-ins this month · {{alerts}} flagged days",
+  "notable_events_coming_soon": "Clinic events (visits, medication changes, lab results) will appear here once appointments are connected. The items below are examples."
 }

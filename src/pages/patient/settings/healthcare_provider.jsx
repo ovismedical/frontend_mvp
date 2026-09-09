@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import DoctorCard from "../../../components/ui/doctorCard.jsx";
 import CareMemberCard from "../../../components/ui/careMemberCard.jsx";
+import StatusBanner from "../../../components/ui/statusBanner";
+import { useAuth } from "../../../context/AuthContext";
 
 const HealthCareProvider = () => {
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
   const currentLang = i18n.language === "zh" ? "zh" : "en";
+  const { user } = useAuth();
 
   // Helper function to get localized text
   const getLocalizedText = (textObj) => {
@@ -83,7 +86,7 @@ const HealthCareProvider = () => {
           <h2 className="healthcare-provider-title h4">
             {t("primary_oncologist")}
           </h2>
-          <DoctorCard />
+          <DoctorCard doctor={user?.doctor_info} fallbackName={user?.doctor_name || user?.doctor} />
         </div>
 
         <div className="healthcare-provider-team-members">
@@ -93,6 +96,7 @@ const HealthCareProvider = () => {
           <p className="healthcare-provider-description caption">
             {t("care_team_description")}
           </p>
+          <StatusBanner variant="coming-soon" message={t("care_team_coming_soon")} />
           <div className="healthcare-provider-team-members-list">
             {careMembers.map((member) => (
               <CareMemberCard
@@ -113,6 +117,7 @@ const HealthCareProvider = () => {
           <p className="healthcare-provider-description caption">
             {t("emergency_contact_description")}
           </p>
+          <StatusBanner variant="coming-soon" message={t("emergency_line_coming_soon")} compact />
           <div className="emergency-contact-card">
             <div className="emergency-contact-header">
               <span className="material-symbols-rounded e911_emergency">

@@ -5,6 +5,7 @@ import Button from "../../../components/ui/button";
 import doctorsData from "../../../fixtures/doctors.json";
 import timeSlotsData from "../../../fixtures/timeSlots.json";
 import appointmentsData from "../../../fixtures/appointments.json";
+import StatusBanner from "../../../components/ui/statusBanner";
 
 const generateDates = () => {
   const days = [];
@@ -159,6 +160,7 @@ function AppointmentScheduler() {
 
   return (
     <div className="appointment-scheduler-container">
+      <StatusBanner variant="coming-soon" messageKey="appointments_coming_soon" />
       {/* Header */}
       <div className="appointment-scheduler-header">
         <span

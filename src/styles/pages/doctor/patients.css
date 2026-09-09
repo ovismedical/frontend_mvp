@@ -290,3 +290,13 @@
     transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
 }
+
+.patient-avatar--initials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary-100, #e3ecff);
+  color: var(--primary-600, #1d4ed8);
+  font-weight: 600;
+  flex-shrink: 0;
+}

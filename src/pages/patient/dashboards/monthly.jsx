@@ -6,6 +6,7 @@ import EventItem from "../../../components/ui/notableEvents";
 import SymptomTrendCard from "../../../components/ui/symptomTrendCard";
 import { triageAPI, symptomQuestionnaireAPI, analyticsAPI } from "../../../utils/api";
 import { useAuth } from "../../../context/AuthContext";
+import StatusBanner from "../../../components/ui/statusBanner";
 
 const MonthlyDashboard = () => {
   const { t, i18n } = useTranslation();
@@ -195,6 +196,7 @@ const MonthlyDashboard = () => {
         <h2 className="monthly-notable-events-title h4">
           {t("notable_events")}
         </h2>
+        <StatusBanner variant="coming-soon" message={t("notable_events_coming_soon")} />
         <div>
           {events.map((event, index) => (
             <EventItem

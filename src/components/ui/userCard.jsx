@@ -63,7 +63,13 @@ const UserCard = ({
   return (
     <div className="user-card">
       <div className="user-left">
-        <img src={userImage} alt={alt} className="user-image" />
+        {userImage ? (
+          <img src={userImage} alt={alt} className="user-image" />
+        ) : (
+          <div className="user-image user-image--initials" aria-hidden="true">
+            {(userName || "?").trim().split(/\s+/).slice(0, 2).map((w) => w[0]?.toUpperCase() || "").join("") || "?"}
+          </div>
+        )}
         <div className="user-info">
           <h3 className="user-name h4">{userName}</h3>
           <p className="user-condition body">{condition}</p>

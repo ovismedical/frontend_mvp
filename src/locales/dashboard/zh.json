@@ -96,11 +96,12 @@
   "limited_evidence": "有限證據",
   "routine": "常規",
   "follow_up": "跟進",
-  "this_week": "本週",
   "same_day": "同日",
   "emergency": "緊急",
   "health_insights": "健康洞察",
   "no_concerns": "無異常",
   "alerts": "警報",
-  "assessments": "評估"
+  "assessments": "評估",
+  "month_calendar_summary": "本月 {{count}} 次記錄 · {{alerts}} 天被標記",
+  "notable_events_coming_soon": "連接預約系統後，診所事件（覆診、藥物調整、化驗結果）會顯示在此。以下項目只是示例。"
 }

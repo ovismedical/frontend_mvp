@@ -123,3 +123,13 @@
   border-radius: var(--radius-xl);
   cursor: pointer;
 }
+
+.user-image--initials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.25);
+  color: #fff;
+  font-weight: 600;
+  font-size: 22px;
+}

@@ -198,7 +198,7 @@ const DoctorPatients = () => {
               className="patient-item"
               onClick={() => handlePatientClick(p.username)}
             >
-              <div className="doctor-notifications-avatar-placeholder">
+              <div className="patient-avatar patient-avatar--initials">
                 {(p.full_name || p.username || "?").charAt(0).toUpperCase()}
               </div>
               <div className="patient-info">

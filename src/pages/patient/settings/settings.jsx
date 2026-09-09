@@ -34,12 +34,15 @@ const Settings = () => {
         const userData = await authAPI.getUserInfo();
         
         // Update user info with fetched data
+        const doctorLine = userData.doctor_info?.full_name
+          ? `${userData.doctor_info.full_name}${userData.doctor_info.hospital ? " · " + userData.doctor_info.hospital : ""}`
+          : userData.doctor_name || "";
         setUserInfo({
-          userImage: "https://media.istockphoto.com/id/1437816897/photo/business-woman-manager-or-human-resources-portrait-for-career-success-company-we-are-hiring.jpg?s=612x612&w=0&k=20&c=tyLvtzutRh22j9GqSGI33Z4HpIwv9vL_MZw_xOE19NQ=",
+          userImage: "",
           userName: userData.full_name || userData.username || "User",
-          condition: userData.condition || "No condition specified",
-          status: "active-treatment",
-          phoneNumber: userData.phoneNumber || "",
+          condition: doctorLine || t("no_doctor_assigned"),
+          status: userData.treatment_status === "in_remission" ? "in-remission" : "active-treatment",
+          phoneNumber: userData.phone || userData.phoneNumber || "",
           email: userData.email || "",
         });
       } catch (error) {

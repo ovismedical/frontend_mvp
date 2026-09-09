@@ -168,8 +168,8 @@ const Achievements = () => {
   const rankData = {
     title: { en: "Wellness Warrior", zh: "健康戰士" },
     motto: {
-      en: t("streak_summary", { current: streak.current, longest: streak.longest }),
-      zh: t("streak_summary", { current: streak.current, longest: streak.longest }),
+      en: t("streak_summary", { current: streak.current, longest: streak.longest, count: streak.longest }),
+      zh: t("streak_summary", { current: streak.current, longest: streak.longest, count: streak.longest }),
     },
     progressText: nextBadge
       ? { en: t("next_badge_progress", { title: nextBadge.title.en, progress: nextBadge.progress, total: nextBadge.total }),

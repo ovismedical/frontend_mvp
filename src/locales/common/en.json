@@ -22,5 +22,7 @@
   "password_coming_soon": "Password changes and resets aren't available yet. Contact your care team if you need help signing in.",
   "next_badge_progress": "Next badge: {{title}} — {{progress}}/{{total}} days",
   "all_badges_unlocked": "All badges unlocked — keep the streak going!",
-  "streak_summary": "{{current}}-day streak · longest {{longest}} days"
+  "streak_summary": "{{current}}-day streak · longest {{longest}} days",
+  "streak_summary_one": "{{current}}-day streak · longest {{longest}} day",
+  "streak_summary_other": "{{current}}-day streak · longest {{longest}} days"
 }

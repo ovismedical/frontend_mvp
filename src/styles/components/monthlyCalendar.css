@@ -94,3 +94,18 @@
 .legend .not-logged {
   background-color: var(--background-600);
 }
+
+.react-calendar__tile.outside-month {
+  opacity: 0.35;
+}
+
+.calendar-container.is-loading .react-calendar__viewContainer {
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+}
+
+.calendar-summary {
+  margin: 8px 0 0;
+  color: var(--text-500, #64748b);
+  text-align: center;
+}

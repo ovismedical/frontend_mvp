@@ -57,7 +57,7 @@
   "language": "Language / 語言",
   "font_size": "Font Size",
   "small": "Small",
-  "medium": "Medium", 
+  "medium": "Medium",
   "large": "Large",
   "profile_management": "Profile Management",
   "email_address": "Email Address",
@@ -78,6 +78,12 @@
   "invite_link_copied": "Invite Link Copied",
   "patient_alerts": "Patient Alerts",
   "medication_reminders": "Medication Reminders",
-  "new_report": "New Report Available"
+  "new_report": "New Report Available",
+  "profile_update_failed": "Couldn't save your profile. Please try again.",
+  "saving": "Saving...",
+  "no_doctor_assigned": "No clinician assigned yet",
+  "oncologist": "Oncologist",
+  "doctor_contact_via_clinic": "Contact details are managed by your clinic.",
+  "care_team_coming_soon": "Your wider care team isn't linked to your record yet. The people below are examples.",
+  "emergency_line_coming_soon": "Example number — not a live emergency line"
 }
-  

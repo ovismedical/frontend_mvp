@@ -78,5 +78,12 @@
   "invite_link_copied": "邀請連結已複製",
   "patient_alerts": "患者提醒",
   "medication_reminders": "用药提醒",
-  "new_report": "有新报告"
+  "new_report": "有新报告",
+  "profile_update_failed": "無法儲存你的個人資料，請再試一次。",
+  "saving": "儲存中...",
+  "no_doctor_assigned": "尚未指派醫生",
+  "oncologist": "腫瘤科醫生",
+  "doctor_contact_via_clinic": "聯絡資料由你的診所管理。",
+  "care_team_coming_soon": "你的醫療團隊尚未連接到你的記錄，以下人員只是示例。",
+  "emergency_line_coming_soon": "示例號碼 — 並非真實緊急熱線"
 }

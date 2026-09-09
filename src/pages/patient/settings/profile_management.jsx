@@ -3,15 +3,25 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import InputField from "../../../components/ui/inputfield.jsx";
 import Button from "../../../components/ui/button.jsx";
+import { authAPI } from "../../../utils/api.js";
+import { useAuth } from "../../../context/AuthContext";
+import { normalizeUser } from "../../../utils/auth.js";
+import { initialsOf } from "../../../utils/timeAgo";
 
 const ProfileManagement = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const fileInputRef = useRef(null);
   const { t } = useTranslation();
+  const { user, setUser } = useAuth();
 
-  // Get data from navigation state or use defaults
-  const userData = location.state || {};
+  // Prefer the signed-in user; navigation state only as a fallback
+  const userData = {
+    email: user?.email || location.state?.email || "",
+    userName: user?.name || user?.full_name || location.state?.userName || "",
+    phoneNumber: user?.phone || location.state?.phoneNumber || "",
+    userImage: location.state?.userImage || "",
+  };
 
   // Helper function to format phone number
   const formatPhoneNumber = (number) => {
@@ -31,6 +41,15 @@ const ProfileManagement = () => {
   );
   const [ProfileImage, setProfileImage] = useState(userData.userImage || "");
   const [message, setMessage] = useState({ type: "", text: "" });
+  const [saving, setSaving] = useState(false);
+
+  // Keep the form in sync if the session user loads after first render
+  useEffect(() => {
+    if (!user) return;
+    setEmail((v) => v || user.email || "");
+    setFullName((v) => v || user.name || user.full_name || "");
+    setMobileNumber((v) => v || formatPhoneNumber(user.phone || ""));
+  }, [user]);
 
   // Handle image edit click
   const handleImageEdit = () => {
@@ -69,11 +88,11 @@ const ProfileManagement = () => {
   };
 
   // Handle form submission
-  const handleSaveChanges = (e) => {
+  const handleSaveChanges = async (e) => {
     e.preventDefault();
 
-    // Basic validation
-    if (!Email || !FullName || !MobileNumber) {
+    // Basic validation (mobile is optional)
+    if (!Email || !FullName) {
       setMessage({ type: "error", text: t("fill_required_fields") });
       return;
     }
@@ -85,38 +104,26 @@ const ProfileManagement = () => {
       return;
     }
 
-    // Hong Kong mobile number validation (8 digits)
+    // Hong Kong mobile number validation (8 digits) when provided
     const cleanNumber = MobileNumber.replace(/\s/g, "");
     const hkMobileRegex = /^[5-9]\d{7}$/; // HK mobile numbers start with 5-9 and are 8 digits
-
-    if (!hkMobileRegex.test(cleanNumber)) {
-      setMessage({
-        type: "error",
-        text: t("enter_valid_hk_mobile"),
-      });
+    if (cleanNumber && !hkMobileRegex.test(cleanNumber)) {
+      setMessage({ type: "error", text: t("enter_valid_hk_mobile") });
       return;
     }
 
-    // Backend Handling: Push updated profile data to backend API
-    // Example: await api.updateProfile({ email: Email, userName: FullName, phoneNumber: cleanNumber, userImage: ProfileImage })
-
-    // If all validation passes, show success and navigate back
-    setMessage({ type: "success", text: t("profile_updated_successfully") });
-
-    // Navigate back to settings after a short delay
-    setTimeout(() => {
-      navigate("/settings", {
-        state: {
-          updated: true,
-          userData: {
-            email: Email,
-            userName: FullName,
-            phoneNumber: cleanNumber, // Store without space
-            userImage: ProfileImage,
-          },
-        },
-      });
-    }, 1500);
+    setSaving(true);
+    try {
+      await authAPI.updateUserInfo({ full_name: FullName.trim(), email: Email.trim(), phone: cleanNumber });
+      const refreshed = normalizeUser(await authAPI.getUserInfo());
+      if (refreshed) setUser(refreshed);
+      setMessage({ type: "success", text: t("profile_updated_successfully") });
+      setTimeout(() => navigate("/settings", { state: { updated: true } }), 1200);
+    } catch (error) {
+      setMessage({ type: "error", text: error?.message || t("profile_update_failed") });
+    } finally {
+      setSaving(false);
+    }
   };
 
   // Clear message after 5 seconds
@@ -156,7 +163,11 @@ const ProfileManagement = () => {
       {/* Profile Info Section */}
       <div className="profile-info">
         <div className="profile-avatar">
-          <img src={ProfileImage || "/default-avatar.png"} alt="Profile" />
+          {ProfileImage ? (
+            <img src={ProfileImage} alt="Profile" />
+          ) : (
+            <div className="profile-avatar-initials" aria-hidden="true">{initialsOf(FullName || user?.username)}</div>
+          )}
           <span
             className="material-symbols-rounded edit-icon"
             onClick={handleImageEdit}
@@ -230,8 +241,8 @@ const ProfileManagement = () => {
 
           {/* Save Button */}
           <div className="profile-management-actions">
-            <Button className="update-profile-button" type="submit">
-              {t("save_changes")}
+            <Button className="update-profile-button" type="submit" disabled={saving}>
+              {saving ? t("saving") : t("save_changes")}
             </Button>
           </div>
         </form>
