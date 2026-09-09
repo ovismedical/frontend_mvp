@@ -6,12 +6,12 @@ import PatientCard from "../../../components/ui/patientCard";
 import SmartInsightCard from "../../../components/ui/smartInsightCard";
 import { doctorAPI, triageAPI } from "../../../utils/api";
 import { timeAgo } from "../../../utils/timeAgo";
-
+import BackButton from "../../../components/ui/backButton";
 const WEEK_MS = 7 * 24 * 60 * 60 * 1000;
 
 const ALERT_STYLE = {
   RED: { color: "var(--error-700)", backgroundColor: "var(--error-100)", icon: "emergency", labelKey: "status_critical" },
-  ORANGE: { color: "var(--secondary-600)", backgroundColor: "var(--secondary-100)", icon: "warning", labelKey: "status_at_risk" },
+  ORANGE: { color: "var(--on-secondary-tint)", backgroundColor: "var(--secondary-100)", icon: "warning", labelKey: "status_at_risk" },
   YELLOW: { color: "var(--warning-700, #b45309)", backgroundColor: "var(--warning-100, #fef3c7)", icon: "error_outline", labelKey: "status_at_risk" },
   GREEN: { color: "var(--success-700)", backgroundColor: "var(--success-100)", icon: "check_circle", labelKey: "status_completed" },
 };
@@ -134,9 +134,7 @@ const PatientDetails = () => {
     return (
       <div className="patient-details-container">
         <div className="patient-details-header">
-          <span className="material-symbols-rounded chevron_backward" onClick={() => navigate("/doctor_patients")}>
-            chevron_backward
-          </span>
+          <BackButton className="chevron_backward" onClick={() => navigate("/doctor_patients")} />
         </div>
         <div className="doctor-notifications-list-empty h4">{error || t("patient_not_found")}</div>
       </div>
@@ -153,9 +151,7 @@ const PatientDetails = () => {
   return (
     <div className="patient-details-container">
       <div className="patient-details-header">
-        <span className="material-symbols-rounded chevron_backward" onClick={() => navigate("/doctor_patients")}>
-          chevron_backward
-        </span>
+        <BackButton className="chevron_backward" onClick={() => navigate("/doctor_patients")} />
       </div>
 
       <div className="patient-card-container">

@@ -6,6 +6,6 @@
 }
 
 .stacked-count {
-  color: var(--blue-600);
+  color: var(--on-blue-tint);
   padding-left: 8px;
 }

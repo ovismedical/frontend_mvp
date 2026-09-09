@@ -162,47 +162,47 @@ const Settings = () => {
       <div className="settings-content">
         {activeTab === t("account") && (
           <div className="account-settings-list">
-            <div className="settings-item" onClick={handleHealthCareProvider}>
+            <button type="button" className="settings-item" onClick={handleHealthCareProvider}>
               <div className="settings-left">
-                <span className="material-symbols-rounded settings-icon">
+                <span className="material-symbols-rounded settings-icon" aria-hidden="true">
                   medical_information
                 </span>
                 <span className="settings-item-text body">
                   {t("healthcare_provider")}
                 </span>
               </div>
-              <span className="material-symbols-rounded arrow">
+              <span className="material-symbols-rounded arrow" aria-hidden="true">
                 chevron_right
               </span>
-            </div>
+            </button>
 
-            <div className="settings-item" onClick={handlePasswordSecurity}>
+            <button type="button" className="settings-item" onClick={handlePasswordSecurity}>
               <div className="settings-left">
-                <span className="material-symbols-rounded settings-icon">
+                <span className="material-symbols-rounded settings-icon" aria-hidden="true">
                   encrypted
                 </span>
                 <span className="settings-item-text body">
                   {t("password_security")}
                 </span>
               </div>
-              <span className="material-symbols-rounded arrow">
+              <span className="material-symbols-rounded arrow" aria-hidden="true">
                 chevron_right
               </span>
-            </div>
+            </button>
 
-            <div className="settings-item" onClick={handleDisplayLanguage}>
+            <button type="button" className="settings-item" onClick={handleDisplayLanguage}>
               <div className="settings-left">
-                <span className="material-symbols-rounded settings-icon">
+                <span className="material-symbols-rounded settings-icon" aria-hidden="true">
                   settings_motion_mode
                 </span>
                 <span className="settings-item-text body">
                   {t("display_language")}
                 </span>
               </div>
-              <span className="material-symbols-rounded arrow">
+              <span className="material-symbols-rounded arrow" aria-hidden="true">
                 chevron_right
               </span>
-            </div>
+            </button>
           </div>
         )}
 
@@ -210,7 +210,7 @@ const Settings = () => {
           <div className="privacy-settings-list">
             <div className="settings-item">
               <div className="settings-left">
-                <span className="material-symbols-rounded settings-icon">
+                <span className="material-symbols-rounded settings-icon" aria-hidden="true">
                   groups
                 </span>
                 <div className="settings-item-textwrap">
@@ -238,7 +238,7 @@ const Settings = () => {
 
             <div className="settings-item">
               <div className="settings-left">
-                <span className="material-symbols-rounded settings-icon">
+                <span className="material-symbols-rounded settings-icon" aria-hidden="true">
                   bar_chart_4_bars
                 </span>
                 <div className="settings-item-textwrap">
@@ -266,7 +266,7 @@ const Settings = () => {
 
             <div className="settings-item">
               <div className="settings-left">
-                <span className="material-symbols-rounded settings-icon">
+                <span className="material-symbols-rounded settings-icon" aria-hidden="true">
                   mark_as_unread
                 </span>
                 <div className="settings-item-textwrap">
@@ -298,7 +298,7 @@ const Settings = () => {
           <div className="notification-settings-list">
             <div className="settings-item">
               <div className="settings-left">
-                <span className="material-symbols-rounded settings-icon">
+                <span className="material-symbols-rounded settings-icon" aria-hidden="true">
                   notifications_active
                 </span>
                 <span className="settings-item-text body">
@@ -333,7 +333,7 @@ const Settings = () => {
 
             <div className="settings-item">
               <div className="settings-left">
-                <span className="material-symbols-rounded settings-icon">
+                <span className="material-symbols-rounded settings-icon" aria-hidden="true">
                   stars_2
                 </span>
                 <span className="settings-item-text body">
@@ -362,7 +362,7 @@ const Settings = () => {
 
             <div className="settings-item">
               <div className="settings-left">
-                <span className="material-symbols-rounded settings-icon">
+                <span className="material-symbols-rounded settings-icon" aria-hidden="true">
                   chat
                 </span>
                 <span className="settings-item-text body">
@@ -393,22 +393,22 @@ const Settings = () => {
 
         {/* Help & Support Accordion - Available under all tabs */}
         <div className="common-settings-list">
-          <div
+          <button type="button"
             className={`settings-item help ${helpOpen ? "open" : ""}`}
             onClick={() => setHelpOpen(!helpOpen)}
           >
             <div className="settings-left">
-              <span className="material-symbols-rounded settings-icon">
+              <span className="material-symbols-rounded settings-icon" aria-hidden="true">
                 help
               </span>
               <span className="settings-item-text help-support body">
                 {t("help_support")}
               </span>
             </div>
-            <span className="material-symbols-rounded arrow">
+            <span className="material-symbols-rounded arrow" aria-hidden="true">
               {helpOpen ? "expand_less" : "expand_more"}
             </span>
-          </div>
+          </button>
 
           {helpOpen && (
             <div className="help-subtext-content">
@@ -441,16 +441,16 @@ const Settings = () => {
             </div>
           )}
 
-          <div className="settings-item logout" onClick={handleLogout}>
+          <button type="button" className="settings-item logout" onClick={handleLogout}>
             <div className="settings-left">
-              <span className="material-symbols-rounded settings-icon">
+              <span className="material-symbols-rounded settings-icon" aria-hidden="true">
                 chip_extraction
               </span>
               <span className="settings-item-text logout body">
                 {t("logout")}
               </span>
             </div>
-          </div>
+          </button>
         </div>
       </div>
 

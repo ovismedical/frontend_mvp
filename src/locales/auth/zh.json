@@ -27,5 +27,9 @@
   "otp_button": "驗證 OTP",
   "otp_footer": "沒有收到驗證碼？",
   "otp_resend": "重新發送",
-  "otp_countdown": "重新發送驗證碼時間："
+  "otp_countdown": "重新發送驗證碼時間：",
+  "username": "用戶名稱",
+  "password": "密碼",
+  "show_password": "顯示密碼",
+  "hide_password": "隱藏密碼"
 }

@@ -25,31 +25,31 @@
 /* Color themes per type */
 .activity-icon-container.report {
   border-color: var(--secondary-600);
-  color: var(--secondary-600);
+  color: var(--on-secondary-tint);
   background-color: var(--secondary-50);
 }
 
 .activity-icon-container.alert {
   border-color: var(--warning-600);
-  color: var(--warning-600);
+  color: var(--on-warning-tint);
   background-color: var(--warning-50);
 }
 
 .activity-icon-container.prescription {
   border-color: var(--blue-600);
-  color: var(--blue-600);
+  color: var(--on-blue-tint);
   background-color: var(--blue-50);
 }
 
 .activity-icon-container.request {
   border-color: var(--lavender-600);
-  color: var(--lavender-600);
+  color: var(--on-lavender-tint);
   background-color: var(--lavender-50);
 }
 
 .activity-icon-container.info {
   border-color: var(--info-500);
-  color: var(--info-500);
+  color: var(--info-900);
   background-color: var(--info-100);
 }
 

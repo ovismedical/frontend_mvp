@@ -117,7 +117,7 @@
 /* Message */
 .profile-management-message {
   margin: 10px 0;
-  color: var(--error-700);
+  color: var(--on-error-tint);
 }
 
 .message {
@@ -133,13 +133,13 @@
 
 .message.success {
   background-color: var(--success-50);
-  color: var(--success-700);
+  color: var(--on-success-tint);
   box-shadow: 0 0 0 1px var(--success-100);
 }
 
 .message.error {
   background-color: var(--error-50);
-  color: var(--error-700);
+  color: var(--on-error-tint);
   box-shadow: 0 0 0 1px var(--error-100);
 }
 

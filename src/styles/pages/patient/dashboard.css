@@ -82,13 +82,13 @@
 
 .streak-icon {
   font-variation-settings: "FILL" 1;
-  color: var(--secondary-600);
+  color: var(--on-secondary-tint);
   font-size: 24px;
   margin-right: 6px;
 }
 
 .streak-label {
-  color: var(--secondary-600);
+  color: var(--on-secondary-tint);
 }
 
 .weekly-progress-row {
@@ -97,7 +97,7 @@
 
 .current-streak-caption {
   margin-top: 2%;
-  color: var(--text-300);
+  color: var(--text-400);
 }
 
 .weekly-summary-container {
@@ -135,12 +135,12 @@
 
 .wellness-score-value.upward,
 .engagement-level-value.upward {
-  color: var(--success-600);
+  color: var(--on-success-tint);
 }
 
 .wellness-score-value.downward,
 .engagement-level-value.downward {
-  color: var(--error-600);
+  color: var(--on-error-tint);
 }
 
 .wellness-score-title,
@@ -160,16 +160,16 @@
 }
 
 .caption-icon.upward {
-  color: var(--success-600);
+  color: var(--on-success-tint);
 }
 
 .caption-icon.downward {
-  color: var(--error-600);
+  color: var(--on-error-tint);
 }
 
 .wellness-score-caption,
 .engagement-level-caption {
-  color: var(--text-300);
+  color: var(--text-400);
 }
 
 .mood-trend-container {
@@ -200,11 +200,11 @@
 .mood-trend-status {
   display: flex;
   align-items: center;
-  color: var(--error-600);
+  color: var(--on-error-tint);
 }
 
 .mood-trend-status.Improving {
-  color: var(--success-600);
+  color: var(--on-success-tint);
 }
 
 .mood-trend-arrow {
@@ -214,11 +214,11 @@
 }
 
 .mood-trend-arrow.upward {
-  color: var(--success-600);
+  color: var(--on-success-tint);
 }
 
 .mood-trend-arrow.downward {
-  color: var(--error-600);
+  color: var(--on-error-tint);
 }
 
 .mood-trend-bar-chart {
@@ -265,7 +265,7 @@
 
 .mood-trend-day-label {
   margin-top: 4px;
-  color: var(--text-200);
+  color: var(--text-400);
 }
 
 .weekly-summary-days {
@@ -307,7 +307,7 @@
 
 .family_star {
   font-variation-settings: "FILL" 1;
-  color: var(--success-600);
+  color: var(--on-success-tint);
   font-size: 24px;
 }
 
@@ -318,11 +318,11 @@
 
 .weekly-summary-bestDay-date {
   margin: 0;
-  color: var(--text-300);
+  color: var(--text-400);
 }
 
 .weekly-summary-bestDay-summary {
-  color: var(--success-600);
+  color: var(--on-success-tint);
 }
 
 .weekly-summary-challengingDay {
@@ -341,7 +341,7 @@
 
 .swords {
   font-variation-settings: "FILL" 1;
-  color: var(--error-600);
+  color: var(--on-error-tint);
   font-size: 24px;
 }
 
@@ -352,11 +352,11 @@
 
 .weekly-summary-challengingDay-date {
   margin: 0;
-  color: var(--text-300);
+  color: var(--text-400);
 }
 
 .weekly-summary-challengingDay-summary {
-  color: var(--error-600);
+  color: var(--on-error-tint);
 }
 
 .weekly-smart-insight {
@@ -428,7 +428,7 @@
 
 .daily-health-summary-date {
   margin: 0;
-  color: var(--text-300);
+  color: var(--text-400);
 }
 
 .daily-health-summary-cards {
@@ -461,7 +461,7 @@
 
 .local_fire_department{
   font-variation-settings: "FILL" 1;
-  color: var(--secondary-600);
+  color: var(--on-secondary-tint);
   font-size: 18px;
 }
 
@@ -473,7 +473,7 @@
 .daily-health-summary-card-subtext {
   text-align: center;
   margin: 0;
-  color: var(--text-300);
+  color: var(--text-400);
 }
 
 /* Alert-level variants for the summary container */
@@ -586,7 +586,7 @@
 
 .error-icon {
   font-size: 24px;
-  color: var(--error-500);
+  color: var(--on-error-tint);
 }
 
 .error-content {
@@ -595,12 +595,12 @@
 
 .error-title {
   margin: 0 0 4px 0;
-  color: var(--error-700);
+  color: var(--on-error-tint);
 }
 
 .error-message {
   margin: 0;
-  color: var(--error-600);
+  color: var(--on-error-tint);
 }
 
 
@@ -676,7 +676,7 @@
 
 .questionnaire-icon-wrapper .material-symbols-rounded {
   font-size: 28px;
-  color: var(--blue-700);
+  color: var(--on-blue-tint);
   font-variation-settings: "FILL" 1;
 }
 
@@ -687,7 +687,7 @@
 
 .questionnaire-details p {
   margin: 4px 0 0 0;
-  color: var(--text-300);
+  color: var(--text-400);
 }
 
 .questionnaire-stats {
@@ -714,7 +714,7 @@
 }
 
 .stat-label {
-  color: var(--text-300);
+  color: var(--text-400);
 }
 
 .questionnaire-view-btn {
@@ -780,7 +780,7 @@
 
 .history-item-icon .material-symbols-rounded {
   font-size: 24px;
-  color: var(--blue-700);
+  color: var(--on-blue-tint);
   font-variation-settings: "FILL" 1;
 }
 
@@ -795,7 +795,7 @@
 
 .history-item-info p {
   margin: 2px 0 0 0;
-  color: var(--text-300);
+  color: var(--text-400);
 }
 
 .history-item-completion {
@@ -804,7 +804,7 @@
 
 .completion-badge {
   background: var(--blue-light-100);
-  color: var(--blue-700);
+  color: var(--on-blue-tint);
   padding: 4px 8px;
   border-radius: var(--radius-s);
   font-weight: 600;
@@ -850,7 +850,7 @@
 
 .stat-icon-wrapper .material-symbols-rounded {
   font-size: 28px;
-  color: var(--blue-700);
+  color: var(--on-blue-tint);
   font-variation-settings: "FILL" 1;
 }
 
@@ -861,7 +861,7 @@
 
 .stat-content p {
   margin: 4px 0 0 0;
-  color: var(--text-300);
+  color: var(--text-400);
 }
 
 @media (max-width: 768px) {

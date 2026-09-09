@@ -22,6 +22,7 @@ const RegisterForm = ({
     <div className="register-form">
       <InputField
         placeholder="Email Address"
+        autoComplete="email"
         leftIcon={<span className="material-symbols-rounded">mail</span>}
         value={email}
         onChange={onEmailChange}
@@ -29,6 +30,7 @@ const RegisterForm = ({
 
       <InputField
         placeholder="Access Code"
+        autoComplete="one-time-code"
         leftIcon={<span className="material-symbols-rounded">vpn_key</span>}
         value={accessCode}
         onChange={onAccessCodeChange}
@@ -36,6 +38,7 @@ const RegisterForm = ({
 
       <InputField
         placeholder="Username"
+        autoComplete="username"
         leftIcon={<span className="material-symbols-rounded">person</span>}
         value={username}
         onChange={onUsernameChange}
@@ -43,6 +46,7 @@ const RegisterForm = ({
 
       <InputField
         placeholder="Password"
+        autoComplete="new-password"
         leftIcon={<span className="material-symbols-rounded">fingerprint</span>}
         rightIcon={
           <span className="material-symbols-rounded">
@@ -58,6 +62,7 @@ const RegisterForm = ({
 
       <InputField
         placeholder="Confirm Password"
+        autoComplete="new-password"
         leftIcon={<span className="material-symbols-rounded">fingerprint</span>}
         rightIcon={
           <span className="material-symbols-rounded">

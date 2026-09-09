@@ -29,12 +29,12 @@
 
 .article-sub-icon {
   margin-right: 2px;
-  color: var(--text-300);
+  color: var(--text-400);
 }
 
 .article-meta {
   display: flex;
-  color: var(--text-300);
+  color: var(--text-400);
   gap: 4px;
 }
 
@@ -81,7 +81,7 @@
 }
 
 .article-read-time {
-  color: var(--text-300);
+  color: var(--text-400);
 }
 
 .article-likes {
@@ -137,7 +137,7 @@
 
 .article-card-small-text .article-meta {
   font-size: 12px;
-  color: var(--text-300);
+  color: var(--text-400);
 }
 
 .article-card-small-text .article-card-description p {

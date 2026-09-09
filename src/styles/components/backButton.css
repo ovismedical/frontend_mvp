@@ -1,0 +1,40 @@
+@import "../variables.css";
+
+/* Zero-specificity default so any page's own `.chevronB_icon { font-size: 40px }`
+   still wins regardless of stylesheet order. */
+:where(.back-button) {
+  font-size: 26px;
+}
+
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  /* Full 44px target even though the glyph is 26px. Negative margin keeps the icon
+     optically aligned to the container edge, as it was when it had no padding. */
+  min-width: var(--tap-target-min);
+  min-height: var(--tap-target-min);
+  margin-left: -10px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  color: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.back-button .material-symbols-rounded {
+  font-size: inherit;
+  line-height: 1;
+}
+
+.back-button:hover {
+  background-color: var(--neutral-100);
+}
+
+.back-button:active {
+  background-color: var(--neutral-200);
+}

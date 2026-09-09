@@ -68,7 +68,7 @@
   align-items: center;
   justify-content: center;
   gap: 12px;
-  color: var(--text-300);
+  color: var(--text-400);
 }
 
 .qd-empty-icon {
@@ -110,7 +110,7 @@
 
 .qd-summary-date .material-symbols-rounded {
   font-size: 18px;
-  color: var(--blue-700);
+  color: var(--on-blue-tint);
 }
 
 .qd-completion-badge {
@@ -118,7 +118,7 @@
   background-color: var(--secondary-50);
   box-shadow: 0 0 0 1px var(--secondary-600);
   border-radius: var(--radius-xl);
-  color: var(--secondary-700);
+  color: var(--on-secondary-tint);
 }
 
 .qd-summary-stats {
@@ -137,7 +137,7 @@
 .qd-stat-value {
   display: block;
   margin: 0;
-  color: var(--blue-700);
+  color: var(--on-blue-tint);
 }
 
 .qd-stat-label {
@@ -161,7 +161,7 @@
 }
 
 .qd-alert-icon {
-  color: var(--error-600);
+  color: var(--on-error-tint);
   font-size: 20px;
 }
 
@@ -181,7 +181,7 @@
 
 .qd-section-title {
   margin: 0 0 12px 0;
-  color: var(--secondary-600);
+  color: var(--on-secondary-tint);
 }
 
 /* Severity Grid */
@@ -239,22 +239,22 @@
 
 .qd-severity-pill.success {
   background: var(--success-50);
-  color: var(--success-700);
+  color: var(--on-success-tint);
 }
 
 .qd-severity-pill.warning {
   background: var(--warning-50);
-  color: var(--warning-700);
+  color: var(--on-warning-tint);
 }
 
 .qd-severity-pill.error {
   background: var(--error-50);
-  color: var(--error-700);
+  color: var(--on-error-tint);
 }
 
 .qd-severity-pill.neutral {
   background: var(--neutral-100);
-  color: var(--text-400);
+  color: var(--on-neutral-tint);
 }
 
 /* Accordion */
@@ -301,7 +301,7 @@
 
 .qd-accordion-chevron {
   font-size: 20px;
-  color: var(--text-300);
+  color: var(--text-400);
   transition: transform 0.2s ease;
 }
 
@@ -316,7 +316,7 @@
 }
 
 .qd-no-responses {
-  color: var(--text-300);
+  color: var(--text-400);
   padding-top: 12px;
 }
 
@@ -339,7 +339,7 @@
 }
 
 .qd-skipped {
-  color: var(--text-300);
+  color: var(--text-400);
   font-style: italic;
 }
 
@@ -353,7 +353,7 @@
 .qd-tag {
   display: inline-block;
   background-color: var(--primary-100);
-  color: var(--primary-700);
+  color: var(--lavender-800);
   padding: 4px 10px;
   border-radius: var(--radius-s);
   font-size: 12px;

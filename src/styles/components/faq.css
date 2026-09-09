@@ -16,11 +16,11 @@
 }
 
 .icon {
-  color: var(--blue-700);
+  color: var(--on-blue-tint);
   margin-left: 12px;
 }
 
 .answer {
-  color: var(--text-300);
+  color: var(--text-400);
   margin: 8px 0 5px 0;
 }

@@ -69,7 +69,7 @@
   padding: 6px 12px;
   border: none;
   background-color: transparent;
-  color: var(--blue-600);
+  color: var(--on-blue-tint);
   border-radius: var(--radius-xl);
   cursor: pointer;
   transition: all 0.2s ease;
@@ -83,7 +83,7 @@
 .save-draft:disabled {
   opacity: 0.5;
   cursor: not-allowed;
-  color: var(--text-300);
+  color: var(--text-400);
 }
 
 .save-draft:not(:disabled):active {
@@ -208,12 +208,51 @@
   flex-shrink: 0;
 }
 
+.toast-message {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Toasts auto-dismiss, but a manual close means the message is never a race. */
+.toast-dismiss {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 32px;
+  height: 32px;
+  margin: -6px -8px -6px 0;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.toast-dismiss:hover {
+  opacity: 1;
+  background: rgba(28, 28, 28, 0.08);
+}
+
+.toast-dismiss .material-symbols-rounded {
+  font-size: 18px;
+}
+
+/* Wrapper for the aria-live regions; no box of its own. */
+.toast-live-region {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
 .toast-success .toast-icon {
-  color: var(--success-500);
+  color: var(--on-success-tint);
 }
 
 .toast-error .toast-icon {
-  color: var(--error-500);
+  color: var(--on-error-tint);
 }
 
 .toast-message {
@@ -277,7 +316,7 @@
   height: 48px;
   border-radius: var(--radius-s); /* Squircle */
   background: linear-gradient(135deg, var(--blue-100), var(--blue-50));
-  color: var(--blue-600);
+  color: var(--on-blue-tint);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -332,7 +371,7 @@
 }
 
 .required-indicator {
-  color: var(--error-500);
+  color: var(--on-error-tint);
   font-size: 14px;
   margin-left: 4px;
   font-weight: 700;
@@ -379,7 +418,7 @@
 .rating-option.severity-good {
   background-color: var(--success-50);
   border-color: var(--success-200);
-  color: var(--success-700);
+  color: var(--on-success-tint);
 }
 .rating-option.severity-good.selected {
   border-color: var(--success-500);
@@ -389,7 +428,7 @@
 .rating-option.severity-mild {
   background-color: var(--success-50);
   border-color: var(--success-200);
-  color: var(--success-600);
+  color: var(--on-success-tint);
 }
 .rating-option.severity-mild.selected {
   border-color: var(--success-400);
@@ -399,7 +438,7 @@
 .rating-option.severity-moderate {
   background-color: var(--warning-50);
   border-color: var(--warning-200);
-  color: var(--warning-700);
+  color: var(--on-warning-tint);
 }
 .rating-option.severity-moderate.selected {
   border-color: var(--warning-500);
@@ -409,7 +448,7 @@
 .rating-option.severity-warning {
   background-color: var(--warning-50);
   border-color: var(--warning-300);
-  color: var(--warning-700);
+  color: var(--on-warning-tint);
 }
 .rating-option.severity-warning.selected {
   border-color: var(--warning-600);
@@ -419,7 +458,7 @@
 .rating-option.severity-danger {
   background-color: var(--error-50);
   border-color: var(--error-200);
-  color: var(--error-700);
+  color: var(--on-error-tint);
 }
 .rating-option.severity-danger.selected {
   border-color: var(--error-500);
@@ -487,7 +526,7 @@
 
 .option-icon {
   margin-right: 12px;
-  color: var(--text-300);
+  color: var(--text-400);
   font-size: 20px;
   flex-shrink: 0;
   display: flex;
@@ -496,7 +535,7 @@
 }
 
 .option-button.selected .option-icon {
-  color: var(--blue-600);
+  color: var(--on-blue-tint);
 }
 
 .option-label {
@@ -558,19 +597,19 @@
 
 .frequency-row.tier-0.selected {
   background-color: var(--success-100);
-  color: var(--success-700);
+  color: var(--on-success-tint);
   box-shadow: inset 4px 0 0 0 var(--success-500);
 }
 
 .frequency-row.tier-1.selected {
   background-color: var(--success-100);
-  color: var(--success-700);
+  color: var(--on-success-tint);
   box-shadow: inset 4px 0 0 0 var(--success-400);
 }
 
 .frequency-row.tier-2.selected {
   background-color: var(--warning-100);
-  color: var(--warning-800);
+  color: var(--warning-900);
   box-shadow: inset 4px 0 0 0 var(--warning-500);
 }
 
@@ -696,7 +735,7 @@
   top: -10px;
   left: 50%;
   transform: translateX(-50%);
-  background-color: var(--blue-600);
+  background-color: var(--blue-700);
   color: white;
   padding: 4px 12px;
   border-radius: var(--radius-xl);
@@ -764,7 +803,7 @@
 
 .body-view-btn.active {
   background-color: white;
-  color: var(--primary);
+  color: var(--on-lavender-tint);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   font-weight: 600;
 }
@@ -940,7 +979,7 @@
 
 .body-chip .material-symbols-rounded {
   font-size: 16px;
-  color: var(--blue-500);
+  color: var(--on-blue-tint);
 }
 
 /* Fallback grid layout for body regions (used alongside SVG) */
@@ -977,7 +1016,7 @@
 
 .body-region.selected {
   border-color: var(--blue-500);
-  background-color: var(--blue-500);
+  background-color: var(--blue-700);
   color: white;
   font-weight: 700;
   box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
@@ -1022,7 +1061,7 @@
 .remove-area {
   background: none;
   border: none;
-  color: var(--blue-500);
+  color: var(--on-blue-tint);
   cursor: pointer;
   padding: 0;
   margin-left: 6px;
@@ -1181,7 +1220,7 @@
 
 .nav-button.next,
 .nav-button.save {
-  background-color: var(--blue-600);
+  background-color: var(--blue-700);
   color: white;
   box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
 }
@@ -1276,7 +1315,7 @@
 }
 
 .modal-actions .caption.primary {
-  background-color: var(--blue-600);
+  background-color: var(--blue-700);
   color: white;
 }
 
@@ -1446,12 +1485,12 @@
 }
 
 .picker-item.selected .picker-item-label {
-  color: var(--blue-700);
+  color: var(--on-blue-tint);
   font-weight: 600;
 }
 
 .picker-check {
-  color: var(--blue-600);
+  color: var(--on-blue-tint);
   font-size: 20px;
 }
 
@@ -1480,14 +1519,14 @@
 
 .segment-button.active {
   background-color: white;
-  color: var(--blue-600);
+  color: var(--on-blue-tint);
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
   font-weight: 600;
 }
 
 /* Validation Error Styles */
 .question-wrapper.has-error .question-header h3 {
-  color: var(--error-700);
+  color: var(--on-error-tint);
 }
 
 .validation-error {
@@ -1495,7 +1534,7 @@
   align-items: center;
   gap: 4px;
   margin-top: 8px;
-  color: var(--error-600);
+  color: var(--on-error-tint);
   font-size: 14px;
   font-weight: 500;
   font-family: var(--font-body);
@@ -1773,16 +1812,16 @@
 
 .bristol-extra-btn.alert {
   box-shadow: 0 0 0 1px var(--error);
-  color: var(--error);
+  color: var(--on-error-tint);
 }
 
 .bristol-extra-btn.alert .material-symbols-rounded {
   font-size: 18px;
-  color: var(--error);
+  color: var(--on-error-tint);
 }
 
 .bristol-extra-btn.selected {
-  background: var(--primary);
+  background: var(--lavender-700);
   box-shadow: none;
   color: #fff;
 }

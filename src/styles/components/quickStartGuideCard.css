@@ -14,7 +14,7 @@
 }
 
 .quick-start-guide-card--blue .quick-start-guide-card__icon {
-  color: var(--blue-700);
+  color: var(--on-blue-tint);
 }
 
 .quick-start-guide-card--secondary {
@@ -22,7 +22,7 @@
 }
 
 .quick-start-guide-card--secondary .quick-start-guide-card__icon {
-  color: var(--secondary-700);
+  color: var(--on-secondary-tint);
 }
 
 .quick-start-guide-card--lavender {
@@ -30,7 +30,7 @@
 }
 
 .quick-start-guide-card--lavender .quick-start-guide-card__icon {
-  color: var(--lavender-700);
+  color: var(--on-lavender-tint);
 }
 
 .quick-start-guide-card__icon {
@@ -39,7 +39,7 @@
 }
 
 .quick-start-guide-card__subtext {
-  color: var(--text-300);
+  color: var(--text-400);
   margin-top: 8px;
 }
 

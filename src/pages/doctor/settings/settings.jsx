@@ -253,7 +253,7 @@ const DoctorSettings = () => {
           </div>
         </div>
         <div className="settings-doctor-search" onClick={toggleSearch}>
-          <span className="material-symbols-rounded doctor-header-icon">
+          <span className="material-symbols-rounded doctor-header-icon" aria-hidden="true">
             search
           </span>
         </div>
@@ -288,23 +288,23 @@ const DoctorSettings = () => {
               </div>
             ) : (
               filteredAccountItems.map((item) => (
-                <div
+                <button type="button"
                   className="settings-item"
                   onClick={item.onClick}
                   key={item.key}
                 >
                   <div className="settings-left">
-                    <span className="material-symbols-rounded settings-icon">
+                    <span className="material-symbols-rounded settings-icon" aria-hidden="true">
                       {item.icon}
                     </span>
                     <span className="settings-item-text body">
                       {item.label}
                     </span>
                   </div>
-                  <span className="material-symbols-rounded arrow">
+                  <span className="material-symbols-rounded arrow" aria-hidden="true">
                     chevron_right
                   </span>
-                </div>
+                </button>
               ))
             )}
           </div>
@@ -320,7 +320,7 @@ const DoctorSettings = () => {
               filteredPrivacyItems.map((item) => (
                 <div className="settings-item" key={item.key}>
                   <div className="settings-left">
-                    <span className="material-symbols-rounded settings-icon">
+                    <span className="material-symbols-rounded settings-icon" aria-hidden="true">
                       {item.icon}
                     </span>
                     <div className="settings-item-textwrap">
@@ -356,7 +356,7 @@ const DoctorSettings = () => {
               filteredNotificationItems.map((item) => (
                 <div className="settings-item" key={item.key}>
                   <div className="settings-left">
-                    <span className="material-symbols-rounded settings-icon">
+                    <span className="material-symbols-rounded settings-icon" aria-hidden="true">
                       {item.icon}
                     </span>
                     <span className="settings-item-text body">
@@ -380,22 +380,22 @@ const DoctorSettings = () => {
         {/* Help & Support Accordion - Available under all tabs */}
         <div className="common-settings-list">
           {showHelp && (
-            <div
+            <button type="button"
               className={`settings-item help ${helpOpen ? "open" : ""}`}
               onClick={() => setHelpOpen(!helpOpen)}
             >
               <div className="settings-left">
-                <span className="material-symbols-rounded settings-icon">
+                <span className="material-symbols-rounded settings-icon" aria-hidden="true">
                   help
                 </span>
                 <span className="settings-item-text help-support body">
                   {t("help_support")}
                 </span>
               </div>
-              <span className="material-symbols-rounded arrow">
+              <span className="material-symbols-rounded arrow" aria-hidden="true">
                 {helpOpen ? "expand_less" : "expand_more"}
               </span>
-            </div>
+            </button>
           )}
 
           {helpOpen && showHelp && (
@@ -427,16 +427,16 @@ const DoctorSettings = () => {
           )}
 
           {showLogout && (
-            <div className="settings-item logout" onClick={handleLogout}>
+            <button type="button" className="settings-item logout" onClick={handleLogout}>
               <div className="settings-left">
-                <span className="material-symbols-rounded settings-icon">
+                <span className="material-symbols-rounded settings-icon" aria-hidden="true">
                   chip_extraction
                 </span>
                 <span className="settings-item-text logout body">
                   {t("logout")}
                 </span>
               </div>
-            </div>
+            </button>
           )}
         </div>
       </div>

@@ -4,7 +4,7 @@ import FrequencyPicker from "../../../components/picker/frequencyPicker.jsx";
 import Button from "../../../components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-
+import BackButton from "../../../components/ui/backButton";
 const Assessment09 = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -32,12 +32,7 @@ const Assessment09 = () => {
   return (
     <div className="assessment-container">
       <div className="assessment-header">
-        <span
-          className="material-symbols-rounded chevronB_icon"
-          onClick={() => navigate(-1)}
-        >
-          chevron_backward
-        </span>
+        <BackButton className="chevronB_icon" onClick={() => navigate(-1)} />
 
         <div className="progress-bar-container">
           <ProgressBar currentStep={9} totalSteps={9} />

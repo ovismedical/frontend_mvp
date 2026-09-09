@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { getSeverityConfig, getSectionIcon } from "../../utils/severityUtils";
 import ResponseValue from "../../components/ui/responseValue";
 import "../../styles/pages/patient/questionnaire_detail.css";
-
+import BackButton from "../../components/ui/backButton";
 const QuestionnaireDetail = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -16,12 +16,7 @@ const QuestionnaireDetail = () => {
     return (
       <div className="qd-container">
         <div className="qd-header">
-          <span
-            className="material-symbols-rounded qd-back"
-            onClick={() => navigate(-1)}
-          >
-            chevron_backward
-          </span>
+          <BackButton className="qd-back" onClick={() => navigate(-1)} />
           <h4 className="qd-header-title h4">Symptom Report</h4>
           <div style={{ width: 24 }} />
         </div>
@@ -73,12 +68,7 @@ const QuestionnaireDetail = () => {
     <div className="qd-container">
       {/* Header */}
       <div className="qd-header">
-        <span
-          className="material-symbols-rounded qd-back"
-          onClick={() => navigate(-1)}
-        >
-          chevron_backward
-        </span>
+        <BackButton className="qd-back" onClick={() => navigate(-1)} />
         <h4 className="qd-header-title h4">Symptom Report</h4>
         <span
           className="material-symbols-rounded qd-edit-icon"

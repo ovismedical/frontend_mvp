@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import Tabs from "../../../components/ui/tabs";
 import MedicationList from "../../../components/layout/medication_list";
 import StatusBanner from "../../../components/ui/statusBanner";
-
+import BackButton from "../../../components/ui/backButton";
 const Medication = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -29,12 +29,7 @@ const Medication = () => {
   return (
     <div className="med-list-container">
       <div className="med-list-header">
-        <span
-          className="material-symbols-rounded chevron_backward"
-          onClick={() => navigate(-1)}
-        >
-          chevron_backward
-        </span>
+        <BackButton className="chevron_backward" onClick={() => navigate(-1)} />
         <div className="med-list-header h4">{t("all_medications")}</div>
         <span
           className="material-symbols-rounded search"

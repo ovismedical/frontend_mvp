@@ -1,3 +1,5 @@
+@import "../variables.css";
+
 .bottom-nav {
   position: fixed;
   bottom: 0;
@@ -6,20 +8,78 @@
   background: var(--background-500);
   display: flex;
   justify-content: space-around;
-  padding: 12px 0;
+  align-items: stretch;
+  padding: 6px 4px;
+  /* Clear the iOS home indicator / Android gesture bar. */
+  padding-bottom: calc(6px + env(safe-area-inset-bottom));
   box-shadow: 0 0 0 0.5px var(--neutral-500);
+  z-index: 40;
 }
 
 .nav-item {
-  color: var(--text-400);
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  /* Whole column is the tap target, not just the glyph. */
+  min-height: var(--tap-target-min);
+  min-width: 0;
+  padding: 4px 2px;
+  border-radius: var(--radius-2xs);
+  color: var(--text-500);
   text-decoration: none;
+  transition: color 0.15s ease, background-color 0.15s ease;
 }
 
 .nav-item .material-symbols-rounded {
-  font-size: 30px;
+  font-size: 26px;
+  line-height: 1;
+}
+
+.nav-item-label {
+  font-family: var(--font-body);
+  font-size: 11px;
+  line-height: 1.2;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Active destination: colour + filled glyph + weight, so it does not rely on hue alone. */
+.nav-item.active {
+  color: var(--on-blue-tint);
 }
 
 .nav-item.active .material-symbols-rounded {
-  color: var(--blue-700);
   font-variation-settings: "FILL" 1;
+}
+
+.nav-item.active .nav-item-label {
+  font-weight: 700;
+}
+
+.nav-item:active {
+  background-color: var(--blue-50);
+}
+
+/* Very narrow phones: keep six columns legible rather than letting labels collide. */
+@media (max-width: 359px) {
+  .nav-item .material-symbols-rounded {
+    font-size: 24px;
+  }
+
+  .nav-item-label {
+    font-size: 10px;
+  }
+}
+
+/* Reserve room so page content never scrolls underneath the fixed nav.
+   Tracks the nav's own height (icon + label + padding) plus the device inset. */
+.bottom-nav-layout {
+  padding-bottom: calc(68px + env(safe-area-inset-bottom));
 }

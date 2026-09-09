@@ -5,7 +5,7 @@ import DoctorCard from "../../../components/ui/doctorCard.jsx";
 import CareMemberCard from "../../../components/ui/careMemberCard.jsx";
 import StatusBanner from "../../../components/ui/statusBanner";
 import { useAuth } from "../../../context/AuthContext";
-
+import BackButton from "../../../components/ui/backButton";
 const HealthCareProvider = () => {
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
@@ -69,12 +69,7 @@ const HealthCareProvider = () => {
   return (
     <div className="healthcare-provider-container">
       <div className="healthcare-provider-header">
-        <span
-          className="material-symbols-rounded chevron_backward"
-          onClick={() => navigate(-1)}
-        >
-          chevron_backward
-        </span>
+        <BackButton className="chevron_backward" onClick={() => navigate(-1)} />
         <div className="healthcare-provider-header h4">
           {t("healthcare_provider")}
         </div>

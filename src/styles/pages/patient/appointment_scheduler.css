@@ -43,13 +43,13 @@
 
 .message.success {
   background-color: var(--success-50);
-  color: var(--success-700);
+  color: var(--on-success-tint);
   box-shadow: 0 0 0 1px var(--success-100);
 }
 
 .message.error {
   background-color: var(--error-50);
-  color: var(--error-700);
+  color: var(--on-error-tint);
   box-shadow: 0 0 0 1px var(--error-100);
 }
 
@@ -130,7 +130,7 @@
 
 .doctor-icon .material-symbols-rounded {
   font-size: 24px;
-  color: var(--blue-700);
+  color: var(--on-blue-tint);
   font-variation-settings: "FILL" 1;
 }
 
@@ -195,7 +195,7 @@
 
 .date-card.unavailable .date-day,
 .date-card.unavailable .date-number {
-  color: var(--text-300);
+  color: var(--text-400);
 }
 
 .date-day {
@@ -211,7 +211,7 @@
 
 .date-card.selected .date-day,
 .date-card.selected .date-number {
-  color: var(--blue-700);
+  color: var(--on-blue-tint);
 }
 
 /* Time Slots */
@@ -247,7 +247,7 @@
 .time-slot-btn.unavailable {
   background: var(--neutral-100);
   box-shadow: 0 0 0 2px var(--neutral-200);
-  color: var(--text-300);
+  color: var(--text-400);
   cursor: not-allowed;
   opacity: 0.5;
 }
@@ -264,7 +264,7 @@
   border-radius: var(--radius-s);
   background: var(--background-100);
   color: var(--text-500);
-  font-size: 14px;
+  font-size: 16px; /* <16px makes iOS Safari zoom the viewport on focus */
   resize: vertical;
   min-height: 100px;
   font-family: inherit;
@@ -330,7 +330,7 @@
 
 .appointment-scheduler-modal-icon .material-symbols-rounded {
   font-size: 32px;
-  color: var(--warning-600);
+  color: var(--on-warning-tint);
   font-variation-settings: "FILL" 1;
 }
 

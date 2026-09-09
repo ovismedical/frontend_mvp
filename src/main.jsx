@@ -4,6 +4,9 @@ import App from "./App.jsx";
 import { BrowserRouter } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext.jsx";
 import { ScaleProvider } from "./context/ScaleContext";
+// Only the rounded variant is used; the package barrel would also pull in the
+// outlined and sharp fonts (~6.9 MB of unreferenced woff2).
+import "material-symbols/rounded.css";
 import "./styles/index.css";
 import "./i18n";
 

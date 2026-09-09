@@ -36,7 +36,7 @@
 
 .appointment-card-doctor-info p {
   margin: 2px 0 0;
-  color: var(--text-300);
+  color: var(--text-400);
 }
 
 .appointment-card-menu-container {
@@ -84,7 +84,7 @@
 }
 
 .appointment-card-menu-item.cancel {
-  color: var(--error-600);
+  color: var(--on-error-tint);
 }
 
 .appointment-card-footer {

@@ -91,7 +91,7 @@
 .symptom-tag {
   display: inline-block;
   background-color: var(--primary-100);
-  color: var(--primary-700);
+  color: var(--lavender-800);
   padding: 4px 8px;
   border-radius: var(--radius-s);
   font-size: 12px;
@@ -141,22 +141,22 @@
 
 .qs-severity-pill.success {
   background: var(--success-50);
-  color: var(--success-700);
+  color: var(--on-success-tint);
 }
 
 .qs-severity-pill.warning {
   background: var(--warning-50);
-  color: var(--warning-700);
+  color: var(--on-warning-tint);
 }
 
 .qs-severity-pill.error {
   background: var(--error-50);
-  color: var(--error-700);
+  color: var(--on-error-tint);
 }
 
 .qs-severity-pill.neutral {
   background: var(--neutral-100);
-  color: var(--text-400);
+  color: var(--on-neutral-tint);
 }
 
 /* Responsive */

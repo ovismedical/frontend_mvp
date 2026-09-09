@@ -37,7 +37,7 @@
 
 .login-link {
   text-decoration: underline;
-  color: var(--blue-700);
+  color: var(--on-blue-tint);
   max-width: 80%;
 }
 

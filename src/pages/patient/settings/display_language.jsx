@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { ScaleContext } from "../../../context/ScaleContext.jsx";
 import { useTranslation } from "react-i18next";
-
+import BackButton from "../../../components/ui/backButton";
 const DisplayLanguage = () => {
   // Backend Handling: Fetch and update user language and font size preferences from/to backend
   const navigate = useNavigate();
@@ -48,39 +48,35 @@ const DisplayLanguage = () => {
   return (
     <div className="display-language-container">
       <div className="display-language-header">
-        <span
-          className="material-symbols-rounded chevron_backward"
-          onClick={() => navigate(-1)}
-        >
-          chevron_backward
-        </span>
+        <BackButton className="chevron_backward" onClick={() => navigate(-1)} />
         <div className="h4">{t("display_and_language")}</div>
-        <span className="material-symbols-rounded search"></span>
+        <span className="material-symbols-rounded search" aria-hidden="true"></span>
       </div>
 
       {/* Accordion Content */}
       <div className="display-language-content">
         {/* Language */}
-        <div
+        <button type="button"
           className="display-language-accordion-header"
           onClick={() => setLanguageOpen(!languageOpen)}
+          aria-expanded={languageOpen}
         >
           <div className="display-language-accordion-left">
-            <span className="material-symbols-rounded accordion-icon">
+            <span className="material-symbols-rounded accordion-icon" aria-hidden="true">
               translate
             </span>
             <span className="display-language-accordion-title body">
               {t("language")}
             </span>
           </div>
-          <span className="material-symbols-rounded accordion-action-icon">
+          <span className="material-symbols-rounded accordion-action-icon" aria-hidden="true">
             {languageOpen ? "expand_less" : "expand_more"}
           </span>
-        </div>
+        </button>
 
         {languageOpen && (
           <div className="display-language-accordion-body">
-            <div
+            <button type="button"
               className={`display-language-accordion-option ${
                 selectedLanguage === "English" ? "selected" : ""
               }`}
@@ -90,12 +86,12 @@ const DisplayLanguage = () => {
                 English
               </span>
               {selectedLanguage === "English" && (
-                <span className="material-symbols-rounded option-icon-check">
+                <span className="material-symbols-rounded option-icon-check" aria-hidden="true">
                   done
                 </span>
               )}
-            </div>
-            <div
+            </button>
+            <button type="button"
               className={`display-language-accordion-option ${
                 selectedLanguage === "繁體中文" ? "selected" : ""
               }`}
@@ -105,35 +101,35 @@ const DisplayLanguage = () => {
                 繁體中文
               </span>
               {selectedLanguage === "繁體中文" && (
-                <span className="material-symbols-rounded option-icon-check">
+                <span className="material-symbols-rounded option-icon-check" aria-hidden="true">
                   done
                 </span>
               )}
-            </div>
+            </button>
           </div>
         )}
 
         {/* Font Size */}
-        <div
+        <button type="button"
           className="display-language-accordion-header"
           onClick={() => setFontSizeOpen(!fontSizeOpen)}
         >
           <div className="display-language-accordion-left">
-            <span className="material-symbols-rounded accordion-icon">
+            <span className="material-symbols-rounded accordion-icon" aria-hidden="true">
               format_size
             </span>
             <span className="display-language-accordion-title body">
               {t("font_size")}
             </span>
           </div>
-          <span className="material-symbols-rounded accordion-action-icon">
+          <span className="material-symbols-rounded accordion-action-icon" aria-hidden="true">
             {fontSizeOpen ? "expand_less" : "expand_more"}
           </span>
-        </div>
+        </button>
 
         {fontSizeOpen && (
           <div className="display-language-accordion-body">
-            <div
+            <button type="button"
               className={`display-language-accordion-option ${
                 scale === "small" ? "selected" : ""
               }`}
@@ -143,10 +139,10 @@ const DisplayLanguage = () => {
                 {t("small")}
               </span>
               {scale === "small" && (
-                <span className="material-symbols-rounded check">done</span>
+                <span className="material-symbols-rounded check" aria-hidden="true">done</span>
               )}
-            </div>
-            <div
+            </button>
+            <button type="button"
               className={`display-language-accordion-option ${
                 scale === "default" ? "selected" : ""
               }`}
@@ -156,10 +152,10 @@ const DisplayLanguage = () => {
                 {t("medium")}
               </span>
               {scale === "default" && (
-                <span className="material-symbols-rounded check">done</span>
+                <span className="material-symbols-rounded check" aria-hidden="true">done</span>
               )}
-            </div>
-            <div
+            </button>
+            <button type="button"
               className={`display-language-accordion-option ${
                 scale === "large" ? "selected" : ""
               }`}
@@ -169,9 +165,9 @@ const DisplayLanguage = () => {
                 {t("large")}
               </span>
               {scale === "large" && (
-                <span className="material-symbols-rounded check">done</span>
+                <span className="material-symbols-rounded check" aria-hidden="true">done</span>
               )}
-            </div>
+            </button>
           </div>
         )}
       </div>

@@ -77,13 +77,13 @@
   flex: 1;
   border: none;
   background: transparent;
-  font-size: 15px;
+  font-size: 16px; /* <16px makes iOS Safari zoom the viewport on focus */
   padding: 8px;
   outline: none;
 }
 
 .material-symbols-rounded.send-icon {
-  color: var(--blue-700);
+  color: var(--on-blue-tint);
   font-size: 25px;
   cursor: pointer;
 }
@@ -103,7 +103,7 @@
 }
 
 .mic-button .material-symbols-rounded {
-  color: var(--blue-700);
+  color: var(--on-blue-tint);
   font-size: 26px;
 }
 
@@ -151,7 +151,7 @@
 
 .modal-actions button {
   width: 150px;
-  height: 40px;
+  min-height: var(--tap-target-min);
   padding: 10px 16px;
   border: none;
   border-radius: var(--radius-s);
@@ -162,7 +162,7 @@
 
 .modal-actions button:last-child {
   background: transparent;
-  color: var(--blue-700);
+  color: var(--on-blue-tint);
   box-shadow: 0 0 0 1px var(--blue-700);
 }
 
@@ -254,4 +254,66 @@
 .chatbot-embedded-action:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+/* Florence header actions — icon buttons need a real target and an accessible name. */
+.florence-icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--tap-target-min);
+  min-height: var(--tap-target-min);
+  padding: 8px;
+  background: none;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  color: var(--text-700);
+  transition: background-color 0.2s ease, opacity 0.2s ease;
+}
+
+.florence-icon-button .material-symbols-rounded {
+  font-size: 24px;
+  line-height: 1;
+}
+
+.florence-icon-button:hover:not(:disabled) {
+  background-color: var(--blue-50);
+}
+
+.florence-icon-button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* Connection status line, announced via role="status". */
+.florence-connecting {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px;
+  color: var(--text-500);
+}
+
+.florence-connecting-spinner {
+  width: 14px;
+  height: 14px;
+  flex: none;
+  border: 2px solid var(--neutral-400);
+  border-top-color: var(--blue-700);
+  border-radius: 50%;
+  animation: florence-spin 0.8s linear infinite;
+}
+
+@keyframes florence-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Was an inline Bootstrap grey (#6c757d, 4.45:1) — now a token that clears AA. */
+.options-title {
+  padding: 8px 16px;
+  color: var(--text-500);
 }

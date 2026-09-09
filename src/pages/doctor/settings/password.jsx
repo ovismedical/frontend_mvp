@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import InputField from "../../../components/ui/inputfield.jsx";
 import Button from "../../../components/ui/button.jsx";
 import StatusBanner from "../../../components/ui/statusBanner";
-
+import BackButton from "../../../components/ui/backButton";
 const PasswordSecurity = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -65,12 +65,7 @@ const PasswordSecurity = () => {
     <div className="password-security-container">
       <StatusBanner variant="coming-soon" message={t("password_coming_soon")} />
       <div className="password-security-header">
-        <span
-          className="material-symbols-rounded chevron_backward"
-          onClick={() => navigate(-1)}
-        >
-          chevron_backward
-        </span>
+        <BackButton className="chevron_backward" onClick={() => navigate(-1)} />
         <div className="password-security-header h4">
           {t("password_and_security")}
         </div>

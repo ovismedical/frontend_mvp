@@ -38,11 +38,11 @@
 }
 
 .mode-toggle-option.active .mode-toggle-icon {
-  color: var(--blue-600);
+  color: var(--on-blue-tint);
 }
 
 .mode-toggle-option.active .mode-toggle-label {
-  color: var(--blue-700);
+  color: var(--on-blue-tint);
   font-weight: 600;
 }
 

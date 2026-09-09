@@ -63,6 +63,7 @@
 }
 
 .range-selector button {
+  position: relative;
   border: none;
   background: var(--neutral-100);
   border-radius: 50%;
@@ -71,6 +72,18 @@
   font-size: 18px;
   cursor: pointer;
 }
+
+/* Visual stays small; the tap target does not. */
+.range-selector button::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--tap-target-min);
+  height: var(--tap-target-min);
+  transform: translate(-50%, -50%);
+}
+
 
 .range-selector span {
   font-size: 16px;
@@ -89,7 +102,7 @@
 }
 
 .custom-range-error-message {
-  color: var(--error-700);
+  color: var(--on-error-tint);
   text-align: center;
   padding: 0 10px;
 }
@@ -145,7 +158,7 @@
 }
 
 .generate-btn {
-  background: var(--blue-600);
+  background: var(--blue-700);
   color: white;
   border: none;
 }

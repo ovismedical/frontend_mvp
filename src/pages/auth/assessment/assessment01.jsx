@@ -4,7 +4,7 @@ import InputField from "../../../components/ui/inputfield";
 import Button from "../../../components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-
+import BackButton from "../../../components/ui/backButton";
 const Assessment01 = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -26,12 +26,7 @@ const Assessment01 = () => {
   return (
     <div className="assessment-container">
       <div className="assessment-header">
-        <span
-          className="material-symbols-rounded chevronB_icon"
-          onClick={() => navigate(-1)}
-        >
-          chevron_backward
-        </span>
+        <BackButton className="chevronB_icon" onClick={() => navigate(-1)} />
 
         <div className="progress-bar-container">
           <ProgressBar currentStep={1} totalSteps={9} />

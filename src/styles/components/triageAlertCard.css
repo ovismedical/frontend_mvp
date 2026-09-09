@@ -48,22 +48,22 @@
 
 .triage-alert-card.success .triage-alert-icon {
   background: rgba(var(--success-rgb), 0.1);
-  color: var(--success);
+  color: var(--on-success-tint);
 }
 
 .triage-alert-card.info .triage-alert-icon {
   background: rgba(var(--info-rgb), 0.1);
-  color: var(--info);
+  color: var(--on-info-tint);
 }
 
 .triage-alert-card.warning .triage-alert-icon {
   background: rgba(var(--warning-rgb), 0.1);
-  color: var(--warning);
+  color: var(--on-warning-tint);
 }
 
 .triage-alert-card.error .triage-alert-icon {
   background: rgba(var(--error-rgb), 0.1);
-  color: var(--error);
+  color: var(--on-error-tint);
 }
 
 .triage-alert-icon .material-symbols-rounded {
@@ -118,7 +118,7 @@
 
 .timeline-icon {
   font-size: 16px;
-  color: var(--primary);
+  color: var(--on-lavender-tint);
 }
 
 .timeline-text {
@@ -135,7 +135,7 @@
 
 .symptoms-icon {
   font-size: 16px;
-  color: var(--primary);
+  color: var(--on-lavender-tint);
   margin-top: 2px;
 }
 

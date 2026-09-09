@@ -52,7 +52,7 @@
 
 .doctor-notifications-search-icon {
   font-size: 20px;
-  color: var(--text-300);
+  color: var(--text-400);
 }
 
 .doctor-notifications-filter-btn-wrap {
@@ -128,12 +128,12 @@ doctor-notifications-list::-webkit-scrollbar {
 
 .doctor-notifications-type {
   margin: 0;
-  color: var(--text-300);
+  color: var(--text-400);
 }
 
 .doctor-notifications-time {
   margin: 0;
-  color: var(--text-300);
+  color: var(--text-400);
 }
 
 .doctor-notifications-status {
@@ -173,7 +173,7 @@ doctor-notifications-list::-webkit-scrollbar {
 .doctor-notifications-clear-filters {
   background: none;
   border: none;
-  color: var(--blue-600);
+  color: var(--on-blue-tint);
   cursor: pointer;
 }
 
@@ -208,7 +208,7 @@ doctor-notifications-list::-webkit-scrollbar {
 }
 
 .doctor-notifications-filter-option.selected {
-  color: var(--blue-600);
+  color: var(--on-blue-tint);
 }
 
 .doctor-notifications-filter-option input[type="checkbox"]:checked {
@@ -224,6 +224,25 @@ doctor-notifications-list::-webkit-scrollbar {
   object-fit: cover;
 }
 
+/* The initials fallback had no rule at all, so it rendered as a bare letter butted
+   against the patient name. Match the photo avatar's box. */
+.doctor-notifications-avatar-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 12px;
+  background-color: var(--blue-50);
+  color: var(--on-blue-tint);
+  font-family: var(--font-heading);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1;
+}
+
 /* Sections */
 .doctor-notifications-section-header {
   padding: 8px 16px;
@@ -236,25 +255,25 @@ doctor-notifications-list::-webkit-scrollbar {
 
 .doctor-notifications-section-header.critical {
   background: var(--error-50);
-  color: var(--error-600);
+  color: var(--on-error-tint);
   border-left: 5px solid var(--error-600);
 }
 
 .doctor-notifications-section-header.urgent {
   background: var(--warning-50);
-  color: var(--warning-600);
+  color: var(--on-warning-tint);
   border-left: 5px solid var(--warning-600);
 }
 
 .doctor-notifications-section-header.caution {
   background: var(--secondary-50);
-  color: var(--secondary-600);
+  color: var(--on-secondary-tint);
   border-left: 5px solid var(--secondary-600);
 }
 
 .doctor-notifications-section-header.info {
   background: var(--info-50);
-  color: var(--info-600);
+  color: var(--on-info-tint);
   border-left: 5px solid var(--info-600);
 }
 

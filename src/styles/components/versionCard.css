@@ -19,7 +19,7 @@
 }
 
 .version-date {
-  color: var(--text-200);
+  color: var(--text-400);
 }
 
 .version-title {
@@ -29,5 +29,5 @@
 
 .version-description {
   margin-top: 6px;
-  color: var(--text-300);
+  color: var(--text-400);
 }

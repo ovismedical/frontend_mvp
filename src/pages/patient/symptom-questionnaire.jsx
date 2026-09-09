@@ -9,7 +9,7 @@ import { useToast } from "../../components/ui/Toast";
 import { symptomQuestionnaire, conditionalLogic } from "../../fixtures/symptomQuestionnaire";
 import { symptomQuestionnaireAPI } from "../../utils/api";
 import "../../styles/questionnaire.css";
-
+import BackButton from "../../components/ui/backButton";
 export default function SymptomQuestionnaire() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -197,12 +197,7 @@ export default function SymptomQuestionnaire() {
 
       {/* Header */}
       <div className="questionnaire-header">
-        <span
-          className="material-symbols-rounded chevron_backward"
-          onClick={handleExit}
-        >
-          chevron_backward
-        </span>
+        <BackButton className="chevron_backward" onClick={handleExit} />
         <h4>Symptom Questionnaire</h4>
         <div className="questionnaire-actions">
           <button

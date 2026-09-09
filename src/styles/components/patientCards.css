@@ -29,7 +29,7 @@
 
 .patient-card-name {
   margin: 0;
-  color: var(--blue-700);
+  color: var(--on-blue-tint);
 }
 
 .patient-card-diagnosis {
@@ -39,14 +39,14 @@
 
 .patient-card-status {
   margin: 0;
-  color: var(--success-700);
+  color: var(--on-success-tint);
   display: flex;
   align-items: center;
   gap: 6px;
 }
 
 .status-icon {
-  background-color: var(--success-700);
+  background-color: var(--success-800);
   color: var(--success-50);
   border-radius: var(--radius-m);
   padding: 2px;
@@ -60,6 +60,7 @@
 }
 
 .action-btn {
+  position: relative;
   background: var(--blue-700);
   border: none;
   border-radius: var(--radius-xl);
@@ -72,6 +73,18 @@
   justify-content: center;
   cursor: pointer;
 }
+
+/* Visual stays small; the tap target does not. */
+.action-btn::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--tap-target-min);
+  height: var(--tap-target-min);
+  transform: translate(-50%, -50%);
+}
+
 
 .patient-card-image--initials {
   display: flex;

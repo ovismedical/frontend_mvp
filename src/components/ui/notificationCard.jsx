@@ -13,35 +13,35 @@ const NotificationCard = ({
       case "error":
         return {
           backgroundColor: "var(--error-50)",
-          iconColor: "var(--error-500)",
+          iconColor: "var(--on-error-tint)",
           titleColor: "var(--text-500)",
           messageColor: "var(--text-400)",
         };
       case "warning":
         return {
           backgroundColor: "var(--warning-50)",
-          iconColor: "var(--warning-500)",
+          iconColor: "var(--on-warning-tint)",
           titleColor: "var(--text-500)",
           messageColor: "var(--text-400)",
         };
       case "info":
         return {
           backgroundColor: "var(--info-50)",
-          iconColor: "var(--info-700)",
+          iconColor: "var(--on-info-tint)",
           titleColor: "var(--text-500)",
           messageColor: "var(--text-400)",
         };
       case "success":
         return {
           backgroundColor: "var(--success-50)",
-          iconColor: "var(--success-500)",
+          iconColor: "var(--on-success-tint)",
           titleColor: "var(--text-500)",
           messageColor: "var(--text-400)",
         };
       default:
         return {
           backgroundColor: "var(--error-50)",
-          iconColor: "var(--error-500)",
+          iconColor: "var(--on-error-tint)",
           titleColor: "var(--text-500)",
           messageColor: "var(--text-400)",
         };

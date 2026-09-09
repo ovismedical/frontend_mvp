@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useAuth } from "../../../context/AuthContext";
 import { achievementsAPI } from "../../../utils/api";
-
+import BackButton from "../../../components/ui/backButton";
 const AchievementsLibrary = () => {
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
@@ -117,12 +117,7 @@ const AchievementsLibrary = () => {
   return (
     <div className="achievements-library-container">
       <div className="achievements-library-header">
-        <span
-          className="material-symbols-rounded chevron_backward"
-          onClick={() => navigate(-1)}
-        >
-          chevron_backward
-        </span>
+        <BackButton className="chevron_backward" onClick={() => navigate(-1)} />
 
         <div className="achievements-header h4"></div>
         <span className="material-symbols-rounded file_save"></span>

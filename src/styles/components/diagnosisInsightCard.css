@@ -47,37 +47,37 @@
 
 .probability-badge.success {
   background: rgba(var(--success-rgb), 0.1);
-  color: var(--success);
+  color: var(--on-success-tint);
 }
 
 .probability-badge.info {
   background: rgba(var(--info-rgb), 0.1);
-  color: var(--info);
+  color: var(--on-info-tint);
 }
 
 .probability-badge.warning {
   background: rgba(var(--warning-rgb), 0.1);
-  color: var(--warning);
+  color: var(--on-warning-tint);
 }
 
 .urgency-badge.success {
   background: rgba(var(--success-rgb), 0.1);
-  color: var(--success);
+  color: var(--on-success-tint);
 }
 
 .urgency-badge.info {
   background: rgba(var(--info-rgb), 0.1);
-  color: var(--info);
+  color: var(--on-info-tint);
 }
 
 .urgency-badge.warning {
   background: rgba(var(--warning-rgb), 0.1);
-  color: var(--warning);
+  color: var(--on-warning-tint);
 }
 
 .urgency-badge.error {
   background: rgba(var(--error-rgb), 0.1);
-  color: var(--error);
+  color: var(--on-error-tint);
 }
 
 .badge-icon {
@@ -105,7 +105,7 @@
 
 .info-icon {
   font-size: 16px;
-  color: var(--primary);
+  color: var(--on-lavender-tint);
 }
 
 .info-text {

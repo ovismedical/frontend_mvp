@@ -61,7 +61,7 @@
 }
 
 .action-card-icon {
-  color: var(--blue-600);
+  color: var(--on-blue-tint);
   font-variation-settings: "FILL" 1;
   font-size: 30px;
 }
@@ -347,7 +347,7 @@
   cursor: pointer;
 }
 .message-dropdown-selected.placeholder {
-  color: var(--text-300);
+  color: var(--text-400);
 }
 .message-dropdown-list {
   position: absolute;
@@ -365,16 +365,16 @@
 .message-dropdown-item {
   padding: 12px;
   cursor: pointer;
-  color: var(--text-300);
+  color: var(--text-400);
   transition: background 0.15s;
 }
 .message-dropdown-item:hover {
   background: var(--blue-50);
-  color: var(--blue-500);
+  color: var(--on-blue-tint);
 }
 .message-dropdown-item.selected {
   background: var(--blue-50);
-  color: var(--blue-500);
+  color: var(--on-blue-tint);
 }
 
 .choose-patient-avatar--initials {

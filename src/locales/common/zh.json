@@ -22,5 +22,16 @@
   "password_coming_soon": "暫時無法更改或重設密碩。如需協助登入，請聯絡你的醫療團隊。",
   "next_badge_progress": "下一個徽章：{{title}} — {{progress}}/{{total}} 天",
   "all_badges_unlocked": "已解鎖所有徽章 — 繼續保持！",
-  "streak_summary": "連續 {{current}} 天 · 最長 {{longest}} 天"
+  "streak_summary": "連續 {{current}} 天 · 最長 {{longest}} 天",
+  "nav_home": "主頁",
+  "nav_dashboard": "健康",
+  "nav_florence": "Florence",
+  "nav_appointments": "預約",
+  "nav_achievements": "成就",
+  "nav_settings": "設定",
+  "nav_doctor_home": "概覽",
+  "nav_doctor_patients": "病人",
+  "nav_doctor_notifications": "提示",
+  "nav_primary_label": "主要導覽",
+  "back": "返回"
 }

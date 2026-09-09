@@ -46,7 +46,7 @@
 
 .achievements-library-subtitle {
   margin: 0;
-  color: var(--text-300);
+  color: var(--text-400);
   margin-bottom: 24px;
 }
 
@@ -81,7 +81,7 @@
 
 .achievements-library-footer {
   margin: 0;
-  color: var(--text-300);
+  color: var(--text-400);
   text-align: center;
   margin-top: 16px;
 }

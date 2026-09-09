@@ -27,5 +27,9 @@
   "otp_button": "Verify OTP",
   "otp_footer": "Didn't receive the code? ",
   "otp_resend": "Resend",
-  "otp_countdown": "Resend code in "
+  "otp_countdown": "Resend code in ",
+  "username": "Username",
+  "password": "Password",
+  "show_password": "Show password",
+  "hide_password": "Hide password"
 }

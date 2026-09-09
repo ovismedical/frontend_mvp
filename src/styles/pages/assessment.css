@@ -127,11 +127,11 @@
 }
 
 .text-red {
-  color: var(--error-700);
+  color: var(--on-error-tint);
 }
 
 .text-green {
-  color: var(--success-700);
+  color: var(--on-success-tint);
 }
 
 .sign-options {
@@ -150,7 +150,7 @@
 }
 
 .material-symbols-rounded.sign-option {
-  color: var(--text-300);
+  color: var(--text-400);
 }
 
 .sign-option.sign-selected {
@@ -159,7 +159,7 @@
 }
 
 .material-symbols-rounded.sign-option.sign-selected {
-  color: var(--blue-700);
+  color: var(--on-blue-tint);
 }
 
 .fitnessSlider-container {
@@ -167,7 +167,7 @@
 }
 
 .error-message {
-  color: var(--error-700);
+  color: var(--on-error-tint);
   margin-top: 2%;
 }
 
@@ -177,7 +177,7 @@
 }
 
 .age-display {
-  color: var(--text-300);
+  color: var(--text-400);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -189,7 +189,7 @@
   font-variation-settings: "FILL" 1, "wght" 600, "GRAD" 0, "opsz" 24;
   font-size: 24px;
   vertical-align: middle;
-  color: var(--secondary-500);
+  color: var(--on-secondary-tint);
 }
 
 .height-picker {

@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import StatusBanner from "../../../components/ui/statusBanner";
-
+import BackButton from "../../../components/ui/backButton";
 export default function MedicationDetails() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -77,12 +77,7 @@ export default function MedicationDetails() {
     <div className="med-details-container">
       <StatusBanner variant="sample" message={t("medication_sample_message")} />
       <div className="med-details-header">
-        <span
-          className="material-symbols-rounded chevron_backward"
-          onClick={() => navigate(-1)}
-        >
-          chevron_backward
-        </span>
+        <BackButton className="chevron_backward" onClick={() => navigate(-1)} />
       </div>
 
       <div className="med-details-content">

@@ -61,7 +61,7 @@
 
 .search-icon {
   font-size: 20px;
-  color: var(--text-300);
+  color: var(--text-400);
 }
 
 .filter-btn-wrap {
@@ -151,7 +151,7 @@
 
 .patient-update {
   margin: 0;
-  color: var(--text-200);
+  color: var(--text-400);
 }
 
 .patient-status {
@@ -203,7 +203,7 @@
 .clear-filters {
   background: none;
   border: none;
-  color: var(--blue-600);
+  color: var(--on-blue-tint);
   cursor: pointer;
 }
 
@@ -238,7 +238,7 @@
 }
 
 .filter-option.selected {
-  color: var(--blue-600);
+  color: var(--on-blue-tint);
 }
 
 .filter-option input[type="checkbox"]:checked {

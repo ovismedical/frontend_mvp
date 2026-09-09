@@ -6,7 +6,7 @@ import articlesData from "../../../fixtures/articles.json";
 import usersData from "../../../fixtures/users.json";
 import CommentCard from "../../../components/ui/commentCard.jsx";
 import ArticleCard from "../../../components/ui/articleCard.jsx";
-
+import BackButton from "../../../components/ui/backButton";
 export default function ArticleDetails() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -209,12 +209,7 @@ export default function ArticleDetails() {
     <div className="article-details">
       <div className="article-image">
         <img src={article.imageUrl} alt={article.title} />
-        <span
-          className="material-symbols-rounded article-back-btn"
-          onClick={() => navigate("/articles")}
-        >
-          chevron_backward
-        </span>
+        <BackButton className="article-back-btn" onClick={() => navigate("/articles")} />
 
         <div className="article-basic-info">
           <div className="article-category-container">

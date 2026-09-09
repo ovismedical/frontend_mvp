@@ -161,11 +161,11 @@ const DoctorNotifications = () => {
   const getTypeColor = (type) => {
     switch (type) {
       case "Symptom Questionnaire":
-        return "var(--secondary-600)";
+        return "var(--on-secondary-tint)";
       case "AI Conversation":
-        return "var(--info-600)";
+        return "var(--on-info-tint)";
       default:
-        return "var(--neutral-600)";
+        return "var(--on-neutral-tint)";
     }
   };
 

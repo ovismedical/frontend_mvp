@@ -80,7 +80,7 @@
 }
 
 .info-text {
-  color: var(--text-200);
+  color: var(--text-400);
   margin-top: 5%;
 }
 
@@ -89,5 +89,5 @@
   font-size: 20px;
   vertical-align: middle;
   margin-right: 8px;
-  color: var(--neutral-500);
+  color: var(--on-neutral-tint);
 }

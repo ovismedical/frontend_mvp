@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import QuickStartGuideCard from "../../components/ui/quickStartGuideCard";
 import FAQItem from "../../components/ui/faq";
 import VersionCard from "../../components/ui/versionCard";
-
+import BackButton from "../../components/ui/backButton";
 const HelpCenter = () => {
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
@@ -213,12 +213,7 @@ const HelpCenter = () => {
   return (
     <div className="help-center-container">
       <div className="help-center-header">
-        <span
-          className="material-symbols-rounded chevron_backward"
-          onClick={() => navigate(-1)}
-        >
-          chevron_backward
-        </span>
+        <BackButton className="chevron_backward" onClick={() => navigate(-1)} />
         <div className="help-center-header h4">{t("help_center")}</div>
         <span
           className="material-symbols-rounded search"

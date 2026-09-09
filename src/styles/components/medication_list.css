@@ -38,5 +38,5 @@
 .med-list-no-results {
   text-align: center;
   padding: 20px;
-  color: var(--blue-700);
+  color: var(--on-blue-tint);
 }

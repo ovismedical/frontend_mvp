@@ -56,7 +56,7 @@ const PatientCard = ({
       return {
         label: t("status_at_risk"),
         icon: "warning",
-        color: "var(--secondary-600)",
+        color: "var(--on-secondary-tint)",
         backgroundColor: "var(--secondary-100)",
       };
     }

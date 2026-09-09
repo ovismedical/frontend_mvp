@@ -44,7 +44,7 @@
 }
 
 .tab-button:hover {
-  background-color: var(--background-700);
+  background-color: var(--background-900);
   color: var(--blue-light-50);
 }
 

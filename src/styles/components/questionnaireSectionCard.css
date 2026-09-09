@@ -67,27 +67,27 @@
 
 .qs-severity-pill.success {
   background: var(--success-50);
-  color: var(--success-700);
+  color: var(--on-success-tint);
 }
 
 .qs-severity-pill.warning {
   background: var(--warning-50);
-  color: var(--warning-700);
+  color: var(--on-warning-tint);
 }
 
 .qs-severity-pill.error {
   background: var(--error-50);
-  color: var(--error-700);
+  color: var(--on-error-tint);
 }
 
 .qs-severity-pill.neutral {
   background: var(--neutral-100);
-  color: var(--text-400);
+  color: var(--on-neutral-tint);
 }
 
 .qs-click-indicator {
   font-size: 18px;
-  color: var(--primary);
+  color: var(--on-lavender-tint);
   opacity: 0.6;
   flex-shrink: 0;
   margin-left: 8px;

@@ -5,7 +5,7 @@ import UserMessage from "../../components/ui/userMessage";
 import OptionsList from "../../components/ui/optionsList";
 import { florenceAPI } from "../../utils/api.js";
 import { useAuth } from "../../context/AuthContext.jsx";
-
+import BackButton from "../../components/ui/backButton";
 const FlorenceChat = ({ onClose, embedded = false, onSessionChange }) => {
   const { t, i18n } = useTranslation();
   const { user } = useAuth();
@@ -69,10 +69,10 @@ const FlorenceChat = ({ onClose, embedded = false, onSessionChange }) => {
         message.includes("are you") || message.includes("is it") ||
         message.includes("yes") || message.includes("no")) {
       return [
-        { label: `✅ ${t("quick_responses_yes")}`, value: t("quick_responses_yes") },
-        { label: `❌ ${t("quick_responses_no")}`, value: t("quick_responses_no") },
-        { label: `🤔 ${t("quick_responses_not_sure")}`, value: t("quick_responses_not_sure") },
-        { label: `🔄 ${t("quick_responses_sometimes")}`, value: t("quick_responses_sometimes") }
+        { icon: "check", label: t("quick_responses_yes"), value: t("quick_responses_yes") },
+        { icon: "close", label: t("quick_responses_no"), value: t("quick_responses_no") },
+        { icon: "help", label: t("quick_responses_not_sure"), value: t("quick_responses_not_sure") },
+        { icon: "sync", label: t("quick_responses_sometimes"), value: t("quick_responses_sometimes") }
       ];
     }
     
@@ -80,11 +80,11 @@ const FlorenceChat = ({ onClose, embedded = false, onSessionChange }) => {
     if (message.includes("how long") || message.includes("duration") ||
         message.includes("when did") || message.includes("since when")) {
       return [
-        { label: `🕐 ${t("quick_responses_just_now")}`, value: t("quick_responses_just_now") },
-        { label: `⏰ ${t("quick_responses_few_hours")}`, value: t("quick_responses_few_hours") },
-        { label: `📅 ${t("quick_responses_a_day")}`, value: t("quick_responses_a_day") },
-        { label: `📆 ${t("quick_responses_few_days")}`, value: t("quick_responses_few_days") },
-        { label: `🗓️ ${t("quick_responses_week_or_more")}`, value: t("quick_responses_week_or_more") }
+        { icon: "schedule", label: t("quick_responses_just_now"), value: t("quick_responses_just_now") },
+        { icon: "hourglass_top", label: t("quick_responses_few_hours"), value: t("quick_responses_few_hours") },
+        { icon: "today", label: t("quick_responses_a_day"), value: t("quick_responses_a_day") },
+        { icon: "date_range", label: t("quick_responses_few_days"), value: t("quick_responses_few_days") },
+        { icon: "calendar_month", label: t("quick_responses_week_or_more"), value: t("quick_responses_week_or_more") }
       ];
     }
     
@@ -92,11 +92,11 @@ const FlorenceChat = ({ onClose, embedded = false, onSessionChange }) => {
     if (message.includes("pain") || message.includes("hurt") ||
         message.includes("ache") || message.includes("symptom")) {
       return [
-        { label: `😷 ${t("quick_responses_headache_symptom")}`, value: t("quick_responses_have_headache") },
-        { label: `🤒 ${t("quick_responses_fever_symptom")}`, value: t("quick_responses_have_fever") },
-        { label: `🤢 ${t("quick_responses_nausea_symptom")}`, value: t("quick_responses_feel_nauseous") },
-        { label: `😴 ${t("quick_responses_fatigue_symptom")}`, value: t("quick_responses_feel_tired") },
-        { label: `💊 ${t("quick_responses_other_symptoms")}`, value: t("quick_responses_other_symptoms_text") }
+        { icon: "neurology", label: t("quick_responses_headache_symptom"), value: t("quick_responses_have_headache") },
+        { icon: "thermostat", label: t("quick_responses_fever_symptom"), value: t("quick_responses_have_fever") },
+        { icon: "sick", label: t("quick_responses_nausea_symptom"), value: t("quick_responses_feel_nauseous") },
+        { icon: "bedtime", label: t("quick_responses_fatigue_symptom"), value: t("quick_responses_feel_tired") },
+        { icon: "more_horiz", label: t("quick_responses_other_symptoms"), value: t("quick_responses_other_symptoms_text") }
       ];
     }
     
@@ -105,12 +105,12 @@ const FlorenceChat = ({ onClose, embedded = false, onSessionChange }) => {
   };
   
   const getDefaultOptions = () => [
-    { label: `😷 ${t("quick_responses_headache")}`, value: t("quick_responses_have_headache") },
-    { label: `🤒 ${t("quick_responses_feverish")}`, value: t("quick_responses_have_fever") },
-    { label: `🤢 ${t("quick_responses_nauseous")}`, value: t("quick_responses_feel_nauseous") },
-    { label: `💪 ${t("quick_responses_great")}`, value: t("quick_responses_great") },
-    { label: `😴 ${t("quick_responses_tired")}`, value: t("quick_responses_feel_tired") },
-    { label: `💊 ${t("quick_responses_medication_questions")}`, value: t("quick_responses_medication_questions") }
+    { icon: "neurology", label: t("quick_responses_headache"), value: t("quick_responses_have_headache") },
+    { icon: "thermostat", label: t("quick_responses_feverish"), value: t("quick_responses_have_fever") },
+    { icon: "sick", label: t("quick_responses_nauseous"), value: t("quick_responses_feel_nauseous") },
+    { icon: "sentiment_very_satisfied", label: t("quick_responses_great"), value: t("quick_responses_great") },
+    { icon: "bedtime", label: t("quick_responses_tired"), value: t("quick_responses_feel_tired") },
+    { icon: "medication", label: t("quick_responses_medication_questions"), value: t("quick_responses_medication_questions") }
   ];
 
   // Auto-scroll to bottom when new messages arrive
@@ -327,12 +327,7 @@ const FlorenceChat = ({ onClose, embedded = false, onSessionChange }) => {
       {/* Chat Header — hidden in embedded mode (parent provides it) */}
       {!embedded && (
         <div className="chatbot-header">
-          <span
-            className="material-symbols-rounded chevron_backward"
-            onClick={onClose}
-          >
-            chevron_backward
-          </span>
+          <BackButton className="chevron_backward" onClick={onClose} />
           <div className="chatbot-header h4">
             {t("florence_ai")}
             <span className="language-indicator" style={{
@@ -348,38 +343,25 @@ const FlorenceChat = ({ onClose, embedded = false, onSessionChange }) => {
             <div className="header-actions">
               <button
                 onClick={restartConversation}
-                className="ai-toggle"
+                className="ai-toggle florence-icon-button"
                 title={t("restart_conversation")}
+                aria-label={t("restart_conversation")}
                 disabled={isLoading}
-                style={{
-                  background: 'none',
-                  border: 'none',
-                  fontSize: '1.5rem',
-                  cursor: 'pointer',
-                  padding: '0.5rem',
-                  borderRadius: '50%',
-                  transition: 'background-color 0.2s'
-                }}
               >
-                🔄
+                <span className="material-symbols-rounded" aria-hidden="true">
+                  refresh
+                </span>
               </button>
               <button
                 onClick={handleEndChat}
-                className="ai-toggle"
+                className="ai-toggle florence-icon-button"
                 title={t("end_chat_assessment")}
+                aria-label={t("end_chat_assessment")}
                 disabled={isLoading || !isSessionActive}
-                style={{
-                  background: 'none',
-                  border: 'none',
-                  fontSize: '1.5rem',
-                  cursor: 'pointer',
-                  padding: '0.5rem',
-                  borderRadius: '50%',
-                  transition: 'background-color 0.2s',
-                  opacity: (!isSessionActive || isLoading) ? 0.5 : 1
-                }}
               >
-                ✅
+                <span className="material-symbols-rounded" aria-hidden="true">
+                  task_alt
+                </span>
               </button>
             </div>
           </div>
@@ -414,12 +396,7 @@ const FlorenceChat = ({ onClose, embedded = false, onSessionChange }) => {
       {/* Quick Response Options */}
       {isSessionActive && !isLoading && (
         <div className="chatbot-options">
-          <div className="options-title" style={{
-            padding: '0.5rem 1rem',
-            fontSize: '0.9rem',
-            color: '#6c757d',
-            fontWeight: '500'
-          }}>
+          <div className="options-title caption-semibold">
             {t("quick_responses_title")}
           </div>
           <OptionsList 
@@ -469,13 +446,9 @@ const FlorenceChat = ({ onClose, embedded = false, onSessionChange }) => {
         </div>
         
         {!isSessionActive && (
-          <div style={{ 
-            textAlign: 'center', 
-            padding: '0.5rem',
-            color: '#6c757d',
-            fontSize: '0.9rem'
-          }}>
-            🔄 {t("connecting_to_florence")}
+          <div className="florence-connecting caption" role="status" aria-live="polite">
+            <span className="florence-connecting-spinner" aria-hidden="true" />
+            {t("connecting_to_florence")}
           </div>
         )}
       </div>

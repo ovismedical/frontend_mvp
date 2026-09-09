@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
 import { authAPI } from "../../utils/api.js";
-
+import BackButton from "../../components/ui/backButton";
 const OTP = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -76,12 +76,7 @@ const OTP = () => {
   return (
     <div className="otp-container">
       <div className="backIcon-container">
-        <span
-          className="material-symbols-rounded chevronB_icon"
-          onClick={() => navigate(-1)}
-        >
-          chevron_backward
-        </span>
+        <BackButton className="chevronB_icon" onClick={() => navigate(-1)} />
       </div>
 
       <img

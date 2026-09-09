@@ -27,14 +27,17 @@
 }
 
 .icon-left,
+/* Now a real <button> (it was a clickable <div>: no keyboard access, no name). */
 .icon-right {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--text-300);
-}
-
-.icon-right {
-  padding-right: 10px;
+  /* 44px target — the glyph alone was ~24px. */
+  min-width: var(--tap-target-min);
+  min-height: var(--tap-target-min);
+  padding: 0 10px 0 0;
+  background: none;
+  border: none;
+  color: var(--text-400);
   cursor: pointer;
 }

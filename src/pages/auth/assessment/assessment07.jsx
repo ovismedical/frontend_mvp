@@ -4,7 +4,7 @@ import FitnessLevelSlider from "../../../components/picker/fitnessSlider";
 import Button from "../../../components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-
+import BackButton from "../../../components/ui/backButton";
 const Assessment07 = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -12,12 +12,7 @@ const Assessment07 = () => {
   return (
     <div className="assessment-container">
       <div className="assessment-header">
-        <span
-          className="material-symbols-rounded chevronB_icon"
-          onClick={() => navigate(-1)}
-        >
-          chevron_backward
-        </span>
+        <BackButton className="chevronB_icon" onClick={() => navigate(-1)} />
 
         <div className="progress-bar-container">
           <ProgressBar currentStep={7} totalSteps={9} />

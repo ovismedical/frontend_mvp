@@ -23,5 +23,5 @@
 
 .otp-box:focus {
   box-shadow: 0 0 0 2px var(--blue-700), 0 0 0 4px rgba(0, 0, 0, 0.05);
-  color: var(--blue-700);
+  color: var(--on-blue-tint);
 }

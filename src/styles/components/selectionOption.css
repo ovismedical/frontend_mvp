@@ -41,10 +41,10 @@
 }
 
 .selection-option.selected .selection-label {
-  color: var(--blue-700);
+  color: var(--on-blue-tint);
 }
 
 .selection-option.selected .selection-icon {
-  color: var(--blue-700);
+  color: var(--on-blue-tint);
   font-variation-settings: "FILL" 1;
 }

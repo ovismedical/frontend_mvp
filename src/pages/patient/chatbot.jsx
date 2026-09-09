@@ -5,7 +5,7 @@ import ModeToggle from "../../components/ui/ModeToggle";
 import FlorenceChat from "./florence_chat";
 import QuestionnaireInline from "../../components/questionnaire/QuestionnaireInline";
 import "../../styles/questionnaire.css";
-
+import BackButton from "../../components/ui/backButton";
 const STORAGE_KEY = "checkin_mode_preference";
 
 export default function Chatbot() {
@@ -57,12 +57,7 @@ export default function Chatbot() {
     <div className="checkin-container">
       {/* Header */}
       <div className="checkin-header">
-        <span
-          className="material-symbols-rounded chevron_backward"
-          onClick={() => navigate("/home")}
-        >
-          chevron_backward
-        </span>
+        <BackButton className="chevron_backward" onClick={() => navigate("/home")} />
         <h4>Daily Check-In</h4>
         <div style={{ width: 40 }} />
       </div>
@@ -88,7 +83,7 @@ export default function Chatbot() {
         <div className="modal-overlay">
           <div className="modal-box">
             <div className="modal-header">
-              <span className="material-symbols-rounded" style={{ color: "var(--warning-500)", fontSize: 28 }}>
+              <span className="material-symbols-rounded" style={{ color: "var(--on-warning-tint)", fontSize: 28 }}>
                 warning
               </span>
               <h3>Switch Mode?</h3>

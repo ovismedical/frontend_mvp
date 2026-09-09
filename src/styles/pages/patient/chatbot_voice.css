@@ -51,7 +51,7 @@
 
 .voicechatbot-bot-message,
 .voicechatbot-user-message {
-  color: var(--text-200);
+  color: var(--text-400);
   text-align: center;
   width: 90%;
   box-sizing: border-box;
@@ -62,7 +62,7 @@
 }
 
 .ongoing-text {
-  color: var(--blue-700);
+  color: var(--on-blue-tint);
 }
 
 .audio-wave-container {
@@ -111,7 +111,7 @@ canvas {
 
 .mic-icon {
   font-size: 50px;
-  color: var(--blue-700);
+  color: var(--on-blue-tint);
   font-variation-settings: "FILL" 1;
 }
 
@@ -140,12 +140,12 @@ canvas {
 
 .action-button.exit .material-symbols-rounded {
   background: var(--error-100);
-  color: var(--error-700);
+  color: var(--error-800);
 }
 
 .action-button.save .material-symbols-rounded {
   background: var(--success-100);
-  color: var(--success-700);
+  color: var(--on-success-tint);
 }
 
 .save-label {

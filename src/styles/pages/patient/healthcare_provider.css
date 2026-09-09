@@ -80,7 +80,7 @@
 }
 
 .healthcare-provider-description {
-  color: var(--text-300);
+  color: var(--text-400);
   margin: 0;
 }
 
@@ -136,13 +136,13 @@
 }
 .emergency-contact-number .call {
   font-size: 20px;
-  color: var(--error-700);
+  color: var(--on-error-tint);
   font-variation-settings: "FILL" 1;
   margin-right: 5px;
 }
 
 .emergency-contact-number-text {
-  color: var(--error-700);
+  color: var(--on-error-tint);
   margin: 0;
 }
 

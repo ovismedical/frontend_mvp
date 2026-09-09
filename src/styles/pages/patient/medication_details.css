@@ -60,7 +60,7 @@
 }
 
 .med-info-meta {
-  color: var(--text-300);
+  color: var(--text-400);
 }
 
 .med-info-remaining {
@@ -81,7 +81,7 @@
 }
 
 .med-details-section-title {
-  color: var(--secondary-600);
+  color: var(--on-secondary-tint);
   margin-bottom: 1%;
 }
 
@@ -99,7 +99,7 @@
 }
 
 .main-info-row span:nth-child(2) {
-  color: var(--blue-700);
+  color: var(--on-blue-tint);
 }
 
 .dosage-card {
@@ -115,7 +115,7 @@
 }
 
 .dosage-label {
-  color: var(--blue-700);
+  color: var(--on-blue-tint);
 }
 
 .used-for-card {
@@ -129,7 +129,7 @@
 }
 
 .used-for-label {
-  color: var(--blue-700);
+  color: var(--on-blue-tint);
 }
 
 .dosage-label-value,
@@ -150,9 +150,9 @@
 
 .common,
 .less-common {
-  color: var(--blue-700);
+  color: var(--on-blue-tint);
 }
 
 .serious {
-  color: var(--error-700);
+  color: var(--on-error-tint);
 }

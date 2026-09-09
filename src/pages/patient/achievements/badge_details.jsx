@@ -6,7 +6,7 @@ import { useAuth } from "../../../context/AuthContext";
 import { achievementsAPI } from "../../../utils/api";
 
 import Button from "../../../components/ui/button";
-
+import BackButton from "../../../components/ui/backButton";
 // Eagerly load all badge images for dynamic lookup
 const unlockedImages = import.meta.glob(
   "../../../assets/images/achievements/badges/unlocked/*.{png,jpg,jpeg,svg}",
@@ -202,12 +202,7 @@ const BadgeDetails = () => {
   return (
     <div className="badge-details-container">
       <div className="badge-details-header">
-        <span
-          className="material-symbols-rounded chevron_backward"
-          onClick={() => navigate(-1)}
-        >
-          chevron_backward
-        </span>
+        <BackButton className="chevron_backward" onClick={() => navigate(-1)} />
 
         <div className="badge-details-header h4"></div>
         <span className="material-symbols-rounded file_save"></span>

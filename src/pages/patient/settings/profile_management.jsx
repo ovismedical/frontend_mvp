@@ -7,7 +7,7 @@ import { authAPI } from "../../../utils/api.js";
 import { useAuth } from "../../../context/AuthContext";
 import { normalizeUser } from "../../../utils/auth.js";
 import { initialsOf } from "../../../utils/timeAgo";
-
+import BackButton from "../../../components/ui/backButton";
 const ProfileManagement = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -140,12 +140,7 @@ const ProfileManagement = () => {
     <div className="profile-management-container">
       {/* Header */}
       <div className="profile-management-header">
-        <span
-          className="material-symbols-rounded chevron_backward"
-          onClick={() => navigate(-1)}
-        >
-          chevron_backward
-        </span>
+        <BackButton className="chevron_backward" onClick={() => navigate(-1)} />
         <div className="h4">{t("profile_management")}</div>
         <span className="material-symbols-rounded more_vert"></span>
       </div>

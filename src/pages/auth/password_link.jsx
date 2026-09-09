@@ -3,7 +3,7 @@ import Button from "../../components/ui/button.jsx";
 import passLinkImg from "../../assets/images/password_link.png";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-
+import BackButton from "../../components/ui/backButton";
 const PasswordLink = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -12,12 +12,7 @@ const PasswordLink = () => {
   return (
     <div className="passwordLink-container">
       <div className="backIcon-container">
-        <span
-          className="material-symbols-rounded chevronB_icon"
-          onClick={() => navigate(-1)}
-        >
-          chevron_backward
-        </span>
+        <BackButton className="chevronB_icon" onClick={() => navigate(-1)} />
       </div>
 
       <img

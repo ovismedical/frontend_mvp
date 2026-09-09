@@ -25,7 +25,7 @@
   justify-content: center;
   font-weight: 600;
   font-size: 14px;
-  color: var(--text-400);
+  color: var(--text-700);
 }
 
 .comment-content {
@@ -52,7 +52,7 @@
 }
 
 .comment-time {
-  color: var(--text-300);
+  color: var(--text-400);
 }
 
 .comment-text {

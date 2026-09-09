@@ -12,17 +12,17 @@ const getStatus = (intensity) => {
 const statusMap = {
   up: {
     icon: "trending_up",
-    color: "var(--success-600)",
+    color: "var(--on-success-tint)",
     backgroundColor: "var(--success-50)",
   },
   down: {
     icon: "trending_down",
-    color: "var(--error-600)",
+    color: "var(--on-error-tint)",
     backgroundColor: "var(--error-50)",
   },
   stable: {
     icon: "trending_flat",
-    color: "var(--info-600)",
+    color: "var(--on-info-tint)",
     backgroundColor: "var(--info-50)",
   },
 };

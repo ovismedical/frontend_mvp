@@ -33,7 +33,7 @@ const MedicationCard = ({
           showProgress: true,
           progressColor: "var(--secondary-500)",
           progressBG: "var(--secondary-100)",
-          statusColor: "var(--secondary-500)",
+          statusColor: "var(--on-secondary-tint)",
           showChevron: true,
         };
       case "expired":
@@ -43,7 +43,7 @@ const MedicationCard = ({
           showProgress: true,
           progressColor: "var(--error-400)",
           progressBG: "var(--error-100)",
-          statusColor: "var(--error-400)",
+          statusColor: "var(--on-error-tint)",
           showChevron: true,
         };
       case "archived":

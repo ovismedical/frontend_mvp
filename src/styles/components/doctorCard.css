@@ -34,13 +34,13 @@
 
 .doctor-info-specialty {
   margin: 0;
-  color: var(--secondary-500);
+  color: var(--on-secondary-tint);
 }
 
 .doctor-info-center {
   width: 100%;
   margin: 0;
-  color: var(--text-300);
+  color: var(--text-400);
 }
 
 .bottom-section {

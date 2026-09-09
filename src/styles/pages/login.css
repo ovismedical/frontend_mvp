@@ -35,7 +35,7 @@
   text-align: end;
   margin-bottom: 5%;
   text-decoration: underline;
-  color: var(--blue-700);
+  color: var(--on-blue-tint);
 }
 
 .login-footer {
@@ -52,5 +52,5 @@
 }
 
 .login-error {
-  color: var(--error-600);
+  color: var(--on-error-tint);
 }

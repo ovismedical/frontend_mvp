@@ -12,7 +12,7 @@
 }
 
 .care-library-header a {
-  color: var(--blue-700);
+  color: var(--on-blue-tint);
   text-decoration: none;
 }
 

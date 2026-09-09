@@ -34,7 +34,7 @@
 }
 
 .star-icon {
-  color: var(--secondary-500);
+  color: var(--on-secondary-tint);
   font-variation-settings: "FILL" 1;
   font-size: 25px;
 }
@@ -132,12 +132,12 @@
 
 .down-icon {
   font-size: 20px;
-  color: var(--error-500);
+  color: var(--on-error-tint);
 }
 
 .up-icon {
   font-size: 20px;
-  color: var(--success-600);
+  color: var(--on-success-tint);
 }
 
 .percent {
@@ -157,7 +157,7 @@
 .emoji-objects {
   font-size: 20px;
   font-variation-settings: "FILL" 1;
-  color: var(--secondary-500);
+  color: var(--on-secondary-tint);
 }
 
 .insight-count{

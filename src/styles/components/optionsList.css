@@ -1,3 +1,5 @@
+@import "../variables.css";
+
 .options-scroll-container {
   display: flex;
   flex-wrap: wrap;
@@ -10,19 +12,37 @@
 
 .options-scroll-container button {
   flex: 0 1 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   white-space: nowrap;
-  padding: 8px 12px;
-  margin: 0.5%;
+  /* 44px minimum so the chip is a comfortable tap target, not just a text box. */
+  min-height: var(--tap-target-min);
+  padding: 8px 14px;
+  margin: 0;
   border: none;
   box-shadow: 0 0 0 1px var(--neutral-500);
   border-radius: var(--radius-m);
   cursor: pointer;
-  transition: background 0.2s, transform 0.2s;
+  color: var(--text-700);
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
   background-color: transparent;
 }
 
 .options-scroll-container button:hover {
-  transform: scale(1.05);
+  background-color: var(--blue-50);
+  box-shadow: 0 0 0 1px var(--blue-700);
+}
+
+/* Press feedback stays inside the element's own box so neighbours never move. */
+.options-scroll-container button:active {
+  background-color: var(--blue-100);
+}
+
+.option-button-icon {
+  font-size: 18px;
+  line-height: 1;
+  color: var(--on-blue-tint);
 }
 
 @keyframes fadeIn {

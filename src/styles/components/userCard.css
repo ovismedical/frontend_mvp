@@ -30,7 +30,7 @@
 
 .user-name {
   margin: 0;
-  color: var(--blue-700);
+  color: var(--on-blue-tint);
 }
 
 .user-condition {
@@ -56,56 +56,56 @@
 
 /* Status color variants */
 .status-active {
-  color: var(--success-700);
+  color: var(--on-success-tint);
 }
 
 .status-active .status-icon {
-  background-color: var(--success-700);
+  background-color: var(--success-800);
   color: var(--success-50);
 }
 
 .status-remission {
-  color: var(--secondary-600);
+  color: var(--on-secondary-tint);
 }
 
 .status-remission .status-icon {
-  background-color: var(--secondary-600);
+  background-color: var(--secondary-800);
   color: var(--secondary-50);
 }
 
 .status-post {
-  color: var(--lavender-600);
+  color: var(--on-lavender-tint);
 }
 
 .status-post .status-icon {
-  background-color: var(--lavender-600);
+  background-color: var(--lavender-700);
   color: var(--lavender-50);
 }
 
 .status-monitoring {
-  color: var(--secondary-600);
+  color: var(--on-secondary-tint);
 }
 
 .status-monitoring .status-icon {
-  background-color: var(--secondary-600);
+  background-color: var(--secondary-800);
   color: var(--secondary-50);
 }
 
 .status-consultation {
-  color: var(--info-600);
+  color: var(--on-info-tint);
 }
 
 .status-consultation .status-icon {
-  background-color: var(--info-600);
+  background-color: var(--info-800);
   color: var(--info-50);
 }
 
 .status-recovery {
-  color: var(--lavender-600);
+  color: var(--on-lavender-tint);
 }
 
 .status-recovery .status-icon {
-  background-color: var(--lavender-600);
+  background-color: var(--lavender-700);
   color: var(--lavender-50);
 }
 
@@ -124,12 +124,14 @@
   cursor: pointer;
 }
 
+/* White-on-25%-white rendered at 1.07:1 — the initials were effectively invisible
+   on the light card this actually sits on. */
 .user-image--initials {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.25);
-  color: #fff;
+  background: var(--blue-50);
+  color: var(--on-blue-tint);
   font-weight: 600;
   font-size: 22px;
 }

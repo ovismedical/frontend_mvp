@@ -13,7 +13,7 @@
 
 .log-button {
   background-color: var(--blue-50);
-  color: var(--blue-700);
+  color: var(--on-blue-tint);
   border: none;
   border-radius: var(--radius-xs);
   padding: 3px 10px;
@@ -43,16 +43,16 @@
 }
 
 .days-label {
-  color: var(--text-300);
+  color: var(--text-400);
 }
 .material-symbols-rounded.iconfire {
   font-variation-settings: "FILL" 1;
-  color: var(--secondary-500);
+  color: var(--on-secondary-tint);
 }
 
 .material-symbols-rounded.icontrophy {
   font-variation-settings: "FILL" 1;
-  color: var(--blue-600);
+  color: var(--on-blue-tint);
 }
 
 .streak-progress-row {

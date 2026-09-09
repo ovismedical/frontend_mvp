@@ -21,7 +21,7 @@
   cursor: pointer;
 }
 
-.material-symbols-rounded.chevronB_icon {
+.chevronB_icon {
   font-size: 40px;
 }
 
@@ -52,11 +52,11 @@
 
 .resend-link {
   text-decoration: underline;
-  color: var(--blue-700);
+  color: var(--on-blue-tint);
 }
 
 .countdown-time {
-  color: var(--blue-700);
+  color: var(--on-blue-tint);
 }
 
 .otp-input-container {
@@ -65,10 +65,10 @@
 }
 
 .otp-error {
-  color: var(--error-600);
+  color: var(--on-error-tint);
 }
 
 .otp-success {
-  color: var(--success-600);
+  color: var(--on-success-tint);
 }
 

@@ -54,7 +54,7 @@
   border: none;
   box-shadow: 0 0 0 1px var(--background-600);
   border-radius: var(--radius-xs);
-  font-size: 14px;
+  font-size: 16px; /* <16px makes iOS Safari zoom the viewport on focus */
   background: var(--background-50);
   color: var(--text-600);
   outline: none;
@@ -94,7 +94,7 @@
 }
 
 .add-medications-dropdown-selected.placeholder {
-  color: var(--text-300);
+  color: var(--text-400);
 }
 
 .add-medications-dropdown-list {
@@ -114,18 +114,18 @@
 .add-medications-dropdown-item {
   padding: 12px;
   cursor: pointer;
-  color: var(--text-300);
+  color: var(--text-400);
   transition: background 0.15s;
 }
 
 .add-medications-dropdown-item:hover {
   background: var(--blue-50);
-  color: var(--blue-500);
+  color: var(--on-blue-tint);
 }
 
 .add-medications-dropdown-item.selected {
   background: var(--blue-50);
-  color: var(--blue-500);
+  color: var(--on-blue-tint);
 }
 
 /* Side Effects */
@@ -172,7 +172,7 @@
 }
 
 .field-error {
-  color: var(--error-600);
+  color: var(--on-error-tint);
   font-size: 12px;
   margin-top: 2px;
 }

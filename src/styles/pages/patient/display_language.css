@@ -42,6 +42,9 @@
   align-items: center;
   padding: 14px 30px;
   cursor: pointer;
+  width: 100%;
+  min-height: var(--tap-target-min);
+  box-sizing: border-box;
 }
 
 .display-language-accordion-left {
@@ -53,7 +56,7 @@
 .accordion-icon {
   background-color: var(--blue-50);
   font-size: 20px;
-  color: var(--blue-700);
+  color: var(--on-blue-tint);
   padding: 5px;
   border-radius: var(--radius-xl);
 }
@@ -79,7 +82,11 @@
   padding: 15px 35px;
   cursor: pointer;
   border-top: 0.5px solid var(--neutral-500);
-  height: 20px;
+  /* min-height, not a fixed height: these are <button>s now (border-box), so a fixed
+     20px collapsed the row. 44px also meets the minimum tap target. */
+  width: 100%;
+  min-height: var(--tap-target-min);
+  box-sizing: border-box;
 }
 
 .display-language-option-text {
@@ -87,10 +94,24 @@
 }
 
 .display-language-accordion-option.selected .display-language-option-text {
-  color: var(--blue-700);
+  color: var(--on-blue-tint);
 }
 
 .option-icon-check {
   font-size: 20px;
-  color: var(--blue-700);
+  color: var(--on-blue-tint);
+}
+
+/* These rows are now real <button> elements (they were clickable <div>s, so keyboard
+   and screen-reader users could not operate them). :where() keeps this reset at zero
+   specificity so each component's own rules — background, border-top separators —
+   still win, while the UA button styling is neutralised. */
+:where(.display-language-accordion-header, .display-language-accordion-option) {
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  background: none;
+  border: none;
+  -webkit-appearance: none;
+  appearance: none;
 }

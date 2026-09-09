@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Tabs from "../../../components/ui/tabs";
 import articlesData from "../../../fixtures/articles.json";
 import ArticleCard from "../../../components/ui/articleCard";
-
+import BackButton from "../../../components/ui/backButton";
 const Article = () => {
   const navigate = useNavigate();
 
@@ -79,12 +79,7 @@ const Article = () => {
   return (
     <div className="help-center-container">
       <div className="help-center-header">
-        <span
-          className="material-symbols-rounded chevron_backward"
-          onClick={() => navigate("/home")}
-        >
-          chevron_backward
-        </span>
+        <BackButton className="chevron_backward" onClick={() => navigate("/home")} />
         <div className="help-center-header h4">Your Care Library</div>
         <span
           className="material-symbols-rounded search"

@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import useSpeechRecognition from "../../hooks/useSpeechRecognition";
 import AudioWaveVisualizer from "../../components/ui/audioWaveVisualizer";
-
+import BackButton from "../../components/ui/backButton";
 export default function VoiceInputChatbot() {
   const navigate = useNavigate();
 
@@ -144,12 +144,7 @@ export default function VoiceInputChatbot() {
   return (
     <div className="voicechatbot-container">
       <div className="voicechatbot-header">
-        <span
-          className="material-symbols-rounded chevron_backward"
-          onClick={handleExit}
-        >
-          chevron_backward
-        </span>
+        <BackButton className="chevron_backward" onClick={handleExit} />
         <div className="voicechatbot-header h4">Florence - AI Nurse</div>
         <div className="more_vert_container" style={{ position: "relative" }}>
           <span
@@ -238,7 +233,7 @@ export default function VoiceInputChatbot() {
       {showConfirmationModal && (
         <div className="modal-overlay">
           <div className="modal-box">
-            <h3 className="h3">Check-In Complete 🎉</h3>
+            <h3 className="h3">Check-In Complete</h3>
             <p className="body">
               Your check-in has been saved. Thanks for sharing with Florence!
             </p>

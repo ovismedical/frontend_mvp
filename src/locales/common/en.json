@@ -24,5 +24,16 @@
   "all_badges_unlocked": "All badges unlocked — keep the streak going!",
   "streak_summary": "{{current}}-day streak · longest {{longest}} days",
   "streak_summary_one": "{{current}}-day streak · longest {{longest}} day",
-  "streak_summary_other": "{{current}}-day streak · longest {{longest}} days"
+  "streak_summary_other": "{{current}}-day streak · longest {{longest}} days",
+  "nav_home": "Home",
+  "nav_dashboard": "Health",
+  "nav_florence": "Florence",
+  "nav_appointments": "Visits",
+  "nav_achievements": "Awards",
+  "nav_settings": "Settings",
+  "nav_doctor_home": "Overview",
+  "nav_doctor_patients": "Patients",
+  "nav_doctor_notifications": "Alerts",
+  "nav_primary_label": "Primary",
+  "back": "Back"
 }

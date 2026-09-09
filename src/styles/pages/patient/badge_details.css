@@ -42,7 +42,7 @@
 
 .badge-details-congrats {
   text-align: center;
-  color: var(--text-300);
+  color: var(--text-400);
   margin: 0;
 }
 
@@ -74,7 +74,7 @@
 
 .badge-details-description {
   text-align: center;
-  color: var(--text-300);
+  color: var(--text-400);
   max-width: 90%; /* More flexible on smaller screens */
   margin: 0 auto;
 }
@@ -92,13 +92,13 @@
 
 .event {
   font-feature-settings: "FILL" 1;
-  color: var(--success-700);
+  color: var(--on-success-tint);
   margin-right: 8px;
   font-size: 22px;
 }
 
 .badge-details-date-text {
-  color: var(--success-700);
+  color: var(--on-success-tint);
   margin: 0;
 }
 

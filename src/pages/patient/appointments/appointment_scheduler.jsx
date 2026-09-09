@@ -6,7 +6,7 @@ import doctorsData from "../../../fixtures/doctors.json";
 import timeSlotsData from "../../../fixtures/timeSlots.json";
 import appointmentsData from "../../../fixtures/appointments.json";
 import StatusBanner from "../../../components/ui/statusBanner";
-
+import BackButton from "../../../components/ui/backButton";
 const generateDates = () => {
   const days = [];
   const today = new Date();
@@ -163,12 +163,7 @@ function AppointmentScheduler() {
       <StatusBanner variant="coming-soon" messageKey="appointments_coming_soon" />
       {/* Header */}
       <div className="appointment-scheduler-header">
-        <span
-          className="material-symbols-rounded chevron_backward"
-          onClick={handleBackClick}
-        >
-          chevron_backward
-        </span>
+        <BackButton className="chevron_backward" onClick={handleBackClick} />
         <h2 className="appointment-scheduler-title h4">
           {isRescheduling ? "Reschedule Appointment" : "Book Appointment"}
         </h2>

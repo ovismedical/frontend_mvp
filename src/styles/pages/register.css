@@ -41,5 +41,5 @@
 }
 
 .register-message {
-  color: var(--error-600);
+  color: var(--on-error-tint);
 }

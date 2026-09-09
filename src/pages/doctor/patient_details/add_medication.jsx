@@ -3,7 +3,7 @@ import { useNavigate, useLocation, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import SideEffectInput from "../../../components/ui/sideEffectInput";
 import Button from "../../../components/ui/button";
-
+import BackButton from "../../../components/ui/backButton";
 const AddMedications = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -129,12 +129,7 @@ const AddMedications = () => {
     <div className="add-medications-container">
       {/* Header */}
       <div className="add-medications-header">
-        <span
-          className="material-symbols-rounded add-medications-back"
-          onClick={() => navigate(`/patient_details/${patientId}`)}
-        >
-          chevron_backward
-        </span>
+        <BackButton className="add-medications-back" onClick={() => navigate(`/patient_details/${patientId}`)} />
         <h3 className="add-medications-title">
           {editing ? t("update_medication") : t("add_medication")}
         </h3>

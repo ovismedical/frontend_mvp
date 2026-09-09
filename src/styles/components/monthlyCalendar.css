@@ -23,7 +23,7 @@
 }
 
 .react-calendar__month-view__weekdays__weekday abbr {
-  color: var(--text-300);
+  color: var(--text-400);
   text-decoration: none;
 }
 
@@ -50,7 +50,7 @@
 
 .severe {
   background-color: var(--blue-300) !important;
-  color: var(--text-500);
+  color: var(--blue-900);
 }
 
 .not-logged {

@@ -5,7 +5,7 @@ import forgotPassImg from "../../assets/images/forgot_password.png";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import StatusBanner from "../../components/ui/statusBanner";
-
+import BackButton from "../../components/ui/backButton";
 const ForgotPassword = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -15,12 +15,7 @@ const ForgotPassword = () => {
     <div className="forgotPassword-container">
       <StatusBanner variant="coming-soon" message={t("password_coming_soon")} />
       <div className="backIcon-container">
-        <span
-          className="material-symbols-rounded chevronB_icon"
-          onClick={() => navigate("/login")}
-        >
-          chevron_backward
-        </span>
+        <BackButton className="chevronB_icon" onClick={() => navigate("/login")} />
       </div>
 
       <img

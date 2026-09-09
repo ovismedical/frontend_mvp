@@ -24,11 +24,11 @@
 
 .doctor-home-overview-card-row .icon {
   font-size: 25px;
-  color: var(--secondary-600);
+  color: var(--on-secondary-tint);
 }
 
 .doctor-home-overview-card-row .icon.blue {
-  color: var(--blue-600);
+  color: var(--on-blue-tint);
 }
 
 .doctor-home-overview-card-change {
@@ -46,11 +46,11 @@
 }
 
 .positive {
-  color: var(--success-600);
+  color: var(--on-success-tint);
 }
 
 .negative {
-  color: var(--error-600);
+  color: var(--on-error-tint);
 }
 
 .doctor-home-overview-card-info {
@@ -61,11 +61,11 @@
 
 .doctor-home-overview-card-value {
   margin: 0;
-  color: var(--secondary-600);
+  color: var(--on-secondary-tint);
 }
 
 .doctor-home-overview-card-value.blue {
-  color: var(--blue-600);
+  color: var(--on-blue-tint);
 }
 
 .doctor-home-overview-card-title {

@@ -47,13 +47,15 @@ body {
 /* Mobile fullscreen optimizations */
 @media screen and (max-width: 768px) {
   body {
-    /* Use full viewport height on mobile */
+    /* dvh tracks the collapsing browser chrome; 100vh overshoots on mobile Safari. */
     min-height: 100vh;
+    min-height: 100dvh;
     /* Prevent overscroll and bounce effects */
     overscroll-behavior: none;
     /* Handle safe areas for notched devices */
-    padding-left: env(safe-area-inset-left);
-    padding-right: env(safe-area-inset-right);
+    /* max() so the 16px gutter survives on phones where the inset resolves to 0. */
+    padding-left: max(16px, env(safe-area-inset-left));
+    padding-right: max(16px, env(safe-area-inset-right));
     padding-top: max(60px, env(safe-area-inset-top));
     padding-bottom: max(34px, env(safe-area-inset-bottom));
   }
@@ -66,13 +68,14 @@ body {
     padding-bottom: env(safe-area-inset-bottom);
     padding-left: env(safe-area-inset-left);
     padding-right: env(safe-area-inset-right);
-    height: 100vh;
+    height: 100dvh;
     overflow: hidden;
   }
   
   /* Ensure content fills the screen */
   #root {
     min-height: 100vh;
+    min-height: 100dvh;
     display: flex;
     flex-direction: column;
   }
@@ -87,4 +90,90 @@ body.body-centered {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+
+/* ============================================================================
+   Global accessibility layer
+   ============================================================================ */
+
+/* Visible keyboard focus on every focusable surface.
+   :focus-visible only paints for keyboard/AT users, so pointer users see nothing,
+   which is what previously motivated the scattered `outline: none` rules. */
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+  border-radius: var(--radius-2xs);
+}
+
+/* Components that suppress the UA outline must still show a ring. These selectors
+   re-assert it for the inputs whose stylesheets set `outline: none`. */
+.input-element:focus-visible,
+.side-effect-input input:focus-visible,
+.otp-box:focus-visible,
+.tab-button:focus-visible,
+.settings-search-input-container input:focus-visible,
+.help-center-search-input-container input:focus-visible,
+.appointment-search-input-container input:focus-visible,
+.med-search-input-container input:focus-visible,
+.search-box input:focus-visible,
+.doctor-notifications-search-box input:focus-visible,
+.chatbot-input-field input:focus-visible,
+.comment-input:focus-visible,
+.reason-textarea:focus-visible,
+.text-input:focus-visible,
+.slider:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+}
+
+/* Text controls must never render below 16px: iOS Safari zooms the viewport when a
+   focused control's text is smaller. Zoom used to be disabled outright, which hid this;
+   now that pinch-zoom is restored the controls carry the minimum themselves. */
+/* The type classes are scoped as [data-scale="default"] .caption (0,2,0), so the
+   override needs the scope attribute too in order to win. */
+[data-scale] input.caption,
+[data-scale] input.body,
+[data-scale] textarea.caption,
+[data-scale] textarea.body,
+[data-scale] select.caption,
+[data-scale] select.body {
+  font-size: 16px;
+}
+
+/* Anything the app makes clickable should say so. */
+[role="button"],
+[onclick],
+button:not(:disabled),
+a[href] {
+  cursor: pointer;
+}
+
+/* Skip link — first tab stop, lets keyboard users jump past the header. */
+.skip-to-content {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 1000;
+  padding: 12px 16px;
+  background: var(--blue-700);
+  color: #fff;
+  border-radius: 0 0 var(--radius-2xs) 0;
+  text-decoration: none;
+}
+
+.skip-to-content:focus {
+  left: 0;
+}
+
+/* Respect the OS "reduce motion" setting app-wide. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

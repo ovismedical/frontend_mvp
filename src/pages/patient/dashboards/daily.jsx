@@ -120,7 +120,9 @@ const DailyDashboard = () => {
   const statusIcon = loading ? 'hourglass_empty' : hasTriageData ? alertConfig.icon : 'help_outline';
   const statusTitle = loading ? t('assessment_pending') : t(alertConfig.titleKey);
   const statusSubtext = loading ? t('assessment_being_reviewed') : t(alertConfig.descriptionKey);
-  const statusIconColor = hasTriageData && !loading ? `var(--${alertConfig.color}-600)` : 'var(--text-300)';
+  // This icon states the triage result, so it needs 3:1 against the card; the -600
+  // levels sit at ~2.9:1 there.
+  const statusIconColor = hasTriageData && !loading ? `var(--on-${alertConfig.color}-tint)` : 'var(--text-400)';
 
   return (
     <div className="daily-dashboard-content">
