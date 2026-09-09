@@ -54,5 +54,7 @@
   "quick_responses_feel_tired": "我感到疲勞",
   "quick_responses_other_symptoms_text": "我有其他症狀",
   "assessment_ready": "你的評估已完成 — 警報級別 {{level}}：{{description}} 你可以在儀表板查看完整報告。",
-  "assessment_still_processing": "你的評估需要多一點時間，完成後會顯示在儀表板。"
+  "assessment_still_processing": "你的評估需要多一點時間，完成後會顯示在儀表板。",
+  "florence_privacy_hint": "同 Florence 傾偈時，唔需要講出姓名、地址或身份證號碼。",
+  "assessment_needs_review": "你嘅健康記錄已經儲存。Florence 今次未能完成 AI 評估，你嘅醫療團隊會親自檢視。"
 }

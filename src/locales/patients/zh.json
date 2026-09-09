@@ -77,5 +77,17 @@
   "care_since": "自",
   "hide": "隱藏",
   "view_details": "查看答案",
-  "urgency": "緊急程度"
+  "urgency": "緊急程度",
+  "needs_review": "待檢視",
+  "reviewed": "已檢視",
+  "review_agree": "同意",
+  "review_override": "更改等級",
+  "review_set_level": "設定警示等級",
+  "review_change": "更改",
+  "review_save": "儲存檢視",
+  "review_cancel_edit": "取消",
+  "review_note_placeholder": "加入備註（可選）",
+  "reviewed_agreed": "已檢視 · 同意",
+  "reviewed_override": "已檢視 · 改為 {{level}}",
+  "review_failed": "無法儲存檢視，請再試一次。"
 }

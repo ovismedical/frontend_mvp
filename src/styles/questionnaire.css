@@ -1697,6 +1697,14 @@
   bottom: 0;
 }
 
+/* In embedded mode the quick responses stack in normal flow above the input
+   wrapper instead of being pinned to the viewport at a fixed offset tuned to the
+   wrapper's old height (the messages pane is flex: 1 and shrinks to make room). */
+.chatbot-embedded .chatbot-options {
+  position: static;
+  width: auto;
+}
+
 @media (min-width: 768px) {
   .checkin-header {
     padding: 16px 32px;

@@ -577,3 +577,125 @@
   opacity: 0.7;
   margin-bottom: 2px;
 }
+
+/* --- clinician review of an assessment --- */
+.review-control {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--neutral-200, #e2e8f0);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.review-status {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+}
+
+.review-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--neutral-100);
+  color: var(--on-neutral-tint, var(--neutral-800));
+  font-weight: 600;
+}
+
+.review-chip .material-symbols-rounded {
+  font-size: 16px;
+}
+
+.review-heading {
+  margin: 0;
+  color: var(--text-500);
+}
+
+.review-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.review-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: var(--tap-target-min);
+  padding: 8px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--neutral-200, #e2e8f0);
+  background: #fff;
+  color: var(--text-700, #334155);
+  font: inherit;
+  cursor: pointer;
+}
+
+.review-btn.primary {
+  background: var(--primary-600, #1d4ed8);
+  border-color: var(--primary-600, #1d4ed8);
+  color: #fff;
+}
+
+.review-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.review-level-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* Level options reuse the alert pill colours; the chosen one gets a solid ring. */
+.review-level-option {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-height: var(--tap-target-min);
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 2px solid transparent;
+  font: inherit;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+}
+
+.review-level-option[aria-pressed="true"] {
+  border-color: currentColor;
+}
+
+.review-level-option .material-symbols-rounded {
+  font-size: 16px;
+}
+
+.review-note {
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 64px;
+  padding: 8px 10px;
+  border: none;
+  border-radius: var(--radius-xs);
+  box-shadow: 0 0 0 1px var(--background-600);
+  background: var(--background-100);
+  color: var(--text-500);
+  font: inherit;
+  font-size: 16px; /* <16px makes iOS Safari zoom the viewport on focus */
+  resize: vertical;
+}
+
+.review-note::placeholder {
+  color: var(--text-400);
+}
+
+.review-error {
+  margin: 0;
+  color: var(--error-700);
+}

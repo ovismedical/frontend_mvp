@@ -58,9 +58,19 @@
   left: 0;
   width: 100%;
   display: flex;
+  flex-wrap: wrap; /* the privacy hint sits on its own row under the composer */
   align-items: center;
   padding: 8px;
   background: var(--background-500);
+}
+
+/* One-line reminder that Florence does not need identifying details. Explicit
+   margin: 0 — there is no global <p> reset, and flex-item margins do not collapse. */
+.florence-privacy-hint {
+  flex-basis: 100%;
+  margin: 0;
+  padding: 4px 8px 0;
+  color: var(--text-500);
 }
 
 .chatbot-input-field {

@@ -436,5 +436,16 @@ export const doctorAPI = {
       headers: getAuthHeaders(),
     });
     return handleResponse(response);
+  },
+
+  // Clinician review of one assessment: { agrees: bool|null, alert_level_override: level|null, note: string|null }
+  // → { review, effective_alert_level }
+  reviewAssessment: async (sessionId, body) => {
+    const response = await fetch(`${API_BASE_URL}/doctor/assessments/${sessionId}/review`, {
+      method: "POST",
+      headers: getAuthHeaders(),
+      body: JSON.stringify(body),
+    });
+    return handleResponse(response);
   }
 };

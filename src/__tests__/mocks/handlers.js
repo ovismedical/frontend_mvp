@@ -53,8 +53,59 @@ export const sampleAssessment = (overrides = {}) => ({
       { suspected_diagnosis: 'Treatment-related fatigue', probability: 'high', urgency: 4, reasoning: 'Consistent with therapy.' },
     ],
   },
+  // Clinician-review fields added by the backend's attach_reviews
+  review: null,
+  effective_alert_level: 'RED',
   ...overrides,
 })
+
+// Shape returned by a backend WITHOUT the clinician-review feature: no review / effective_alert_level.
+export const legacyAssessment = (overrides = {}) => {
+  const record = sampleAssessment({
+    _id: 'a0',
+    session_id: 'testpatient_0',
+    created_at: nowIso(3),
+    alert_level: 'YELLOW',
+    oncologist_notification_level: 'amber',
+    flag_for_oncologist: false,
+    structured_assessment: {
+      symptoms: { nausea: { frequency_rating: 2, severity_rating: 2, key_indicators: [] } },
+      mood_assessment: 'Calm',
+    },
+    triage_assessment: {
+      alert_level: 'YELLOW',
+      alert_rationale: 'Mild nausea after treatment.',
+      recommended_timeline: 'Routine follow-up',
+      key_symptoms: ['nausea'],
+      confidence_level: 'high',
+      diagnosis_predictions: [],
+    },
+    ...overrides,
+  })
+  delete record.review
+  delete record.effective_alert_level
+  return record
+}
+
+// A session whose AI assessment was refused by the inference gate: saved for the care team, no Florence level.
+export const pendingAssessment = (overrides = {}) => ({
+  _id: 'a2',
+  session_id: 'testpatient_pending',
+  user_id: 'testpatient',
+  created_at: nowIso(0),
+  assessment_type: 'florence_conversation_with_triage',
+  triage_status: 'pending_clinician_review',
+  alert_level: 'PENDING_REVIEW',
+  refusal_reason: 'dpa_not_confirmed',
+  structured_assessment: null,
+  triage_assessment: null,
+  review: null,
+  effective_alert_level: 'PENDING_REVIEW',
+  ...overrides,
+})
+
+// Florence level of each fixture assessment (null = pending clinician review), for the review endpoint mock.
+const FIXTURE_FLORENCE_LEVELS = { testpatient_1: 'RED', testpatient_0: 'YELLOW', testpatient_pending: null }
 
 export const sampleQuestionnaire = (overrides = {}) => ({
   user_id: 'testpatient',
@@ -147,6 +198,15 @@ export const handlers = [
     })
   }),
 
+  http.get(`${API}/florence/result/:sessionId`, ({ params }) => {
+    return HttpResponse.json({
+      session_id: params.sessionId,
+      triage_status: 'completed',
+      alert_level: 'GREEN',
+      alert_description: 'No concerning symptoms were reported.',
+    })
+  }),
+
   http.get(`${API}/florence/session/:sessionId`, () => {
     return HttpResponse.json({
       session_id: 'test_session_123',
@@ -234,6 +294,34 @@ export const handlers = [
   http.get(`${API}/doctor/patient/:patientId/assessments`, ({ params }) => {
     if (params.patientId !== 'testpatient') return HttpResponse.json({ detail: 'Patient not assigned to you' }, { status: 403 })
     return HttpResponse.json({ assessments: [sampleAssessment()], count: 1 })
+  }),
+
+  // Clinician review — mirrors the backend's validation so the UI's request shape is exercised
+  http.post(`${API}/doctor/assessments/:sessionId/review`, async ({ request, params }) => {
+    if (!(params.sessionId in FIXTURE_FLORENCE_LEVELS)) {
+      return HttpResponse.json({ detail: 'Assessment not found' }, { status: 404 })
+    }
+    const body = await request.json()
+    const florence = FIXTURE_FLORENCE_LEVELS[params.sessionId]
+    const override = body.alert_level_override ?? null
+    if (florence === null) {
+      if (!override) return HttpResponse.json({ detail: 'alert_level_override is required for a pending record' }, { status: 422 })
+    } else if (body.agrees === null || body.agrees === undefined) {
+      return HttpResponse.json({ detail: 'agrees is required' }, { status: 422 })
+    } else if (body.agrees === false && !override) {
+      return HttpResponse.json({ detail: 'alert_level_override is required when disagreeing' }, { status: 422 })
+    }
+    const review = {
+      session_id: params.sessionId,
+      user_id: 'testpatient',
+      doctor: 'testdoctor',
+      agrees: florence === null ? null : body.agrees,
+      alert_level_override: override,
+      note: body.note ?? null,
+      florence_alert_level: florence,
+      reviewed_at: nowIso(0),
+    }
+    return HttpResponse.json({ review, effective_alert_level: override ?? florence })
   }),
 
   http.get(`${API}/doctor/patient/:patientId/assessment/:sessionId`, () => {
