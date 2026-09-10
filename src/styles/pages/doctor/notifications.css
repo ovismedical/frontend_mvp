@@ -271,6 +271,12 @@ doctor-notifications-list::-webkit-scrollbar {
   border-left: 5px solid var(--secondary-600);
 }
 
+.doctor-notifications-section-header.pending {
+  background: var(--neutral-100);
+  color: var(--on-neutral-tint);
+  border-left: 5px solid var(--neutral-600);
+}
+
 .doctor-notifications-section-header.info {
   background: var(--info-50);
   color: var(--on-info-tint);

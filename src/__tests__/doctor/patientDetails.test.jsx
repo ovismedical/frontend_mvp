@@ -250,4 +250,86 @@ describe('PatientDetails — clinician review', () => {
     expect(screen.queryByText(/PENDING_REVIEW/)).toBeNull()
     expect(within(pending).getByText('YELLOW', { selector: '.alert-pill' })).toBeTruthy()
   })
+
+  // No server.use override here: this drives the default MSW review handler, so the
+  // request shapes the UI sends are checked against the backend's own validation.
+  test('Change then Cancel restores the chip; a second review resets the form instead of showing the abandoned one', async () => {
+    useAssessments([
+      sampleAssessment({
+        review: { agrees: false, alert_level_override: 'ORANGE', note: 'Stable on review', florence_alert_level: 'RED' },
+        effective_alert_level: 'ORANGE',
+      }),
+    ])
+    renderDetails()
+    const user = userEvent.setup()
+    await openAssessments(user)
+
+    const card = cardWithPill('ORANGE')
+    // (a) Cancel leaves the committed review untouched
+    await user.click(within(card).getByRole('button', { name: 'Change' }))
+    expect(within(card).getByRole('group', { name: 'Set alert level' })).toBeTruthy()
+    await user.click(within(card).getByRole('button', { name: 'Cancel' }))
+    expect(within(card).getByText('Reviewed · set to ORANGE')).toBeTruthy()
+    expect(within(card).queryByRole('group', { name: 'Set alert level' })).toBeNull()
+
+    // (b) Agreeing from the edit form commits through the default handler
+    await user.click(within(card).getByRole('button', { name: 'Change' }))
+    await user.click(within(card).getByRole('button', { name: 'Agree' }))
+    expect(await within(card).findByText('Reviewed · Agreed')).toBeTruthy()
+    await waitFor(() => expect(screen.getByText('Critical · RED')).toBeTruthy())
+
+    // (c) Re-opening the form shows the committed review, not the abandoned ORANGE + note
+    await user.click(within(card).getByRole('button', { name: 'Change' }))
+    const picker = within(card).getByRole('group', { name: 'Set alert level' })
+    expect(within(picker).getAllByRole('button').map((b) => b.getAttribute('aria-pressed'))).toEqual(['false', 'false', 'false', 'false'])
+    expect(within(card).getByPlaceholderText(/Add a note/)).toHaveValue('')
+  })
+
+  test('keyboard focus follows the review control instead of dropping to the document body', async () => {
+    renderDetails()
+    const user = userEvent.setup()
+    await openAssessments(user)
+    const card = cardWithPill('RED')
+
+    // Override swaps the actions for the form: focus lands on the first level option
+    await user.click(within(card).getByRole('button', { name: 'Override' }))
+    expect(document.activeElement).toBe(within(card).getByRole('button', { name: 'GREEN' }))
+
+    // Cancel swaps back: focus returns to the control that opened the form
+    await user.click(within(card).getByRole('button', { name: 'Cancel' }))
+    expect(document.activeElement).toBe(within(card).getByRole('button', { name: 'Override' }))
+
+    // Saving swaps the form for the reviewed chip: focus lands on its Change link
+    await user.click(within(card).getByRole('button', { name: 'Override' }))
+    await user.click(within(card).getByRole('button', { name: 'ORANGE' }))
+    await user.click(within(card).getByRole('button', { name: 'Save review' }))
+    const change = await within(card).findByRole('button', { name: 'Change' })
+    expect(document.activeElement).toBe(change)
+  })
+
+  test("Change is disabled while a save is in flight, so a failure can't strand the card in the edit form", async () => {
+    let release
+    const gate = new Promise((resolve) => { release = resolve })
+    server.use(
+      http.post(`${API}/doctor/assessments/:sessionId/review`, async () => {
+        await gate
+        return HttpResponse.json({ detail: 'boom' }, { status: 500 })
+      })
+    )
+    renderDetails()
+    const user = userEvent.setup()
+    await openAssessments(user)
+    const card = cardWithPill('RED')
+    await user.click(within(card).getByRole('button', { name: 'Agree' }))
+
+    // The optimistic chip is already on screen while the request is still in flight
+    const change = await within(card).findByRole('button', { name: 'Change' })
+    expect(change).toBeDisabled()
+
+    release()
+    // Rollback restores the exact pre-submit state rather than an open edit form
+    expect(await within(card).findByRole('alert')).toHaveTextContent(/Couldn't save the review/)
+    expect(within(card).getByRole('button', { name: 'Agree' })).toBeTruthy()
+    expect(within(card).queryByRole('group', { name: 'Set alert level' })).toBeNull()
+  })
 })

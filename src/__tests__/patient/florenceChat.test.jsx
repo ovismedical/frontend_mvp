@@ -52,7 +52,7 @@ describe('FlorenceChat — end-of-chat outcome', () => {
     const polled = []
     server.use(
       finishWith({ message: 'Session completed', triage_status: 'generating' }),
-      resultWith({ triage_status: 'pending_clinician_review', alert_level: 'PENDING_REVIEW' }, polled)
+      resultWith({ triage_status: 'pending_clinician_review', alert_level: null }, polled)
     )
     renderChat()
     const user = userEvent.setup()
@@ -63,6 +63,7 @@ describe('FlorenceChat — end-of-chat outcome', () => {
     expect(screen.queryByText(/PENDING_REVIEW/)).toBeNull()
     expect(screen.queryByText(/Your assessment is ready/)).toBeNull()
     expect(screen.queryByText(/taking a little longer/)).toBeNull()
+    // Exactly one poll: a second request would mean we kept polling a non-generating record
     expect(polled).toEqual(['test_session_123'])
   })
 
@@ -76,24 +77,10 @@ describe('FlorenceChat — end-of-chat outcome', () => {
     expect(screen.queryByText(NEEDS_REVIEW)).toBeNull()
   })
 
-  test('polling stops as soon as the status is no longer "generating", including pending review', async () => {
-    const polled = []
-    server.use(
-      finishWith({ message: 'Session completed', triage_status: 'generating' }),
-      resultWith({ triage_status: 'pending_clinician_review', alert_level: 'PENDING_REVIEW' }, polled)
-    )
-    renderChat()
-    const user = userEvent.setup()
-    await endChat(user)
-    await screen.findByText(NEEDS_REVIEW)
-    // One poll was enough; a second request would mean we kept polling a non-generating record
-    expect(polled).toHaveLength(1)
-  })
-
   test('a finish response that is already pending is explained without polling', async () => {
     const polled = []
     server.use(
-      finishWith({ message: 'Session completed', triage_status: 'pending_clinician_review', alert_level: 'PENDING_REVIEW' }),
+      finishWith({ message: 'Session completed', triage_status: 'pending_clinician_review', alert_level: null }),
       resultWith({ triage_status: 'completed', alert_level: 'GREEN' }, polled)
     )
     renderChat()

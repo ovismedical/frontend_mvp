@@ -5,8 +5,13 @@ import OverviewCard from "../../components/ui/overviewCard";
 import RecentActivityCard from "../../components/ui/recentActivityCard";
 import { doctorAPI } from "../../utils/api";
 import { timeAgo, todayKey } from "../../utils/timeAgo";
+import { effectiveLevel } from "../../utils/alertLevels";
 
 const WEEK_MS = 7 * 24 * 60 * 60 * 1000;
+
+// Urgency a clinician must act on, after any clinician override (falls back to
+// Florence's level on a backend without the review feature).
+const isCritical = (alert) => ["RED", "ORANGE"].includes(effectiveLevel(alert));
 
 const DoctorHome = () => {
   const { t } = useTranslation();
@@ -35,7 +40,7 @@ const DoctorHome = () => {
     const recentAlerts = alerts.filter((a) => new Date(a.created_at).getTime() >= weekAgo);
     return {
       totalPatients: patients.length,
-      criticalAlerts: recentAlerts.filter((a) => a.alert_level === "RED" || a.alert_level === "ORANGE").length,
+      criticalAlerts: recentAlerts.filter(isCritical).length,
       flaggedThisWeek: recentAlerts.length,
       checkedInToday: patients.filter((p) => p.last_completion === todayKey()).length,
     };
@@ -47,7 +52,7 @@ const DoctorHome = () => {
     const items = alerts.slice(0, 6).map((a) => ({
       key: `alert-${a.session_id}`,
       type: "alert",
-      title: a.alert_level === "RED" || a.alert_level === "ORANGE" ? t("critical_alert") : t("new_assessment"),
+      title: isCritical(a) ? t("critical_alert") : t("new_assessment"),
       patient: nameFor(a.patient_id),
       time: a.created_at,
     }));

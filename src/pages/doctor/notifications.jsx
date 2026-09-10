@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { doctorAPI } from "../../utils/api";
+import { effectiveLevel, isPendingReview } from "../../utils/alertLevels";
 
 // utility: format relative time
 const timeAgo = (timestamp, t) => {
@@ -16,9 +17,14 @@ const timeAgo = (timestamp, t) => {
   return t(diffDays === 1 ? "day_ago" : "days_ago", { count: diffDays });
 };
 
-// Map alert_level to importance
-const alertToImportance = (level) => {
-  switch (level) {
+// A record whose AI assessment was refused has no level until a clinician assigns one.
+// Once it carries a review, that clinician-assigned level drives its urgency like any other.
+const needsClinicianReview = (alert) => isPendingReview(alert) && !alert.review;
+
+// Map an alert record to importance, using the level after any clinician override.
+const alertToImportance = (alert) => {
+  if (needsClinicianReview(alert)) return "pending";
+  switch (effectiveLevel(alert)) {
     case "RED": return "critical";
     case "ORANGE": return "urgent";
     case "YELLOW": return "caution";
@@ -39,6 +45,7 @@ const sections = [
   { key: "critical", label: "critical_alerts", icon: "priority_high" },
   { key: "urgent", label: "urgent_alerts", icon: "warning" },
   { key: "caution", label: "caution_alerts", icon: "error_outline" },
+  { key: "pending", label: "needs_review", icon: "pending" },
   { key: "info", label: "info", icon: "info" },
 ];
 
@@ -76,9 +83,12 @@ const DoctorNotifications = () => {
           const patient = patientMap[alert.patient_id] || {};
           return {
             id: alert.session_id || idx,
-            importance: alertToImportance(alert.alert_level),
+            importance: alertToImportance(alert),
             type: assessmentTypeLabel(alert.assessment_type),
-            description: alert.alert_rationale || (alert.key_symptoms || []).join(", ") || "Flagged for review",
+            description:
+              alert.alert_rationale ||
+              (alert.key_symptoms || []).join(", ") ||
+              (needsClinicianReview(alert) ? t("needs_review") : t("flagged_for_review")),
             timestamp: alert.created_at,
             patient: {
               name: patient.full_name || alert.patient_id,
@@ -97,7 +107,7 @@ const DoctorNotifications = () => {
       }
     };
     fetchAlerts();
-  }, []);
+  }, [t]);
 
   const notificationTypes = [
     ...new Set(enrichedNotifications.map((n) => n.type)),
@@ -154,6 +164,7 @@ const DoctorNotifications = () => {
     critical: filteredNotifications.filter((n) => n.importance === "critical"),
     urgent: filteredNotifications.filter((n) => n.importance === "urgent"),
     caution: filteredNotifications.filter((n) => n.importance === "caution"),
+    pending: filteredNotifications.filter((n) => n.importance === "pending"),
     info: filteredNotifications.filter((n) => n.importance === "info"),
   };
 
@@ -337,7 +348,7 @@ const DoctorNotifications = () => {
             )}
           </div>
           <div className="doctor-notifications-list-col">
-            {sections.slice(2, 4).map(
+            {sections.slice(2).map(
               (s) =>
                 grouped[s.key].length > 0 && (
                   <div

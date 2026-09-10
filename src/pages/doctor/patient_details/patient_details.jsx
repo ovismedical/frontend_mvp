@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import Tabs from "../../../components/ui/tabs";
@@ -25,13 +25,42 @@ const ReviewControl = ({ assessment, onSubmit, t }) => {
   const [saving, setSaving] = useState(false);
   const [failed, setFailed] = useState(false);
 
+  // Swapping the visible buttons would otherwise drop keyboard focus to <body>:
+  // each handler records where focus belongs next and one effect moves it there
+  // after the render. Nothing is set on mount, so the pending-review form that is
+  // open from the start never steals focus on page load.
+  const firstLevelRef = useRef(null);
+  const changeRef = useRef(null);
+  const overrideRef = useRef(null);
+  const saveRef = useRef(null);
+  const focusNext = useRef(null);
+  useEffect(() => {
+    const target = focusNext.current;
+    focusNext.current = null;
+    ({ form: firstLevelRef, status: changeRef, actions: overrideRef, save: saveRef })[target]?.current?.focus();
+  });
+
+  const startEditing = () => {
+    focusNext.current = "form";
+    setEditing(true);
+  };
   const submit = async (body) => {
     setSaving(true);
     setFailed(false);
     const ok = await onSubmit(assessment, body);
     setSaving(false);
-    if (ok) setEditing(false);
-    else setFailed(true);
+    if (ok) {
+      // Resync the form with the review just saved: `body` is exactly what the parent
+      // merges into assessment.review, and the card is not remounted, so without this
+      // re-opening "Change" would show the abandoned level and note.
+      focusNext.current = "status";
+      setEditing(false);
+      setLevel(body.alert_level_override || null);
+      setNote(body.note || "");
+    } else {
+      focusNext.current = "save";
+      setFailed(true);
+    }
   };
   const agree = () => submit({ agrees: true, alert_level_override: null, note: null });
   const saveLevel = () => {
@@ -39,6 +68,7 @@ const ReviewControl = ({ assessment, onSubmit, t }) => {
     submit({ agrees: pending ? null : false, alert_level_override: level, note: note.trim() || null });
   };
   const cancelEdit = () => {
+    focusNext.current = review ? "status" : "actions";
     setEditing(false);
     setFailed(false);
     setLevel(review?.alert_level_override || null);
@@ -55,7 +85,7 @@ const ReviewControl = ({ assessment, onSubmit, t }) => {
             <span className="material-symbols-rounded" aria-hidden="true">task_alt</span>
             {review.agrees ? t("reviewed_agreed") : t("reviewed_override", { level: review.alert_level_override })}
           </span>
-          <button type="button" className="record-link" onClick={() => setEditing(true)}>
+          <button type="button" className="record-link" onClick={startEditing} disabled={saving} ref={changeRef}>
             {t("review_change")}
           </button>
         </div>
@@ -65,7 +95,7 @@ const ReviewControl = ({ assessment, onSubmit, t }) => {
           <button type="button" className="review-btn primary caption" onClick={agree} disabled={saving}>
             {t("review_agree")}
           </button>
-          <button type="button" className="review-btn caption" onClick={() => setEditing(true)} disabled={saving}>
+          <button type="button" className="review-btn caption" onClick={startEditing} disabled={saving} ref={overrideRef}>
             {t("review_override")}
           </button>
         </div>
@@ -74,13 +104,14 @@ const ReviewControl = ({ assessment, onSubmit, t }) => {
         <>
           <p className="review-heading caption-semibold">{t("review_set_level")}</p>
           <div className="review-level-picker" role="group" aria-label={t("review_set_level")}>
-            {ALERT_LEVELS.map((option) => {
+            {ALERT_LEVELS.map((option, index) => {
               const style = alertStyle(option);
               return (
                 <button
                   key={option}
                   type="button"
                   className="review-level-option caption"
+                  ref={index === 0 ? firstLevelRef : undefined}
                   aria-pressed={level === option}
                   style={{ color: style.color, backgroundColor: style.backgroundColor }}
                   onClick={() => setLevel(option)}
@@ -103,7 +134,7 @@ const ReviewControl = ({ assessment, onSubmit, t }) => {
             disabled={saving}
           />
           <div className="review-actions">
-            <button type="button" className="review-btn primary caption" onClick={saveLevel} disabled={saving || !level}>
+            <button type="button" className="review-btn primary caption" onClick={saveLevel} disabled={saving || !level} ref={saveRef}>
               {t("review_save")}
             </button>
             {editing && review && !pending && (

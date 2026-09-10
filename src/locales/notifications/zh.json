@@ -8,6 +8,7 @@
   "critical_alerts": "緊急警報",
   "urgent_alerts": "緊急提醒",
   "caution_alerts": "注意提醒",
+  "flagged_for_review": "已標記待跟進",
   "info": "資訊",
   "just_now": "剛剛",
   "min_ago": "{{count}} 分鐘前",

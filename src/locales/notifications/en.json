@@ -8,6 +8,7 @@
   "critical_alerts": "Critical Alerts",
   "urgent_alerts": "Urgent Alerts",
   "caution_alerts": "Caution Alerts",
+  "flagged_for_review": "Flagged for review",
   "info": "Info",
   "just_now": "Just now",
   "min_ago": "{{count}} min ago",
