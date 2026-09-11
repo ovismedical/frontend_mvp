@@ -77,5 +77,17 @@
   "care_since": "Since",
   "hide": "Hide",
   "view_details": "View answers",
-  "urgency": "urgency"
+  "urgency": "urgency",
+  "needs_review": "Needs review",
+  "reviewed": "Reviewed",
+  "review_agree": "Agree",
+  "review_override": "Override",
+  "review_set_level": "Set alert level",
+  "review_change": "Change",
+  "review_save": "Save review",
+  "review_cancel_edit": "Cancel",
+  "review_note_placeholder": "Add a note for the record (optional)",
+  "reviewed_agreed": "Reviewed · Agreed",
+  "reviewed_override": "Reviewed · set to {{level}}",
+  "review_failed": "Couldn't save the review. Please try again."
 }

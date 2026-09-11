@@ -290,6 +290,18 @@ const FlorenceChat = ({ onClose, embedded = false, onSessionChange }) => {
     return null;
   };
 
+  // What to tell the patient about a finished session's outcome, or null when there
+  // is nothing to announce yet. A refused AI assessment is saved for the care team
+  // ("pending_clinician_review") and must never surface as a raw PENDING_REVIEW level.
+  const describeResult = (result) => {
+    if (!result) return t("assessment_still_processing");
+    if (result.triage_status === "pending_clinician_review") return t("assessment_needs_review");
+    if (result.alert_level && result.alert_level !== "PENDING_REVIEW") {
+      return t("assessment_ready", { level: result.alert_level, description: result.alert_description });
+    }
+    return null;
+  };
+
   const confirmEndChat = async () => {
     if (!sessionId) return;
 
@@ -302,13 +314,10 @@ const FlorenceChat = ({ onClose, embedded = false, onSessionChange }) => {
 
       if (finished.triage_status === "generating") {
         const result = await waitForResult(sessionId);
-        if (result?.alert_level) {
-          pushBotMessage(t("assessment_ready", { level: result.alert_level, description: result.alert_description }));
-        } else {
-          pushBotMessage(t("assessment_still_processing"));
-        }
-      } else if (finished.alert_level) {
-        pushBotMessage(t("assessment_ready", { level: finished.alert_level, description: finished.alert_description }));
+        pushBotMessage(describeResult(result) ?? t("assessment_still_processing"));
+      } else {
+        const outcome = describeResult(finished);
+        if (outcome) pushBotMessage(outcome);
       }
 
       setTimeout(() => onClose(), 3500);
@@ -451,6 +460,9 @@ const FlorenceChat = ({ onClose, embedded = false, onSessionChange }) => {
             {t("connecting_to_florence")}
           </div>
         )}
+
+        {/* Second row of the wrapper (flex-wrap): Florence does not need identifying details */}
+        <p className="florence-privacy-hint caption">{t("florence_privacy_hint")}</p>
       </div>
 
       {/* End Chat Confirmation Modal */}

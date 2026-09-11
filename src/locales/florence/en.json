@@ -54,5 +54,7 @@
   "quick_responses_feel_tired": "I feel tired",
   "quick_responses_other_symptoms_text": "I have other symptoms",
   "assessment_ready": "Your assessment is ready — alert level {{level}}: {{description}} You can see the full report on your dashboard.",
-  "assessment_still_processing": "Your assessment is taking a little longer than usual. It will appear on your dashboard as soon as it's ready."
+  "assessment_still_processing": "Your assessment is taking a little longer than usual. It will appear on your dashboard as soon as it's ready.",
+  "florence_privacy_hint": "You don't need to share names, addresses or ID numbers with Florence.",
+  "assessment_needs_review": "Your check-in is saved. Florence couldn't run the AI assessment this time, so your care team will review it."
 }

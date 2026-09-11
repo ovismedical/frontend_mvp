@@ -202,6 +202,42 @@ export const achievementsAPI = {
   }
 };
 
+// Florence memory API calls (patient only). Every call returns { enabled, memories }.
+export const memoriesAPI = {
+  getMine: async () => {
+    const response = await fetch(`${API_BASE_URL}/memories/me`, {
+      method: "GET",
+      headers: getAuthHeaders(),
+    });
+    return handleResponse(response);
+  },
+
+  remove: async (memoryId) => {
+    const response = await fetch(`${API_BASE_URL}/memories/${encodeURIComponent(memoryId)}`, {
+      method: "DELETE",
+      headers: getAuthHeaders(),
+    });
+    return handleResponse(response);
+  },
+
+  clearAll: async () => {
+    const response = await fetch(`${API_BASE_URL}/memories/me`, {
+      method: "DELETE",
+      headers: getAuthHeaders(),
+    });
+    return handleResponse(response);
+  },
+
+  setEnabled: async (enabled) => {
+    const response = await fetch(`${API_BASE_URL}/memories/settings`, {
+      method: "PUT",
+      headers: getAuthHeaders(),
+      body: JSON.stringify({ enabled }),
+    });
+    return handleResponse(response);
+  }
+};
+
 // Calendar API calls
 export const calendarAPI = {
   getEvents: async () => {
@@ -434,6 +470,17 @@ export const doctorAPI = {
     const response = await fetch(`${API_BASE_URL}/doctor/patient/${patientId}/questionnaires`, {
       method: "GET",
       headers: getAuthHeaders(),
+    });
+    return handleResponse(response);
+  },
+
+  // Clinician review of one assessment: { agrees: bool|null, alert_level_override: level|null, note: string|null }
+  // → { review, effective_alert_level }
+  reviewAssessment: async (sessionId, body) => {
+    const response = await fetch(`${API_BASE_URL}/doctor/assessments/${sessionId}/review`, {
+      method: "POST",
+      headers: getAuthHeaders(),
+      body: JSON.stringify(body),
     });
     return handleResponse(response);
   }

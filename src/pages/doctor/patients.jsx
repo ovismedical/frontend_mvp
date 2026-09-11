@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { doctorAPI } from "../../utils/api";
+import { ALERT_LEVELS, PENDING_REVIEW } from "../../utils/alertLevels";
 
 const alertLevelColor = (level) => {
   switch (level) {
@@ -9,19 +10,25 @@ const alertLevelColor = (level) => {
     case "ORANGE": return "var(--warning-600)";
     case "YELLOW": return "var(--blue-600)";
     case "GREEN": return "var(--success-600)";
+    case PENDING_REVIEW: return "var(--neutral-500)";
     default: return "var(--neutral-600)";
   }
 };
 
-const alertLevelLabel = (level) => {
+// PENDING_REVIEW is the only level with a translated label; the raw code must never render.
+const alertLevelLabel = (level, t) => {
   switch (level) {
     case "RED": return "Critical";
     case "ORANGE": return "Urgent";
     case "YELLOW": return "Caution";
     case "GREEN": return "Stable";
+    case PENDING_REVIEW: return t("needs_review");
     default: return "No Data";
   }
 };
+
+// Highest urgency first, then records still waiting for a clinician
+const alertLevelOptions = [...ALERT_LEVELS].reverse().concat(PENDING_REVIEW);
 
 const DoctorPatients = () => {
   const navigate = useNavigate();
@@ -62,8 +69,6 @@ const DoctorPatients = () => {
     document.addEventListener("mousedown", handleClick);
     return () => document.removeEventListener("mousedown", handleClick);
   }, [showFilter]);
-
-  const alertLevelOptions = ["RED", "ORANGE", "YELLOW", "GREEN"];
 
   const toggleAlertLevel = (value) => {
     setSelectedAlertLevels((prev) =>
@@ -176,7 +181,7 @@ const DoctorPatients = () => {
                       checked={selectedAlertLevels.includes(level)}
                       onChange={() => toggleAlertLevel(level)}
                     />
-                    {alertLevelLabel(level)}
+                    {alertLevelLabel(level, t)}
                   </label>
                 ))}
               </div>
@@ -219,7 +224,13 @@ const DoctorPatients = () => {
                   </span>
                 </div>
                 <div className="patient-cancer body">
-                  {alertLevelLabel(p.latest_alert_level)}
+                  {alertLevelLabel(p.latest_alert_level, t)}
+                  {p.latest_review && (
+                    <span className="patient-reviewed-marker caption">
+                      <span className="material-symbols-rounded" aria-hidden="true">task_alt</span>
+                      {t("reviewed")}
+                    </span>
+                  )}
                 </div>
                 <div className="patient-update caption">
                   {p.last_assessment_date

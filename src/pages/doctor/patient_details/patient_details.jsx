@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import Tabs from "../../../components/ui/tabs";
@@ -7,15 +7,153 @@ import SmartInsightCard from "../../../components/ui/smartInsightCard";
 import { doctorAPI, triageAPI } from "../../../utils/api";
 import { timeAgo } from "../../../utils/timeAgo";
 import BackButton from "../../../components/ui/backButton";
+import { ALERT_LEVELS, PENDING_REVIEW, alertStyle, effectiveLevel, levelText, isPendingReview } from "../../../utils/alertLevels";
 const WEEK_MS = 7 * 24 * 60 * 60 * 1000;
 
-const ALERT_STYLE = {
-  RED: { color: "var(--error-700)", backgroundColor: "var(--error-100)", icon: "emergency", labelKey: "status_critical" },
-  ORANGE: { color: "var(--on-secondary-tint)", backgroundColor: "var(--secondary-100)", icon: "warning", labelKey: "status_at_risk" },
-  YELLOW: { color: "var(--warning-700, #b45309)", backgroundColor: "var(--warning-100, #fef3c7)", icon: "error_outline", labelKey: "status_at_risk" },
-  GREEN: { color: "var(--success-700)", backgroundColor: "var(--success-100)", icon: "check_circle", labelKey: "status_completed" },
+/**
+ * Clinician feedback on one assessment. A triaged record offers Agree / Override;
+ * a record whose AI assessment was refused (pending clinician review) has no
+ * Florence level to agree with, so it only offers the level picker.
+ * `onSubmit(assessment, body)` resolves true on success, false on failure.
+ */
+const ReviewControl = ({ assessment, onSubmit, t }) => {
+  const review = assessment.review || null;
+  const pending = isPendingReview(assessment);
+  const [editing, setEditing] = useState(false);
+  const [level, setLevel] = useState(review?.alert_level_override || null);
+  const [note, setNote] = useState(review?.note || "");
+  const [saving, setSaving] = useState(false);
+  const [failed, setFailed] = useState(false);
+
+  // Swapping the visible buttons would otherwise drop keyboard focus to <body>:
+  // each handler records where focus belongs next and one effect moves it there
+  // after the render. Nothing is set on mount, so the pending-review form that is
+  // open from the start never steals focus on page load.
+  const firstLevelRef = useRef(null);
+  const changeRef = useRef(null);
+  const overrideRef = useRef(null);
+  const saveRef = useRef(null);
+  const focusNext = useRef(null);
+  useEffect(() => {
+    const target = focusNext.current;
+    focusNext.current = null;
+    ({ form: firstLevelRef, status: changeRef, actions: overrideRef, save: saveRef })[target]?.current?.focus();
+  });
+
+  const startEditing = () => {
+    focusNext.current = "form";
+    setEditing(true);
+  };
+  const submit = async (body) => {
+    setSaving(true);
+    setFailed(false);
+    const ok = await onSubmit(assessment, body);
+    setSaving(false);
+    if (ok) {
+      // Resync the form with the review just saved: `body` is exactly what the parent
+      // merges into assessment.review, and the card is not remounted, so without this
+      // re-opening "Change" would show the abandoned level and note.
+      focusNext.current = "status";
+      setEditing(false);
+      setLevel(body.alert_level_override || null);
+      setNote(body.note || "");
+    } else {
+      focusNext.current = "save";
+      setFailed(true);
+    }
+  };
+  const agree = () => submit({ agrees: true, alert_level_override: null, note: null });
+  const saveLevel = () => {
+    if (!level) return;
+    submit({ agrees: pending ? null : false, alert_level_override: level, note: note.trim() || null });
+  };
+  const cancelEdit = () => {
+    focusNext.current = review ? "status" : "actions";
+    setEditing(false);
+    setFailed(false);
+    setLevel(review?.alert_level_override || null);
+    setNote(review?.note || "");
+  };
+
+  const showForm = editing || (pending && !review);
+
+  return (
+    <div className="review-control">
+      {review && !editing && (
+        <div className="review-status caption">
+          <span className="review-chip">
+            <span className="material-symbols-rounded" aria-hidden="true">task_alt</span>
+            {review.agrees ? t("reviewed_agreed") : t("reviewed_override", { level: review.alert_level_override })}
+          </span>
+          <button type="button" className="record-link" onClick={startEditing} disabled={saving} ref={changeRef}>
+            {t("review_change")}
+          </button>
+        </div>
+      )}
+      {!review && !pending && !editing && (
+        <div className="review-actions">
+          <button type="button" className="review-btn primary caption" onClick={agree} disabled={saving}>
+            {t("review_agree")}
+          </button>
+          <button type="button" className="review-btn caption" onClick={startEditing} disabled={saving} ref={overrideRef}>
+            {t("review_override")}
+          </button>
+        </div>
+      )}
+      {showForm && (
+        <>
+          <p className="review-heading caption-semibold">{t("review_set_level")}</p>
+          <div className="review-level-picker" role="group" aria-label={t("review_set_level")}>
+            {ALERT_LEVELS.map((option, index) => {
+              const style = alertStyle(option);
+              return (
+                <button
+                  key={option}
+                  type="button"
+                  className="review-level-option caption"
+                  ref={index === 0 ? firstLevelRef : undefined}
+                  aria-pressed={level === option}
+                  style={{ color: style.color, backgroundColor: style.backgroundColor }}
+                  onClick={() => setLevel(option)}
+                  disabled={saving}
+                >
+                  <span className="material-symbols-rounded" aria-hidden="true">{style.icon}</span>
+                  {option}
+                </button>
+              );
+            })}
+          </div>
+          <textarea
+            className="review-note caption"
+            rows={2}
+            maxLength={500}
+            placeholder={t("review_note_placeholder")}
+            aria-label={t("review_note_placeholder")}
+            value={note}
+            onChange={(e) => setNote(e.target.value)}
+            disabled={saving}
+          />
+          <div className="review-actions">
+            <button type="button" className="review-btn primary caption" onClick={saveLevel} disabled={saving || !level} ref={saveRef}>
+              {t("review_save")}
+            </button>
+            {editing && review && !pending && (
+              <button type="button" className="review-btn caption" onClick={agree} disabled={saving}>
+                {t("review_agree")}
+              </button>
+            )}
+            {editing && (
+              <button type="button" className="review-btn caption" onClick={cancelEdit} disabled={saving}>
+                {t("review_cancel_edit")}
+              </button>
+            )}
+          </div>
+        </>
+      )}
+      {failed && <p className="review-error caption" role="alert">{t("review_failed")}</p>}
+    </div>
+  );
 };
-const alertStyle = (level) => ALERT_STYLE[level] || { color: "var(--neutral-500)", backgroundColor: "var(--neutral-100)", icon: "help", labelKey: "status_unknown" };
 
 const symptomsOf = (assessment) => {
   const symptoms = assessment?.structured_assessment?.symptoms;
@@ -68,8 +206,37 @@ const PatientDetails = () => {
   }, [patientId, t]);
 
   const latest = assessments[0] || null;
-  const latestAlert = latest?.alert_level || latest?.triage_assessment?.alert_level || null;
+  const latestAlert = effectiveLevel(latest);
   const latestQuestionnaire = questionnaires[0] || null;
+
+  const patchAssessment = (sessionId, patch) =>
+    setAssessments((prev) => prev.map((a) => (a.session_id === sessionId ? { ...a, ...patch } : a)));
+
+  // Optimistic: show the review and the resulting level immediately, reconcile with
+  // the server's response, and roll back if the request fails.
+  const submitReview = async (assessment, body) => {
+    const sessionId = assessment.session_id;
+    const previous = { review: assessment.review ?? null, effective_alert_level: assessment.effective_alert_level };
+    const florenceLevel = isPendingReview(assessment)
+      ? null
+      : assessment.alert_level ?? assessment.triage_assessment?.alert_level ?? null;
+    const optimistic = {
+      review: { ...previous.review, ...body, session_id: sessionId, florence_alert_level: florenceLevel },
+      effective_alert_level: body.alert_level_override ?? florenceLevel,
+    };
+    patchAssessment(sessionId, optimistic);
+    try {
+      const result = await doctorAPI.reviewAssessment(sessionId, body);
+      patchAssessment(sessionId, {
+        review: result?.review ?? optimistic.review,
+        effective_alert_level: result?.effective_alert_level ?? optimistic.effective_alert_level,
+      });
+      return true;
+    } catch {
+      patchAssessment(sessionId, previous);
+      return false;
+    }
+  };
 
   const weekStats = useMemo(() => {
     const now = Date.now();
@@ -145,7 +312,12 @@ const PatientDetails = () => {
   const treatment = profile?.treatment_status || "undergoing_treatment";
   const alertMeta = alertStyle(latestAlert);
   const cardStatus = latestAlert
-    ? { label: `${t(alertMeta.labelKey)} · ${latestAlert}`, icon: alertMeta.icon, color: alertMeta.color, backgroundColor: alertMeta.backgroundColor }
+    ? {
+        label: latestAlert === PENDING_REVIEW ? t("needs_review") : `${t(alertMeta.labelKey)} · ${latestAlert}`,
+        icon: alertMeta.icon,
+        color: alertMeta.color,
+        backgroundColor: alertMeta.backgroundColor,
+      }
     : { label: t("no_alert_data"), icon: "help", color: "var(--neutral-500)", backgroundColor: "var(--neutral-100)" };
 
   return (
@@ -174,7 +346,7 @@ const PatientDetails = () => {
                 <span className="material-symbols-rounded assignment_turned_in" style={{ color: alertMeta.color }}>
                   {alertMeta.icon}
                 </span>
-                <h3 className="daily-health-summary-card-title body">{latestAlert || t("no_alert_data")}</h3>
+                <h3 className="daily-health-summary-card-title body">{levelText(latestAlert, t) || t("no_alert_data")}</h3>
               </div>
               <p className="daily-health-summary-card-subtext caption">
                 {t("latest_alert")}{latest ? ` · ${timeAgo(latest.created_at, t)}` : ""}
@@ -292,7 +464,8 @@ const PatientDetails = () => {
             <div className="doctor-notifications-list-empty h4">{t("no_assessments_for", { name })}</div>
           )}
           {assessments.map((a) => {
-            const meta = alertStyle(a.alert_level);
+            const level = effectiveLevel(a);
+            const meta = alertStyle(level);
             const triage = a.triage_assessment || {};
             const symptoms = symptomsOf(a);
             const transcript = transcripts[a.session_id];
@@ -302,7 +475,7 @@ const PatientDetails = () => {
                   <div className="doctor-notifications-info-row">
                     <span className="doctor-notifications-patient h4">
                       <span className="alert-pill caption" style={{ color: meta.color, backgroundColor: meta.backgroundColor }}>
-                        {a.alert_level || "—"}
+                        {levelText(level, t) || "—"}
                       </span>
                       {a.assessment_type === "questionnaire_triage" ? t("questionnaire_triage") : t("florence_chat")}
                     </span>
@@ -356,6 +529,7 @@ const PatientDetails = () => {
                       ))}
                     </div>
                   )}
+                  <ReviewControl assessment={a} onSubmit={submitReview} t={t} />
                 </div>
               </div>
             );
@@ -378,7 +552,7 @@ const PatientDetails = () => {
                   <div className="doctor-notifications-info-row">
                     <span className="doctor-notifications-patient h4">
                       {q.alert_level && (
-                        <span className="alert-pill caption" style={{ color: meta.color, backgroundColor: meta.backgroundColor }}>{q.alert_level}</span>
+                        <span className="alert-pill caption" style={{ color: meta.color, backgroundColor: meta.backgroundColor }}>{levelText(q.alert_level, t)}</span>
                       )}
                       {t("checkins")}
                     </span>
