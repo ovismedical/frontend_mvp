@@ -208,6 +208,25 @@ const Settings = () => {
 
         {activeTab === t("privacy_data") && (
           <div className="privacy-settings-list">
+            <button type="button" className="settings-item" onClick={() => navigate("/florence_memory")}>
+              <div className="settings-left">
+                <span className="material-symbols-rounded settings-icon" aria-hidden="true">
+                  psychology
+                </span>
+                <div className="settings-item-textwrap">
+                  <span className="settings-item-text body">
+                    {t("florence_memory")}
+                  </span>
+                  <span className="settings-item-subtext caption">
+                    {t("florence_memory_desc")}
+                  </span>
+                </div>
+              </div>
+              <span className="material-symbols-rounded arrow" aria-hidden="true">
+                chevron_right
+              </span>
+            </button>
+
             <div className="settings-item">
               <div className="settings-left">
                 <span className="material-symbols-rounded settings-icon" aria-hidden="true">

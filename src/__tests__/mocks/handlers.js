@@ -238,6 +238,36 @@ export const handlers = [
     })
   }),
 
+  // Florence memory
+  http.get(`${API}/memories/me`, () => {
+    return HttpResponse.json({
+      enabled: true,
+      memories: [
+        { memory_id: 'mem_1', text: 'Has a dog called Biscuit', category: 'pet', captured_at: '2026-09-10T09:00:00+00:00' },
+        { memory_id: 'mem_2', text: 'Had congee for dinner', category: 'food', captured_at: '2026-09-10T09:00:00+00:00' },
+      ],
+    })
+  }),
+
+  http.delete(`${API}/memories/me`, () => {
+    return HttpResponse.json({ enabled: true, memories: [] })
+  }),
+
+  http.delete(`${API}/memories/:memoryId`, ({ params }) => {
+    return HttpResponse.json({
+      enabled: true,
+      memories: [
+        { memory_id: 'mem_1', text: 'Has a dog called Biscuit', category: 'pet', captured_at: '2026-09-10T09:00:00+00:00' },
+        { memory_id: 'mem_2', text: 'Had congee for dinner', category: 'food', captured_at: '2026-09-10T09:00:00+00:00' },
+      ].filter((m) => m.memory_id !== params.memoryId),
+    })
+  }),
+
+  http.put(`${API}/memories/settings`, async ({ request }) => {
+    const body = await request.json()
+    return HttpResponse.json({ enabled: body.enabled, memories: [] })
+  }),
+
   // Analytics
   http.get(`${API}/analytics/unified-assessments`, () => {
     return HttpResponse.json([])

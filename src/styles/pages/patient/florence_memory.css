@@ -1,0 +1,76 @@
+/* What Florence remembers - reuses the settings row, toggle and sub-page header styles */
+.florence-memory-content {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 0 16px 32px;
+}
+
+.florence-memory-intro {
+  color: var(--text-400);
+  margin: 0;
+}
+
+.florence-memory-switch {
+  cursor: default;
+  gap: 12px;
+}
+
+.florence-memory-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.florence-memory-item {
+  cursor: default;
+  gap: 12px;
+}
+
+.florence-memory-delete {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  min-width: var(--tap-target-min);
+  min-height: var(--tap-target-min);
+  border: none;
+  border-radius: var(--radius-xl);
+  background: none;
+  color: var(--text-500);
+  cursor: pointer;
+}
+
+.florence-memory-clear {
+  align-self: flex-start;
+  min-height: var(--tap-target-min);
+  padding: 0 16px;
+  border: none;
+  border-radius: var(--radius-l);
+  background-color: var(--error-50);
+  color: var(--on-error-tint);
+  cursor: pointer;
+}
+
+.florence-memory-delete:disabled,
+.florence-memory-clear:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.florence-memory-empty {
+  color: var(--text-400);
+  text-align: center;
+  margin: 24px 0;
+}
+
+.florence-memory-error {
+  color: var(--on-error-tint);
+  margin: 0;
+}

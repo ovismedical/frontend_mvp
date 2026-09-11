@@ -21,6 +21,7 @@ import HealthCareProvider from "../pages/patient/settings/healthcare_provider.js
 import PasswordSecurity from "../pages/patient/settings/password.jsx";
 import DisplayLanguage from "../pages/patient/settings/display_language.jsx";
 import ProfileManagement from "../pages/patient/settings/profile_management.jsx";
+import FlorenceMemory from "../pages/patient/settings/florence_memory.jsx";
 import Appointments from "../pages/patient/appointments/appointment.jsx";
 import AppointmentScheduler from "../pages/patient/appointments/appointment_scheduler.jsx";
 import SymptomQuestionnaire from "../pages/patient/symptom-questionnaire.jsx";
@@ -76,6 +77,11 @@ export const getPatientRoutes = () => [
     key="profile_management"
     path="/profile_management"
     element={<ProtectedRoute role="patient"><ProfileManagement /></ProtectedRoute>}
+  />,
+  <Route
+    key="florence_memory"
+    path="/florence_memory"
+    element={<ProtectedRoute role="patient"><FlorenceMemory /></ProtectedRoute>}
   />,
   <Route
     key="appointment_scheduler"

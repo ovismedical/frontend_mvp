@@ -12,6 +12,7 @@ import {
   florenceAPI,
   questionsAPI,
   achievementsAPI,
+  memoriesAPI,
   calendarAPI,
   analyticsAPI,
   triageAPI,
@@ -91,6 +92,38 @@ describe('achievementsAPI', () => {
     const result = await achievementsAPI.getMyAchievements()
     expect(result.success).toBe(true)
     expect(result.current_streak).toBe(5)
+  })
+})
+
+// ===================================================================
+// memoriesAPI
+// ===================================================================
+describe('memoriesAPI', () => {
+  it('getMine returns the notes and the switch', async () => {
+    const result = await memoriesAPI.getMine()
+    expect(result.enabled).toBe(true)
+    expect(result.memories[0].text).toBe('Has a dog called Biscuit')
+  })
+
+  it('remove forgets one note by id', async () => {
+    const result = await memoriesAPI.remove('mem_1')
+    expect(result.memories.map((m) => m.memory_id)).toEqual(['mem_2'])
+  })
+
+  it('clearAll forgets everything', async () => {
+    const result = await memoriesAPI.clearAll()
+    expect(result.memories).toEqual([])
+  })
+
+  it('setEnabled sends the switch', async () => {
+    const result = await memoriesAPI.setEnabled(false)
+    expect(result.enabled).toBe(false)
+  })
+
+  it('surfaces the server error', async () => {
+    server.use(http.delete('http://localhost:8000/memories/:memoryId', () =>
+      HttpResponse.json({ detail: 'Memory not found' }, { status: 404 })))
+    await expect(memoriesAPI.remove('nope')).rejects.toThrow('Memory not found')
   })
 })
 

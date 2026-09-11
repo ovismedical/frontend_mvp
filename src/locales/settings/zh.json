@@ -85,5 +85,17 @@
   "oncologist": "腫瘤科醫生",
   "doctor_contact_via_clinic": "聯絡資料由你的診所管理。",
   "care_team_coming_soon": "你的醫療團隊尚未連接到你的記錄，以下人員只是示例。",
-  "emergency_line_coming_soon": "示例號碼 — 並非真實緊急熱線"
+  "emergency_line_coming_soon": "示例號碼 — 並非真實緊急熱線",
+  "florence_memory": "Florence 記得的事",
+  "florence_memory_desc": "你分享過的事，例如寵物或晚餐吃了什麼",
+  "florence_memory_intro": "Florence 會記住你告訴她的日常小事，下次可以接著聊。她不會記下地址、電話號碼或身份證號碼，你的醫療團隊也看不到這些筆記。",
+  "memory_enabled": "讓 Florence 記住",
+  "memory_enabled_desc": "關閉後，Florence 不會再記住新的事，也不會再提起",
+  "florence_memory_empty": "暫時沒有。Florence 會記住你在之後報到時分享的事。",
+  "florence_memory_off": "Florence 目前沒有記住任何事。",
+  "florence_memory_delete": "忘記「{{text}}」",
+  "florence_memory_clear_all": "全部忘記",
+  "florence_memory_confirm_clear": "再按一次以全部忘記",
+  "memory_load_failed": "未能載入 Florence 記得的事，請再試一次。",
+  "memory_update_failed": "未能儲存更改，請再試一次。"
 }

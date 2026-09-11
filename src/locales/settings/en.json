@@ -85,5 +85,17 @@
   "oncologist": "Oncologist",
   "doctor_contact_via_clinic": "Contact details are managed by your clinic.",
   "care_team_coming_soon": "Your wider care team isn't linked to your record yet. The people below are examples.",
-  "emergency_line_coming_soon": "Example number — not a live emergency line"
+  "emergency_line_coming_soon": "Example number — not a live emergency line",
+  "florence_memory": "What Florence remembers",
+  "florence_memory_desc": "Things you've shared, like your pets or what you had for dinner",
+  "florence_memory_intro": "Florence remembers everyday things you tell her so she can pick up where you left off. She never keeps addresses, phone numbers or ID numbers, and your care team can't see these notes.",
+  "memory_enabled": "Let Florence remember",
+  "memory_enabled_desc": "Turn off to stop Florence remembering anything new or bringing it up",
+  "florence_memory_empty": "Nothing yet. Florence will remember things you share in your next check-ins.",
+  "florence_memory_off": "Florence isn't remembering anything right now.",
+  "florence_memory_delete": "Forget \"{{text}}\"",
+  "florence_memory_clear_all": "Forget everything",
+  "florence_memory_confirm_clear": "Tap again to forget everything",
+  "memory_load_failed": "Couldn't load what Florence remembers. Please try again.",
+  "memory_update_failed": "Couldn't save that change. Please try again."
 }
